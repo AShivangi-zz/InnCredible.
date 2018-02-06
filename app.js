@@ -1,36 +1,68 @@
-/*
-	Copyright 2015, Google, Inc.
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-    http://www.apache.org/licenses/LICENSE-2.0
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-*/
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const passport = require('passport');
+const mongoose = require('mongoose');
+const config = require('./config/database');
 
-var express           = require('express'),
-    app               = express(),
-    bodyParser        = require('body-parser'),
-    mongoose          = require('mongoose'),
-    meetupsController = require('./server/controllers/meetups-controller');
+// Connect To Database (NEW) But not working!!!!!!!!!! (because of secret in db.js!!!!!)
+//const db = require('./config/database');
+// Map global promise - get rid of warning
+//mongoose.Promise = global.Promise;
+// Connect to mongoose
+//mongoose.connect(db.mongoURI, {
+    //useMongoClient: true
+//})
+//.then(() => console.log('MongoDB Connected...'))
+//.catch(err => console.log(err));
 
-mongoose.connect('mongodb://localhost:27017/mean-demo');
 
-app.use(bodyParser());
-
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/client/views/index.html');
+// Connect To Database (OLD CODE)
+mongoose.connect(config.database, { useMongoClient: true});
+// On Connection
+mongoose.connection.on('connected', () => {
+  console.log('Connected to Database '+config.database);
+});
+// On Error
+mongoose.connection.on('error', (err) => {
+  console.log('Database error '+err);
 });
 
-app.use('/js', express.static(__dirname + '/client/js'));
+const app = express();
 
-//REST API
-app.get('/api/meetups', meetupsController.list);
-app.post('/api/meetups', meetupsController.create);
+const users = require('./routes/users');
 
-app.listen((process.env.PORT || 8080), function() {
-  console.log('I\'m Listening...');
-})
+// Port Number
+const port = process.env.PORT || 8080;
+
+// CORS Middleware
+app.use(cors());
+
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Body Parser Middleware
+app.use(bodyParser.json());
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
+app.use('/users', users);
+
+// Index Route
+app.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+// Start Server
+app.listen(port, () => {
+  console.log('Server started on port '+port);
+});
