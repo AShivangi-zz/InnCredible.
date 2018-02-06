@@ -1,2 +1,1 @@
-# InnCredible.
-//add later
+Basic authentication UI
