@@ -22,11 +22,13 @@ import { RewardsComponent } from './components/rewards/rewards.component';
 import { PaymentComponent } from './payment/payment.component';
 
 const appRoutes: Routes =  [
-  {path:'', component: HomeComponent},
-  {path:'register', component: RegisterComponent},
-  {path:'login', component: LoginComponent},
-  {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
-  {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+    {path:'', component: HomeComponent},
+    {path:'register', component: RegisterComponent},
+    {path:'login', component: LoginComponent},
+    {path: 'hotels', component: HotelsComponent},
+    {path: 'booking', component: BookingComponent},
+    {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
+    {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path:'rewards', component: RewardsComponent, canActivate:[AuthGuard]}
 
 ]
@@ -41,7 +43,6 @@ const appRoutes: Routes =  [
     DashboardComponent,
     ProfileComponent,
     HotelsComponent,
-    MyBookingComponent,
     BookingComponent,
     RewardsComponent,
     PaymentComponent
