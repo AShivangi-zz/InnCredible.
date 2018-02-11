@@ -16,6 +16,11 @@ import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
+import { HotelsComponent } from './components/hotels/hotels.component';
+import { MyBookingComponent } from './components/my-booking/my-booking.component';
+import { BookingComponent } from './components/booking/booking.component';
+import { RewardsComponent } from './components/rewards/rewards.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const appRoutes: Routes =  [
   {path:'', component: HomeComponent},
@@ -33,7 +38,12 @@ const appRoutes: Routes =  [
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    HotelsComponent,
+    MyBookingComponent,
+    BookingComponent,
+    RewardsComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
