@@ -17,17 +17,20 @@ import { AuthService } from './services/auth.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { HotelsComponent } from './components/hotels/hotels.component';
-import { MyBookingComponent } from './components/my-booking/my-booking.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { RewardsComponent } from './components/rewards/rewards.component';
 import { PaymentComponent } from './payment/payment.component';
 
 const appRoutes: Routes =  [
-  {path:'', component: HomeComponent},
-  {path:'register', component: RegisterComponent},
-  {path:'login', component: LoginComponent},
-  {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
-  {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]}
+    {path:'', component: HomeComponent},
+    {path:'register', component: RegisterComponent},
+    {path:'login', component: LoginComponent},
+    {path: 'hotels', component: HotelsComponent},
+    {path: 'booking', component: BookingComponent},
+    {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
+    {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
+    {path:'rewards', component: RewardsComponent, canActivate:[AuthGuard]}
+
 ]
 
 @NgModule({
@@ -40,7 +43,6 @@ const appRoutes: Routes =  [
     DashboardComponent,
     ProfileComponent,
     HotelsComponent,
-    MyBookingComponent,
     BookingComponent,
     RewardsComponent,
     PaymentComponent
