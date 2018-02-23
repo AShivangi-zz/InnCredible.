@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.service';
 import { routes } from './app.router';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { routes } from './app.router';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
