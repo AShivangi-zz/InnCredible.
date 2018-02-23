@@ -1,11 +1,13 @@
-/**.form-container {
-    width: 30%;
-    padding: 20px;
-    background: azure
+.form-container {
+  margin: auto;
+  position: absolute;
+  top:120px; left: 0; bottom: 0; right: 0;
+  width: 40%;
+  background: azure
 }
 
 .form-container button{
-    background: rebeccapurple;
+    background: deepskyblue;
     color: white;
     padding: 15px;
     display: block;
@@ -26,4 +28,4 @@
     width: 100%;
     margin-bottom: 20px;
 
-}**/
+}
