@@ -19,10 +19,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  logout() {
-    this.afa.auth.signOut();
-    this.router.navigateByUrl("/login");
-  }
+  
 
   ngOnInit() {
   }
