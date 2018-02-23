@@ -1,17 +1,17 @@
 <div class="form-container">
 
   <h2>Login</h2>
-  
+
    <span class= "error" *ngIf="error">{{error}}</span>
-  
+
   <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-      
+
     <input type="email" placeholder="Email Address" (ngModel) = "email" name="email" class="txt" required/>
     <input type="password" placeholder="Password" (ngModel) = "password" name="password" class="txt" required/>
-   
+
     <button type="submit" [disabled]="!formData.valid" class="basic-btn">Login</button>
-    <a routerLink="/register" class="alc">Don't havan account? Create one here</a>
-    
+    <a id="prompt" routerLink="/register" class="alc">Don't have an account? Create one here. </a>
+
   </form>
-    
+
 </div>
