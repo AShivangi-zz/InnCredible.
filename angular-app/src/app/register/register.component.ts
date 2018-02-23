@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit {
     if(formData.valid) {
       this.afa.auth.createUserWithEmailAndPassword(formData.value.email, formData.value.password)
         .then((success)=> {
-          this.router.navigate(['/home'])
+          this.router.navigateByUrl('/home')
+          location.reload();
         }).catch(
           (err) => {
             this.error = err;

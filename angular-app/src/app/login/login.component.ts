@@ -13,18 +13,20 @@ export class LoginComponent implements OnInit {
   error: any;
 
   constructor(public afa: AngularFireAuth, private router: Router) { 
-      this.afa.authState.subscribe(auth => {
+    /*this.afa.authState.subscribe(auth => {
         if(auth) {
-          this.router.navigateByUrl('/home');
+
         }
-      });
+        this.router.navigateByUrl('/home');
+      });*/
   }
 
   onSubmit(formData) {
     if(formData.valid) {
       this.afa.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
         .then((success)=> {
-          this.router.navigate(['/home'])
+          this.router.navigateByUrl('/home')
+          location.reload();
         }).catch(
           (err) => {
             this.error = err;
@@ -33,7 +35,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit() : void {
+    this.afa.authState.subscribe(auth => {
+      if(auth) {
+        this.router.navigateByUrl('/home');
+      }
+    });
   }
 
 }

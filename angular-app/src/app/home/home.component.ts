@@ -9,22 +9,20 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  name: any;
-
+  //name: any;
   constructor(public afa: AngularFireAuth, private router: Router) {
-    this.afa.authState.subscribe(auth => {  
+    /*this.afa.authState.subscribe(auth => {  
       if(auth) {
         this.name = auth;
       }
-    });
+    });*/
   }
 
-  logout() {
-    this.afa.auth.signOut();
-    this.router.navigateByUrl("/login");
-  }
+  
 
   ngOnInit() {
+    
+    
   }
 
 }
