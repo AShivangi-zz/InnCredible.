@@ -10,11 +10,27 @@ import {Router} from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   name: any;
+  authenticated: boolean;
 
   constructor(public afa: AngularFireAuth, private router: Router) {
     this.afa.authState.subscribe(auth => {  
       if(auth) {
         this.name = auth;
+        this.authenticated = true;
+      }
+      else {
+        this.authenticated = false; 
+      }
+    });
+  }
+
+  checkAuth(): void {
+    this.afa.authState.subscribe(auth => {  
+      if(auth) {
+        this.authenticated = true;
+      }
+      else {
+        this.authenticated = false;
       }
     });
   }
