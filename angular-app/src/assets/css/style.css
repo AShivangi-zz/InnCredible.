@@ -7,7 +7,7 @@
 }
 /* =======================================================
 *
-* 	Template Style 
+* 	Template Style
 *	Edit this section
 *
 * ======================================================= */
@@ -852,6 +852,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 .fh5co-property .price-status {
   margin-bottom: 20px;
+  color: black
 }
 .fh5co-property .price-status .price {
   font-size: 28px;
