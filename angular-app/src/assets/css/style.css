@@ -1289,7 +1289,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }*/
 .fh5co-cta .overlay, .fh5co-page-title .overlay {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   left: 0;
   right: 0;
   bottom: 0;
@@ -1327,7 +1327,7 @@ h1, h2, h3, h4, h5, h6, figure {
   margin: 0;
 }
 .fh5co-page-title h1 .colored {
-  color: #4CB648;
+  color: #118DF0;
 }
 
 #fh5co-footer {
@@ -1336,7 +1336,7 @@ h1, h2, h3, h4, h5, h6, figure {
   width: 100%;
   text-align: center;
   position: relative;
-  background: #333333;
+  background: rgba(0, 0, 0, 0.5);
 }
 /*
 @media screen and (max-width: 768px) {
