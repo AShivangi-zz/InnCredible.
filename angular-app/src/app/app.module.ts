@@ -16,6 +16,9 @@ import { AuthGuard } from './auth.service';
 import { routes } from './app.router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
+//import { CommonModules } from
+//import { ReactivateFormsModule } from '@angular/forms';
+import { UserFormComponent } from './user-form/user-form.component';
 
 
 @NgModule({
@@ -25,9 +28,12 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserFormComponent
   ],
   imports: [
+  //  CommonModules,
+  //  ReactivateFormsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
