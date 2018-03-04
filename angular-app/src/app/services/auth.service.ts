@@ -2,7 +2,6 @@ import {CanActivate, Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Injectable} from "@angular/core";
 import * as firebase from 'firebase/app';
-import { AngularFirestore, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
@@ -27,9 +26,7 @@ export class AuthService {
 
  constructor(private afAuth: AngularFireAuth,
   private db : AngularFireDatabase,
-  private router: Router){
-
-  }
+  private router: Router){}
 
   emailSignUp(email: string, password: string, firstname: string, lastname:string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)

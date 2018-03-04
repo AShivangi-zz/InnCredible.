@@ -1,7 +1,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<!--Include the above in your HEAD tag-->
 
 <div class="col-lg-6 col-sm-6" style = "width: 100%;" >
   <div class="card hovercard">
@@ -12,13 +12,13 @@
     <div class="useravatar">
       <img alt="" src="http://lorempixel.com/100/100/people/9/">
     </div>
-    <div class="card-info"> <span class="card-title">Pamela Anderson</span>
+    <div class="card-info"> <span class="card-title">{{userProfileService.getFullName()}}</span>
 
     </div>
   </div>
   <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
     <div class="btn-group" role="group">
-      <button type="button" id="my bookings" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+      <button type="button" id="my bookings" class="btn btn-default" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
         <div class="hidden-xs">My Bookings</div>
       </button>
     </div>
@@ -66,10 +66,13 @@
         <h3>This is tab 4</h3>
       </div>
       <div class="tab-pane fade in" id="tab5">
-        <h3>This is tab 5</h3>
+        <h3 style='text-align: center'>You have: 
+          <span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points.</h3>
       </div>
       <div class="tab-pane fade in" id="tab6">
-        <h3>This is tab 6</h3>
+        <h3 style='padding-bottom:30px;'>Your Profile</h3>
+        <span style='color:black; font-size: 20px; padding-right: 40px'>Email:</span>
+        <span style='color:black; font-size: 20px;'>{{userProfileService.getUserEmail()}}</span>
       </div>
     </div>
   </div>
