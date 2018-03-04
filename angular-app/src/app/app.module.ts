@@ -18,8 +18,8 @@ import {AuthService} from './auth.service';
 import { routes } from './app.router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
-//import { CommonModules } from
-//import { ReactivateFormsModule } from '@angular/forms';
+import { ContactComponent } from './contact/contact.component';
+
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    ContactComponent
   ],
   imports: [
   //  CommonModules,

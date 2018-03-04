@@ -7,7 +7,7 @@
 }
 /* =======================================================
 *
-* 	Template Style 
+* 	Template Style
 *	Edit this section
 *
 * ======================================================= */
@@ -373,6 +373,7 @@ h1, h2, h3, h4, h5, h6, figure {
   -moz-border-radius: 7px;
   -ms-border-radius: 7px;
   border-radius: 7px;
+  font-family: "Varela Round", Arial, sans-serif;
 }
 #fh5co-header h1 {
   float: left;
@@ -852,6 +853,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 .fh5co-property .price-status {
   margin-bottom: 20px;
+  color: black
 }
 .fh5co-property .price-status .price {
   font-size: 28px;
@@ -1287,7 +1289,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }*/
 .fh5co-cta .overlay, .fh5co-page-title .overlay {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   left: 0;
   right: 0;
   bottom: 0;
@@ -1325,15 +1327,16 @@ h1, h2, h3, h4, h5, h6, figure {
   margin: 0;
 }
 .fh5co-page-title h1 .colored {
-  color: #4CB648;
+  color: #118DF0;
 }
 
 #fh5co-footer {
-  padding: 7em 0;
+  padding: 2%;
   float: left;
   width: 100%;
+  text-align: center;
   position: relative;
-  background: #333333;
+  background: rgba(0, 0, 0, 0.5);
 }
 /*
 @media screen and (max-width: 768px) {
@@ -1351,7 +1354,8 @@ h1, h2, h3, h4, h5, h6, figure {
   font-weight: bold;
 }
 #fh5co-footer [class*="col"] {
-  padding-bottom: 30px;
+  padding-top: 25px;
+  padding-bottom: 15px;
 }
 #fh5co-footer .btn {
   color: #fff;
