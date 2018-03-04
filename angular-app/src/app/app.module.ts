@@ -27,6 +27,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AuthGuard } from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {UserProfileService} from './services/profile.service';
+import { PolicyComponent } from './policy/policy.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {UserProfileService} from './services/profile.service';
     RegisterComponent,
     NavbarComponent,
     ProfileComponent,
-    ContactComponent
+    ContactComponent,
+    PolicyComponent
   ],
   imports: [
     ReactiveFormsModule,
