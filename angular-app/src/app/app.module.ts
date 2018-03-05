@@ -22,6 +22,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
+import {HotelInfoComponent} from './hotel-info/hotel-info.component';
 
 //Services
 import { AuthGuard } from './services/auth-guard.service';
@@ -37,7 +38,8 @@ import {UserProfileService} from './services/profile.service';
     RegisterComponent,
     NavbarComponent,
     ProfileComponent,
-    ContactComponent
+    ContactComponent,
+    HotelInfoComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -50,8 +52,8 @@ import {UserProfileService} from './services/profile.service';
     AngularFireModule.initializeApp(environment.firebase),
     routes
   ],
-  providers: 
-    [AuthGuard, 
+  providers:
+    [AuthGuard,
      AuthService,
      UserProfileService
     ],
