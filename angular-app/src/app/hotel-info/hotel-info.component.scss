@@ -2,3 +2,355 @@
   height: 400px;
   width: 100%;
 }
+
+.block_title {
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 32px;
+  align: center;
+  color: #000a12;
+}
+.block_header {
+  padding: 12px 0 8px;
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-color: white;
+}
+
+$height: 100%;
+$width: 100%;
+
+html, body {
+  margin: 0 auto;
+  padding: 0;
+  height: $height;
+  width: $width;
+  border: 1px solid black;
+}
+
+$black: #212121;
+$white: #fdfdfd;
+$olsetBlue: rgb(44, 157, 197);
+
+.white { color: $white; }
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+.usd:before { content: "$"; }
+.font-light {
+  color: #999;
+  font-weight: lighter;
+}
+
+$headerHeight: 40px;
+.header-wrapper {
+  background-color: $black;
+  padding: 0 2%;
+  height: $headerHeight;
+  line-height: $headerHeight;
+
+  form {
+    display: table-cell;
+    font-size: 1.25rem;
+    vertical-align: middle;
+
+    div {
+      color: $olsetBlue;
+      display: inline-block;
+      position: relative;
+      width: 47.5%;
+
+      label {
+        font-size: 2rem;
+        position: absolute;
+        padding: 1rem 0;
+      }
+
+      input {
+        background-color: transparent;
+        border: none;
+        color: $white;
+        outline: none;
+        padding-left: 2.33rem;
+        line-height: normal;
+        width: 100%;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+$hotelRatingItemHeight: 4rem;
+
+.content-wrapper {
+  height: 100%;
+}
+
+#hotel-list {
+
+  li {
+    background-color: transparent;
+    border-radius: $hotelRatingItemHeight/2;
+    color: #555;
+    height: $hotelRatingItemHeight;
+    font-size: 1.25rem;
+    width: 90%;
+    margin: 3% auto;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.selected {
+      background-color: $olsetBlue;
+      color: $white;
+
+      .star-rating {
+        color: $white;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      transition: all .2s;
+
+      .star-rating {
+        transition: all .2s;
+      }
+    }
+
+    &:active {
+      background-color: darken($olsetBlue, 10%);
+    }
+
+    &.selected {
+      border: 0;
+      transform: translateY(0);
+      transition: border .2s, transform .1s;
+    }
+
+    div {
+      display: inline;
+      height: 100%;
+      padding: $hotelRatingItemHeight/4 4%;
+      vertical-align: middle;
+
+      &.star-rating {
+        color: $olsetBlue;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      &.hotel-count {
+        text-align: center;
+      }
+
+      &:first-child {
+        text-align: right;
+
+      }
+    }
+  }
+}
+
+.footer-wrapper {
+  width: 100%;
+  height: $headerHeight;
+  margin-top: -2*$headerHeight;
+
+  .progress-nav {
+    background-color: darken(red, 12%);
+    width: 100%;
+    height: 100%;
+
+    & > div {
+      height: 100%;
+
+      &[role="navigation"] {
+        padding: 0;
+        position: relative;
+      }
+
+      .btn-footer {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 1.25rem;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        width: 100%;
+        height: 100%;
+        transition: text-shadow .1s;
+
+        &:hover {
+          //font-weight: normal;
+          background-color: lighten(red, 5%);
+          text-shadow: #fff 1px 1px 5px;
+          transition: text-shadow .1s;
+        }
+
+        &:active {
+          background-color: darken(red, 15%);
+          border-top: 2px solid transparent;
+        }
+
+        &:active,
+        &:focus {
+          outline: none;
+        }
+
+        &.previous {
+
+          &:before,
+          &:after {
+            content: "";
+            background-color: white;
+            width: 15px;
+            height: 2px;
+            position: absolute;
+            left: .75rem;
+          }
+
+          $chevronAngle: 45deg;
+          $chevronOffset: 34%;
+          &:before {
+            top: $chevronOffset;
+            transform: rotateZ(-$chevronAngle);
+          }
+          &:after {
+            bottom: $chevronOffset;
+            transform: rotateZ($chevronAngle);
+          }
+        }
+      }
+
+      .progress-wrapper {
+        text-align: center;
+        padding: $headerHeight/3 0;
+        margin: 0 auto;
+
+        $circleDiameter: 1.5rem;
+        $progressMargin: 1rem;
+        .progress-circle {
+          display: inline-block;
+          width: $circleDiameter;
+          height: $circleDiameter;
+          border: 2px solid white;
+          border-radius: $circleDiameter/2;
+          margin: 0 $progressMargin;
+          position: relative;
+          transition: box-shadow .2s;
+
+          &.current {
+            background-color: white;
+          }
+
+          &:hover {
+            box-shadow: 0 0 5px 1px #fff;
+            transition: box-shadow .2s;
+          }
+
+          &:not(:first-child):not(:last-child) {
+            &:before, &:after {
+              content: "";
+              width: $progressMargin*2.5;
+              height: 2px;
+              position: absolute;
+              background-color: white;
+              top: 33%;
+            }
+
+            $progressLineOffset: $circleDiameter - .3rem;
+            &:before {
+              left: $progressLineOffset;
+            }
+
+            &:after {
+              right: $progressLineOffset;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.btn-lift {
+  border-top: 0px solid transparent;
+  border-bottom: 0px solid transparent;
+  transition: transform .25s;
+
+  &:hover {
+    //background-color: $olsetBlue;
+    border-bottom: 5px solid darken($olsetBlue, 10%);
+    transform: translateY(-2px);
+    transition: transform .1s, border .1s;
+  }
+
+  &:active {
+    //background-color: darken($olsetBlue, 10%);
+    border-top: 5px solid darken($olsetBlue, 20%);
+    border-bottom-width: 0;
+    transition: all .1s;
+  }
+}
+
+#hotels {
+  text-align: center;
+  margin-top: 20px;
+}
+.hotelTitle, .rating {
+  margin-top: 20px;
+  display: inline-block;
+
+}
+#titlerating {
+  width: 100%;
+
+}
+.rating {
+  margin-left: 50px;
+  font-size: 125%;
+  position: relative;
+  bottom: 30px;
+
+}
+.hotelTitle {
+  text-align: left;
+
+}
+
+.pics {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 250px;
+}
+
+#desc, #amenities {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+#desc {
+  width: 500px;
+  text-align: left;
+}
+
+#reviews {
+  margin-top: 50px;
+}
+#amenitiestitle, #reviewtitle, #desctitle {
+  text-decoration: underline;
+}
+
+.usersummary {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
