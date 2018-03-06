@@ -28,6 +28,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {UserProfileService} from './services/profile.service';
 import { PolicyComponent } from './policy/policy.component';
+import { BookingComponent } from './booking/booking.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { PolicyComponent } from './policy/policy.component';
     NavbarComponent,
     ProfileComponent,
     ContactComponent,
-    PolicyComponent
+    PolicyComponent,
+    BookingComponent
   ],
   imports: [
     ReactiveFormsModule,
