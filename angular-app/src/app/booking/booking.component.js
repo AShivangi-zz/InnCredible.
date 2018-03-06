@@ -2,11 +2,23 @@ $(function(){
   $('a[title]').tooltip();
 });
 
+//Check in date
 $(function() {
   $('#datetimepicker4').datetimepicker({
     pickTime: false
   });
+});
+
+//Check out date
+$(function() {
+  $('#datetimepicker5').datetimepicker({
+    pickTime: false
   });
+});
+
+//Todays date
+var today = new Date();
+document.getElementById('today').innerHTML=today;
 
 
 
