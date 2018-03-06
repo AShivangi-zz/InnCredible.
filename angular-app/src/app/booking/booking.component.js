@@ -10,7 +10,8 @@ $(function() {
 
 
 
-//FOr payment
+//for payment: https://bootsnipp.com/snippets/featured/credit-card-payment-with-stripe
+
 /*
 The MIT License (MIT)
 
