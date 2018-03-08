@@ -28,6 +28,8 @@ import { AuthGuard } from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {UserProfileService} from './services/profile.service';
 import { PolicyComponent } from './policy/policy.component';
+import { SearchresultComponent } from './searchresult/searchresult.component';
+import { SharedSearchResultsService} from "./services/shared-search-results.service";
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { PolicyComponent } from './policy/policy.component';
     NavbarComponent,
     ProfileComponent,
     ContactComponent,
-    PolicyComponent
+    PolicyComponent,
+    SearchresultComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -52,10 +55,11 @@ import { PolicyComponent } from './policy/policy.component';
     AngularFireModule.initializeApp(environment.firebase),
     routes
   ],
-  providers: 
-    [AuthGuard, 
+  providers:
+    [AuthGuard,
      AuthService,
-     UserProfileService
+     UserProfileService,
+      SharedSearchResultsService
     ],
   bootstrap: [AppComponent]
 })
