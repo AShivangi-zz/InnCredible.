@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {result} from "../services/hotel-info";
+import {hotel-info} from "../services/hotel-info";
 //import {AngularFire} from "angularfire5";
 
 @Component({
