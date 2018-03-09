@@ -30,6 +30,7 @@
         <img src="../assets/images/room.jpg" style="width:100%;">
       </div>
 
+
       <div class="item">
         <img src="../assets/images/pool.jpg" style="width:100%;">
       </div>
@@ -55,17 +56,27 @@
 
 <div id='desc'>
   <h3 id='desctitle'>Description</h3>
-  <p id='descinfo'></p> <!-- add the description here from the DB-->
+  <p id='descinfo'> </p>
+  <input type="text" placeholder="Add Description" [(ngModel)]="hotel-info.description" name="description"><!-- add the description here from the DB-->
 </div>
 
 <div id='amenities'>
-  <h3 id='amenitiestitle'>Amenities</h3> <!-- add the amenities here from the DB-->
+  <h3 id='amenitiestitle'>Amenities</h3>
+  <input type="text" placeholder="Add Amenities" [(ngModel)]="hotel-info.amenities" name="amenities"> <!-- add the amenities here from the DB-->
   <div id='list'></div>
 </div>
 
 <div id='prices'>
   <u><h3 id='price'>Prices</h3></u>
-  <div id="price_sub"><h4> Nightly:</h4>  <h4>Weekend:</h4><h4>Weekly:</h4></div><!-- add the prices here from the DB-->
+  <div id="price_sub">
+    <h4> Nightly:</h4>
+    <input type="text" placeholder="Add Nightly Prices" [(ngModel)]="hotel-info.prices.Nightly" name="Nightly">
+    <h4>Weekend:</h4>
+    <input type="text" placeholder="Add Weekend Prices" [(ngModel)]="hotel-info.prices.weekend" name="Weekend">
+    <h4>Weekly:</h4>
+    <input type="text" placeholder="Add Weekly Prices" [(ngModel)]="hotel-info.prices.weekley" name="Weekley">
+
+  </div><!-- add the prices here from the DB-->
 
 </div>
 
