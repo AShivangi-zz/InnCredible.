@@ -352,5 +352,24 @@ $hotelRatingItemHeight: 4rem;
   margin-left: auto;
   margin-right: auto;
 }
+#hotels {
+  text-align: center;
+  margin-top: 20px;
+}
 
+.hotelInfo {
+  text-align: left;
+  margin-left: 700px;
+}
 
+#desc, #amenities {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+#desc {
+  width: 500px;
+  text-align: left;
+  margin-left: 450px
+}
