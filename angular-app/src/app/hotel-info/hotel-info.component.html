@@ -11,7 +11,9 @@
 <body>
 
 <div class="container">
-  <h2>Hotel Name (from DB)</h2> <!--from DB-->
+  <div *ngFor="let hotel name of hotel-info" | async> 
+    {{hotel-info.HotelName}}
+   </div>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -62,8 +64,12 @@
 
 <div id='amenities'>
   <h3 id='amenitiestitle'>Amenities</h3>
+  <div *ngFor id="let user of results">
+  {{hotel-info.amenities}}
+
   <input type="text" placeholder="Add Amenities" [(ngModel)]="hotel-info.amenities" name="amenities"> <!-- add the amenities here from the DB-->
   <div id='list'></div>
+  </div>
 </div>
 
 <div id='prices'>
