@@ -5,7 +5,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<section style="background:#efefe9;">
+<section style="background:#efefe9; ">
   <div class="container">
     <div class="row">
       <div class="board">
@@ -171,11 +171,15 @@
             <!--</div>-->
 
           </div>
-          <div class="tab-pane fade" id="reviewOrder">
+
+
+          <!--review order -->
+          <div class="tab-pane fade page" style  = "" id="reviewOrder">
             <h3 class="head text-center"></h3>
 
-            <div class="col-md-12">
-              <div class="col-md-4 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
+            <div class="col-md-8 box">
+              <div >
+
                 <!--REVIEW ORDER-->
                 <div class="panel panel-default">
                   <div class="panel-heading text-center">
@@ -257,7 +261,7 @@
           </div>
 
           <div class="tab-pane fade" id="checkout">
-            <h3 class="head text-center">Payment</h3>
+            <h3 class="head text-center" style="margin-top: -5%">Payment</h3>
 
             <!--Following code is from this: https://bootsnipp.com/snippets/featured/credit-card-payment-with-stripe-->
             <!-- Vendor libraries -->
@@ -268,7 +272,7 @@
             <!-- If you're using Stripe for payments -->
             <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
-            <div class="container">
+            <div class="container" style="margin-left: 27%">
               <div class="row">
                 <!-- You can make it whatever width you want. I'm making it full width
                      on <= small devices and 4/12 page width on >= medium devices -->
@@ -366,12 +370,12 @@
 
 
           <div class="tab-pane fade" id="confirmation">
-            <div class="text-center">
+            <div class="head text-center">
               <i class="img-intro icon-checkmark-circle"></i>
             </div>
             <!--<h3 class="head text-center">Confirmation</h3>-->
             <div class="col-md-12">
-              <div class="col-md-4 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
+              <div class="col-md-8 box" style = "margin-top:-5%;">
                 <!--REVIEW ORDER-->
                 <div class="panel panel-default">
                   <div class="panel-heading text-center">

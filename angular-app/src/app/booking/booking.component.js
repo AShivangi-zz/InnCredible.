@@ -16,9 +16,7 @@ $(function() {
   });
 });
 
-//Todays date
-var today = new Date();
-document.getElementById('today').innerHTML=today;
+
 
 
 
