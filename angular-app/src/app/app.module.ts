@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 import { routes } from './app.router';
 
 //Firebase
-import{AngularFireModule} from "angularfire2";
+import{AngularFireModule} from 'angularfire2';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -29,7 +29,7 @@ import {AuthService} from './services/auth.service';
 import {UserProfileService} from './services/profile.service';
 import { PolicyComponent } from './policy/policy.component';
 import { SearchresultComponent } from './searchresult/searchresult.component';
-import { SharedSearchResultsService} from "./services/shared-search-results.service";
+import { SharedSearchResultsService} from './services/shared-search-results.service';
 
 
 @NgModule({
