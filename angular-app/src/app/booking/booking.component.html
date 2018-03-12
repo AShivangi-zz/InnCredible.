@@ -50,83 +50,86 @@
           <div class="tab-pane fade in active" id="roomDetails">
 
             <h3 class="head text-center">Enter Hotel Details</h3>
-            <form class="form-horizontal">
-              <fieldset>
+
+            <app-reservation></app-reservation>
+            <!--<form class="form-horizontal">-->
+              <!--<fieldset>-->
 
 
 
-                <!--&lt;!&ndash; Form Name &ndash;&gt;-->
-                <!--<legend>Form Name</legend>-->
+                <!--&lt;!&ndash;&lt;!&ndash; Form Name &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<legend>Form Name</legend>&ndash;&gt;-->
 
-                <!-- Select Basic -->
-                <div class="form-group">
-                  <label class="col-md-4 control-label" for="Number of Guests">Number Of Guests</label>
-                  <div class="col-md-4">
-                    <select id="Number of Guests" name="Number of Guests" class="form-control">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Select Basic -->
-                <div class="form-group">
-                  <label class="col-md-4 control-label" for="beds">Number of Beds</label>
-                  <div class="col-md-4">
-                    <select id="beds" name="beds" class="form-control">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!--<div id="datetimepicker4" class="input-append">-->
-                  <!--Check In Date-->
-                  <!--<input type="date" data-date="" data-date-format="DD MMMM YYYY" value="2015-08-09">-->
-                  <!--<span class="add-on">-->
-                  <!--<i data-time-icon="icon-time" data-date-icon="icon-calendar">-->
-                  <!--</i>-->
-                <!--</span>-->
+                <!--&lt;!&ndash; Select Basic &ndash;&gt;-->
+                <!--<div class="form-group">-->
+                  <!--<label class="col-md-4 control-label" for="Number of Guests">Number Of Guests</label>-->
+                  <!--<div class="col-md-4">-->
+                    <!--<select id="Number of Guests" name="Number of Guests" class="form-control">-->
+                      <!--<option value="1">1</option>-->
+                      <!--<option value="2">2</option>-->
+                      <!--<option value="3">3</option>-->
+                      <!--<option value="4">4</option>-->
+                      <!--<option value="5">5</option>-->
+                      <!--<option value="6">6</option>-->
+                      <!--<option value="7">7</option>-->
+                      <!--<option value="8">8</option>-->
+                    <!--</select>-->
+                  <!--</div>-->
                 <!--</div>-->
 
-                <!--<div id="datetimepicker5" class="input-append">-->
-                  <!--Check Out Date-->
-                  <!--<input type="date" data-date="" data-date-format="DD MMMM YYYY" value="2015-08-09">-->
-                  <!--<span class="add-on">-->
-                <!--<i data-time-icon="icon-time" data-date-icon="icon-calendar">-->
-                <!--</i>-->
-              <!--</span>-->
+                <!--&lt;!&ndash; Select Basic &ndash;&gt;-->
+                <!--<div class="form-group">-->
+                  <!--<label class="col-md-4 control-label" for="beds">Number of Beds</label>-->
+                  <!--<div class="col-md-4">-->
+                    <!--<select id="beds" name="beds" class="form-control">-->
+                      <!--<option value="1">1</option>-->
+                      <!--<option value="2">2</option>-->
+                    <!--</select>-->
+                  <!--</div>-->
                 <!--</div>-->
 
-                <!-- Textarea -->
-                <div class="form-group">
-                  <label class="col-md-4 control-label" for="textarea">Comments</label>
-                  <div class="col-md-4">
-                    <textarea class="form-control" id="textarea" name="textarea"></textarea>
-                  </div>
-                </div>
+                <!--&lt;!&ndash;<div id="datetimepicker4" class="input-append">&ndash;&gt;-->
+                  <!--&lt;!&ndash;Check In Date&ndash;&gt;-->
+                  <!--&lt;!&ndash;<input type="date" data-date="" data-date-format="DD MMMM YYYY" value="2015-08-09">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<span class="add-on">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<i data-time-icon="icon-time" data-date-icon="icon-calendar">&ndash;&gt;-->
+                  <!--&lt;!&ndash;</i>&ndash;&gt;-->
+                <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-                <!-- Button -->
-                <div class="form-group">
-                  <label class="col-md-4 control-label" for="commenButton"></label>
-                  <div class="col-md-4">
-                    <button id="commentButton" name="commenButton" class="btn btn-primary">Submit</button>
-                  </div>
-                </div>
+                <!--&lt;!&ndash;<div id="datetimepicker5" class="input-append">&ndash;&gt;-->
+                  <!--&lt;!&ndash;Check Out Date&ndash;&gt;-->
+                  <!--&lt;!&ndash;<input type="date" data-date="" data-date-format="DD MMMM YYYY" value="2015-08-09">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<span class="add-on">&ndash;&gt;-->
+                <!--&lt;!&ndash;<i data-time-icon="icon-time" data-date-icon="icon-calendar">&ndash;&gt;-->
+                <!--&lt;!&ndash;</i>&ndash;&gt;-->
+              <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                <!--&lt;!&ndash; Textarea &ndash;&gt;-->
+                <!--<div class="form-group">-->
+                  <!--<label class="col-md-4 control-label" for="textarea">Comments</label>-->
+                  <!--<div class="col-md-4">-->
+                    <!--<textarea class="form-control" id="textarea" name="textarea"></textarea>-->
+                  <!--</div>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Button &ndash;&gt;-->
+                <!--<div class="form-group">-->
+                  <!--<label class="col-md-4 control-label" for="commenButton"></label>-->
+                  <!--<div class="col-md-4">-->
+                    <!--<button id="commentButton" name="commenButton" class="btn btn-primary">Submit</button>-->
+                  <!--</div>-->
+                <!--</div>-->
 
 
-              </fieldset>
-            </form>
+              <!--</fieldset>-->
+            <!--</form>-->
 
 
 
           </div>
+
           <div class="tab-pane fade" id="termsAndConditions">
             <h3 class="head text-center">Terms and Conditions</h3>
 
@@ -171,7 +174,6 @@
             <!--</div>-->
 
           </div>
-
 
           <!--review order -->
           <div class="tab-pane fade page" style  = "" id="reviewOrder">
@@ -366,9 +368,6 @@
 
           </div>
 
-
-
-
           <div class="tab-pane fade" id="confirmation">
             <div class="head text-center">
               <i class="img-intro icon-checkmark-circle"></i>
@@ -466,6 +465,7 @@
               </div>
           </div>
           </div>
+
           <div class="clearfix"></div>
         </div>
 
