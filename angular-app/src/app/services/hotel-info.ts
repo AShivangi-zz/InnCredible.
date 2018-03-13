@@ -23,7 +23,7 @@ import * as firebase from 'firebase';
 export class HotelInfo {
 
   //  private authInfo;
-   private HotelId = "0";
+    private HotelId = "0";
     private HotelName: string;
     private amenities : any;
     private location: string;
@@ -45,7 +45,9 @@ export class HotelInfo {
       this.Rating();
       this.RatingImage();
       this.Description();
-      this.AmenitiesRoom();
+    //  this.AmenitiesRoom();
+    //  this.AmenitiesHotel();
+
     }
 /*
 public setHotelId(number : string){
@@ -100,6 +102,20 @@ public setHotelId(number : string){
          return this.location;
     }
 
+    public Description(){
+      var hotelDescription: string;
+      firebase.database().ref('/hotels/' +this.HotelId+ '/attr').once('value')
+          .then((snapshot) => {// ** My only change ** or use snapshot
+           this.setDescription(snapshot.child('description').val());
+      });
+    }
+    public setDescription(hotelDescription:string){
+          this.description = hotelDescription;
+    }
+    public getDescription(){
+            return this.description;
+    }
+
 
     public Review(){
       var review: string;
@@ -146,7 +162,7 @@ public setHotelId(number : string){
     public getRatingImage(){
          return this.ratingImage;
     }
-
+/*
     private AmenitesHotel(): any{
          var countHotel = firebase.database().ref('/hotels/' + this.HotelId+ '/amenities/hotel').getChildren().length;
 
@@ -154,11 +170,11 @@ public setHotelId(number : string){
           var numHotel = i.toString();
          firebase.database().ref('/hotels/' + this.HotelId+ '/amenities/hotel/').once('value')
              .then((snapshot) => {// ** My only change ** or use snapshot
-                 this.facility.setAmenities(snapshot.child('numHotel').val());
+                 this.facility.setAmenities(snapshot.child('numHotel').val()));
          });
        }
      }
-/*
+
      private AmenitesRoom(): any{
           var countRoom = firebase.database().ref('/hotels/' + this.HotelId+ '/amenities/room').getChildren().length;
 
@@ -166,34 +182,26 @@ public setHotelId(number : string){
            var numRoom = i.toString();
           firebase.database().ref('/hotels/' + this.HotelId+ '/amenities/room/').once('value')
               .then((snapshot) => {// ** My only change ** or use snapshot
-                  this.facility.setAmenities(snapshot.child('numRoom').val());
+                  this.facility.setAmenities(snapshot.child('numRoom').val()));
           });
         }
       }
 
-       public setAmenities(Amenity:string){
+       public setAmenitiesHotel(Amenity:string){
       //   var facility = new Array();
          this.facility.push(Amenity);
-
        }
 
-     public getAmenities(){
+     public getAmenitiesHotel(){
        return facility;
      }
+
+     public setAmenitiesRoom(Amenity:string){
+    //   var facility = new Array();
+       this.facility.push(Amenity);
+     }
+
+   public getAmenitiesRoom(){
+     return facility;
+   }
 */
-
-
-     public Description(){
-       var hotelDescription: string;
-       firebase.database().ref('/hotels/' +this.HotelId+ '/attr').once('value')
-           .then((snapshot) => {// ** My only change ** or use snapshot
-            this.setDescription(snapshot.child('description').val());
-       });
-     }
-     public setDescription(hotelDescription:string){
-           this.description = hotelDescription;
-     }
-     public getDescription(){
-             return this.description;
-     }
-}
