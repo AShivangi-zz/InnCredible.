@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Router} from '@angular/router';
 import {SharedSearchResultsService} from "../services/shared-search-results.service";
+import {HotelService} from "../services/hotel.service";
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,9 @@ export class HomeComponent implements OnInit {
       // Store the information that the user entered into the service attributes
       this.service.saveInformation(searchformdata.value.cityname, searchformdata.value.checkindate, searchformdata.value.checkoutdate);
       // Route to the searchresult page/component
+
       this.router.navigateByUrl('/searchresult');
+
     }
   }
 

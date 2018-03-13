@@ -14,6 +14,7 @@ import{AngularFireModule} from 'angularfire2';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+
 //Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -30,6 +31,7 @@ import {UserProfileService} from './services/profile.service';
 import { PolicyComponent } from './policy/policy.component';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { SharedSearchResultsService} from './services/shared-search-results.service';
+import {HotelService} from "./services/hotel.service";
 
 
 @NgModule({
@@ -42,7 +44,7 @@ import { SharedSearchResultsService} from './services/shared-search-results.serv
     ProfileComponent,
     ContactComponent,
     PolicyComponent,
-    SearchresultComponent
+    SearchresultComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -59,7 +61,8 @@ import { SharedSearchResultsService} from './services/shared-search-results.serv
     [AuthGuard,
      AuthService,
      UserProfileService,
-      SharedSearchResultsService
+      SharedSearchResultsService,
+      HotelService
     ],
   bootstrap: [AppComponent]
 })
