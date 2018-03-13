@@ -11,8 +11,8 @@
 <body>
 
 <div class="container">
-  <h2>Hotel Name (from DB)</h2> <!--from DB-->
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <h2> {{hotelInfo.getHotelName()}} </h2>
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -23,16 +23,16 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="../assets/images/hotel.jpg" style="width:100%;" ><!--change images from DB accordingly-->
+        <img src="../assets/images/hotel.jpg" style="width:100%;">
       </div>
 
       <div class="item">
-        <img src="../assets/images/room.jpg" style="width:100%;"><!--change images from DB accordingly-->
+        <img src="../assets/images/room.jpg" style="width:100%;">
       </div>
 
 
       <div class="item">
-        <img src="../assets/images/pool.jpg" style="width:100%;"><!--change images from DB accordingly-->
+        <img src="../assets/images/pool.jpg" style="width:100%;">
       </div>
     </div>
 
@@ -50,47 +50,50 @@
 
 <div id="hotels">
   <div class = 'hotelInfo'>
-  <h2> Address </h2>
+  <p class = 'Hotel Address' > {{hotelInfo.getLocation()}}</p>
   </div>
 </div>
 
+
 <div id='desc'>
-  <h3 id='desctitle'>Description</h3>
-  <p id='descinfo'> </p>
-  <input type="text" placeholder="Add Description" [(ngModel)]="hotel-info.description" name="description"><!-- add the description here from the DB-->
+  <p id='descinfo'> {{hotelInfo.getDescription()}}</p>
+  <!-- add the description here from the DB-->
 </div>
-
+<!--
 <div id='amenities'>
-  <h3 id='amenitiestitle'>Amenities</h3>
-  <input type="text" placeholder="Add Amenities" [(ngModel)]="hotel-info.amenities" name="amenities"> <!-- add the amenities here from the DB-->
-  <div id='list'></div>
-</div>
+<p id='amenitiesinfo' > {{hotelInfo.getAmenities()}}</p>
 
+</div>
+-->
 <div id='prices'>
-  <u><h3 id='price'>Prices</h3></u>
-  <div id="price_sub">
-    <h4> Nightly:</h4>
-    <input type="text" placeholder="Add Nightly Prices" [(ngModel)]="hotel-info.prices.Nightly" name="Nightly">
-    <h4>Weekend:</h4>
-    <input type="text" placeholder="Add Weekend Prices" [(ngModel)]="hotel-info.prices.weekend" name="Weekend">
-    <h4>Weekly:</h4>
-    <input type="text" placeholder="Add Weekly Prices" [(ngModel)]="hotel-info.prices.weekley" name="Weekley">
-
-  </div><!-- add the prices here from the DB-->
+  <p> {{hotelInfo.getPrice()}} </p>
 
 </div>
 
+<div id='Review'>
+  <p> {{hotelInfo.getRating()}} </p>
+  <p> {{hotelInfo.getReview()}} </p>
+  <img [src]= 'hotelInfo.getRatingImage()'>
 
+</div>
+<!--
 <div class="content-wrapper container-fluid">
   <div class="row">
     <h1 class="col-xs-12 font-light text-center">Hotel Rating</h1>
+    <div *ngFor="let Rating of result ">
+    {{hotels.reviews.rating}}
+  </div>
   </div>
   <div class="row">
     <ul class="list-unstyled" id="hotel-list">
 
       <li class="row btn-lift">
         <div class="col-xs-4 price-range">
-          <p> User Name 1</p>
+          <ng-template ngFor let-hotel-info [ngForOf]="singleCategory" let-i="index">
+          <p > User Name 1</p>
+          <div [ngIf]="i>0">
+      //  {{result.reviews.name}}
+    </div>
         </div>
         <div class="col-xs-6 star-rating">
           <span class="glyphicon glyphicon-star"></span>
@@ -99,7 +102,7 @@
           <span class="glyphicon glyphicon-star"></span>
           <span class="glyphicon glyphicon-star"></span>
         </div>
-
+      </ng-template>
       </li>
       <li class="row btn-lift">
         <div class="col-xs-4 price-range">
@@ -141,9 +144,6 @@
       </li>
     </ul>
   </div>
-</div>
-
-
-
+</div> --->
 </body>
 </html>
