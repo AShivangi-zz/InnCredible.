@@ -28,6 +28,7 @@ import {HotelInfoComponent} from './hotel-info/hotel-info.component';
 import { AuthGuard } from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {UserProfileService} from './services/profile.service';
+import {HotelInfo} from './services/hotel-info';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {UserProfileService} from './services/profile.service';
   providers:
     [AuthGuard,
      AuthService,
-     UserProfileService
+     UserProfileService,
+     HotelInfo
     ],
   bootstrap: [AppComponent]
 })
