@@ -163,21 +163,6 @@ public setHotelId(number : string){
     public getRatingImage(){
          return this.ratingImage;
     }
-  public Amenities(){
-      var HotelAmenities: string;
-      firebase.database().ref('/hotels/' + this.HotelId+ '/amenities').once('value')
-          .then((snapshot) => {// ** My only change ** or use snapshot
-            this.setAmenities(snapshot.child('all').val());
-      });
-    }
-
-    public setAmenities(HotelAmenities:string){
-       this.amenities = HotelAmenities;
-    }
-
-    public getAmenities():string{
-         return this.amenities;
-    }
 /*
     private AmenitesHotel(): any{
          var countHotel = firebase.database().ref('/hotels/' + this.HotelId+ '/amenities/hotel').getChildren().length;
