@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
 
@@ -48,31 +50,49 @@
   </div>
 </div>
 
+<br><br>
+
 <div id="hotels">
   <div class = 'hotelInfo'>
     <p class = 'Hotel Address' ><b>Address: </b> {{hotelInfo.getLocation()}}</p>
   </div>
 </div>
+<br><br>
+
+<div class="row">
+  <div class="column1 leftbox" style="background-color:#aaa;">
+    <h2>Description</h2>
+    <p id='descinfo'> {{hotelInfo.getDescription()}}</p>
+    <h3>Price: </h3>
+    <div id="price_sub"><h5><p> ${{hotelInfo.getPrice()}} </p></h5></div>
+  </div>
+  <div class="column2 rightbox" style="background-color:#bbb;">
+    <h2>Hotel Amenities</h2>
+    <p id='amenitiesinfo' > {{hotelInfo.getAmenities()}}</p>
+  </div>
+</div>
 
 
+<!--
 <div id='desc'>
   <p id='descinfo'> {{hotelInfo.getDescription()}}</p>
   <!-- add the description here from the DB-->
-</div>
-
+<!--</div>-->
+<!--
 <div id='amenities'>
   <h3 id='amenitiestitle'>Amenities</h3>
 <p id='amenitiesinfo' > {{hotelInfo.getAmenities()}}</p>
 
-</div>
-
+</div>-->
+<!--
 <div id='prices'>
   <u><h4 id='price'>Price:</h4></u>
   <div id="price_sub"><h4><p> {{hotelInfo.getPrice()}} </p></h4></div>
 
-</div>
-
+</div>-->
+<br><br>
 <div id='Review'>
+  <h2><u>Reviews: </u></h2>
   <p> {{hotelInfo.getRating()}} </p>
   <p> {{hotelInfo.getReview()}} </p>
   <img [src]= 'hotelInfo.getRatingImage()'>
@@ -147,5 +167,28 @@
     </ul>
   </div>
 </div> --->
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<footer id="fh5co-footer" role="contentinfo" >
+
+  <div class="container" style="height: 10%">
+    <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+      <p style="color: #bab9b9">&copy; 2018 InnCredible</p>
+    </div>
+    <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+
+    </div>
+
+    <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+      <ul class="fh5co-social">
+        <li><a href="#"><i class="icon-twitter"></i></a></li>
+        <li><a href="#"><i class="icon-facebook"></i></a></li>
+        <li><a href="#"><i class="icon-google-plus"></i></a></li>
+        <li><a href="#"><i class="icon-instagram"></i></a></li>
+      </ul>
+    </div>
+
+  </div>
+</footer>
 </body>
 </html>
