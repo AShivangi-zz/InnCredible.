@@ -9,10 +9,13 @@ import { HotelInfo } from "../services/hotel-info";
 
 export class HotelInfoComponent implements OnInit {
 
+  private amenities: any;
+  private images: any;
+
   constructor(private hotelInfo: HotelInfo) {
     // this.hotelInfo.setHotelId('0');
-
-   }
+    this.hotelInfo.getHotelData('0');
+  }
 
   ngOnInit() {
 
