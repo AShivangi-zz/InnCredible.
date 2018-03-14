@@ -45,7 +45,6 @@ export class HotelInfo {
       this.Rating();
       this.RatingImage();
       this.Description();
-      this.Amenities();
     //  this.AmenitiesRoom();
     //  this.AmenitiesHotel();
 
