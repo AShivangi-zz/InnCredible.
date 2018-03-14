@@ -50,7 +50,7 @@
 
 <div id="hotels">
   <div class = 'hotelInfo'>
-  <p class = 'Hotel Address' > {{hotelInfo.getLocation()}}</p>
+    <p class = 'Hotel Address' ><b>Address: </b> {{hotelInfo.getLocation()}}</p>
   </div>
 </div>
 
@@ -61,12 +61,14 @@
 </div>
 
 <div id='amenities'>
+  <h3 id='amenitiestitle'>Amenities</h3>
 <p id='amenitiesinfo' > {{hotelInfo.getAmenities()}}</p>
 
 </div>
-  
+
 <div id='prices'>
-  <p> {{hotelInfo.getPrice()}} </p>
+  <u><h4 id='price'>Price:</h4></u>
+  <div id="price_sub"><h4><p> {{hotelInfo.getPrice()}} </p></h4></div>
 
 </div>
 
