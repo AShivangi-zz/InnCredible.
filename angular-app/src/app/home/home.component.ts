@@ -22,8 +22,7 @@ export class HomeComponent implements OnInit {
   }
 
   // This gets the information from the searchformdata in home.component.html
-  onSubmit(searchformdata)
-  {
+  onSubmit(searchformdata) {
     if (searchformdata.valid) {
       // Store the information that the user entered into the service attributes
       this.service.saveInformation(searchformdata.value.cityname, searchformdata.value.checkindate, searchformdata.value.checkoutdate);
@@ -33,8 +32,6 @@ export class HomeComponent implements OnInit {
 
     }
   }
-
-
 
   ngOnInit() {
 

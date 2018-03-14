@@ -1,12 +1,12 @@
 export class Hotel {
-  public name: string;
-  public city: string;
-  public location: string;
-  public price: string;
-  public image: URL;
-  public rating: string;
-  public ratingImg: URL;
-  public review_num: string;
+  private name: string;
+  private city: string;
+  private location: string;
+  private price: string;
+  private image: URL;
+  private rating: string;
+  private ratingImg: URL;
+  private review_num: string;
   constructor() {}
 
   public getName(): string {

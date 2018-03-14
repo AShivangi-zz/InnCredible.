@@ -1,52 +1,43 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import {Hotel} from "../hotel";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class HotelService {
   constructor() {
   }
 
-  city: string;
-  name: string;
-  location: string;
-  price: string;
-  image: URL;
-  rating: string;
-  ratingImg: URL;
-  review_num: string;
-  hotel: Hotel
+  _observableList: BehaviorSubject<Hotel[]> = new BehaviorSubject([]);
 
-  public getData(cityname: string): any {
+  public get ObservableList(): Observable<Hotel[]> {return this._observableList.asObservable(); }
+
+  public retriveData(cityname: string) {
     const ref = firebase.database().ref("/hotels");
     var x: string;
-    var allHotels = new Array(71);
-
+    var hotelList: Hotel[] = [];
     for (var i = 0; i < 71; i++) {
-      this.hotel = new Hotel();
       x = i.toString();
       ref.child(x)
         .once("value")
         .then((snapshot) => {
-          this.hotel.setName(snapshot.child('name').val());
-          this.hotel.setCity(snapshot.child('/location/city').val());
-          this.hotel.setLocation(snapshot.child('/location/all').val());
-          this.hotel.setPrice(snapshot.child('price').val());
-          this.hotel.setImage(snapshot.child('/images/0').val());
-          this.hotel.setRating(snapshot.child('/rating/rating').val());
-          this.hotel.setRatingImg(snapshot.child('/rating/rating-img').val());
-          this.hotel.setReviewNum(snapshot.child('/rating/reviews').val());
-
-          if (cityname == this.hotel.getCity()) {
-            console.log("Added to array");
-            //hotel = new Hotel(this.name, this.city, this.location, this.price, this.image, this.rating, this.ratingImg, this.review_num);
-            allHotels.push(this.hotel);
-             console.log(this.hotel.getCity());
-             console.log(this.hotel.getName());
-          }
+            var hotel = new Hotel();
+            hotel.setCity(snapshot.child('/location/city').val());
+            hotel.setName(snapshot.child('name').val());
+            hotel.setLocation(snapshot.child('/location/all').val());
+            hotel.setPrice(snapshot.child('price').val());
+            hotel.setImage(snapshot.child('/images/0').val());
+            hotel.setRating(snapshot.child('/rating/rating').val());
+            hotel.setRatingImg(snapshot.child('/rating/rating-img').val());
+            hotel.setReviewNum(snapshot.child('/rating/reviews').val());
+            if (cityname == hotel.getCity()) {
+              hotelList.push(hotel);
+              console.log(hotel);
+              this._observableList.next(hotelList);
+            }
         });
-
     }
-    return allHotels;
   }
 }
+
