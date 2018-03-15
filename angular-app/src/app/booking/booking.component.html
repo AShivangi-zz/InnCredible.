@@ -20,9 +20,9 @@
                       </span>
               </a></li>
 
-            <li><a href="#termsAndConditions" data-toggle="tab" title="Terms And Conditions">
+            <li><a href="#rewards" data-toggle="tab" title="Rewards">
                      <span class="round-tabs two">
-                         <i class="glyphicon glyphicon-tasks"></i>
+                         <i class="glyphicon glyphicon-star"></i>
                      </span>
             </a>
             </li>
@@ -52,128 +52,39 @@
             <h3 class="head text-center">Enter Hotel Details</h3>
 
             <app-reservation></app-reservation>
+
+
+          </div>
+
+
+          <!--Rewards-->
+          <!--<div class="tab-pane fade" id="rewards">-->
+            <!--&lt;!&ndash;<h3 class="head text-center">Rewards</h3>&ndash;&gt;-->
+
             <!--<form class="form-horizontal">-->
               <!--<fieldset>-->
-
-
-
-                <!--&lt;!&ndash;&lt;!&ndash; Form Name &ndash;&gt;&ndash;&gt;-->
-                <!--&lt;!&ndash;<legend>Form Name</legend>&ndash;&gt;-->
-
-                <!--&lt;!&ndash; Select Basic &ndash;&gt;-->
-                <!--<div class="form-group">-->
-                  <!--<label class="col-md-4 control-label" for="Number of Guests">Number Of Guests</label>-->
-                  <!--<div class="col-md-4">-->
-                    <!--<select id="Number of Guests" name="Number of Guests" class="form-control">-->
-                      <!--<option value="1">1</option>-->
-                      <!--<option value="2">2</option>-->
-                      <!--<option value="3">3</option>-->
-                      <!--<option value="4">4</option>-->
-                      <!--<option value="5">5</option>-->
-                      <!--<option value="6">6</option>-->
-                      <!--<option value="7">7</option>-->
-                      <!--<option value="8">8</option>-->
-                    <!--</select>-->
-                  <!--</div>-->
+                <!--<div class="tab-pane fade in" id="tab5">-->
+                  <!--<h3 style='text-align: center'>You have:-->
+                    <!--<span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points</h3>-->
                 <!--</div>-->
 
-                <!--&lt;!&ndash; Select Basic &ndash;&gt;-->
-                <!--<div class="form-group">-->
-                  <!--<label class="col-md-4 control-label" for="beds">Number of Beds</label>-->
-                  <!--<div class="col-md-4">-->
-                    <!--<select id="beds" name="beds" class="form-control">-->
-                      <!--<option value="1">1</option>-->
-                      <!--<option value="2">2</option>-->
-                    <!--</select>-->
-                  <!--</div>-->
-                <!--</div>-->
-
-                <!--&lt;!&ndash;<div id="datetimepicker4" class="input-append">&ndash;&gt;-->
-                  <!--&lt;!&ndash;Check In Date&ndash;&gt;-->
-                  <!--&lt;!&ndash;<input type="date" data-date="" data-date-format="DD MMMM YYYY" value="2015-08-09">&ndash;&gt;-->
-                  <!--&lt;!&ndash;<span class="add-on">&ndash;&gt;-->
-                  <!--&lt;!&ndash;<i data-time-icon="icon-time" data-date-icon="icon-calendar">&ndash;&gt;-->
-                  <!--&lt;!&ndash;</i>&ndash;&gt;-->
-                <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                <!--&lt;!&ndash;<div id="datetimepicker5" class="input-append">&ndash;&gt;-->
-                  <!--&lt;!&ndash;Check Out Date&ndash;&gt;-->
-                  <!--&lt;!&ndash;<input type="date" data-date="" data-date-format="DD MMMM YYYY" value="2015-08-09">&ndash;&gt;-->
-                  <!--&lt;!&ndash;<span class="add-on">&ndash;&gt;-->
-                <!--&lt;!&ndash;<i data-time-icon="icon-time" data-date-icon="icon-calendar">&ndash;&gt;-->
-                <!--&lt;!&ndash;</i>&ndash;&gt;-->
-              <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                <!--&lt;!&ndash; Textarea &ndash;&gt;-->
-                <!--<div class="form-group">-->
-                  <!--<label class="col-md-4 control-label" for="textarea">Comments</label>-->
-                  <!--<div class="col-md-4">-->
-                    <!--<textarea class="form-control" id="textarea" name="textarea"></textarea>-->
-                  <!--</div>-->
-                <!--</div>-->
-
-                <!--&lt;!&ndash; Button &ndash;&gt;-->
-                <!--<div class="form-group">-->
-                  <!--<label class="col-md-4 control-label" for="commenButton"></label>-->
-                  <!--<div class="col-md-4">-->
-                    <!--<button id="commentButton" name="commenButton" class="btn btn-primary">Submit</button>-->
-                  <!--</div>-->
-                <!--</div>-->
+                <!--<br> <br>-->
 
 
               <!--</fieldset>-->
             <!--</form>-->
-
-
-
-          </div>
-
-          <div class="tab-pane fade" id="termsAndConditions">
-            <h3 class="head text-center">Terms and Conditions</h3>
-
-            <form class="form-horizontal">
-              <fieldset>
-
-                <!-- Form Name -->
-                <!--<legend>Form Name</legend>-->
-
-                <!-- Multiple Checkboxes -->
-                <div class="form-group">
-                  <label class="col-md-4 control-label" for="termsAndConditions">Read and Accept</label>
-                  <div class="col-md-4">
-                    <div class="checkbox">
-                      <label for="termsAndConditions-0">
-                        <input type="checkbox" name="termsAndConditions" id="termsAndConditions-0" value="1">
-                        <a href="/policy">Terms and Conditions</a>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Button -->
-                <div class="form-group">
-                  <label class="col-md-4 control-label" for="submitPolicy"></label>
-                  <div class="col-md-4">
-                    <button id="submitPolicy" name="submitPolicy" class="btn btn-success">Agree</button>
-                  </div>
-                </div>
-
-              </fieldset>
-            </form>
-
-            <!--<div class="well">-->
-              <!--<div id="datetimepicker4" class="input-append">-->
-                <!--<input data-format="yyyy-MM-dd" type="text"></input>-->
-                <!--<span class="add-on">-->
-                  <!--<i data-time-icon="icon-time" data-date-icon="icon-calendar">-->
-                  <!--</i>-->
-                 <!--</span>-->
+            <!--&lt;!&ndash; Redeem / skip button &ndash;&gt;-->
+            <!--<div class="form-group">-->
+              <!--<label class="col-md-4 control-label" for="button1id"></label>-->
+              <!--<div class="col-md-8">-->
+                <!--<button name="button1id" class="btn btn-primary" id="button1id">Redeem</button>-->
+                <!--<button name="skip" class="btn btn-success" id="skip">Skip</button>-->
               <!--</div>-->
             <!--</div>-->
 
-          </div>
+
+
+          <!--</div>-->
 
           <!--review order -->
           <div class="tab-pane fade page" style  = "" id="reviewOrder">
