@@ -13,6 +13,7 @@ import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ContactComponent} from './contact/contact.component';
 import {PolicyComponent} from "./policy/policy.component";
+import {SearchresultComponent} from "./searchresult/searchresult.component";
 import {BookingComponent} from "./booking/booking.component";
 
 
@@ -25,6 +26,7 @@ export const router: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'policy', component: PolicyComponent},
     {path: 'booking', component: BookingComponent},
+    {path: 'searchresult', component: SearchresultComponent},
 ]
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);
