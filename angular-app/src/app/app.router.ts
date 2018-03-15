@@ -14,6 +14,8 @@ import {ProfileComponent} from './profile/profile.component';
 import {ContactComponent} from './contact/contact.component';
 import {PolicyComponent} from "./policy/policy.component";
 import {SearchresultComponent} from "./searchresult/searchresult.component";
+import {BookingComponent} from "./booking/booking.component";
+
 
 export const router: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -23,6 +25,7 @@ export const router: Routes = [
     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'contact', component: ContactComponent},
     {path: 'policy', component: PolicyComponent},
+    {path: 'booking', component: BookingComponent},
     {path: 'searchresult', component: SearchresultComponent},
 ]
 
