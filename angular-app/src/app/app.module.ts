@@ -48,7 +48,7 @@ import {HotelService} from "./services/hotel.service";
     NavbarComponent,
     ProfileComponent,
     ContactComponent,
-    PolicyComponent
+    PolicyComponent,
     BookingComponent,
     ReservationComponent,
     SearchresultComponent,
