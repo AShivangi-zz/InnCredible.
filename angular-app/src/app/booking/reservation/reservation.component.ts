@@ -16,13 +16,10 @@ export class ReservationComponent implements OnInit {
   constructor(private reservationService: ReservationService) { }
 
   ngOnInit() {
+
   }
 
   onSubmit(reservationForm: NgForm) {
     this.reservationService.insertReservation(reservationForm.value);
   }
-
-
-
-
 }

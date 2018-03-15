@@ -7,7 +7,8 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="numGuests">Number Of Guests</label>
       <div class="col-md-4">
-        <select id="numGuests" class="form-control" name="guests"
+        <select
+          id="numGuests" class="form-control" name="guests"
                 [(ngModel)]="reservationService.activeReservation.guests">
           <option *ngFor="let opt of guestOptions" [ngValue]="opt">
             {{ opt }}
@@ -48,7 +49,6 @@
     <!--</div>-->
 
     <!-- Textarea -->
-
     <div class="form-group">
       <label class="col-md-4 control-label" for="taComments">Comments</label>
       <div class="col-md-4">
@@ -72,7 +72,7 @@
 
     <!-- Button -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="commenButton"></label>
+      <label class="col-md-4 control-label" for="commentButton"></label>
       <div class="col-md-4">
         <button id="commentButton" type="submit" class="btn btn-primary">Submit</button>
       </div>
