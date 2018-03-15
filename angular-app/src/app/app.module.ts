@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 import { routes } from './app.router';
 
 //Firebase
-import{AngularFireModule} from "angularfire2";
+import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -24,9 +24,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { BookingComponent } from './booking/booking.component';
 import { ReservationComponent } from './booking/reservation/reservation.component';
-import { SearchresultComponent } from './searchresult/searchresult.component';
-import { SharedSearchResultsService} from './services/shared-search-results.service';
-import { HotelService } from "./services/hotel.service";
 
 //Services
 import { AuthGuard } from './services/auth-guard.service';
@@ -48,7 +45,7 @@ import {HotelService} from "./services/hotel.service";
     NavbarComponent,
     ProfileComponent,
     ContactComponent,
-    PolicyComponent
+    PolicyComponent,
     BookingComponent,
     ReservationComponent,
     SearchresultComponent,
@@ -65,9 +62,9 @@ import {HotelService} from "./services/hotel.service";
     routes
   ],
   providers:
-    [AuthGuard,
-     AuthService,
-     UserProfileService,
+    [ AuthGuard,
+      AuthService,
+      UserProfileService,
       ReservationService,
       SharedSearchResultsService,
       HotelService
