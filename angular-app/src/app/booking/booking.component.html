@@ -58,33 +58,33 @@
 
 
           <!--Rewards-->
-          <!--<div class="tab-pane fade" id="rewards">-->
-            <!--&lt;!&ndash;<h3 class="head text-center">Rewards</h3>&ndash;&gt;-->
+          <div class="tab-pane fade" id="rewards">
+            <!--<h3 class="head text-center">Rewards</h3>-->
 
-            <!--<form class="form-horizontal">-->
-              <!--<fieldset>-->
-                <!--<div class="tab-pane fade in" id="tab5">-->
-                  <!--<h3 style='text-align: center'>You have:-->
-                    <!--<span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points</h3>-->
-                <!--</div>-->
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="tab-pane fade in" id="tab5">
+                  <h3 style='text-align: center'>You have:
 
-                <!--<br> <br>-->
+                    <!--THIS LINE CAUSES AN ERROR!!!! I think it is because it's not calling userProfileService properly-->
+                    <!--<span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points-->
+                  </h3>
+                </div>
 
-
-              <!--</fieldset>-->
-            <!--</form>-->
-            <!--&lt;!&ndash; Redeem / skip button &ndash;&gt;-->
-            <!--<div class="form-group">-->
-              <!--<label class="col-md-4 control-label" for="button1id"></label>-->
-              <!--<div class="col-md-8">-->
-                <!--<button name="button1id" class="btn btn-primary" id="button1id">Redeem</button>-->
-                <!--<button name="skip" class="btn btn-success" id="skip">Skip</button>-->
-              <!--</div>-->
-            <!--</div>-->
+                <br> <br>
 
 
-
-          <!--</div>-->
+              </fieldset>
+            </form>
+            <!-- Redeem / skip button -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="button1id"></label>
+              <div class="col-md-8">
+                <button name="button1id" class="btn btn-primary" id="button1id">Redeem</button>
+                <button name="skip" class="btn btn-success" id="skip">Skip</button>
+              </div>
+            </div>
+          </div>
 
           <!--review order -->
           <div class="tab-pane fade page" style  = "" id="reviewOrder">

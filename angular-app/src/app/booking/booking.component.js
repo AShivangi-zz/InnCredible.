@@ -2,22 +2,6 @@ $(function(){
   $('a[title]').tooltip();
 });
 
-//Check in date
-$(function() {
-  $('#datetimepicker4').datetimepicker({
-    pickTime: false
-  });
-});
-
-//Check out date
-$(function() {
-  $('#datetimepicker5').datetimepicker({
-    pickTime: false
-  });
-});
-
-
-
 
 
 //for payment: https://bootsnipp.com/snippets/featured/credit-card-payment-with-stripe
