@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// import { UserProfileService } from '../services/profile.service'
+// import { UserProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-booking',
