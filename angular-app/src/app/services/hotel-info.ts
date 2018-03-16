@@ -109,6 +109,8 @@ export class HotelInfo {
     private retrieveHotelImg(): void {
       const HotelImg_ref = firebase.database().ref('/hotels/' + this.HotelId+"/images/");
 
+      HotelImg_ref.once('value')
+        .then((snapshot) => {
           const countImg = snapshot.numChildren();
           console.log("Image Count: " + countImg);
           for(var i = 0; i < countImg; i++) {
@@ -116,7 +118,8 @@ export class HotelInfo {
             this.setHotelImg(snapshot.child(Imgnumber).val());
             //console.log('Room: ' + snapshot.child(number).val());
           }
-    }
+    });
+  }
 
     public hasHotelImg() : boolean {
       return this.hasHotelImg;
