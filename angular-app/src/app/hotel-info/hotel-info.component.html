@@ -61,7 +61,7 @@
 
 <div class="row">
   <div class="column1 leftbox" style="background-color:#aaa;">
-    <h2>Description</h2>
+    <h2> </h2>
     <p id='descinfo'> {{hotelInfo.getDescription()}}</p>
     <h3>Price: </h3>
     <div id="price_sub"><h5><p> ${{hotelInfo.getPrice()}} </p></h5></div>
@@ -74,101 +74,12 @@
   </div>
 </div>
 
-
-<!--
-<div id='desc'>
-  <p id='descinfo'> {{hotelInfo.getDescription()}}</p>
-  <!-- add the description here from the DB-->
-<!--</div>-->
-<!--
-<div id='amenities'>
-  <h3 id='amenitiestitle'>Amenities</h3>
-<p id='amenitiesinfo' > {{hotelInfo.getAmenities()}}</p>
-
-</div>-->
-<!--
-<div id='prices'>
-  <u><h4 id='price'>Price:</h4></u>
-  <div id="price_sub"><h4><p> {{hotelInfo.getPrice()}} </p></h4></div>
-
-</div>-->
-<br><br>
-<div id='Review'>
-  <h2><u>Reviews: </u></h2>
-  <p> {{hotelInfo.getRating()}} </p>
-  <img [src]= 'hotelInfo.getRatingImage()'>
-  <p> {{hotelInfo.getReview()}} </p>
-
+<div class="column2 rightbox" style="background-color:#bbb;">
+  <h2>Hotel Images</h2>
+  <ul id="images_list">
+     <li *ngFor = 'let images of hotelInfo.getHotelImg() | async'>{{images}}</li>
+  </ul>
 </div>
-<!--
-<div class="content-wrapper container-fluid">
-  <div class="row">
-    <h1 class="col-xs-12 font-light text-center">Hotel Rating</h1>
-    <div *ngFor="let Rating of result ">
-    {{hotels.reviews.rating}}
-  </div>
-  </div>
-  <div class="row">
-    <ul class="list-unstyled" id="hotel-list">
-
-      <li class="row btn-lift">
-        <div class="col-xs-4 price-range">
-          <ng-template ngFor let-hotel-info [ngForOf]="singleCategory" let-i="index">
-          <p > User Name 1</p>
-          <div [ngIf]="i>0">
-      //  {{result.reviews.name}}
-    </div>
-        </div>
-        <div class="col-xs-6 star-rating">
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-        </div>
-      </ng-template>
-      </li>
-      <li class="row btn-lift">
-        <div class="col-xs-4 price-range">
-          <p>User Name 2</p>
-        </div>
-        <div class="col-xs-6 star-rating">
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-        </div>
-      </li>
-      <li class="row btn-lift">
-        <div class="col-xs-4 price-range">
-          <p>User Name 3</p>
-        </div>
-        <div class="col-xs-6 star-rating">
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-        </div>
-      </li>
-      <li class="row btn-lift">
-        <div class="col-xs-4 price-range">
-          <p>User Name 4</p>
-        </div>
-        <div class="col-xs-6 star-rating">
-          <span class="glyphicon glyphicon-star"></span>
-          <span class="glyphicon glyphicon-star"></span>
-        </div>
-      </li>
-      <li class="row btn-lift">
-        <div class="col-xs-4 price-range">
-          <p>User Name 5</p>
-        </div>
-        <div class="col-xs-6 star-rating">
-          <span class="glyphicon glyphicon-star"></span>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div> --->
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <footer id="fh5co-footer" role="contentinfo" >
