@@ -1,5 +1,5 @@
 export class Reservation {
-  $key:     string;
+  // $key:     string;
   guests:   number;
   beds:     number;
   comments: string;

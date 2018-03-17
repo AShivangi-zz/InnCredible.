@@ -1,4 +1,3 @@
-
 <div id="fh5co-page">
   <!--
   <header id="fh5co-header" role="banner">
@@ -30,18 +29,21 @@
                 <div class="fh5co-box">
 
                   <h3><a href="#">Search for Hotels</a></h3>
+                  <form #searchformdata="ngForm" (ngSubmit)="onSubmit(searchformdata)">
                   <div id="search-box">
-                    <input type="text" name="search" placeholder="Name of city..">
+                    <input type="text" class="form-control" id="cityname" required [(ngModel)]="cityname" name="cityname" placeholder="Name of city..">
                   </div>
                   <p></p>
                   <p class="fh5co-property-specification">
-                    <label for="dateofcheckin">Date Of Check In</label>
-<input type="date" name="dateofcheckin" id="dateofcheckin"> <label for="dateofcheckout">Date Of Check Out</label>
-                    <input type="date" name="dateofcheckout" id="dateofcheckout">
+                    <label for="checkindate">Date Of Check In</label>
+                    <input type="date" class="form-control" id="checkindate" [(ngModel)]="checkindate" name="checkindate">
+                    <label for="checkoutdate">Date Of Check Out</label>
+                    <input type="date" class="form-control" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate">
                   </p>
 
-                  <p><a href="#" class="btn btn-primary btn-outline with-arrow">Search <i class="icon-arrow-right"></i></a></p>
+                    <p><a class="btn btn-primary btn-outline with-arrow"> <button class="btn btn-primary btn-outline with-arrow" type="submit" [disabled]="!searchformdata.valid" class="btn">Search</button><i class="icon-arrow-right"></i></a></p>
 
+                  </form>
 
                 </div>
               </div>

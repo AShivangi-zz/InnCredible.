@@ -7,7 +7,8 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="numGuests">Number Of Guests</label>
       <div class="col-md-4">
-        <select id="numGuests" class="form-control" name="guests"
+        <select
+          id="numGuests" class="form-control" name="guests"
                 [(ngModel)]="reservationService.activeReservation.guests">
           <option *ngFor="let opt of guestOptions" [ngValue]="opt">
             {{ opt }}
@@ -29,26 +30,9 @@
       </div>
     </div>
 
-    <!--<div id="datetimepicker4" class="input-append">-->
-    <!--Check In Date-->
-    <!--<input type="date" data-date="" data-date-format="DD MMMM YYYY" value="2015-08-09">-->
-    <!--<span class="add-on">-->
-    <!--<i data-time-icon="icon-time" data-date-icon="icon-calendar">-->
-    <!--</i>-->
-    <!--</span>-->
-    <!--</div>-->
 
-    <!--<div id="datetimepicker5" class="input-append">-->
-    <!--Check Out Date-->
-    <!--<input type="date" data-date="" data-date-format="DD MMMM YYYY" value="2015-08-09">-->
-    <!--<span class="add-on">-->
-    <!--<i data-time-icon="icon-time" data-date-icon="icon-calendar">-->
-    <!--</i>-->
-    <!--</span>-->
-    <!--</div>-->
 
     <!-- Textarea -->
-
     <div class="form-group">
       <label class="col-md-4 control-label" for="taComments">Comments</label>
       <div class="col-md-4">
@@ -57,9 +41,22 @@
       </div>
     </div>
 
+    <!-- Terms and conditions -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="termsAndConditions">Read and Accept</label>
+      <div class="col-md-4">
+        <div class="checkbox">
+          <label for="termsAndConditions-0">
+            <input type="checkbox" name="termsAndConditions" id="termsAndConditions-0" value="1">
+            <a href="/policy">Terms and Conditions</a>
+          </label>
+        </div>
+      </div>
+    </div>
+
     <!-- Button -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="commenButton"></label>
+      <label class="col-md-4 control-label" for="commentButton"></label>
       <div class="col-md-4">
         <button id="commentButton" type="submit" class="btn btn-primary">Submit</button>
       </div>

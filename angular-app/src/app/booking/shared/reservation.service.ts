@@ -3,7 +3,6 @@ import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { Reservation } from './reservation.model';
 import {AngularFireAuth} from 'angularfire2/auth';
 
-
 @Injectable()
 export class ReservationService {
   reservations: AngularFireList<any>;
@@ -12,21 +11,16 @@ export class ReservationService {
 
   constructor(private db: AngularFireDatabase, private afa: AngularFireAuth) {
     this.afa.authState.subscribe(auth => {
-      if (auth) { this.userID = auth.uid; }
+      if (auth) { this.userID = auth.uid;
+                  this.activeReservation.guests = 1;
+                  this.activeReservation.beds = 1;
+                  this.activeReservation.comments = ''; }
     });
   }
 
-  getReservations() {
-    if (!this.userID) { alert('Failed'); return;  }
-    this.reservations = this.db.list(`users/${this.userID}/reservations`);
-  }
-
   insertReservation(newReservation: Reservation) {
-    // alert(this.userID);
-    // alert('Guests:' + newReservation.guests);
-    // alert('Beds:' + newReservation.beds);
-    // alert('Comments:' + newReservation.comments);
-    this.getReservations();
+    if (!this.userID) { alert('User is not logged in!'); return;  }
+    this.reservations = this.db.list(`users/${this.userID}/reservations`);
     this.reservations.push(newReservation);
   }
  /* updateReservation(r: Reservation) {
