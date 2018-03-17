@@ -17,6 +17,7 @@ export class HotelInfo {
   private description:string;
   private roomText:string;
   private hotelText:string;
+  private hasImg = 0;
 
   private amenities: string[] = [];
   private images: URL[] = [];
@@ -39,7 +40,7 @@ export class HotelInfo {
         this.setReview(snapshot.child('rating/reviews').val());
       });
     this.retrieveAmenities();
-    this.retrieveImages();
+    //this.retrieveImages();
   }
 
   public setHotelName(name:string){
@@ -153,16 +154,18 @@ export class HotelInfo {
       return this.hotelText;
   }
 
-  private retrieveImages(): void {
+  public retrieveImages() {
     const images_ref =  firebase.database().ref('/hotels/' + this.HotelId+"/images/");
-
+    var count = 0;
     images_ref.once('value')
       .then((snapshot) => {
         const countImage = snapshot.numChildren();
         for(var i = 0; i < countImage; i++) {
           var number = i.toString();
           this.setImages(snapshot.child(number).val());
+
         }
+        
       });
   }
 
@@ -174,6 +177,28 @@ export class HotelInfo {
 
   public getImages():Observable<URL[]>{
     return this._imagesList.asObservable();
+  }
+
+  public getImagesFirst() : Observable<URL> {
+    return this._imagesList[0].asObservable;
+  }
+
+  public getImagesRest() : Observable<URL[]>{
+    var rest: URL[] = [];
+    var restList : BehaviorSubject<URL[]> = new BehaviorSubject([]);
+    for(var i = 1; i < this.images.length; i++) {
+      rest.push(this.images[1]);
+      restList.next(rest);
+    }
+    return restList.asObservable();
+  }
+
+  public setHasImg() {
+    this.hasImg++;
+  }
+  public getHasImgs() {
+    console.log(this.hasImg);
+    return this.hasImg;
   }
 }
 
