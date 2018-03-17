@@ -1,0 +1,42 @@
+<form class="form-horizontal">
+    <fieldset>
+      <div class="tab-pane fade in" id="rewards">
+        <h3 style='text-align: center'>You have X reward points, would you like to reduce your total price by $Y?
+
+          <!--THIS LINE CAUSES AN ERROR!!!! I think it is because it's not calling userProfileService properly-->
+          <!--<span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points-->
+        </h3>
+      </div>
+
+      <br> <br>
+
+
+    </fieldset>
+  </form>
+
+  <!-- Redeem button -->
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="button1id"></label>
+      <div class="col-md-3">
+        <button name="button1id" class="btn btn-primary" id="button1id">
+            <a href="#reviewOrder" data-toggle="tab">
+                <span class="round-tabs three active" style="color: white">Redeem</span>
+            </a>
+          </button>
+
+&nbsp;&nbsp;
+          
+<!-- Skip button -->
+        <button name="skip" class="btn btn-success" id="skip">
+            <a href="#reviewOrder" data-toggle="tab">
+                <span class="round-tabs three active" style="color: white">&nbsp;&nbsp;&nbsp;Skip &nbsp;&nbsp;&nbsp;</span>
+            </a> 
+           </button>
+      </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+

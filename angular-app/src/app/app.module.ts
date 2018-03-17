@@ -34,6 +34,10 @@ import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { SharedSearchResultsService} from './services/shared-search-results.service';
 import {HotelService} from "./services/hotel.service";
+import { RewardsComponent } from './booking/rewards/rewards.component';
+import { ReviewComponent } from './booking/review/review.component';
+import { CheckoutComponent } from './booking/checkout/checkout.component';
+import { ConfirmationComponent } from './booking/confirmation/confirmation.component';
 
 
 @NgModule({
@@ -49,6 +53,10 @@ import {HotelService} from "./services/hotel.service";
     BookingComponent,
     ReservationComponent,
     SearchresultComponent,
+    RewardsComponent,
+    ReviewComponent,
+    CheckoutComponent,
+    ConfirmationComponent,
   ],
   imports: [
     ReactiveFormsModule,

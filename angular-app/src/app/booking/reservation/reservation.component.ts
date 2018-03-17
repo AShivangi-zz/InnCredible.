@@ -10,7 +10,7 @@ import { ReservationService } from '../shared/reservation.service';
 })
 
 export class ReservationComponent implements OnInit {
-  guestOptions = [1, 2, 3, 4, 5, 6, 7, 8];
+  guestOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   bedOptions = [1, 2, 3, 4];
 
   constructor(private reservationService: ReservationService) { }

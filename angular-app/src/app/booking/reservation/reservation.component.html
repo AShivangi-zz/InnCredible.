@@ -8,7 +8,7 @@
       <label class="col-md-4 control-label" for="numGuests">Number Of Guests</label>
       <div class="col-md-4">
         <select
-          id="numGuests" class="form-control" name="guests"
+          id="numGuests" class="form-control" name="guests" 
                 [(ngModel)]="reservationService.activeReservation.guests">
           <option *ngFor="let opt of guestOptions" [ngValue]="opt">
             {{ opt }}
@@ -19,17 +19,28 @@
 
     <!-- Select Basic -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="numBeds">Number of Beds</label>
+      <label class="col-md-4 control-label" for="numBeds">Number of Rooms</label>
       <div class="col-md-4">
-        <select id="numBeds" class="form-control" name="beds"
-                [(ngModel)]="reservationService.activeReservation.beds">
-          <option *ngFor="let opt of bedOptions" [ngValue]="opt">
-            {{ opt }}
-          </option>
-        </select>
+          <label class="control-label">will display ceiling(no. of guests/2)
+          </label>
+        <!-- Display the number of rooms -TODO -->
       </div>
     </div>
 
+<!-- Check in date -->
+<div class="form-group">
+    <label class="col-md-4 control-label" for="checkindate">Date Of Check In</label>
+    <div class="col-md-4">
+    <input type="date" class="form-control" id="checkindate"  name="checkindate"></div> 
+</div>
+
+
+<!-- Check out date -->
+<div class="form-group">
+<label class="col-md-4 control-label" for="checkoutdate">Date Of Check Out</label>
+    <div class="col-md-4">
+    <input type="date" class="form-control" id="checkoutdate" name="checkoutdate"> </div>
+  </div>
 
 
     <!-- Textarea -->
@@ -47,7 +58,7 @@
       <div class="col-md-4">
         <div class="checkbox">
           <label for="termsAndConditions-0">
-            <input type="checkbox" name="termsAndConditions" id="termsAndConditions-0" value="1">
+            <input type="checkbox" name="termsAndConditions" id="termsAndConditions-0" value="1" required>
             <a href="/policy">Terms and Conditions</a>
           </label>
         </div>
@@ -58,7 +69,11 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="commentButton"></label>
       <div class="col-md-4">
-        <button id="commentButton" type="submit" class="btn btn-primary">Submit</button>
+        <button id="commentButton" type="submit" class="btn btn-primary">
+            <a href="#rewards" data-toggle="tab">
+                <span class="round-tabs two active" style="color: white">Submit</span>
+            </a>
+        </button>
       </div>
     </div>
 
