@@ -26,7 +26,7 @@
 
     <!-- Wrapper for slides*ngFor="let image of hotelInfo.getImages() | async; let i = index"-->
     <div class="carousel-inner" *ngIf="imgDone==true">
-      
+
       <div class="item active">
         <img src="{{imagesURL[0]}}" style="width:50%; margin-left:25%;">
       </div>
@@ -34,7 +34,7 @@
       <div class="item" >
         <img attr.src="{{imagesURL[1]}}" style="width:50%;margin-left:25%;">
       </div>
-     
+
       <div class="item">
         <img attr.src="{{imagesURL[2]}}" style="width:50%;margin-left:25%;">
       </div>
@@ -91,6 +91,12 @@
     <p> {{hotelInfo.getRating()}} </p>
     <img [src]= 'hotelInfo.getRatingImage()'>
     <p> {{hotelInfo.getReview()}} </p>
+</div>
+
+<br>
+
+<div id="btn">
+  <button align="center">Book!</button>
 </div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
