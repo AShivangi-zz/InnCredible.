@@ -1,6 +1,7 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -10,7 +11,7 @@
     <div class="modal-header">
       <!--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>-->
 
-      <h4 class="modal-title" id="myModalLabel">Login to InnCredible</h4>
+      <h4 class="modal-title" id="myModalLabel" style = "padding-left: 200px">Login to InnCredible</h4>
     </div>
     <div class="modal-body">
       <div class="row">
@@ -34,6 +35,17 @@
                   <input type="checkbox" name="remember" id="remember"> Remember login
                 </label>
               </div>
+
+              <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+              <div class="container">
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                  <div style="clear: both;"></div>
+                </ul>
+              </div>
+
               <button type="submit" [disabled]="!formData.valid" class="btn btn-success btn-block">Login</button>
               <a href="/forgot" class="btn btn-default btn-block">Forgot Password</a>
             </form>
