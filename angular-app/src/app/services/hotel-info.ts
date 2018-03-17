@@ -7,193 +7,174 @@ import {Observable} from 'rxjs/Observable';
 
 export class HotelInfo {
 
-    private HotelId: string;
-    private hasAmen: boolean = false;
-  //  private hasHoImg: boolean = false;
-    private hasHotelImg: boolean = false;
-    private HotelName: string;
-    private location: string;
-    private price: string;
-    private reviews: any;
-    private rating: string;
-    private ratingImage: string;
-    private description:string;
-    private amenities: string[] = [];
-    private images: string[] = [];
-    private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
-    private _imagesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  private HotelId: string;
+  private HotelName: string;
+  private location: string;
+  private price: string;
+  private reviews: any;
+  private rating: string;
+  private ratingImage: string;
+  private description:string;
+  private roomText:string;
+  private hotelText:string;
 
-    private images[] = new Array();
+  private amenities: string[] = [];
+  private images: URL[] = [];
+  private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
 
-    constructor() {}
+  constructor() {}
 
-    public getHotelData(id: string) {
-      this.HotelId = id;
-      const ref = firebase.database().ref('/hotels/' + this.HotelId);
-      ref.once('value')
-          .then((snapshot) => {// ** My only change ** or use snapshot
-          this.setHotelName(snapshot.child('name').val());
-          this.setPrice(snapshot.child('price').val());
-          this.setLocation(snapshot.child('location/all').val());
-          this.setDescription(snapshot.child('attr/description').val());
-          this.setRating(snapshot.child('rating/rating').val());
-          this.setRatingImage(snapshot.child('rating/rating-img').val());
-          this.setReview(snapshot.child('rating/reviews').val());
+  public getHotelData(id: string) {
+    this.HotelId = id;
+    const ref = firebase.database().ref('/hotels/' + this.HotelId);
+    ref.once('value')
+      .then((snapshot) => {// ** My only change ** or use snapshot
+        this.setHotelName(snapshot.child('name').val());
+        this.setPrice(snapshot.child('price').val());
+        this.setLocation(snapshot.child('location/all').val());
+        this.setDescription(snapshot.child('attr/description').val());
+        this.setRating(snapshot.child('rating/rating').val());
+        this.setRatingImage(snapshot.child('rating/rating-img').val());
+        this.setReview(snapshot.child('rating/reviews').val());
       });
-      this.retrieveAmenities();
-      this.retrieveHotelImg();
-    }
-
-    public setHotelName(name:string){
-      this.HotelName = name;
-    }
-
-    public getHotelName(): string {
-       return this.HotelName;
-    }
-
-    public setPrice(HotelPrice:string) {
-      this.price = HotelPrice;
-    }
-
-    public getPrice(): string {
-      return this.price;
-    }
-
-    public setLocation(HotelLocation:string){
-       this.location = HotelLocation;
-    }
-
-    public getLocation():string{
-         return this.location;
-    }
-
-    public setDescription(hotelDescription:string){
-          this.description = hotelDescription;
-    }
-
-    public getDescription(){
-            return this.description;
-    }
-
-    public setReview(review:string) {
-      this.reviews = review;
-    }
-    public getReview(){
-       return this.reviews;
-    }
-
-    public setRating(rating:string){
-      this.rating = rating;
-    }
-    public getRating(){
-      return this.rating;
-    }
-
-    public RatingImage(){
-      var ratingImages: string;
-      firebase.database().ref('/hotels/' + this.HotelId+ '/rating').once('value')
-          .then((snapshot) => {// ** My only change ** or use snapshot
-              this.setRatingImage(snapshot.child('rating-img').val());
-      });
-    }
-
-    public setRatingImage(ratingImages:string){
-       this.ratingImage = ratingImages;
-    }
-
-    public getRatingImage(){
-         return this.ratingImage;
-    }
-
-    private retrieveHotelImg(): void {
-      const HotelImg_ref = firebase.database().ref('/hotels/' + this.HotelId+"/images/");
-
-      HotelImg_ref.once('value')
-        .then((snapshot) => {
-          const countImg = snapshot.numChildren();
-          console.log("Image Count: " + countImg);
-          for(var i = 0; i < countImg; i++) {
-            var Imgnumber = i.toString();
-            this.setHotelImg(snapshot.child(Imgnumber).val());
-            //console.log('Room: ' + snapshot.child(number).val());
-          }
-    });
+    this.retrieveAmenities();
+    this.retrieveImages();
   }
 
-    public hasHotelImg() : boolean {
-      return this.hasHotelImg;
-    }
+  public setHotelName(name:string){
+    this.HotelName = name;
+  }
 
-    public setHotelImg(HotelImages:string){
-       this.images.push(HotelImages);
-       this._imagesList.next(this.images);
-    }
+  public getHotelName(): string {
+    return this.HotelName;
+  }
 
-    public getHotelImg(): Observable<string[]>{
-        return this._imagesList.asObservable();
-    }
+  public setPrice(HotelPrice:string) {
+    this.price = HotelPrice;
+  }
 
+  public getPrice(): string {
+    return this.price;
+  }
 
-    private retrieveAmenities(): void {
-      const amenities_ref =  firebase.database().ref('/hotels/' + this.HotelId+"/amenities/");
+  public setLocation(HotelLocation:string){
+    this.location = HotelLocation;
+  }
 
-      amenities_ref.child('room/').once('value')
-        .then((snapshot) => {
+  public getLocation():string{
+    return this.location;
+  }
 
-          const countRoom = snapshot.numChildren();
-          console.log("room count: " + countRoom);
-          for(var i = 0; i < countRoom; i++) {
-            var number = i.toString();
-            this.setAmenities(snapshot.child(number).val());
-            //console.log('Room: ' + snapshot.child(number).val());
-          }
-        });
+  public setDescription(hotelDescription:string){
+    this.description = hotelDescription;
+  }
 
-        amenities_ref.child('hotel/').once('value')
-        .then((snapshot) => {
-          const countHotel = snapshot.numChildren();
-          console.log("room count: " + countHotel);
-          for(var i = 0; i < countHotel; i++) {
-            var number = i.toString();
-            this.setAmenities(snapshot.child(number).val());
-            //console.log('Hotel: ' + snapshot.child(number).val());
-          }
-        });
-    }
+  public getDescription(){
+    return this.description;
+  }
 
-    public hasAmenities() : boolean {
-      return this.hasAmen;
-    }
+  public setReview(review:string) {
+    this.reviews = review;
+  }
+  public getReview(){
+    return this.reviews;
+  }
 
-    public setAmenities(HotelAmenity:string){
-       this.amenities.push(HotelAmenity);
-       this._amenitiesList.next(this.amenities);
+  public setRating(rating:string){
+    this.rating = rating;
+  }
+  public getRating(){
+    return this.rating;
+  }
 
-    }
+  public RatingImage(){
+    var ratingImages: string;
+    firebase.database().ref('/hotels/' + this.HotelId+ '/rating').once('value')
+      .then((snapshot) => {// ** My only change ** or use snapshot
+        this.setRatingImage(snapshot.child('rating-img').val());
+      });
+  }
 
-    public getAmenities(): Observable<string[]>{
-        return this._amenitiesList.asObservable();
-    }
+  public setRatingImage(ratingImages:string){
+    this.ratingImage = ratingImages;
+  }
 
-    private retrieveImages(): void {
-      const images_ref =  firebase.database().ref('/hotels/' + this.HotelId+"/images/");
+  public getRatingImage(){
+    return this.ratingImage;
+  }
 
-      images_ref.once('value')
-        .then((snapshot) => {
-          const countImage = snapshot.numChildren();
-          for(var i = 0; i < countImage; i++) {
-            var number = i.toString();
-            this.setImages(snapshot.child(number).val());
-          }
-        });
-    }
+  private retrieveAmenities(): void {
+    const amenities_ref =  firebase.database().ref('/hotels/' + this.HotelId+"/amenities/");
 
-    public setImages(image:string){
-      this.images.push(image);
-   }
+    amenities_ref.child('room/').once('value')
+      .then((snapshot) => {
+        const countRoom = snapshot.numChildren();
+        for(var i = 0; i < countRoom; i++) {
+          var number = i.toString();
+          this.setAmenities(snapshot.child(number).val());
+        }
+      });
 
-   public getImages():any{
-       return this.images;
-   }
+    amenities_ref.child('hotel/').once('value')
+      .then((snapshot) => {
+        const countHotel = snapshot.numChildren();
+        for(var i = 0; i < countHotel; i++) {
+          var number = i.toString();
+          this.setAmenities(snapshot.child(number).val());
+        }
+      });
+
+    amenities_ref.once('value')
+      .then((snapshot) => {
+        this.setTexts(snapshot.child('room-text').val(),snapshot.child('hotel-text').val());
+      });
+  }
+
+  public setAmenities(HotelAmenity:string){
+    this.amenities.push(HotelAmenity);
+    this._amenitiesList.next(this.amenities);
+  }
+
+  public getAmenities(): Observable<string[]>{
+    return this._amenitiesList.asObservable();
+  }
+
+  private setTexts(rtext: string, htext:string) {
+      this.roomText = rtext;
+      this.hotelText = htext;
+  }
+
+    public getRoomText() {
+      return this.roomText;
+  }
+
+    public getHotelText() {
+      return this.hotelText;
+  }
+
+  private retrieveImages(): void {
+    const images_ref =  firebase.database().ref('/hotels/' + this.HotelId+"/images/");
+
+    images_ref.once('value')
+      .then((snapshot) => {
+        const countImage = snapshot.numChildren();
+        for(var i = 0; i < countImage; i++) {
+          var number = i.toString();
+          this.setImages(snapshot.child(number).val());
+        }
+      });
+  }
+
+  public setImages(image:URL){
+    console.log(image);
+    this.images.push(image);
+    this._imagesList.next(this.images);
+  }
+
+  public getImages():Observable<URL[]>{
+    return this._imagesList.asObservable();
+  }
 }
+
+
