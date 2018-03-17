@@ -12,6 +12,7 @@ import {AuthGuard} from './services/auth-guard.service';
 import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ContactComponent} from './contact/contact.component';
+import {HotelInfoComponent} from './hotel-info/hotel-info.component';
 import {PolicyComponent} from "./policy/policy.component";
 import {SearchresultComponent} from "./searchresult/searchresult.component";
 import {BookingComponent} from "./booking/booking.component";
@@ -24,6 +25,7 @@ export const router: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'contact', component: ContactComponent},
+    {path: 'hotel-info', component: HotelInfoComponent},
     {path: 'policy', component: PolicyComponent},
     {path: 'booking', component: BookingComponent},
     {path: 'searchresult', component: SearchresultComponent},
