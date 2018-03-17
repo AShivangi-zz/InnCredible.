@@ -63,6 +63,7 @@
   <div class="column1 leftbox" style="background-color:#aaa;">
     <h2> </h2>
     <p id='descinfo'> {{hotelInfo.getDescription()}}</p>
+    <br><br><br>
     <h3>Price: </h3>
     <div id="price_sub"><h5><p> ${{hotelInfo.getPrice()}} </p></h5></div>
   </div>
@@ -77,7 +78,7 @@
 <div class="column2 rightbox" style="background-color:#bbb;">
   <h2>Hotel Images</h2>
   <ul id="images_list">
-     <li *ngFor = 'let images of hotelInfo.retrieveHotelImg() | async'>{{images}}</li>
+     <li *ngFor = 'let images of hotelInfo.getHotelImg() | async'>{{images}}</li>
   </ul>
 </div>
 
