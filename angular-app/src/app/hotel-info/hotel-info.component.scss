@@ -421,7 +421,7 @@ $hotelRatingItemHeight: 4rem;
 
 .carousel{
   overflow:hidden;
-  width:100%;
+  height: 400px;
 }
 .slides{
   list-style:none;
@@ -440,8 +440,7 @@ $hotelRatingItemHeight: 4rem;
 }
 .carousel img{
   display:block;
-  width:100%;
-  max-width:100%;
+  width: 100%
 }
 
 @keyframes carousel{
