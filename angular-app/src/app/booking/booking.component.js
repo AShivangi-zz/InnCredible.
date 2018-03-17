@@ -16,7 +16,18 @@ $(function() {
   });
 });
 
+var stripe = require("stripe")(
+  "sk_test_S62sR6QYYNM9biuvTdPZOH7V"
+);
 
+stripe.charges.create({
+  amount: 2000,
+  currency: "usd",
+  source: "tok_visa", // obtained with Stripe.js
+  description: "Charge for sophia.davis@example.com"
+}, function(err, charge) {
+  // asynchronously called
+});
 
 
 
@@ -60,7 +71,7 @@ function payWithStripe(e) {
   /* Visual feedback */
   $form.find('.subscribe').html('Validating <i class="fa fa-spinner fa-pulse"></i>').prop('disabled', true);
 
-  var PublishableKey = 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'; // Replace with your API publishable key
+  var PublishableKey = 'pk_test_bAS2MqNo9uMFeTAKVivyIFek'; // Replace with your API publishable key
   Stripe.setPublishableKey(PublishableKey);
 
   /* Create token */
