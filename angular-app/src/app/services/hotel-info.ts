@@ -8,11 +8,8 @@ import {Observable} from 'rxjs/Observable';
 export class HotelInfo {
 
     private HotelId: string;
-<<<<<<< HEAD
     private hasAmen: boolean = false;
     private hasHotelImg: boolean = false;
-=======
->>>>>>> 11e82a3fa3091eb125fd970af88ea0a9b70fafee
     private HotelName: string;
     private location: string;
     private price: string;
@@ -20,13 +17,12 @@ export class HotelInfo {
     private rating: string;
     private ratingImage: string;
     private description:string;
-    private roomText:string;
-    private hotelText:string;
-
     private amenities: string[] = [];
-    private images: URL[] = [];
+    private images: string[] = [];
     private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
-    private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
+    private _imagesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
+
+    private images[] = new Array();
 
     constructor() {}
 
@@ -44,7 +40,7 @@ export class HotelInfo {
           this.setReview(snapshot.child('rating/reviews').val());
       });
       this.retrieveAmenities();
-      this.retrieveImages();
+      this.retrieveHotelImg();
     }
 // method to get hotel name from firebase
     public setHotelName(name:string){
@@ -108,7 +104,6 @@ export class HotelInfo {
     public getRatingImage(){
          return this.ratingImage;
     }
-<<<<<<< HEAD
 // method to get hotel images from firebase
     private retrieveHotelImg(): void {
       const HotelImg_ref = firebase.database().ref('/hotels/' + this.HotelId+"/images/");
@@ -139,56 +134,45 @@ export class HotelInfo {
     }
 
 // method to get hotel amenities from firebase
-=======
-
->>>>>>> 11e82a3fa3091eb125fd970af88ea0a9b70fafee
     private retrieveAmenities(): void {
       const amenities_ref =  firebase.database().ref('/hotels/' + this.HotelId+"/amenities/");
 
       amenities_ref.child('room/').once('value')
         .then((snapshot) => {
+
           const countRoom = snapshot.numChildren();
+          console.log("room count: " + countRoom);
           for(var i = 0; i < countRoom; i++) {
             var number = i.toString();
             this.setAmenities(snapshot.child(number).val());
+            //console.log('Room: ' + snapshot.child(number).val());
           }
         });
 
         amenities_ref.child('hotel/').once('value')
         .then((snapshot) => {
           const countHotel = snapshot.numChildren();
+          console.log("room count: " + countHotel);
           for(var i = 0; i < countHotel; i++) {
             var number = i.toString();
             this.setAmenities(snapshot.child(number).val());
+            //console.log('Hotel: ' + snapshot.child(number).val());
           }
         });
-
-        amenities_ref.once('value')
-        .then((snapshot) => {
-            this.setTexts(snapshot.child('room-text').val(),snapshot.child('hotel-text').val());
-        });
     }
-    
+
+    public hasAmenities() : boolean {
+      return this.hasAmen;
+    }
+
     public setAmenities(HotelAmenity:string){
        this.amenities.push(HotelAmenity);
        this._amenitiesList.next(this.amenities);
+
     }
 
     public getAmenities(): Observable<string[]>{
         return this._amenitiesList.asObservable();
-    }
-
-    private setTexts(rtext: string, htext:string) {
-      this.roomText = rtext;
-      this.hotelText = htext;
-    }
-
-    public getRoomText() {
-      return this.roomText;
-    }
-
-    public getHotelText() {
-      return this.hotelText;
     }
 
     private retrieveImages(): void {
@@ -204,13 +188,11 @@ export class HotelInfo {
         });
     }
 
-    public setImages(image:URL){
-      console.log(image);
+    public setImages(image:string){
       this.images.push(image);
-      this._imagesList.next(this.images);
    }
 
-   public getImages():Observable<URL[]>{
-       return this._imagesList.asObservable();
-   } 
+   public getImages():any{
+       return this.images;
+   }
 }
