@@ -9,7 +9,6 @@ export class HotelInfo {
 
     private HotelId: string;
     private hasAmen: boolean = false;
-  //  private hasHoImg: boolean = false;
     private hasHotelImg: boolean = false;
     private HotelName: string;
     private location: string;
@@ -43,7 +42,7 @@ export class HotelInfo {
       this.retrieveAmenities();
       this.retrieveHotelImg();
     }
-
+// method to get hotel name from firebase
     public setHotelName(name:string){
       this.HotelName = name;
     }
@@ -51,7 +50,7 @@ export class HotelInfo {
     public getHotelName(): string {
        return this.HotelName;
     }
-
+// method to get hotel Price from firebase
     public setPrice(HotelPrice:string) {
       this.price = HotelPrice;
     }
@@ -59,7 +58,7 @@ export class HotelInfo {
     public getPrice(): string {
       return this.price;
     }
-
+// method to get hotel location from firebase
     public setLocation(HotelLocation:string){
        this.location = HotelLocation;
     }
@@ -67,7 +66,7 @@ export class HotelInfo {
     public getLocation():string{
          return this.location;
     }
-
+// method to get hotel description from firebase
     public setDescription(hotelDescription:string){
           this.description = hotelDescription;
     }
@@ -75,21 +74,21 @@ export class HotelInfo {
     public getDescription(){
             return this.description;
     }
-
+// method to get hotel review from firebase
     public setReview(review:string) {
       this.reviews = review;
     }
     public getReview(){
        return this.reviews;
     }
-
+// method to get hotel rating from firebase
     public setRating(rating:string){
       this.rating = rating;
     }
     public getRating(){
       return this.rating;
     }
-
+// method to get rating image from firebase
     public RatingImage(){
       var ratingImages: string;
       firebase.database().ref('/hotels/' + this.HotelId+ '/rating').once('value')
@@ -105,7 +104,7 @@ export class HotelInfo {
     public getRatingImage(){
          return this.ratingImage;
     }
-
+// method to get hotel images from firebase
     private retrieveHotelImg(): void {
       const HotelImg_ref = firebase.database().ref('/hotels/' + this.HotelId+"/images/");
 
@@ -134,7 +133,7 @@ export class HotelInfo {
         return this._imagesList.asObservable();
     }
 
-
+// method to get hotel amenities from firebase
     private retrieveAmenities(): void {
       const amenities_ref =  firebase.database().ref('/hotels/' + this.HotelId+"/amenities/");
 
