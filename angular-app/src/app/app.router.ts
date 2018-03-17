@@ -13,6 +13,10 @@ import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ContactComponent} from './contact/contact.component';
 import {HotelInfoComponent} from './hotel-info/hotel-info.component';
+import {PolicyComponent} from "./policy/policy.component";
+import {SearchresultComponent} from "./searchresult/searchresult.component";
+import {BookingComponent} from "./booking/booking.component";
+
 
 export const router: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -22,6 +26,9 @@ export const router: Routes = [
     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'contact', component: ContactComponent},
     {path: 'hotel-info', component: HotelInfoComponent},
+    {path: 'policy', component: PolicyComponent},
+    {path: 'booking', component: BookingComponent},
+    {path: 'searchresult', component: SearchresultComponent},
 ]
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

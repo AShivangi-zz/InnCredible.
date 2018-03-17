@@ -1,4 +1,3 @@
-
 <div id="fh5co-page">
   <!--
   <header id="fh5co-header" role="banner">
@@ -30,18 +29,21 @@
                 <div class="fh5co-box">
 
                   <h3><a href="#">Search for Hotels</a></h3>
+                  <form #searchformdata="ngForm" (ngSubmit)="onSubmit(searchformdata)">
                   <div id="search-box">
-                    <input type="text" name="search" placeholder="Name of city..">
+                    <input type="text" class="form-control" id="cityname" required [(ngModel)]="cityname" name="cityname" placeholder="Name of city..">
                   </div>
                   <p></p>
                   <p class="fh5co-property-specification">
-                    <label for="dateofcheckin">Date Of Check In</label>
-<input type="date" name="dateofcheckin" id="dateofcheckin"> <label for="dateofcheckout">Date Of Check Out</label>
-                    <input type="date" name="dateofcheckout" id="dateofcheckout">
+                    <label for="checkindate">Date Of Check In</label>
+                    <input type="date" class="form-control" id="checkindate" [(ngModel)]="checkindate" name="checkindate">
+                    <label for="checkoutdate">Date Of Check Out</label>
+                    <input type="date" class="form-control" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate">
                   </p>
 
-                  <p><a href="#" class="btn btn-primary btn-outline with-arrow">Search <i class="icon-arrow-right"></i></a></p>
+                    <p><a class="btn btn-primary btn-outline with-arrow"> <button class="btn btn-primary btn-outline with-arrow" type="submit" [disabled]="!searchformdata.valid" class="btn">Search</button><i class="icon-arrow-right"></i></a></p>
 
+                  </form>
 
                 </div>
               </div>
@@ -237,51 +239,20 @@
             <figure>
               <img src="../assets/images/testimonial_person3.jpg" alt="Free Website Template by FreeHTML5.co">
             </figure>
-            <h3>NAME</h3>
-            <h4>ROLE</h4>
+            <h3>Tyler Bruno</h3>
+            <h4>Product Owner/Developer</h4>
           </div>
         </div>
         <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
           <div class="fh5co-agent">
             <figure>
-              <img src="../assets/images/testimonial_person4.jpg" alt="Free Website Template by FreeHTML5.co">
+              <img src="../assets/images/hedi.jpg" alt="Free Website Template by FreeHTML5.co">
             </figure>
-            <h3>NAME</h3>
-            <h4>ROLE</h4>
+            <h3>Hedi Moalla</h3>
+            <h4>Product Owner/Tester</h4>
           </div>
         </div>
 
-
-
-        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
-
-          <div class="fh5co-agent">
-            <figure>
-              <img src="../assets/images/testimonial_person2.jpg" alt="Free Website Template by FreeHTML5.co">
-            </figure>
-            <h3>NAME</h3>
-            <h4>ROLE</h4>
-          </div>
-
-        </div>
-        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
-          <div class="fh5co-agent">
-            <figure>
-              <img src="../assets/images/testimonial_person3.jpg" alt="Free Website Template by FreeHTML5.co">
-            </figure>
-            <h3>NAME</h3>
-            <h4>ROLE</h4>
-          </div>
-        </div>
-        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
-          <div class="fh5co-agent">
-            <figure>
-              <img src="../assets/images/testimonial_person4.jpg" alt="Free Website Template by FreeHTML5.co">
-            </figure>
-            <h3>NAME</h3>
-            <h4>ROLE</h4>
-          </div>
-        </div>
 
 
         <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
@@ -290,8 +261,8 @@
             <figure>
               <img src="../assets/images/testimonial_person2.jpg" alt="Free Website Template by FreeHTML5.co">
             </figure>
-            <h3>NAME</h3>
-            <h4>ROLE</h4>
+            <h3>Devanshi Sukhadia</h3>
+            <h4>Software Architect</h4>
           </div>
 
         </div>
@@ -300,17 +271,47 @@
             <figure>
               <img src="../assets/images/testimonial_person3.jpg" alt="Free Website Template by FreeHTML5.co">
             </figure>
-            <h3>NAME</h3>
-            <h4>ROLE</h4>
+            <h3>Shridhar Suryanarayan</h3>
+            <h4>Technical Lead</h4>
           </div>
         </div>
-        <div class="col-md-3 col-md-offset-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
           <div class="fh5co-agent">
             <figure>
               <img src="../assets/images/testimonial_person4.jpg" alt="Free Website Template by FreeHTML5.co">
             </figure>
-            <h3>NAME</h3>
-            <h4>ROLE</h4>
+            <h3>Crystle Johnson</h3>
+            <h4>Software Developer/Tester</h4>
+          </div>
+        </div>
+
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/testimonial_person2.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Inderjit Bassi</h3>
+            <h4>Software Developer/Tester</h4>
+          </div>
+        </div>
+
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/testimonial_person3.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Paul Nguyen</h3>
+            <h4>Software Developer/Tester</h4>
+          </div>
+        </div>
+
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/testimonial_person4.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Lance Barrett</h3>
+            <h4>Software Developer/Documentation</h4>
           </div>
         </div>
 
@@ -320,10 +321,11 @@
             <figure>
               <img src="../assets/images/testimonial_person3.jpg" alt="Free Website Template by FreeHTML5.co">
             </figure>
-            <h3>NAME</h3>
-            <h4>ROLE</h4>
+            <h3>Avani Bhatnagar</h3>
+            <h4>Software Developer/Documentation</h4>
           </div>
         </div>
+
       </div>
     </div>
   </div>

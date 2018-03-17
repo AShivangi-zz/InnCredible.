@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 import { routes } from './app.router';
 
 //Firebase
-import{AngularFireModule} from "angularfire2";
+import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
@@ -23,12 +23,19 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import {HotelInfoComponent} from './hotel-info/hotel-info.component';
+import { BookingComponent } from './booking/booking.component';
+import { ReservationComponent } from './booking/reservation/reservation.component';
 
 //Services
 import { AuthGuard } from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {UserProfileService} from './services/profile.service';
 import {HotelInfo} from './services/hotel-info';
+import { PolicyComponent } from './policy/policy.component';
+import { ReservationService} from './booking/shared/reservation.service';
+import { SearchresultComponent } from './searchresult/searchresult.component';
+import { SharedSearchResultsService} from './services/shared-search-results.service';
+import {HotelService} from "./services/hotel.service";
 
 
 @NgModule({
@@ -40,7 +47,11 @@ import {HotelInfo} from './services/hotel-info';
     NavbarComponent,
     ProfileComponent,
     ContactComponent,
-    HotelInfoComponent
+    HotelInfoComponent,
+    PolicyComponent, 
+    BookingComponent,
+    ReservationComponent,
+    SearchresultComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -54,10 +65,13 @@ import {HotelInfo} from './services/hotel-info';
     routes
   ],
   providers:
-    [AuthGuard,
-     AuthService,
-     UserProfileService,
-     HotelInfo
+    [ AuthGuard,
+      AuthService,
+      UserProfileService,
+      ReservationService,
+      SharedSearchResultsService,
+      HotelService,
+      HotelInfo
     ],
   bootstrap: [AppComponent]
 })
