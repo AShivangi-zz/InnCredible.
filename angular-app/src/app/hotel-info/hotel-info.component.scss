@@ -341,8 +341,8 @@ $hotelRatingItemHeight: 4rem;
 }
 
 #Review {
-  margin-top: 50px;
-  margin-left: 700px;
+  margin-top: 10%;
+  margin-left: 50%;
 }
 #amenitiestitle, #reviewtitle, #desctitle {
   text-decoration: underline;
@@ -363,7 +363,8 @@ $hotelRatingItemHeight: 4rem;
 
 .hotelInfo {
   text-align: left;
-  margin-left: 700px;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 #desc, #amenities, #prices {
@@ -392,7 +393,7 @@ $hotelRatingItemHeight: 4rem;
 
 /* Create two equal columns that floats next to each other */
 .column1 {
-  margin-left: 70px;
+  margin-left: 10%;
   float: left;
   width: 60%;
   padding: 10px;
@@ -400,9 +401,9 @@ $hotelRatingItemHeight: 4rem;
   background-color: aqua/* Should be removed. Only for demonstration */
 }
 .column2 {
-  margin-right: 70px;
+  margin-right: 3%;
   float: left;
-  width: 30%;
+  width: 20%;
   padding: 10px;
   height: 430px; /* Should be removed. Only for demonstration */
   background-color: #2e6da4;
