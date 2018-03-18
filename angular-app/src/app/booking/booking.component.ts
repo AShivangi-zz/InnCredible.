@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Http, Headers} from '@angular/http';
 
 // import { UserProfileService } from '../services/profile.service';
-
+declare function createCharge(token);
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -27,14 +28,25 @@ export class BookingComponent implements OnInit {
     }, (status: number, response: any) => {
       if (status === 200) {
         this.message = `Success! Card token ${response.card.id}.`;
+        this.createCharge(response.id);
       } else {
         this.message = response.error.message;
       }
     });
   }
 
+  createCharge(token: string) {
+    const headers = new Headers({
+      'Authorization': 'Bearer sk_test_S62sR6QYYNM9biuvTdPZOH7V', 
+      'source': token, 
+      'amount': 1000}
+    );
+    this.http.post('https://api.stripe.com/v1/charges', {}, {headers: headers})
+      .subscribe(resp => {console.log(resp);})
+  }
+
   
-  constructor() { }
+  constructor(private http: Http) { }
   // constructor(private userProfileService: UserProfileService) {
   // }
 
