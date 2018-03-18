@@ -1,3 +1,95 @@
-<p>
-  searchresult works!
-</p>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!----- Include the above in your HEAD tag ---------->
+
+<div class="container">
+
+
+  <br> <br>
+  <h2> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h2>
+  <ul>
+    <div *ngFor="let hotel of hotelservice.ObservableList | async">
+      <section class="col-xs-12 col-sm-6 col-md-12">
+        <article class="search-result row">
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/people" alt="Insert img" /></a>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2">
+            <ul class="meta-search">
+              <li><i class="glyphicon glyphicon-usd"></i> <span>{{hotel.getPrice()}}</span></li>
+              <li><i class="glyphicon glyphicon-star"></i> <span>{{hotel.getRating()}}</span></li>
+              <li><i class="glyphicon glyphicon-pencil"></i> <span>{{hotel.getReview()}}</span></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+            <h3><a href="#" title="">{{hotel.getName() }}</a></h3>
+            <p>{{hotel.getLocation()}}</p>
+            <span class="plus"><a href="#" title="Book"><button align = "center">Book</button></a></span>
+          </div>
+          <span class="clearfix borda"></span>
+          <hr color="black" size="10" width="100%">
+        </article>
+      </section>
+    </div>
+  </ul>
+
+
+
+
+  <!--<body>
+
+  <br> <br>
+  <h2> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h2>
+  <!--<h2> Check In: {{returnedcheckindate}}</h2>
+  <h2> Check Out: {{returnedcheckoutdate}}</h2>-->
+  <!--<ul>
+    <div *ngFor="let hotel of hotelservice.ObservableList | async">
+      <p>Hotel Name: {{hotel.getName() }} <br>
+        Hotel Location: {{hotel.getLocation() }}<br>
+        Hotel city: {{hotel.getCity()}} <br>
+        Hotel review: {{hotel.getReview()}} <br>
+        Hotel rating: {{hotel.getRating()}} <br>
+        Hotel price: {{hotel.getPrice()}}
+      </p>
+    </div>
+  </ul>
+
+
+  <!--
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!------ Include the above in your HEAD tag ----------
+
+  <div class="container">
+
+
+    <body>
+
+    <br> <br>
+    <h2> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h2>
+
+    <section class="col-xs-12 col-sm-6 col-md-12">
+      <article class="search-result row">
+        <div class="col-xs-12 col-sm-12 col-md-3">
+          <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/people" alt="Insert img" /></a>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2">
+          <ul class="meta-search">
+            <li><i class="glyphicon glyphicon-money"></i> <span>{{hotel.getPrice()}}</span></li>
+            <li><i class="glyphicon glyphicon-star"></i> <span>{{hotel.getRating()}}</span></li>
+            <li><i class="glyphicon glyphicon-pencil"></i> <span>{{hotel.getReview()}}</span></li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+          <h3><a href="#" title=""></a></h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>
+          <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+        </div>
+        <span class="clearfix borda"></span>
+      </article>
+
+    </section>
+  </div>-->
+
