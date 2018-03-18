@@ -18,8 +18,8 @@ body {
 }
 .container {
 
-  margin: auto;
-  padding: 5px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   text-align: center;
 }
@@ -30,7 +30,8 @@ body {
 .container ul {
   margin: 0;
   padding: 0;
-  border: 20px;
+  border: 0;
+  size: auto;
 }
 .container ul li {
   list-style: none;
@@ -40,10 +41,11 @@ body {
 }
 .container ul li a {
   display: block;
-  padding: auto;
-
+  padding: 10px;
+  border-radius: 50%;
   text-decoration: none;
   color: #fff;
+  margin: 15px;
 
 }
 .container ul li a .fa {
