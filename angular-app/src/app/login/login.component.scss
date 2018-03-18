@@ -2,6 +2,14 @@
 //
 //  padding-left:200px;
 //}
+.modal-header{
+  //padding-left:250px;
+  text-align:center;
+}
+
+.col-xs-2{
+  width:auto;
+}
 body {
   margin: 0;
   padding: 0;
@@ -9,9 +17,9 @@ body {
   background: #f7f7f7;
 }
 .container {
-  width: 80%;
+
   margin: auto;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
   text-align: center;
 }
@@ -27,18 +35,19 @@ body {
 .container ul li {
   list-style: none;
   float: left;
-  width: calc(100% / 8);
+  width: calc(50% / 8);
   box-sizing: border-box;
 }
 .container ul li a {
   display: block;
-  padding: 50px;
+  padding: auto;
+
   text-decoration: none;
   color: #fff;
 
 }
 .container ul li a .fa {
-  font-size: 40px;
+  font-size: 20px;
   transition: .5s;
 }
 .container ul li a:hover .fa {
@@ -122,3 +131,4 @@ body {
     margin-bottom: 20px;
 
 }
+
