@@ -1,4 +1,3 @@
-import { Charge } from './charge';
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers, URLSearchParams} from '@angular/http';
 
