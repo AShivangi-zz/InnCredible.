@@ -24,19 +24,20 @@
                       </div>
                     </div>
                     <div class="panel-body">
-                      <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+                      <form role="form" id="payment-form" method="POST" action="(submit)=>getToken()">
                         <div class="row">
                           <div class="col-xs-12">
                             <div class="form-group">
                               <label for="cardNumber">CARD NUMBER</label>
                               <div class="input-group">
-                                <input
-                                  type="tel"
-                                  class="form-control"
-                                  name="cardNumber"
-                                  placeholder="Valid Card Number"
-                                  autocomplete="cc-number"
-                                  required autofocus
+                                <input 
+                                [(ngModel)]="cardNumber" 
+                                class="form-control"
+                                name="card-number" 
+                                type="text" 
+                                size="20" 
+                                data-stripe="number"
+                                required autofocus
                                 />
                                 <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                               </div>
@@ -44,29 +45,50 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-xs-7 col-md-7">
+                          <div class="col-xs-3 col-md-3">
                             <div class="form-group">
-                              <label for="cardExpiry"><span class="hidden-xs">EXPIRATION DATE</span></label>
-                              <input
-                                type="tel"
-                                class="form-control"
-                                name="cardExpiry"
-                                placeholder="MM / YY"
-                                autocomplete="cc-exp"
-                                required
+                              <label for="cardExpiry"><span class="hidden-xs">EXP MO</span></label>
+                              <input 
+                              [(ngModel)]="expiryMonth" 
+                              class="form-control"
+                              name="expiry-month" 
+                              placeholder="MM"
+                              type="text" 
+                              size="2" 
+                              data-stripe="exp_month"
+                              required
+                              />
+                            </div>
+                          </div>
+                          <div class="col-xs-3 col-md-3">
+                            <div class="form-group">
+                              <label for="cardExpiry">
+                                <span class="hidden-xs">EXP YR</span>
+                              </label>
+                              <input 
+                              [(ngModel)]="expiryYear" 
+                              class="form-control"
+                              name="expiry-year" 
+                              placeholder="YY"
+                              type="text" 
+                              size="2" 
+                              data-stripe="exp_year"
+                              required
                               />
                             </div>
                           </div>
                           <div class="col-xs-5 col-md-5 pull-right">
                             <div class="form-group">
                               <label for="cardCVC">CV CODE</label>
-                              <input
-                                type="tel"
-                                class="form-control"
-                                name="cardCVC"
-                                placeholder="CVC"
-                                autocomplete="cc-csc"
-                                required
+                              <input 
+                              [(ngModel)]="cvc" 
+                              class="form-control"
+                              name="cvc" 
+                              placeholder="CVC"
+                              type="text" 
+                              size="4" 
+                              data-stripe="cvc"
+                              required
                               />
                             </div>
                           </div>
