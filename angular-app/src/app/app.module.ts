@@ -22,6 +22,7 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
+import {HotelInfoComponent} from './hotel-info/hotel-info.component';
 import { BookingComponent } from './booking/booking.component';
 import { ReservationComponent } from './booking/reservation/reservation.component';
 
@@ -29,11 +30,16 @@ import { ReservationComponent } from './booking/reservation/reservation.componen
 import { AuthGuard } from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {UserProfileService} from './services/profile.service';
+import {HotelInfo} from './services/hotel-info';
 import { PolicyComponent } from './policy/policy.component';
 import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { SharedSearchResultsService} from './services/shared-search-results.service';
 import {HotelService} from "./services/hotel.service";
+import { RewardsComponent } from './booking/rewards/rewards.component';
+import { ReviewComponent } from './booking/review/review.component';
+import { CheckoutComponent } from './booking/checkout/checkout.component';
+import { ConfirmationComponent } from './booking/confirmation/confirmation.component';
 
 
 @NgModule({
@@ -45,10 +51,15 @@ import {HotelService} from "./services/hotel.service";
     NavbarComponent,
     ProfileComponent,
     ContactComponent,
-    PolicyComponent,
+    HotelInfoComponent,
+    PolicyComponent, 
     BookingComponent,
     ReservationComponent,
     SearchresultComponent,
+    RewardsComponent,
+    ReviewComponent,
+    CheckoutComponent,
+    ConfirmationComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -67,7 +78,8 @@ import {HotelService} from "./services/hotel.service";
       UserProfileService,
       ReservationService,
       SharedSearchResultsService,
-      HotelService
+      HotelService,
+      HotelInfo
     ],
   bootstrap: [AppComponent]
 })
