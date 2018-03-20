@@ -1,12 +1,4 @@
-.box {
 
-  position: center;
-  left:50%;
-  margin-left: -35%;
-
-  margin-top: -8%;
-
-}
 .page {
   height: 200%;
 }
@@ -19,7 +11,7 @@
 .board{
   width: 75%;
   margin: 60px auto;
-  height: 500px;
+  height: 100%;
   background: #fff;
   /*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
 }
@@ -181,6 +173,7 @@ li.active:after {
 }
 
 .tab-content{
+
 }
 .tab-pane{
   position: relative;

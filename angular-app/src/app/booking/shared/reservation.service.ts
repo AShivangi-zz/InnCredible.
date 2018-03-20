@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { Reservation } from './reservation.model';
-import {AngularFireAuth} from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Injectable()
 export class ReservationService {
@@ -13,7 +13,7 @@ export class ReservationService {
     this.afa.authState.subscribe(auth => {
       if (auth) { this.userID = auth.uid;
                   this.activeReservation.guests = 1;
-                  this.activeReservation.beds = 1;
+                  this.activeReservation.rooms = 1;
                   this.activeReservation.comments = ''; }
     });
   }

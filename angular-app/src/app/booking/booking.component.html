@@ -3,14 +3,13 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <section style="background:#efefe9; ">
   <div class="container">
     <div class="row">
-      <div class="board">
+      <div class="board" style = "height: Auto">
         <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
-        <div class="board-inner">
+        <!-- <div class="board-inner">
           <ul class="nav nav-tabs" id="myTab">
             <div class="liner"></div>
             <li class="active">
@@ -24,7 +23,7 @@
                      <span class="round-tabs two">
                          <i class="glyphicon glyphicon-star"></i>
                      </span>
-            </a>
+              </a>
             </li>
             <li><a href="#reviewOrder" data-toggle="tab" title="Review Order">
                      <span class="round-tabs three">
@@ -44,12 +43,54 @@
                          </span> </a>
             </li>
 
+          </ul></div> -->
+
+        <div class="board-inner">
+          <ul class="nav nav-tabs" id="myTab">
+            <div class="liner"></div>
+            <li >
+              <a title="Room Details">
+                      <span class="round-tabs one">
+                              <i class="glyphicon glyphicon-home"></i>
+                      </span>
+              </a></li>
+
+            <li><a title="Rewards">
+                     <span class="round-tabs two">
+                         <i class="glyphicon glyphicon-star"></i>
+                     </span>
+            </a>
+            </li>
+            <li><a title="Review Order">
+                     <span class="round-tabs three">
+                          <i class="glyphicon glyphicon-shopping-cart"></i>
+                     </span> </a>
+            </li>
+
+            <li><a title="Checkout">
+                         <span class="round-tabs four">
+                              <i class="glyphicon glyphicon-credit-card"></i>
+                         </span>
+            </a></li>
+
+            <li><a title="Confirmation">
+                         <span class="round-tabs five">
+                              <i class="glyphicon glyphicon-ok"></i>
+                         </span> </a>
+            </li>
+
           </ul></div>
+
+
+
+
+
+
 
         <div class="tab-content">
           <div class="tab-pane fade in active" id="roomDetails">
 
-            <h3 class="head text-center">Enter Hotel Details</h3>
+            <h3 class="head text-center" style="margin-top:-8px"> Enter Hotel Details</h3>
 
             <app-reservation></app-reservation>
 
@@ -58,329 +99,57 @@
 
 
           <!--Rewards-->
+
           <div class="tab-pane fade" id="rewards">
-            <!--<h3 class="head text-center">Rewards</h3>-->
-
-            <form class="form-horizontal">
-              <fieldset>
-                <div class="tab-pane fade in" id="tab5">
-                  <h3 style='text-align: center'>You have:
-
-                    <!--THIS LINE CAUSES AN ERROR!!!! I think it is because it's not calling userProfileService properly-->
-                    <!--<span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points-->
-                  </h3>
-                </div>
-
-                <br> <br>
-
-
-              </fieldset>
-            </form>
-            <!-- Redeem / skip button -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="button1id"></label>
-              <div class="col-md-8">
-                <button name="button1id" class="btn btn-primary" id="button1id">Redeem</button>
-                <button name="skip" class="btn btn-success" id="skip">Skip</button>
-              </div>
-            </div>
+            <app-rewards></app-rewards>
           </div>
 
-          <!--review order -->
-          <div class="tab-pane fade page" style  = "" id="reviewOrder">
-            <h3 class="head text-center"></h3>
 
-            <div class="col-md-8 box">
-              <div >
 
-                <!--REVIEW ORDER-->
-                <div class="panel panel-default">
-                  <div class="panel-heading text-center">
-                    <h4>Review Order</h4>
-                  </div>
-                  <div class="panel-body">
-                    <!--Hotel name field-->
-                    <div class="col-md-12">
-                      <strong>Hotel Name</strong>
-                      <div class="pull-right"><span>Lance in france</span></div>
-                    </div>
 
-                    <!--Hotel address field-->
-                    <div class="col-md-12">
-                      <strong>Address</strong>
-                      <div class="pull-right"><span>556 Lance ln. San Jose, CA 95112</span></div>
-                    </div>
 
-                    <!--Hotel ID field-->
-                    <div class="col-md-12">
-                      <strong>Hotel ID</strong>
-                      <div class="pull-right"><span>762</span></div>
-                    </div>
-
-                    <!--Number of guests field-->
-                    <div class="col-md-12">
-                      <strong>Number Of Guests</strong>
-                      <div class="pull-right"><span>4</span></div>
-                    </div>
-
-                    <!--Number of beds field-->
-                    <div class="col-md-12">
-                      <strong>Number Of Beds</strong>
-                      <div class="pull-right"><span>2</span></div>
-                    </div>
-
-                    <!--Check in Date field-->
-                    <div class="col-md-12">
-                      <strong>Check In Date</strong>
-                      <div class="pull-right"><span>02/14/2018</span></div>
-                    </div>
-
-                    <!--Check Out date field-->
-                    <div class="col-md-12">
-                      <strong>Check Out Date</strong>
-                      <div class="pull-right"><span>02/15/2018</span></div>
-                    </div>
-
-                    <!--Room price field-->
-                    <div class="col-md-12">
-                      <strong>Room Price</strong>
-                      <div class="pull-right"><span>$</span><span>200.00</span></div>
-                    </div>
-
-                    <!--Tax price field-->
-                    <div class="col-md-12">
-                      <strong>Tax</strong>
-                      <div class="pull-right"><span>$</span><span>200.00</span></div>
-                    </div>
-                    <div class="col-md-12">
-
-                      <div class="pull-right"><span>-</span></div>
-                      <hr>
-                    </div>
-                    <div class="col-md-12">
-                      <strong>Order Total</strong>
-                      <div class="pull-right"><span>$</span><span>150.00</span></div>
-                      <hr>
-                    </div>
-
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
-
-                  </div>
-
-                </div>
-                <!--REVIEW ORDER END-->
-              </div>
-            </div>
+          <!--Review order -->
+          <div class="tab-pane fade page" id="reviewOrder">
+              <app-review></app-review>
           </div>
 
           <div class="tab-pane fade" id="checkout">
-            <h3 class="head text-center" style="margin-top: -5%">Payment</h3>
 
-            <!--Following code is from this: https://bootsnipp.com/snippets/featured/credit-card-payment-with-stripe-->
-            <!-- Vendor libraries -->
-            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.2.3/jquery.payment.min.js"></script>
-
-            <!-- If you're using Stripe for payments -->
-            <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
-            <div class="container" style="margin-left: 27%">
-              <div class="row">
-                <!-- You can make it whatever width you want. I'm making it full width
-                     on <= small devices and 4/12 page width on >= medium devices -->
-                <div class="col-xs-12 col-md-4">
-
-                  <!-- CREDIT CARD FORM STARTS HERE -->
-                  <div class="panel panel-default credit-card-box">
-                    <div class="panel-heading display-table" >
-                      <div class="row display-tr" >
-                        <h3 class="panel-title display-td" >Payment Details</h3>
-                        <div class="display-td" >
-                          <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel-body">
-                      <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <div class="form-group">
-                              <label for="cardNumber">CARD NUMBER</label>
-                              <div class="input-group">
-                                <input
-                                  type="tel"
-                                  class="form-control"
-                                  name="cardNumber"
-                                  placeholder="Valid Card Number"
-                                  autocomplete="cc-number"
-                                  required autofocus
-                                />
-                                <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-7 col-md-7">
-                            <div class="form-group">
-                              <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
-                              <input
-                                type="tel"
-                                class="form-control"
-                                name="cardExpiry"
-                                placeholder="MM / YY"
-                                autocomplete="cc-exp"
-                                required
-                              />
-                            </div>
-                          </div>
-                          <div class="col-xs-5 col-md-5 pull-right">
-                            <div class="form-group">
-                              <label for="cardCVC">CV CODE</label>
-                              <input
-                                type="tel"
-                                class="form-control"
-                                name="cardCVC"
-                                placeholder="CVC"
-                                autocomplete="cc-csc"
-                                required
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <div class="form-group">
-                              <label for="couponCode">COUPON CODE</label>
-                              <input type="text" class="form-control" name="couponCode" />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <button class="subscribe btn btn-success btn-lg btn-block" type="button">Book Hotel</button>
-                          </div>
-                        </div>
-                        <div class="row" style="display:none;">
-                          <div class="col-xs-12">
-                            <p class="payment-errors"></p>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <!-- CREDIT CARD FORM ENDS HERE -->
-
-                </div>
-              </div>
-            </div>
-
+          <app-checkout></app-checkout>
 
           </div>
 
+          <!-- Confirmation -->
           <div class="tab-pane fade" id="confirmation">
-            <div class="head text-center">
-              <i class="img-intro icon-checkmark-circle"></i>
-            </div>
-            <!--<h3 class="head text-center">Confirmation</h3>-->
-            <div class="col-md-12">
-              <div class="col-md-8 box" style = "margin-top:-5%;">
-                <!--REVIEW ORDER-->
-                <div class="panel panel-default">
-                  <div class="panel-heading text-center">
-                    <h4>Order Summary</h4>
-                  </div>
-                  <div class="panel-body">
-                    <!--Hotel name field-->
-                    <div class="col-md-12">
-                      <strong>Hotel Name</strong>
-                      <div class="pull-right"><span>Lance in france</span></div>
-                    </div>
-                    <br>
-                    <br>
-
-                    <!--Hotel address field-->
-                    <div class="col-md-12">
-                      <strong>Address</strong>
-                      <div class="pull-right"><span>556 Lance ln. San Jose, CA 95112</span></div>
-                    </div>
-
-                    <!--Hotel ID field-->
-                    <div class="col-md-12">
-                      <strong>Hotel ID</strong>
-                      <div class="pull-right"><span>762</span></div>
-                    </div>
-
-                    <br>
-                    <br>
-
-                    <!--Number of guests field-->
-                    <div class="col-md-12">
-                      <strong>Number Of Guests</strong>
-                      <div class="pull-right"><span>4</span></div>
-                    </div>
-
-                    <!--Number of beds field-->
-                    <div class="col-md-12">
-                      <strong>Number Of Beds</strong>
-                      <div class="pull-right"><span>2</span></div>
-                    </div>
-
-                    <br>
-                    <br>
-
-                    <!--Check in Date field-->
-                    <div class="col-md-12">
-                      <strong>Check In Date</strong>
-                      <div class="pull-right"><span>02/14/2018</span></div>
-                    </div>
-
-                    <!--Check Out date field-->
-                    <div class="col-md-12">
-                      <strong>Check Out Date</strong>
-                      <div class="pull-right"><span>02/15/2018</span></div>
-                    </div>
-
-                    <br>
-                    <br>
-
-                    <!--Room price field-->
-                    <div class="col-md-12">
-                      <strong>Room Price</strong>
-                      <div class="pull-right"><span>$</span><span>200.00</span></div>
-                    </div>
-
-                    <!--Tax price field-->
-                    <div class="col-md-12">
-                      <strong>Tax</strong>
-                      <div class="pull-right"><span>$</span><span>200.00</span></div>
-                    </div>
-                    <div class="col-md-12">
-
-                      <div class="pull-right"><span>-</span></div>
-                      <hr>
-                    </div>
-                    <div class="col-md-12">
-                      <strong>Order Total</strong>
-                      <div class="pull-right"><span>$</span><span>150.00</span></div>
-                      <hr>
-                    </div>
-
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Done</button>
-
-                  </div>
-
-                </div>
-                <!--REVIEW ORDER END-->
-              </div>
-          </div>
+            <app-confirmation></app-confirmation>
           </div>
 
           <div class="clearfix"></div>
         </div>
-
       </div>
     </div>
   </div>
 </section>
+
+
+<footer id="fh5co-footer" role="contentinfo" >
+
+    <div class="container" style="height: 10%">
+      <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+        <p style="color: #bab9b9">&copy; 2018 InnCredible</p>
+      </div>
+      <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+
+      </div>
+
+      <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+        <ul class="fh5co-social">
+          <li><a href="#"><i class="icon-twitter"></i></a></li>
+          <li><a href="#"><i class="icon-facebook"></i></a></li>
+          <li><a href="#"><i class="icon-google-plus"></i></a></li>
+          <li><a href="#"><i class="icon-instagram"></i></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
