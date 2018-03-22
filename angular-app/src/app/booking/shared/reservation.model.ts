@@ -4,5 +4,5 @@ export class Reservation {
   rooms:      number;
   checkInDt:  Date;
   checkOutDt: Date;
-  comments: string;
+  comments:   string;
 }

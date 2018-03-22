@@ -1,16 +1,14 @@
-<form class="form-horizontal" #reservationForm="ngForm" (ngSubmit)="onSubmit(reservationForm)">
+<form class="form-horizontal" #reservationForm="ngForm" (ngSubmit)="onSubmit(reservationForm)" [formGroup]="resvForm">
   <fieldset>
     <!--&lt;!&ndash; Form Name &ndash;&gt;-->
     <!--<legend>Form Name</legend>-->
 
     <!-- Select Basic -->
-
-      <form [formGroup]="resvForm">
         <div class="form-group">
           <label class="col-md-4 control-label" for="numGuests">Number Of Guests</label>
           <div class="col-md-4">
           <select
-            id="numGuests" class="form-control" name="guests" formControlName="guests"
+            id="numGuests" class="form-control" formControlName="guests"
                   [(ngModel)]="reservationService.activeReservation.guests">
             <option *ngFor="let opt of guestOptions" [ngValue]="opt">
               {{ opt }}
@@ -22,17 +20,17 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="numRooms">Number of Rooms</label>
           <div class="col-md-4">
-            <input disabled class="form-control" id="numRooms" name="numRooms" formControlName="rooms"
+            <input disabled class="form-control" id="numRooms" formControlName="rooms"
                 [(ngModel)]="reservationService.activeReservation.rooms"/>
           </div>
         </div>
-      </form>
 
     <!-- Check in date -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="checkindate">Date Of Check In</label>
       <div class="col-md-4">
-        <input type="date" class="form-control" id="checkindate"  name="checkindate">
+        <input type="date" class="form-control" id="checkindate"  formControlName="checkInDt"
+                [(ngModel)]="reservationService.activeReservation.checkInDt"/>
       </div>
     </div>
 
@@ -41,7 +39,8 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="checkoutdate">Date Of Check Out</label>
       <div class="col-md-4">
-        <input type="date" class="form-control" id="checkoutdate" name="checkoutdate">
+        <input type="date" class="form-control" id="checkoutdate" formControlName="checkOutDt"
+                [(ngModel)]="reservationService.activeReservation.checkOutDt"/>
       </div>
     </div>
 
@@ -50,19 +49,23 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="taComments">Comments</label>
       <div class="col-md-4">
-        <textarea class="form-control" id="taComments" name="comments"
-              #comments="ngModel" [(ngModel)]="reservationService.activeReservation.comments"></textarea>
+        <textarea class="form-control" id="taComments" formControlName="comments"
+               [(ngModel)]="reservationService.activeReservation.comments"></textarea>
       </div>
     </div>
 
     <!-- Terms and conditions -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="termsAndConditions">Read and Accept</label>
-      <div class="col-md-4">
+      <label class="col-md-4 control-label" for="tAndC">Read and Accept</label>
+      <div class="col-md-4" [ngClass]="displayFieldCss('tAndC')">
         <div class="checkbox">
-          <label for="termsAndConditions-0">
-            <input type="checkbox" name="termsAndConditions" id="termsAndConditions-0" value="1" required>
+          <label for="tAndC-0">
+            <input type="checkbox" name="tAndC" id="tAndC-0" value="1" formControlName="tAndC" required>
             <a href="/policy">Terms and Conditions</a>
+            <app-err-display
+              [displayError]="isFieldValid('tAndC')"
+              errorMsg="You must accept the Terms and Conditions to proceed.">
+            </app-err-display>
           </label>
         </div>
       </div>
@@ -73,9 +76,9 @@
       <label class="col-md-4 control-label" for="commentButton"></label>
       <div class="col-md-4">
         <button id="commentButton" type="submit" class="btn btn-primary">
-            <a href="#rewards" data-toggle="tab">
+            <!--<a href="#rewards" data-toggle="tab">-->
                 <span class="round-tabs two active" style="color: white">Submit</span>
-            </a>
+            <!--</a>-->
         </button>
       </div>
     </div>

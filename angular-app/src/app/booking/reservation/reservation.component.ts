@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ReservationService } from '../shared/reservation.service';
 
 @Component({
@@ -32,7 +32,23 @@ export class ReservationComponent implements OnInit {
   createGuestForm() {
       return this.fb.group({
         guests: 1,
-        rooms:  0
+        rooms:  0,
+        checkInDt: null,
+        checkOutDt: null,
+        comments: '',
+        tAndC: [null, Validators.required]
       });
+  }
+
+  isFieldValid(field: string) {
+    // return this.resvForm.get(field).value === '1';
+    return !this.resvForm.get(field).valid && this.resvForm.get(field).touched;
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      'has-error': !this.isFieldValid(field),
+      'has-feedback': !this.isFieldValid(field)
+    };
   }
 }
