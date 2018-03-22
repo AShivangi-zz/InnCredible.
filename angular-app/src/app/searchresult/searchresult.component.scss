@@ -1,4 +1,5 @@
 //@import "http://fonts.googleapis.com/css?family=Roboto:300,400,500,700.css";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
 
 .container { margin-top: 20px; }
 .mb20 { margin-bottom: 20px; }
@@ -23,6 +24,11 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 .search-result span.plus a:hover { background-color: #414141; }
 .search-result span.plus a i { color: #fff !important; }
 .search-result span.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; }
+
+//background
+body{
+  background-color: #ddd;
+}
 
 //here
 /* cyrillic-ext */
@@ -258,4 +264,53 @@ hr {
   /* Set the hr color */
   color: #333; /* old IE */
   background-color: #333; /* Modern Browsers */
+}
+
+//button
+
+
+.buttonContainer{
+  margin-top:100px;
+  text-align:center;
+}
+
+/* BUTTON CSS
+------------------------------------------- */
+
+a.button{
+  display:inline-block;
+
+  font:normal normal 300 1.3em 'Open Sans';
+  text-decoration:none;
+
+  color: deepskypeblue;
+  brackground-color:transparent;
+  border:1px solid deepskyblue;
+  border-radius:100px;
+
+  padding: .3em 1.2em;
+  margin:5px;
+
+  background-size: 200% 100%;
+  background-image: linear-gradient(to right, transparent 50%, deepskyblue 50%);
+  transition: background-position .3s cubic-bezier(0.19, 1, 0.22, 1) .1s, color .5s ease 0s, background-color .5s ease;
+}
+
+a.button:hover{
+  color: black;
+  background-color: deepskyblue;
+  background-position: -100% 100%;
+}
+
+.form-group{
+  margin-right: 0.1%;
+  margin-left: 80%;
+  margin-top: 7%
+}
+
+//favorite button
+
+.heart {
+  font-size: 5%;
+  color:red;
 }

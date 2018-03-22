@@ -1,12 +1,15 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!----- Include the above in your HEAD tag ---------->
-
+<body>
+<script>
+  $(".heart.fa").click(function() {
+    $(this).toggleClass("fa-heart fa-heart-o");
+  });
+</script>
 <div class="container">
-
-
-  <br> <br>
   <h2> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h2>
   <ul>
     <div *ngFor="let hotel of hotelservice.ObservableList | async">
@@ -19,13 +22,23 @@
             <ul class="meta-search">
               <li><i class="glyphicon glyphicon-usd"></i> <span>{{hotel.getPrice()}}</span></li>
               <li><i class="glyphicon glyphicon-star"></i> <span>{{hotel.getRating()}}</span></li>
-              <li><i class="glyphicon glyphicon-pencil"></i> <span>{{hotel.getReview()}}</span></li>
+              <li><i class="fa fa-tripadvisor"></i> <span>{{hotel.getReview()}}</span></li>
+              <!--<i class="glyphicon glyphicon-pencil"></i>-->
             </ul>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
             <h3><a href="#" title="">{{hotel.getName() }}</a></h3>
+            <div>
+              <i class="heart fa fa-heart-o"></i>
+            </div>
             <p>{{hotel.getLocation()}}</p>
-            <span class="plus"><a href="#" title="Book"><button align = "center">Book</button></a></span>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="commentButton"></label>
+              <div class="col-md-4">
+                <button id="commentButton" type="submit" class="btn btn-primary">Book</button>
+              </div>
+            </div>
           </div>
           <span class="clearfix borda"></span>
           <hr color="black" size="10" width="100%">
@@ -92,4 +105,7 @@
 
     </section>
   </div>-->
+
+</div>
+</body>
 
