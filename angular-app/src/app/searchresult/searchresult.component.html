@@ -22,7 +22,7 @@
       $this.removeClass('panel-collapsed');
       $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
     }
-  })
+  });
 </script>
 
 <!--FILTER from here -->
@@ -30,17 +30,17 @@
   <div class="row12">
     <div class="col-sm-3 col-md-3">
 
-      <div class="panel-heading" color="grey">Filter Results</div>
+      <div class="panel-heading" color="grey"><h3><b><u>Filter Results</u></b></h3></div>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Height</h3>
+          <h3 class="panel-title">Price</h3>
           <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
         </div>
         <div class="panel-body">Panel content</div>
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Age</h3>
+          <h3 class="panel-title">Location</h3>
           <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
         </div>
         <div class="panel-body">Panel content</div>
@@ -60,17 +60,15 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-2">
             <ul class="meta-search">
-              <li><i class="glyphicon glyphicon-usd"></i> <span>{{hotel.getPrice()}}</span></li>
+              <div id="price12"><li><i class="glyphicon glyphicon-usd"></i><font size="3" color="#248dc1"><b> {{hotel.getPrice()}}</b></font></li></div>
               <li><i class="glyphicon glyphicon-star"></i> <span>{{hotel.getRating()}}</span></li>
               <li><i class="fa fa-tripadvisor"></i> <span>{{hotel.getReview()}}</span></li>
               <!--<i class="glyphicon glyphicon-pencil"></i>-->
+              <!--<span class="price"><font size="4" color ="red" >-->
             </ul>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
             <h3><a href="#" title="">{{hotel.getName() }}</a></h3>
-            <div>
-              <i class="heart fa fa-heart-o"></i>
-            </div>
             <p>{{hotel.getLocation()}}</p>
 
             <div class="form-group">
