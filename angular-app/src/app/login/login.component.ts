@@ -39,8 +39,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() : void {
     this.afa.authState.subscribe(auth => {
       if(auth) {
-        //this.router.navigateByUrl('/home');
-        this.location.back();
+        this.router.navigateByUrl('/home');
       }
     });
   }
