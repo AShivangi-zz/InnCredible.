@@ -8,6 +8,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import { AngularFireDatabase } from 'angularfire2/database';
+import {Location} from '@angular/common';
 //import {NotifyService} from 
 
 interface User {
@@ -26,7 +27,8 @@ export class AuthService {
 
  constructor(private afAuth: AngularFireAuth,
   private db : AngularFireDatabase,
-  private router: Router){}
+  private router: Router,
+  private location: Location){}
 
   emailSignUp(email: string, password: string, firstname: string, lastname:string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
@@ -39,8 +41,9 @@ export class AuthService {
           photoURL: 'https://goo.gl/Fz9nrQ',
           rewardPoints: 0
         });
-        this.router.navigateByUrl('/home');
-        location.reload();
+        //this.router.navigateByUrl('/home');
+        //location.reload();
+        this.location.back();
       })
       .catch(error => this.handleError(error) );
   }

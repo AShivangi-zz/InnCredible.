@@ -27,7 +27,7 @@ export const router: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'hotel-info/:id', component: HotelInfoComponent},
     {path: 'policy', component: PolicyComponent},
-    {path: 'booking/:id', component: BookingComponent},
+    {path: 'booking/:id', component: BookingComponent, canActivate:[AuthGuard]},
     {path: 'searchresult', component: SearchresultComponent},
 ]
 
