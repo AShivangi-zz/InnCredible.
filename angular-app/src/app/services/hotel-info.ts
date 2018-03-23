@@ -26,8 +26,8 @@ export class HotelInfo {
 
   constructor() {}
 
-  public getHotelData(id: string) {
-    const ref = firebase.database().ref('/hotels/' + id);
+  public getHotelData(index: string) {
+    const ref = firebase.database().ref('/hotels/' + index);
     ref.once('value')
       .then((snapshot) => {// ** My only change ** or use snapshot
         this.setHotelID(snapshot.child('id').val());
@@ -38,9 +38,8 @@ export class HotelInfo {
         this.setRating(snapshot.child('rating/rating').val());
         this.setRatingImage(snapshot.child('rating/rating-img').val());
         this.setReview(snapshot.child('rating/reviews').val());
-      });
-    this.retrieveAmenities();
-    //this.retrieveImages();
+      }); 
+      this.retrieveAmenities(index);
   }
 
   public setHotelID(id: string) {
@@ -113,8 +112,9 @@ export class HotelInfo {
     return this.ratingImage;
   }
 
-  private retrieveAmenities(): void {
-    const amenities_ref =  firebase.database().ref('/hotels/' + this.HotelId+"/amenities/");
+  private retrieveAmenities(id:string): void {
+    console.log(id);
+    const amenities_ref =  firebase.database().ref('/hotels/' + id +"/amenities/");
 
     amenities_ref.child('room/').once('value')
       .then((snapshot) => {
