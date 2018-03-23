@@ -22,12 +22,7 @@ export class SearchresultComponent implements OnInit {
     this.hotelservice.retriveData(this.returnedname);
   }
 
-  ngOnInit() {
-  }
-
-  goToDescrip():void {
-    
-  }
+  ngOnInit() {}
 
 }
 
