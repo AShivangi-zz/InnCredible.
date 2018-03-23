@@ -25,9 +25,9 @@ export const router: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'contact', component: ContactComponent},
-    {path: 'hotel-info', component: HotelInfoComponent},
+    {path: 'hotel-info/:id', component: HotelInfoComponent},
     {path: 'policy', component: PolicyComponent},
-    {path: 'booking', component: BookingComponent},
+    {path: 'booking/:id', component: BookingComponent, canActivate:[AuthGuard]},
     {path: 'searchresult', component: SearchresultComponent}
 ]
 

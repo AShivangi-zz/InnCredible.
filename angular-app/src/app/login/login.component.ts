@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   state: string = '';
   error: any;
 
-  constructor(public afa: AngularFireAuth, private router: Router) { 
+  constructor(public afa: AngularFireAuth, private router: Router, private location: Location) { 
     /*this.afa.authState.subscribe(auth => {
         if(auth) {
 
@@ -25,8 +26,8 @@ export class LoginComponent implements OnInit {
     if(formData.valid) {
       this.afa.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
         .then((success)=> {
-          this.router.navigateByUrl('/home')
-          location.reload();
+          //this.router.navigateByUrl('/home');
+          this.location.back();
         }).catch(
           (err) => {
             this.error = err;
