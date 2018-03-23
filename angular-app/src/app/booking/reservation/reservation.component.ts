@@ -13,6 +13,7 @@ export class ReservationComponent implements OnInit {
   guestOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   resvForm: FormGroup;
 
+  submit: boolean = false;
 
   constructor(private reservationService: ReservationService, private fb: FormBuilder) { }
 
@@ -26,7 +27,7 @@ export class ReservationComponent implements OnInit {
   }
 
   onSubmit(reservationForm: NgForm) {
-    alert(this.reservationService.activeReservation.guests);
+    //alert(this.reservationService.activeReservation.guests);
     this.reservationService.insertReservation(reservationForm.value);
   }
 

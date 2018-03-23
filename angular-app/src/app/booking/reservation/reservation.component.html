@@ -1,4 +1,4 @@
-<form class="form-horizontal" #reservationForm="ngForm" (onClick)="onSubmit(reservationForm)" [formGroup]="resvForm">
+<form class="form-horizontal" #reservationForm="ngForm" (ngSubmit)="onSubmit(reservationForm); submit = true;" [formGroup]="resvForm">
   <fieldset>
     <!--&lt;!&ndash; Form Name &ndash;&gt;-->
     <!--<legend>Form Name</legend>-->
@@ -62,10 +62,10 @@
           <label for="tAndC-0">
             <input type="checkbox" name="tAndC" id="tAndC-0" value="1" formControlName="tAndC" required>
             <a href="/policy">Terms and Conditions</a>
-            <app-err-display
+            <!--<app-err-display
               [displayError]="isFieldValid('tAndC')"
               errorMsg="You must accept the Terms and Conditions to proceed.">
-            </app-err-display>
+            </app-err-display>-->
           </label>
         </div>
       </div>
@@ -75,11 +75,17 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="commentButton"></label>
       <div class="col-md-4">
-        <button id="commentButton" type="submit" class="btn btn-primary" ng-href="">
+        <button id="commentButton" type="submit" class="btn btn-primary">
             <!--<a href="#rewards" data-toggle="tab">-->
                 <span class="round-tabs two active" style="color: white">Submit</span>
             <!--</a>-->
         </button>
+       <!--</a>-->
+       <a href="#rewards" data-toggle="tab" *ngIf="submit">
+          <button id="commentButton" class="btn btn-primary">
+            <span class="round-tabs two active" style="color: white">Next -></span>
+        </button>
+       </a>
       </div>
     </div>
 
