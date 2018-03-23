@@ -1,4 +1,4 @@
-import{environment} from './../environments/environment'
+import { environment } from './../environments/environment';
 
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -6,15 +6,15 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
-//Routes
+// Routes
 import { routes } from './app.router';
 
-//Firebase
-import { AngularFireModule } from "angularfire2";
+// Firebase
+import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-//Components
+// Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -25,8 +25,13 @@ import { ContactComponent } from './contact/contact.component';
 import {HotelInfoComponent} from './hotel-info/hotel-info.component';
 import { BookingComponent } from './booking/booking.component';
 import { ReservationComponent } from './booking/reservation/reservation.component';
+import { RewardsComponent } from './booking/rewards/rewards.component';
+import { ReviewComponent } from './booking/review/review.component';
+import { CheckoutComponent } from './booking/checkout/checkout.component';
+import { ConfirmationComponent } from './booking/confirmation/confirmation.component';
+//import { ErrDisplayComponent } from './booking/err-display/err-display.component';
 
-//Services
+// Services
 import { AuthGuard } from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
 import {UserProfileService} from './services/profile.service';
@@ -35,7 +40,7 @@ import { PolicyComponent } from './policy/policy.component';
 import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { SharedSearchResultsService} from './services/shared-search-results.service';
-import {HotelService} from "./services/hotel.service";
+import {HotelService} from './services/hotel.service';
 
 
 @NgModule({
@@ -48,10 +53,15 @@ import {HotelService} from "./services/hotel.service";
     ProfileComponent,
     ContactComponent,
     HotelInfoComponent,
-    PolicyComponent, 
+    PolicyComponent,
     BookingComponent,
     ReservationComponent,
     SearchresultComponent,
+    RewardsComponent,
+    ReviewComponent,
+    CheckoutComponent,
+    ConfirmationComponent,
+    //ErrDisplayComponent,
   ],
   imports: [
     ReactiveFormsModule,

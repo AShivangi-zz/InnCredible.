@@ -65,11 +65,13 @@ h1, h2, h3, h4, h5, h6, figure {
   font-family: "Varela Round", Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
+  background-color: inherit;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   -ms-border-radius: 30px;
   border-radius: 30px;
   -webkit-transition: 0.5s;
+  -webkit-appearance: none;
   -o-transition: 0.5s;
   transition: 0.5s;
   padding: 4px 20px;

@@ -28,7 +28,7 @@ export const router: Routes = [
     {path: 'hotel-info/:id', component: HotelInfoComponent},
     {path: 'policy', component: PolicyComponent},
     {path: 'booking/:id', component: BookingComponent, canActivate:[AuthGuard]},
-    {path: 'searchresult', component: SearchresultComponent},
+    {path: 'searchresult', component: SearchresultComponent}
 ]
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);
