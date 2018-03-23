@@ -25,6 +25,10 @@ export class SearchresultComponent implements OnInit {
   ngOnInit() {
   }
 
+  goToDescrip():void {
+    
+  }
+
 }
 
 

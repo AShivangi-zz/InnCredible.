@@ -23,6 +23,7 @@ export class HotelService {
         .once("value")
         .then((snapshot) => {
             var hotel = new Hotel();
+            hotel.setHotelID(snapshot.child('id').val())
             hotel.setCity(snapshot.child('/location/city').val());
             hotel.setName(snapshot.child('name').val());
             hotel.setLocation(snapshot.child('/location/all').val());

@@ -27,10 +27,10 @@ export class HotelInfo {
   constructor() {}
 
   public getHotelData(id: string) {
-    this.HotelId = id;
-    const ref = firebase.database().ref('/hotels/' + this.HotelId);
+    const ref = firebase.database().ref('/hotels/' + id);
     ref.once('value')
       .then((snapshot) => {// ** My only change ** or use snapshot
+        this.setHotelID(snapshot.child('id').val());
         this.setHotelName(snapshot.child('name').val());
         this.setPrice(snapshot.child('price').val());
         this.setLocation(snapshot.child('location/all').val());
@@ -41,6 +41,14 @@ export class HotelInfo {
       });
     this.retrieveAmenities();
     //this.retrieveImages();
+  }
+
+  public setHotelID(id: string) {
+    this.HotelId = id;
+  }
+
+  public getHotelID(): string {
+    return this.HotelId;
   }
 
   public setHotelName(name:string){

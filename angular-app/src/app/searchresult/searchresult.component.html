@@ -74,7 +74,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="commentButton"></label>
               <div class="col-md-4">
-                <button id="commentButton" type="submit" class="btn btn-primary">Book</button>
+                <button id="commentButton" [routerLink]="['/hotel-info', hotel.getHotelID()]" class="btn btn-primary">Book</button>
               </div>
             </div>
           </div>
