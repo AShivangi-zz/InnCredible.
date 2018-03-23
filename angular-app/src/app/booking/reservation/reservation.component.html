@@ -75,17 +75,17 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="commentButton"></label>
       <div class="col-md-4">
-        <button id="commentButton" type="submit" class="btn btn-primary">
+        <button id="commentButton" type="submit" class="btn btn-primary" *ngIf="!submit">
             <!--<a href="#rewards" data-toggle="tab">-->
-                <span class="round-tabs two active" style="color: white">Submit</span>
+                <span class="round-tabs two active" style="color: white">Save</span>
             <!--</a>-->
         </button>
        <!--</a>-->
-       <a href="#rewards" data-toggle="tab" *ngIf="submit">
-          <button id="commentButton" class="btn btn-primary">
-            <span class="round-tabs two active" style="color: white">Next -></span>
-        </button>
-       </a>
+       <div class = 'next' *ngIf="submit" style="width: 100%">
+          <a href="#rewards" data-toggle="tab" >
+            <i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: skyblue"></i>
+          </a>
+      </div>
       </div>
     </div>
 
