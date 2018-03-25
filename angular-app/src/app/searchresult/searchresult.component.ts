@@ -4,23 +4,7 @@ import {HotelService} from "../services/hotel.service";
 
 @Component({
   selector: 'app-searchresult',
-  template: `
-    <h1>User data</h1> <br>
-    <h2> City: {{returnedname}}</h2>
-    <h2> Check In: {{returnedcheckindate}}</h2>
-    <h2> Check Out: {{returnedcheckoutdate}}</h2>
-    <ul>
-      <div *ngFor="let hotel of hotelservice.ObservableList | async">
-          <p>Hotel Name: {{hotel.getName() }} <br>
-             Hotel Location: {{hotel.getLocation() }}<br>
-             Hotel city: {{hotel.getCity()}} <br>
-             Hotel review: {{hotel.getReview()}} <br>
-             Hotel rating: {{hotel.getRating()}} <br>
-             Hotel price: {{hotel.getPrice()}}
-          </p>
-      </div>
-    </ul>
-  `,
+  templateUrl: './searchresult.component.html',
   styleUrls: ['./searchresult.component.scss'],
 })
 
@@ -38,8 +22,7 @@ export class SearchresultComponent implements OnInit {
     this.hotelservice.retriveData(this.returnedname);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
 

@@ -9,6 +9,7 @@ export class ReservationService {
   userID: string;
   activeReservation: Reservation = new Reservation();
 
+  private hotelID: string;
   constructor(private db: AngularFireDatabase, private afa: AngularFireAuth) {
     this.afa.authState.subscribe(auth => {
       if (auth) { this.userID = auth.uid;
@@ -22,6 +23,10 @@ export class ReservationService {
     if (!this.userID) { alert('User is not logged in!'); return;  }
     this.reservations = this.db.list(`users/${this.userID}/reservations`);
     this.reservations.push(newReservation);
+  }
+
+  setHotelID(id:string) {
+    this.hotelID = id;
   }
  /* updateReservation(r: Reservation) {
     this.reservationList.update(r.$key,

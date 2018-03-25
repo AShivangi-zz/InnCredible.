@@ -21,11 +21,11 @@ error: any;
 
     // First Step
     this.signupForm = this.fb.group({
-      'firstname': ['', [
+      'firstName': ['', [
         Validators.required
         ]
       ],
-      'lastname': ['', [
+      'lastName': ['', [
         Validators.required
         ]
       ],
@@ -41,7 +41,7 @@ error: any;
         Validators.required
         ]
       ],
-      'confirm_password': ['', [
+      'confirmPassword': ['', [
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
         Validators.minLength(6),
         Validators.maxLength(25),
@@ -55,9 +55,9 @@ error: any;
   
   get email() { return this.signupForm.get('email') }
   get password() { return this.signupForm.get('password') }
-  get firstname() { return this.signupForm.get('firstname') }
-  get lastname() { return this.signupForm.get('lastname') }
-  get confirm_password() {return this.signupForm.get('confirm_password')}
+  get firstname() { return this.signupForm.get('firstName') }
+  get lastname() { return this.signupForm.get('lastName') }
+  get confirm_password() {return this.signupForm.get('confirmPassword')}
 
 
   // Step 1
