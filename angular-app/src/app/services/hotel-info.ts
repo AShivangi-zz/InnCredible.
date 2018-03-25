@@ -23,6 +23,11 @@ export class HotelInfo {
   private images: URL[] = [];
   private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
   private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
+  private _hotelName =  new BehaviorSubject<string>('');
+  private _hotelLocation = new BehaviorSubject<string>('');
+
+  public subscribeName = this._hotelName.asObservable();
+  public subscribeLocation = this._hotelLocation.asObservable();
 
   constructor() {}
 
@@ -38,8 +43,11 @@ export class HotelInfo {
         this.setRating(snapshot.child('rating/rating').val());
         this.setRatingImage(snapshot.child('rating/rating-img').val());
         this.setReview(snapshot.child('rating/reviews').val());
-      }); 
+      });
       this.retrieveAmenities(index);
+
+      this._hotelName.next(this.HotelName);
+      this._hotelLocation.next(this.location);
   }
 
   public setHotelID(id: string) {
@@ -52,6 +60,7 @@ export class HotelInfo {
 
   public setHotelName(name:string){
     this.HotelName = name;
+    this._hotelName.next(this.HotelName);
   }
 
   public getHotelName(): string {
@@ -68,6 +77,7 @@ export class HotelInfo {
 
   public setLocation(HotelLocation:string){
     this.location = HotelLocation;
+    this._hotelLocation.next(this.location);
   }
 
   public getLocation():string{
@@ -173,7 +183,7 @@ export class HotelInfo {
           this.setImages(snapshot.child(number).val());
 
         }
-        
+
       });
   }
 
