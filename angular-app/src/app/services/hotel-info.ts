@@ -23,6 +23,7 @@ export class HotelInfo {
   private images: URL[] = [];
   private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
   private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
+
   private _hotelName =  new BehaviorSubject<string>('');
   private _hotelLocation = new BehaviorSubject<string>('');
 
