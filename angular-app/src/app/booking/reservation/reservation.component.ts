@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ReservationService } from '../shared/reservation.service';
+import {HotelInfo} from '../../services/hotel-info';
 
 @Component({
   selector: 'app-reservation',
@@ -27,7 +28,6 @@ export class ReservationComponent implements OnInit {
   }
 
   onSubmit(reservationForm: NgForm) {
-    //alert(this.reservationService.activeReservation.guests);
     this.reservationService.insertReservation(reservationForm.value);
   }
 

@@ -8,7 +8,17 @@ export class Hotel {
   private ratingImg: URL;
   private review_num: string;
   private hotelID: string;
+  private hotelIndex: string;
+
   constructor() {}
+
+  public setIndex(input_index: string) {
+    this.hotelIndex = input_index;
+  }
+
+  public getIndex(): string {
+    return this.hotelIndex;
+  }
 
   public getName(): string {
     return this.name;

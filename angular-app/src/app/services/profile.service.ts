@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 
 @Injectable()
@@ -17,11 +17,11 @@ export class UserProfileService {
         this.uid = firebase.auth().currentUser.uid;
         firebase.database().ref('/users/' + this.uid).once('value')
             .then((snapshot) => {// ** My only change ** or use snapshot
-                this.firstname = snapshot.child('firstname').val(); 
-                this.lastname = snapshot.child('lastname').val(); 
-                this.rewardpoints = snapshot.child('rewardPoints').val(); 
+                this.firstname = snapshot.child('firstname').val();
+                this.lastname = snapshot.child('lastname').val();
+                this.rewardpoints = snapshot.child('rewardPoints').val();
                 console.log(this.rewardpoints);
-                this.email = snapshot.child('email').val(); 
+                this.email = snapshot.child('email').val();
                 this.phototUrl = snapshot.child('photoURL').val();
         });
     }

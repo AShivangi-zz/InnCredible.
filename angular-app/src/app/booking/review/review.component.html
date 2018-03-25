@@ -10,13 +10,13 @@
           <!--Hotel name field-->
           <div class="col-md-12">
             <strong>Hotel Name</strong>
-            <div class="pull-right"><span>{{this.hotelName}}</span></div>
+            <div class="pull-right"><span>{{this.hotelData.getName()}}</span></div>
           </div>
 
           <!--Hotel address field-->
           <div class="col-md-12">
             <strong>Address</strong>
-            <div class="pull-right"><span>{{this.hotelAddr}}</span></div>
+            <div class="pull-right"><span>{{this.hotelData.getLocation()}}</span></div>
           </div>
 
           <!--Number of guests field-->
@@ -46,19 +46,19 @@
           <!--Room price field-->
           <div class="col-md-12">
             <strong>Total before tax</strong>
-            <div class="pull-right"><span>$</span><span>200.00</span></div>
+            <div class="pull-right"><span>$</span><span>{{this.hotelData.getPrice()}}</span></div>
           </div>
 
           <!--Rewards field-->
           <div class="col-md-12">
               <strong>Rewards Applied</strong>
-              <div class="pull-right"><span>-$</span><span>50.00</span></div>
+              <div class="pull-right"><span>-$</span><span>{{this.applyRewardAmnt()}}</span></div>
             </div>
 
           <!--Tax price field-->
           <div class="col-md-12">
-            <strong>Tax</strong>
-            <div class="pull-right"><span>$</span><span>200.00</span></div>
+            <strong>Tax (@ {{this.taxRate}}%)</strong>
+            <div class="pull-right"><span>$</span><span>{{this.calcTax()}}</span></div>
           </div>
 
           <!-- horizontal line-->
@@ -69,7 +69,7 @@
 
             <!-- Order total -->
             <strong>Order Total</strong>
-            <div class="pull-right"><span>$</span><span>150.00</span></div>
+            <div class="pull-right"><span>$</span><span>{{this.orderTotal()}}</span></div>
             <hr>
           </div>
 
