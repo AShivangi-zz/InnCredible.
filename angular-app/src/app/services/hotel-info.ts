@@ -1,22 +1,19 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
+import { Hotel } from '../hotel';
 
 @Injectable()
 
 export class HotelInfo {
 
-  private HotelId: string;
-  private HotelName: string;
-  private location: string;
-  private price: string;
+  private bookHotel = new Hotel();
   private reviews: any;
-  private rating: string;
   private ratingImage: string;
-  private description:string;
-  private roomText:string;
-  private hotelText:string;
+  private description: string;
+  private roomText: string;
+  private hotelText: string;
   private hasImg = 0;
 
   private amenities: string[] = [];
@@ -24,54 +21,67 @@ export class HotelInfo {
   private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
   private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
 
+  private _thisHotel = new BehaviorSubject<Hotel>(null);
+  public activeHotel = this._thisHotel.asObservable();
+
   constructor() {}
 
   public getHotelData(index: string) {
     const ref = firebase.database().ref('/hotels/' + index);
     ref.once('value')
       .then((snapshot) => {// ** My only change ** or use snapshot
+        this.bookHotel.setIndex(index);
         this.setHotelID(snapshot.child('id').val());
         this.setHotelName(snapshot.child('name').val());
         this.setPrice(snapshot.child('price').val());
         this.setLocation(snapshot.child('location/all').val());
-        this.setDescription(snapshot.child('attr/description').val());
         this.setRating(snapshot.child('rating/rating').val());
+        this.setDescription(snapshot.child('attr/description').val());
         this.setRatingImage(snapshot.child('rating/rating-img').val());
         this.setReview(snapshot.child('rating/reviews').val());
-      }); 
+      });
+
       this.retrieveAmenities(index);
+      this._thisHotel.next(this.bookHotel);
   }
 
   public setHotelID(id: string) {
-    this.HotelId = id;
+    this.bookHotel.setHotelID(id);
   }
 
   public getHotelID(): string {
-    return this.HotelId;
+    return this.bookHotel.getHotelID();
   }
 
   public setHotelName(name:string){
-    this.HotelName = name;
+    this.bookHotel.setName(name);
   }
 
   public getHotelName(): string {
-    return this.HotelName;
+    return this.bookHotel.getName();
   }
 
   public setPrice(HotelPrice:string) {
-    this.price = HotelPrice;
+    this.bookHotel.setPrice(HotelPrice);
   }
 
   public getPrice(): string {
-    return this.price;
+    return this.bookHotel.getPrice();
   }
 
   public setLocation(HotelLocation:string){
-    this.location = HotelLocation;
+    this.bookHotel.setLocation(HotelLocation);
   }
 
   public getLocation():string{
-    return this.location;
+    return this.bookHotel.getLocation();
+  }
+
+  public setRating(rating:string) {
+    this.bookHotel.setRating(rating);
+  }
+  public getRating() {
+    return this.bookHotel.getRating();
   }
 
   public setDescription(hotelDescription:string){
@@ -89,16 +99,9 @@ export class HotelInfo {
     return this.reviews;
   }
 
-  public setRating(rating:string){
-    this.rating = rating;
-  }
-  public getRating(){
-    return this.rating;
-  }
-
   public RatingImage(){
     var ratingImages: string;
-    firebase.database().ref('/hotels/' + this.HotelId+ '/rating').once('value')
+    firebase.database().ref('/hotels/' + this.getHotelID() + '/rating').once('value')
       .then((snapshot) => {// ** My only change ** or use snapshot
         this.setRatingImage(snapshot.child('rating-img').val());
       });
@@ -114,7 +117,7 @@ export class HotelInfo {
 
   private retrieveAmenities(id:string): void {
     console.log(id);
-    const amenities_ref =  firebase.database().ref('/hotels/' + id +"/amenities/");
+    const amenities_ref =  firebase.database().ref('/hotels/' + id + '/amenities/');
 
     amenities_ref.child('room/').once('value')
       .then((snapshot) => {
@@ -136,7 +139,7 @@ export class HotelInfo {
 
     amenities_ref.once('value')
       .then((snapshot) => {
-        this.setTexts(snapshot.child('room-text').val(),snapshot.child('hotel-text').val());
+        this.setTexts(snapshot.child('room-text').val(), snapshot.child('hotel-text').val());
       });
   }
 
@@ -163,31 +166,31 @@ export class HotelInfo {
   }
 
   public retrieveImages() {
-    const images_ref =  firebase.database().ref('/hotels/' + this.HotelId+"/images/");
+    const images_ref =  firebase.database().ref('/hotels/' + this.getHotelID() + '/images/');
     var count = 0;
     images_ref.once('value')
       .then((snapshot) => {
         const countImage = snapshot.numChildren();
-        for(var i = 0; i < countImage; i++) {
-          var number = i.toString();
+        for (let i = 0; i < countImage; i++) {
+          const number = i.toString();
           this.setImages(snapshot.child(number).val());
 
         }
-        
+
       });
   }
 
-  public setImages(image:URL){
+  public setImages(image: URL) {
     console.log(image);
     this.images.push(image);
     this._imagesList.next(this.images);
   }
 
-  public getImages():Observable<URL[]>{
+  public getImages(): Observable<URL[]>{
     return this._imagesList.asObservable();
   }
 
-  public getImagesFirst() : Observable<URL> {
+  public getImagesFirst(): Observable<URL> {
     return this._imagesList[0].asObservable;
   }
 

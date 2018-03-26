@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelInfo } from "../services/hotel-info";
+import { HotelInfo } from '../services/hotel-info';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import * as firebase from 'firebase';
@@ -21,19 +21,19 @@ export class HotelInfoComponent implements OnInit {
 
   constructor(private hotelInfo: HotelInfo, private route: ActivatedRoute) {
     // this.hotelInfo.setHotelId('0');
-    
+
   }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.hotelID = params['id'];
     });
-  
+
     const id_ref =  firebase.database().ref('/hotel_id');
-    id_ref.once('value').then((snapshot)=> {
+    id_ref.once('value').then((snapshot) => {
       const count = snapshot.numChildren();
         for(var i = 0; i < count; i++) {
-          var number = i.toString();
+          const number = i.toString();
           if(snapshot.child(number).val() == this.hotelID) {
             this.hotelInfo.getHotelData(number);
 
@@ -46,7 +46,7 @@ export class HotelInfoComponent implements OnInit {
                 this.setImagesURL(snapshot_img.child(number).val());
                 if(i == countImage -1) {
                   this.setImgDone();
-                }   
+                }
                }
             });
             i = count;
