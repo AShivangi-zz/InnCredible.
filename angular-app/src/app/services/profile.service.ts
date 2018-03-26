@@ -8,7 +8,7 @@ export class UserProfileService {
     private authInfo;
     private firstname: string;
     private lastname : string;
-    private rewardpoints: string;
+    private rewardpoints: number;
     private email: string;
     private phototUrl: any;
     private uid: string;
@@ -73,6 +73,14 @@ export class UserProfileService {
     }
     public getZipcode() {
       return this.zipcode;
+    }
+
+    public reduceTotalBy(){
+        return this.rewardpoints/25;
+    }
+
+    public awardRewardPoints(total: number){
+        return total/10;
     }
 
 
