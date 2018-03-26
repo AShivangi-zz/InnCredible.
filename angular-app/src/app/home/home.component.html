@@ -31,14 +31,14 @@
                   <h3><a href="#">Search for Hotels</a></h3>
                   <form #searchformdata="ngForm" (ngSubmit)="onSubmit(searchformdata)">
                   <div id="search-box">
-                    <input type="text" class="form-control" id="cityname" required [(ngModel)]="cityname" name="cityname" placeholder="Name of city..">
+                    <input type="text" class="form-control" id="cityname" name="cityname" [(ngModel)] = "cityname" placeholder="Name of city.." required>
                   </div>
                   <p></p>
                   <p class="fh5co-property-specification">
                     <label for="checkindate">Date Of Check In</label>
-                    <input type="date" class="form-control" id="checkindate" [(ngModel)]="checkindate" name="checkindate">
+                    <input type="date" class="form-control" id="checkindate" name="checkindate" [(ngModel)] = "checkindate" required>
                     <label for="checkoutdate">Date Of Check Out</label>
-                    <input type="date" class="form-control" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate">
+                    <input type="date" class="form-control" id="checkoutdate" name="checkoutdate" [(ngModel)] = "checkoutdate" required>
                   </p>
 
                     <p><a class="btn btn-primary btn-outline with-arrow"> <button class="btn btn-primary btn-outline with-arrow" type="submit" [disabled]="!searchformdata.valid" class="btn">Search</button><i class="icon-arrow-right"></i></a></p>

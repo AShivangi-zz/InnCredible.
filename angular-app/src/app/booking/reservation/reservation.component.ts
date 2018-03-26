@@ -15,7 +15,7 @@ export class ReservationComponent implements OnInit {
 
   submit: boolean = false;
 
-  constructor(private reservationService: ReservationService, private fb: FormBuilder) { }
+  constructor(public reservationService: ReservationService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.resvForm = this.createGuestForm();

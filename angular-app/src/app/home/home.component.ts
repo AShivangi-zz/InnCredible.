@@ -11,6 +11,10 @@ import {HotelService} from "../services/hotel.service";
 })
 export class HomeComponent implements OnInit {
 
+  cityname: string;
+  checkindate: string;
+  checkoutdate: string;
+
   constructor(public afa: AngularFireAuth, private router: Router, private service: SharedSearchResultsService) {
     /*this.afa.authState.subscribe(auth => {
       if(auth) {
@@ -18,7 +22,6 @@ export class HomeComponent implements OnInit {
       }
     });*/
     this.service = service; // This gets the service file information
-
   }
 
   // This gets the information from the searchformdata in home.component.html
@@ -34,7 +37,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-
 
   }
 

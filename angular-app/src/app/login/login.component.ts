@@ -13,6 +13,9 @@ export class LoginComponent implements OnInit {
   state: string = '';
   error: any;
 
+  email: string;
+  password: any;
+
   constructor(public afa: AngularFireAuth, private router: Router, private location: Location) { 
     /*this.afa.authState.subscribe(auth => {
         if(auth) {

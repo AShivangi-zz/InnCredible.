@@ -14,7 +14,7 @@ export class SearchresultComponent implements OnInit {
   returnedcheckoutdate = '';
 
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
-  constructor(private service: SharedSearchResultsService, private hotelservice: HotelService) {
+  constructor(private service: SharedSearchResultsService, public hotelservice: HotelService) {
     this.service = service;
     this.returnedname = service.getInformationModel().cityname; // Gets the user entered city name
     this.returnedcheckindate = service.getInformationModel().checkindate; // Gets the checkindate
