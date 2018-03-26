@@ -8,7 +8,7 @@ export class UserProfileService {
     private authInfo;
     private firstname: string;
     private lastname : string;
-    private rewardpoints: string;
+    private rewardpoints: number;
     private email: string;
     private phototUrl: any;
     private uid: string;
