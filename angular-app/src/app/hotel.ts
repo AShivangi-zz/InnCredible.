@@ -7,6 +7,7 @@ export class Hotel {
   private rating: string;
   private ratingImg: URL;
   private review_num: string;
+  private hotelID: string;
   constructor() {}
 
   public getName(): string {
@@ -58,5 +59,13 @@ export class Hotel {
   }
   public setReviewNum(input_reviewNum: string) {
     this.review_num = input_reviewNum;
+  }
+
+  public getHotelID(): string {
+    return this.hotelID;
+  }
+
+  public setHotelID(id: string) {
+    this.hotelID = id;
   }
 }

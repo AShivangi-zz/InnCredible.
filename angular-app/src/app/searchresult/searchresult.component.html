@@ -1,3 +1,150 @@
-<p>
-  searchresult works!
-</p>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!----- Include the above in your HEAD tag ---------->
+<body>
+<script>
+  $(document).on('click', '.panel-heading span.clickable', function(e){
+    var $this = $(this);
+    if(!$this.hasClass('panel-collapsed')) {
+      $this.parents('.panel').find('.panel-body').slideUp();
+      $this.addClass('panel-collapsed');
+      $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+    } else {
+      $this.parents('.panel').find('.panel-body').slideDown();
+      $this.removeClass('panel-collapsed');
+      $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+    }
+  });
+</script>
+
+<!--FILTER from here -->
+
+  <div class="row12">
+    <div class="col-sm-3 col-md-3">
+
+      <div class="panel-heading" color="grey"><h4><b>Filter Results</b></h4></div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Price</h3>
+          <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+        </div>
+        <div class="panel-body">Panel content</div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Location</h3>
+          <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+        </div>
+        <div class="panel-body">Panel content</div>
+      </div>
+    </div>
+  </div>
+
+<!--to here (FILTER)-->
+<div class="container">
+  <h2> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h2>
+  <ul>
+    <div *ngFor="let hotel of hotelservice.ObservableList | async">
+      <section class="col-xs-12 col-sm-6 col-md-12">
+        <article class="search-result row">
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/people" alt="Insert img" /></a>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2">
+            <ul class="meta-search">
+              <div id="price12"><li><i class="glyphicon glyphicon-usd"></i><font size="3" color="#248dc1"><b> {{hotel.getPrice()}}</b></font></li></div>
+              <li><i class="glyphicon glyphicon-star"></i> <span>{{hotel.getRating()}}</span></li>
+              <li><i class="fa fa-tripadvisor"></i> <span>{{hotel.getReview()}}</span></li>
+              <!--<i class="glyphicon glyphicon-pencil"></i>-->
+              <!--<span class="price"><font size="4" color ="red" >-->
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+            <h3><a href="#" title="">{{hotel.getName() }}</a></h3>
+            <p>{{hotel.getLocation()}}</p>
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="commentButton"></label>
+              <div class="col-md-4">
+                <!-- Routes to the description page of the hotel -->
+                <button id="commentButton" [routerLink]="['/hotel-info', hotel.getHotelID()]" class="btn btn-primary">Book</button>
+              </div>
+            </div>
+          </div>
+          <span class="clearfix borda"></span>
+          <hr color="black" size="10" width="100%">
+        </article>
+      </section>
+    </div>
+  </ul>
+
+
+
+
+  <!--<body>
+
+  <br> <br>
+  <h2> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h2>
+  <!--<h2> Check In: {{returnedcheckindate}}</h2>
+  <h2> Check Out: {{returnedcheckoutdate}}</h2>-->
+  <!--<ul>
+    <div *ngFor="let hotel of hotelservice.ObservableList | async">
+      <p>Hotel Name: {{hotel.getName() }} <br>
+        Hotel Location: {{hotel.getLocation() }}<br>
+        Hotel city: {{hotel.getCity()}} <br>
+        Hotel review: {{hotel.getReview()}} <br>
+        Hotel rating: {{hotel.getRating()}} <br>
+        Hotel price: {{hotel.getPrice()}}
+      </p>
+    </div>
+  </ul>
+
+
+  <!--
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!------ Include the above in your HEAD tag ----------
+
+  <div class="container">
+
+
+    <body>
+
+    <br> <br>
+    <h2> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h2>
+
+    <section class="col-xs-12 col-sm-6 col-md-12">
+      <article class="search-result row">
+        <div class="col-xs-12 col-sm-12 col-md-3">
+          <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/people" alt="Insert img" /></a>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2">
+          <ul class="meta-search">
+            <li><i class="glyphicon glyphicon-money"></i> <span>{{hotel.getPrice()}}</span></li>
+            <li><i class="glyphicon glyphicon-star"></i> <span>{{hotel.getRating()}}</span></li>
+            <li><i class="glyphicon glyphicon-pencil"></i> <span>{{hotel.getReview()}}</span></li>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+          <h3><a href="#" title=""></a></h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>
+          <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+        </div>
+        <span class="clearfix borda"></span>
+      </article>
+
+    </section>
+  </div>-->
+
+</div>
+</body>
+
