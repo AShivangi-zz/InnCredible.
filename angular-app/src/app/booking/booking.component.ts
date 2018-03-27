@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ReservationService } from './shared/reservation.service';
 import { Http, Headers, URLSearchParams} from '@angular/http';
 import { HotelInfo } from '../services/hotel-info';
-import { Hotel } from '../hotel';
+import { Hotel } from '../models/hotel';
 import { Reservation } from './shared/reservation.model';
 // import {Subscription} from "rxjs/Subscription";
 

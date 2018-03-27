@@ -21,7 +21,8 @@ export class SearchService {
       var promise = await this.hotelInfo.getHotelData(x);
       var hotel: Hotel = new Hotel();
       hotel = this.hotelInfo.getHotel();
-      if (cityname.toUpperCase() == hotel.getCity().toUpperCase()) {
+      console.log(hotel.getCity());
+      if (cityname === hotel.getCity()) {
         hotelList.push(hotel);
         console.log(hotel);
         this._observableList.next(hotelList);

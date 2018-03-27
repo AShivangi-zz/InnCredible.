@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Router} from '@angular/router';
 import {SharedSearchResultsService} from "../services/shared-search-results.service";
-import {HotelService} from "../services/hotel.service";
 
 @Component({
   selector: 'app-home',

@@ -1,19 +1,28 @@
 export class Hotel {
-  name;
-  city;
-  location;
-  price;
-  image: URL;
-  rating;
+  name:string;
+  city:string;
+  location:string;
+  price:string;
+  image:URL;
+  rating:string;
   ratingImg: URL;
-  review_num;
-  hotelID;
-  description;
-  roomText;
-  hotelText;
-  firstImage;
+  review_num:string;
+  hotelID:string;
+  description:string;
+  roomText:string;
+  hotelText:string;
+  firstImage:string;
+  hotelIndex:string;
 
   constructor() {}
+
+  public setIndex(input_index: string) {
+    this.hotelIndex = input_index;
+  }
+
+  public getIndex(): string {
+    return this.hotelIndex;
+  }
 
   public getName() {
     return this.name;

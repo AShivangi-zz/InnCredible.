@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {Search} from "../search";
-import {HotelService} from "./hotel.service";
 
 @Injectable()
 export class SharedSearchResultsService {

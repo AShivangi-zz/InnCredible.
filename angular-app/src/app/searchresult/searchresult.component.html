@@ -52,7 +52,7 @@
 <div class="container">
   <h2> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h2>
   <ul>
-    <div *ngFor="let hotel of hotelservice.ObservableList | async">
+    <div *ngFor="let hotel of searchService.getObservableList() | async">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">
@@ -60,16 +60,16 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-2">
             <ul class="meta-search">
-              <div id="price12"><li><i class="glyphicon glyphicon-usd"></i><font size="3" color="#248dc1"><b> {{hotel.getPrice()}}</b></font></li></div>
-              <li><i class="glyphicon glyphicon-star"></i> <span>{{hotel.getRating()}}</span></li>
-              <li><i class="fa fa-tripadvisor"></i> <span>{{hotel.getReview()}}</span></li>
+              <div id="price12"><li><i class="glyphicon glyphicon-usd"></i><font size="3" color="#248dc1"><b> {{hotel?.price}}</b></font></li></div>
+              <li><i class="glyphicon glyphicon-star"></i> <span>{{hotel?.rating}}</span></li>
+              <li><i class="fa fa-tripadvisor"></i> <span>{{hotel?.review}}</span></li>
               <!--<i class="glyphicon glyphicon-pencil"></i>-->
               <!--<span class="price"><font size="4" color ="red" >-->
             </ul>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-            <h3><a href="#" title="">{{hotel.getName() }}</a></h3>
-            <p>{{hotel.getLocation()}}</p>
+            <h3><a href="#" title="">{{hotel?.name}}</a></h3>
+            <p>{{hotel?.location}}</p>
 
             <div class="form-group">
               <label class="col-md-4 control-label" for="commentButton"></label>
