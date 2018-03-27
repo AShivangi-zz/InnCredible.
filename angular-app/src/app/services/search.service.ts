@@ -12,8 +12,9 @@ export class SearchService {
   _observableList: BehaviorSubject<Hotel[]> = new BehaviorSubject([]);
   //search_city: string;
 
-  public async retriveData(cityname: string) {
+  public async retriveData(cityname: string, checkin: string, checkout: string) {
     //const ref = firebase.database().ref("/hotels");
+    console.log(cityname+" "+checkin+" "+checkout);
     var x: string;
     var hotelList: Hotel[] = [];
     for (var i = 0; i < 71; i++) {

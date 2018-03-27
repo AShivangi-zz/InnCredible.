@@ -39,7 +39,6 @@ import {HotelInfo} from './services/hotel-info';
 import { PolicyComponent } from './policy/policy.component';
 import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
-import { SharedSearchResultsService} from './services/shared-search-results.service';
 import {Hotel} from './models/hotel';
 import {SearchService} from './services/search.service';
 
@@ -80,7 +79,6 @@ import {SearchService} from './services/search.service';
       AuthService,
       UserProfileService,
       ReservationService,
-      SharedSearchResultsService,
       SearchService,
       HotelInfo,
       Hotel
