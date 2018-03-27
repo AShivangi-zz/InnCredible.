@@ -18,20 +18,12 @@ export class ReviewComponent implements OnInit {
   // private subscription: Subscription;
 
   constructor(private hotel: HotelInfo, private reservationService: ReservationService, private userProfileService: UserProfileService) {
-    this.setHotelData();
-    //this.hotel.activeHotel.subscribe((value) => this.hotelData = value);
-    this.hotelData = hotel.getHotel();
-    this.reservationService.activeReservation.subscribe((value) => this.reservation = value);
+    this.hotel.activeHotel.subscribe(value => this.hotelData = value);
+    this.reservationService.activeReservation.subscribe(value => this.reservation = value);
     this.taxRate = 8.25;
   }
 
   ngOnInit() {
-    
-  }
-
-  private async setHotelData() {
-    const promise = this.hotel.getHotelData(this.reservationService.getHotelID());
-    let value = await promise;
   }
 
   applyRewardAmnt(): number {

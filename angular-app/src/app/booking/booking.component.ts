@@ -29,8 +29,6 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
   message: string;
   // resvSubscription: Subscription;
 
-  hotelID: string;
-
   constructor(
       private http: Http,
       private reservationService: ReservationService,
@@ -38,16 +36,18 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
       private hotel: HotelInfo) {
 
     this.hotel.activeHotel.subscribe(value => this.hotelData = value);
-    
+    // this.resvSubscription =
     this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
-    this.reservationService.setHotelID(this.hotelID);
+    this.reservationService.setHotelID(this.hotelData.hotelID);
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.hotelID = params['id'];
-    });
+    // alert(this.reservation.getHotelID());
   }
+
+  // ngOnDestroy() {
+  //   this.resvSubscription.unsubscribe();
+  // }
 
   getToken() {
     this.message = 'Loading...';
@@ -81,3 +81,35 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
   }
 
 }
+ /*
+ngOnInit() {
+ 
+ this.sub = this.route.params.subscribe(params => {
+   this.hotelID = params['id'];
+ });
+ this.getData();
+}
+
+public async getData() {
+
+ this.hotelData = new Hotel();
+ const id_ref =  firebase.database().ref('/hotel_id');
+ var promise2;
+ const promise = id_ref.once('value').then((snapshot) => {
+   const count = snapshot.numChildren();
+     for(var i = 0; i < count; i++) {
+       const number = i.toString();
+       if(snapshot.child(number).val() == this.hotelID) {
+         promise2 = this.hotel.getHotelData(number)
+         return;
+       }
+     }
+   });
+   let value = await promise;
+   let value2 = await promise2;
+   //this.hotel.activeHotel.subscribe(value => this.hotelData = value);
+   this.hotelData = this.hotel.getHotel();
+   this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
+   this.reservationService.setHotelID(this.hotelData.hotelID);
+   alert(this.hotelData.hotelID);
+}*/
