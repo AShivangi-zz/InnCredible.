@@ -1,42 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit /*, OnDestroy */} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReservationService } from './shared/reservation.service';
 import { Http, Headers, URLSearchParams} from '@angular/http';
 import { HotelInfo } from '../services/hotel-info';
 import { Hotel } from '../hotel';
+import { Reservation } from './shared/reservation.model';
+// import {Subscription} from "rxjs/Subscription";
 
 declare function createCharge(token);
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss'],
+  providers: [ReservationService]
 })
 
-export class BookingComponent implements OnInit {
+export class BookingComponent implements OnInit /*, OnDestroy */ {
 
   sub: any;
 
   private hotelData: Hotel;
+  private newResrv: Reservation;
 
   cardNumber: string;
   expiryMonth: string;
   expiryYear: string;
   cvc: string;
-
   message: string;
+  // resvSubscription: Subscription;
 
   constructor(
       private http: Http,
-      private reservation: ReservationService,
+      private reservationService: ReservationService,
       private route: ActivatedRoute,
       private hotel: HotelInfo) {
 
     this.hotel.activeHotel.subscribe(value => this.hotelData = value);
-
+    // this.resvSubscription =
+    this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
+    this.reservationService.setHotelID(this.hotelData.getHotelID());
   }
 
   ngOnInit() {
+    // alert(this.reservation.getHotelID());
   }
+
+  // ngOnDestroy() {
+  //   this.resvSubscription.unsubscribe();
+  // }
 
   getToken() {
     this.message = 'Loading...';
