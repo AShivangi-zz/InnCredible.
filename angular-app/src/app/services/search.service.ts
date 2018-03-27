@@ -6,15 +6,12 @@ import {Observable} from "rxjs/Observable";
 import {HotelInfo} from "./hotel-info"
 @Injectable()
 export class SearchService {
-  constructor(private hotelInfo: HotelInfo) {
-  }
+  constructor(private hotelInfo: HotelInfo) {}
 
   _observableList: BehaviorSubject<Hotel[]> = new BehaviorSubject([]);
-  //search_city: string;
-
+  
   public async retriveData(cityname: string, checkin: string, checkout: string) {
-    //const ref = firebase.database().ref("/hotels");
-    console.log(cityname+" "+checkin+" "+checkout);
+    
     var x: string;
     var hotelList: Hotel[] = [];
     for (var i = 0; i < 71; i++) {

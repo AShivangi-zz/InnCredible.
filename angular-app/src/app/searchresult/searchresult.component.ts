@@ -18,14 +18,7 @@ export class SearchresultComponent implements OnInit {
   public sub: any;
 
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
-  constructor(private route: ActivatedRoute, private searchService: SearchService) {
-    /*this.service = service;
-    this.returnedname = service.getInformationModel().cityname; // Gets the user entered city name
-    this.returnedcheckindate = service.getInformationModel().checkindate; // Gets the checkindate
-    this.returnedcheckoutdate = service.getInformationModel().checkoutdate; // Gets the checkoutdate
-    //this.hotelservice.setSearchCity(this.returnedname);
-    //this.hotels = this.hotelservice.retriveData(this.returnedname);*/
-  }
+  constructor(private route: ActivatedRoute, private searchService: SearchService) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
