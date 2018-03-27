@@ -31,7 +31,7 @@ export class ReservationService {
 
   insertReservation(r: Reservation) {
     if (!this.userID) { alert('User is not logged in!'); return;  }
-    this.reservations = this.db.list(`users/${this.userID}/reservations`);
+    this.reservations = this.db.list('users/'+this.userID+'/reservations');
     this.reservations.push(r);
     this.changeReservation(r);
   }

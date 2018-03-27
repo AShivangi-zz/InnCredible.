@@ -22,7 +22,7 @@ export class SearchService {
       hotel = this.hotelInfo.getHotel();
       if (cityname === hotel.city) {
         hotelList.push(hotel);
-        console.log(hotel);
+        //console.log(hotel);
         this._observableList.next(hotelList);
       }
     }

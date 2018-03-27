@@ -29,6 +29,8 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
   message: string;
   // resvSubscription: Subscription;
 
+  hotelID: string;
+
   constructor(
       private http: Http,
       private reservationService: ReservationService,
@@ -38,11 +40,13 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
     this.hotel.activeHotel.subscribe(value => this.hotelData = value);
     
     this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
-    this.reservationService.setHotelID(this.hotelData.hotelID);
+    this.reservationService.setHotelID(this.hotelID);
   }
 
   ngOnInit() {
-    
+    this.sub = this.route.params.subscribe(params => {
+      this.hotelID = params['id'];
+    });
   }
 
   getToken() {

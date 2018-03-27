@@ -19,7 +19,7 @@ export class ReservationComponent implements OnInit {
   submit: boolean = false;
 
   constructor(private reservationService: ReservationService, private fb: FormBuilder) {
-    this.reservationService.activeReservation.subscribe( value => this.reservation = value);
+    this.reservationService.activeReservation.subscribe((value) => this.reservation = value);
   }
 
   ngOnInit() {

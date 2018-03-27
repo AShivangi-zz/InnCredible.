@@ -17,7 +17,7 @@ export class HotelInfo {
   private _thisHotel = new BehaviorSubject<Hotel>(null);
   public activeHotel = this._thisHotel.asObservable();
 
-  hotel: Hotel;// = new Hotel();
+  hotel: Hotel;
   private hotelSubject: BehaviorSubject<Hotel>;
 
   constructor() {
@@ -25,7 +25,6 @@ export class HotelInfo {
 
   public getHotelData(index: string) {
     this.hotel = new Hotel();
-    //this.hotelSubject = new BehaviorSubject(hotel);
     const ref = firebase.database().ref('/hotels/' + index);
     
     const promise = ref.once('value')
@@ -44,8 +43,8 @@ export class HotelInfo {
         this.hotel.setHotelText(snapshot.child('/amenities/hotel-text').val());
         this.hotel.setFirstImage(snapshot.child('/images/0').val());
       });
-      //this.retrieveAmenities(index);
-      //this._thisHotel.next(this.hotel);
+      
+      this._thisHotel.next(this.hotel);
       return promise;
   }
 
@@ -54,7 +53,7 @@ export class HotelInfo {
   }
 
   public retrieveAmenities(id:string): void {
-    console.log(id);
+    //console.log(id);
     const amenities_ref =  firebase.database().ref('/hotels/' + id +"/amenities/");
 
     amenities_ref.child('room/').once('value')
