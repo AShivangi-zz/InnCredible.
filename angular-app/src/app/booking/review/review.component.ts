@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelInfo } from '../../services/hotel-info';
-import { Hotel } from '../../hotel';
+import { Hotel } from '../../models/hotel';
 import {UserProfileService} from '../../services/profile.service';
 import { Subscription } from 'rxjs/Subscription';
 import {ReservationService} from '../shared/reservation.service';
@@ -37,7 +37,7 @@ export class ReviewComponent implements OnInit {
   }
 
   roomCharge(): number {
-    return (parseFloat(this.hotelData.getPrice()) * this.reservation.nights() * this.reservation.rooms);
+    return (parseFloat(this.hotelData.price) * this.reservation.nights() * this.reservation.rooms);
   }
 
   taxCharge(): number {

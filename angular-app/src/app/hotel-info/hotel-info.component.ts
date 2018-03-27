@@ -4,6 +4,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import * as firebase from 'firebase';
 import { ActivatedRoute } from '@angular/router';
+import {Hotel} from '../models/hotel';
 
 @Component({
   selector: 'app-hotel-info',
@@ -18,7 +19,7 @@ export class HotelInfoComponent implements OnInit {
   private hotelID: string;
   private id: string;
   public sub: any;
-
+  public hotel: Hotel;
   constructor(private hotelInfo: HotelInfo, private route: ActivatedRoute) {
     // this.hotelInfo.setHotelId('0');
 
@@ -29,14 +30,16 @@ export class HotelInfoComponent implements OnInit {
       this.hotelID = params['id'];
     });
 
+    this.hotel = new Hotel();
+    this.hotelInfo = new HotelInfo();
     const id_ref =  firebase.database().ref('/hotel_id');
     id_ref.once('value').then((snapshot) => {
       const count = snapshot.numChildren();
         for(var i = 0; i < count; i++) {
           const number = i.toString();
           if(snapshot.child(number).val() == this.hotelID) {
-            this.hotelInfo.getHotelData(number);
-
+            this.getData(number);
+            this.hotelInfo.retrieveAmenities(number);
             const images_ref =  firebase.database().ref('/hotels/'+ number + '/images/');
             images_ref.once('value')
             .then((snapshot_img) => {
@@ -53,6 +56,11 @@ export class HotelInfoComponent implements OnInit {
           }
         }
     });
+  }
+
+  public async getData(number) {
+    var promise = await this.hotelInfo.getHotelData(number);
+    this.hotel = this.hotelInfo.getHotel();
   }
 
   public setImagesURL(image){
