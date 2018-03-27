@@ -36,18 +36,14 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
       private hotel: HotelInfo) {
 
     this.hotel.activeHotel.subscribe(value => this.hotelData = value);
-    // this.resvSubscription =
+    
     this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
-    this.reservationService.setHotelID(this.hotelData.getHotelID());
+    this.reservationService.setHotelID(this.hotelData.hotelID);
   }
 
   ngOnInit() {
-    // alert(this.reservation.getHotelID());
+    
   }
-
-  // ngOnDestroy() {
-  //   this.resvSubscription.unsubscribe();
-  // }
 
   getToken() {
     this.message = 'Loading...';

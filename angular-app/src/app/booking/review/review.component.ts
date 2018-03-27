@@ -37,7 +37,7 @@ export class ReviewComponent implements OnInit {
   }
 
   roomCharge(): number {
-    return (parseFloat(this.hotelData.getPrice()) * this.reservation.nights() * this.reservation.rooms);
+    return (parseFloat(this.hotelData.price) * this.reservation.nights() * this.reservation.rooms);
   }
 
   taxCharge(): number {

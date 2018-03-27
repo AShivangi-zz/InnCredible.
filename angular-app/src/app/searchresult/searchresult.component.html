@@ -75,7 +75,7 @@
               <label class="col-md-4 control-label" for="commentButton"></label>
               <div class="col-md-4">
                 <!-- Routes to the description page of the hotel -->
-                <button id="commentButton" [routerLink]="['/hotel-info', hotel.getHotelID()]" class="btn btn-primary">Book</button>
+                <button id="commentButton" [routerLink]="['/hotel-info', hotel?.hotelID]" class="btn btn-primary">Book</button>
               </div>
             </div>
           </div>

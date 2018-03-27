@@ -11,16 +11,16 @@ export class SearchService {
   _observableList: BehaviorSubject<Hotel[]> = new BehaviorSubject([]);
   
   public async retriveData(cityname: string, checkin: string, checkout: string) {
-    
+
     var x: string;
     var hotelList: Hotel[] = [];
     for (var i = 0; i < 71; i++) {
       x = i.toString();
+      
       var promise = await this.hotelInfo.getHotelData(x);
       var hotel: Hotel = new Hotel();
       hotel = this.hotelInfo.getHotel();
-      console.log(hotel.getCity());
-      if (cityname === hotel.getCity()) {
+      if (cityname === hotel.city) {
         hotelList.push(hotel);
         console.log(hotel);
         this._observableList.next(hotelList);

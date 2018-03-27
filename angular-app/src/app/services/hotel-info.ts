@@ -17,20 +17,21 @@ export class HotelInfo {
   private _thisHotel = new BehaviorSubject<Hotel>(null);
   public activeHotel = this._thisHotel.asObservable();
 
-  hotel: Hotel = new Hotel();
+  hotel: Hotel;// = new Hotel();
   private hotelSubject: BehaviorSubject<Hotel>;
 
   constructor() {
   }
 
-  public async getHotelData(index: string) {
-    //this.hotel = new Hotel();
+  public getHotelData(index: string) {
+    this.hotel = new Hotel();
     //this.hotelSubject = new BehaviorSubject(hotel);
     const ref = firebase.database().ref('/hotels/' + index);
     
-    var promise = ref.once('value')
+    const promise = ref.once('value')
       .then((snapshot) => {// ** My only change ** or use snapshot
         this.hotel.setIndex(index);
+        this.hotel.setCity(snapshot.child('/location/city').val());
         this.hotel.setHotelID(snapshot.child('/id').val());
         this.hotel.setName(snapshot.child('/name').val());
         this.hotel.setPrice(snapshot.child('/price').val());
@@ -42,13 +43,11 @@ export class HotelInfo {
         this.hotel.setRoomText(snapshot.child('/amenities/room-text').val());
         this.hotel.setHotelText(snapshot.child('/amenities/hotel-text').val());
         this.hotel.setFirstImage(snapshot.child('/images/0').val());
+        
       });
-
       this.retrieveAmenities(index);
       //this._thisHotel.next(this.hotel);
-       
       return promise;
-      
   }
 
   public getHotel() {

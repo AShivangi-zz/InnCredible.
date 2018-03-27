@@ -1,4 +1,5 @@
 export class Hotel {
+
   name:string;
   city:string;
   location:string;
@@ -16,98 +17,31 @@ export class Hotel {
 
   constructor() {}
 
-  public setIndex(input_index: string) {
-    this.hotelIndex = input_index;
-  }
+  setIndex(input_index: string) { this.hotelIndex = input_index; }
 
-  public getIndex(): string {
-    return this.hotelIndex;
-  }
+  setName(input_name) { this.name = input_name; }
+  
+  setCity(input_city) { this.city = input_city; }
+  
+  setLocation(input_location) { this.location = input_location; }
+ 
+  setPrice(input_price) { this.price = input_price; }
 
-  public getName() {
-    return this.name;
-  }
-  public setName(input_name) {
+  setImage(input_image) { this.image = input_image; }
+  
+  setRating(input_rating) {  this.rating = input_rating; }
+  
+  setRatingImg(input_ratingImg) {  this.ratingImg = input_ratingImg; }
+  
+  setReviewNum(input_reviewNum) { this.review_num = input_reviewNum; }
 
-    this.name = input_name;
-   // console.log(this.name);
-  }
-  public getCity() {
-    return this.city;
-  }
-  public setCity(input_city) {
-    this.city = input_city;
-  }
-  public getLocation()  {
-    return this.location;
-  }
-  public setLocation(input_location) {
-    this.location = input_location;
-  }
-  public getPrice()  {
-    return this.price;
-  }
-  public setPrice(input_price) {
-    this.price = input_price;
-  }
-  public getImage(): URL {
-    return this.image;
-  }
-  public setImage(input_image) {
-    this.image = input_image;
-  }
-  public getRating()  {
-    return this.rating;
-  }
-  public setRating(input_rating) {
-    this.rating = input_rating;
-  }
-  public getRatingImg(): URL  {
-    return this.ratingImg;
-  }
-  public setRatingImg(input_ratingImg) {
-    this.ratingImg = input_ratingImg;
-  }
-  public getReview()  {
-    return this.review_num;
-  }
-  public setReviewNum(input_reviewNum) {
-    this.review_num = input_reviewNum;
-  }
+  setHotelID(id) { this.hotelID = id; }
 
-  public getHotelID() {
-    return this.hotelID;
-  }
+  setDescription(hotelDescription){ this.description = hotelDescription; }
 
-  public setHotelID(id) {
-    this.hotelID = id;
-  }
+  setHotelText(htext) { this.hotelText = htext; }
 
-  public setDescription(hotelDescription){
-    this.description = hotelDescription;
-  }
+  setRoomText(rText) { this.roomText = rText; }
 
-  public getDescription(){
-    return this.description;
-  }
-
-  public setHotelText(htext) {
-    this.hotelText = htext;  
-  }
-
-  public setRoomText(rText) {
-    this.roomText = rText;
-  }
-
-  public getRoomText() {
-    return this.roomText;
-  }
-
-  public getHotelText() {
-    return this.hotelText;
-  }
-
-  public setFirstImage(image) {
-    this.firstImage = image;
-  }
+  setFirstImage(image) { this.firstImage = image; }
 }
