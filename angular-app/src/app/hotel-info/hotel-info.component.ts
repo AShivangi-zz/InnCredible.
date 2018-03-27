@@ -19,7 +19,7 @@ export class HotelInfoComponent implements OnInit {
   private hotelID: string;
   private id: string;
   public sub: any;
-  public hotel = new Hotel();
+  public hotel: Hotel;
   constructor(private hotelInfo: HotelInfo, private route: ActivatedRoute) {
     // this.hotelInfo.setHotelId('0');
 
@@ -30,6 +30,8 @@ export class HotelInfoComponent implements OnInit {
       this.hotelID = params['id'];
     });
 
+    this.hotel = new Hotel();
+    this.hotelInfo = new HotelInfo();
     const id_ref =  firebase.database().ref('/hotel_id');
     id_ref.once('value').then((snapshot) => {
       const count = snapshot.numChildren();
@@ -37,6 +39,7 @@ export class HotelInfoComponent implements OnInit {
           const number = i.toString();
           if(snapshot.child(number).val() == this.hotelID) {
             this.getData(number);
+            this.hotelInfo.retrieveAmenities(number);
             const images_ref =  firebase.database().ref('/hotels/'+ number + '/images/');
             images_ref.once('value')
             .then((snapshot_img) => {

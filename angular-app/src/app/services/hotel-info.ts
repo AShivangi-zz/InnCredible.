@@ -43,9 +43,8 @@ export class HotelInfo {
         this.hotel.setRoomText(snapshot.child('/amenities/room-text').val());
         this.hotel.setHotelText(snapshot.child('/amenities/hotel-text').val());
         this.hotel.setFirstImage(snapshot.child('/images/0').val());
-        
       });
-      this.retrieveAmenities(index);
+      //this.retrieveAmenities(index);
       //this._thisHotel.next(this.hotel);
       return promise;
   }
@@ -54,7 +53,7 @@ export class HotelInfo {
     return this.hotel;
   }
 
-  private retrieveAmenities(id:string): void {
+  public retrieveAmenities(id:string): void {
     console.log(id);
     const amenities_ref =  firebase.database().ref('/hotels/' + id +"/amenities/");
 
