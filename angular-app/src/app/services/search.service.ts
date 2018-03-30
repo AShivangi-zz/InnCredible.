@@ -10,7 +10,14 @@ export class SearchService {
 
   _observableList: BehaviorSubject<Hotel[]> = new BehaviorSubject([]);
   
-  public async retriveData(cityname: string, checkin: string, checkout: string) {
+  public async retriveData(cityname: string, checkin_new: string, checkout_new: string) {
+
+    //convert sting to Date for checkin and checkout
+    //Create Date array that contains all dates between In and Out (new)
+    let chIn = new Date(checkin_new);
+    let chOut = new Date(checkout_new);
+    // console.log("check in date: " + chIn);
+    // console.log("check out date: " + chOut);
 
     var x: string;
     var hotelList: Hotel[] = [];
@@ -20,7 +27,16 @@ export class SearchService {
       var promise = await this.hotelInfo.getHotelData(x);
       var hotel: Hotel = new Hotel();
       hotel = this.hotelInfo.getHotel();
-      if (cityname === hotel.city) {
+      let date1 = new Date(  (hotel.checkIn) );
+      let date2 = new Date( hotel.checkOut )
+      console.log("check in date: " + date1);
+      console.log("check out date: " + date2);
+
+      //hotel.checkIn and hotel.checkout (Timestamp)
+      //convert timestamp to date
+      //Create Date array that contains all dates between In and Out
+      //Find overlap?
+      if (cityname.toUpperCase() == hotel.city.toUpperCase()) {
         hotelList.push(hotel);
         //console.log(hotel);
         this._observableList.next(hotelList);
