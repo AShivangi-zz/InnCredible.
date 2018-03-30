@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ReservationService} from "../shared/reservation.service";
+import {Reservation} from "../shared/reservation.model";
 
 @Component({
   selector: 'app-rewards',
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rewards.component.scss']
 })
 export class RewardsComponent implements OnInit {
+  private reservation: Reservation;
 
-  constructor() { }
+  constructor(private reservationService: ReservationService) {
+    this.reservationService.activeReservation.subscribe(value => this.reservation = value);
+  }
 
   ngOnInit() {
   }

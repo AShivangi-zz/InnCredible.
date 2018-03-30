@@ -30,12 +30,12 @@
                             <div class="form-group">
                               <label for="cardNumber">CARD NUMBER</label>
                               <div class="input-group">
-                                <input 
-                                [(ngModel)]="cardNumber" 
+                                <input
+                                [(ngModel)]="cardNumber"
                                 class="form-control"
-                                name="card-number" 
-                                type="text" 
-                                size="20" 
+                                name="card-number"
+                                type="text"
+                                size="20"
                                 data-stripe="number"
                                 required autofocus
                                 />
@@ -48,13 +48,13 @@
                           <div class="col-xs-3 col-md-3">
                             <div class="form-group">
                               <label for="cardExpiry"><span class="hidden-xs">EXP MO</span></label>
-                              <input 
-                              [(ngModel)]="expiryMonth" 
+                              <input
+                              [(ngModel)]="expiryMonth"
                               class="form-control"
-                              name="expiry-month" 
+                              name="expiry-month"
                               placeholder="MM"
-                              type="text" 
-                              size="2" 
+                              type="text"
+                              size="2"
                               data-stripe="exp_month"
                               required
                               />
@@ -65,13 +65,13 @@
                               <label for="cardExpiry">
                                 <span class="hidden-xs">EXP YR</span>
                               </label>
-                              <input 
-                              [(ngModel)]="expiryYear" 
+                              <input
+                              [(ngModel)]="expiryYear"
                               class="form-control"
-                              name="expiry-year" 
+                              name="expiry-year"
                               placeholder="YY"
-                              type="text" 
-                              size="2" 
+                              type="text"
+                              size="2"
                               data-stripe="exp_year"
                               required
                               />
@@ -80,31 +80,41 @@
                           <div class="col-xs-5 col-md-5 pull-right">
                             <div class="form-group">
                               <label for="cardCVC">CV CODE</label>
-                              <input 
-                              [(ngModel)]="cvc" 
+                              <input
+                              [(ngModel)]="cvc"
                               class="form-control"
-                              name="cvc" 
+                              name="cvc"
                               placeholder="CVC"
-                              type="text" 
-                              size="4" 
+                              type="text"
+                              size="4"
                               data-stripe="cvc"
                               required
                               />
                             </div>
                           </div>
                         </div>
-                        
+
                         <!-- book hotel button -->
                         <div class="row">
                           <div class="col-xs-12">
-                            <button id="bookhotel" class="subscribe btn btn-success btn-lg btn-block">
-                                <a href="#confirmation" data-toggle="tab">
+                            <button id="bookhotel" class="subscribe btn btn-success btn-lg btn-block"
+                                (click)="this.onClick()">
+                                <!--<a href="#confirmation" data-toggle="tab">-->
                                     <span class="round-tabs five active" style="color: white">Book Hotel</span>
-                                </a>
+                                <!--</a>-->
                             </button>
                           </div>
                         </div>
-
+                        <!--<form #testForm="ngForm" (ngSubmit)="onSubmit()">-->
+                          <!--<div class="col-md-4">-->
+                            <!--<button id="checkoutid" class="btn btn-primary" type="submit"-->
+                                    <!--(onClick)="this.onClick()">-->
+                              <!--<a href="#checkout" data-toggle="tab">-->
+                                <!--<span class="round-tabs four active" style="color: white">Checkout</span>-->
+                              <!--</a>-->
+                            <!--</button>-->
+                          <!--</div>-->
+                        <!--</form>-->
 
                         <div class="row" style="display:none;">
                           <div class="col-xs-12">

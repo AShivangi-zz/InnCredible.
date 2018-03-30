@@ -17,6 +17,7 @@ export class ReservationService {
 
   public changeReservation(r: Reservation) {
     this.reservation = r;
+    this.calcNights();
     this._sourceReservation.next(this.reservation);
   }
 
@@ -45,24 +46,28 @@ export class ReservationService {
     return this.reservation.hotelID;
   }
 
-  // /*
-  //   Date Difference function retrieved from:
-  //   https://www.htmlgoodies.com/html5/javascript/calculating-the-difference-between-two-dates-in-javascript.html
-  //  */
-  // private daysBetween (date1: Date, date2: Date): number {
-  //   // Get 1 day in milliseconds
-  //   const one_day = 1000 * 60 * 60 * 24;
-  //
-  //   // Convert both dates to milliseconds
-  //   const date1_ms = date1.getTime();
-  //   const date2_ms = date2.getTime();
-  //
-  //   // Calculate the difference in milliseconds
-  //   const difference_ms = date2_ms - date1_ms;
-  //
-  //   // Convert back to days and return
-  //   return Math.round(difference_ms / one_day);
-  // }
+  /*
+      Date Difference function retrieved from:
+      https://www.htmlgoodies.com/html5/javascript/calculating-the-difference-between-two-dates-in-javascript.html
+    */
+  calcNights() {
+    if (this.reservation.checkInDt === null || this.reservation.checkOutDt === null) {
+      this.reservation.nights = null;
+    } else {
+      // Get 1 day in milliseconds
+      const one_day = 1000 * 60 * 60 * 24;
+
+      // Convert both dates to milliseconds
+      const date1_ms = new Date(this.reservation.checkInDt).getTime();
+      const date2_ms = new Date(this.reservation.checkOutDt).getTime();
+
+      // Calculate the difference in milliseconds
+      const difference_ms = date2_ms - date1_ms;
+
+      // Convert back to days and return
+      this.reservation.nights = Math.round(difference_ms / one_day);
+    }
+  }
 
  /* updateReservation(r: Reservation) {
     this.reservationList.update(r.$key,

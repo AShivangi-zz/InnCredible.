@@ -28,16 +28,16 @@ export class ReviewComponent implements OnInit {
 
   applyRewardAmnt(): number {
     /* TODO if the user selects Skip or redeem*/
-    //if(redeem is clicked)
+    // if(redeem is clicked)
     var x = this.userProfileService.getRewardPoints()/25;
     return x;
     /* TODO set reward points to 0 if the user redeems*/
-    //else if skip is clicked
-    //return 0;
+    // else if skip is clicked
+    // return 0;
   }
 
   roomCharge(): number {
-    return (parseFloat(this.hotelData.getPrice()) * this.reservation.nights() * this.reservation.rooms);
+    return (parseFloat(this.hotelData.getPrice()) * this.reservation.nights * this.reservation.rooms);
   }
 
   taxCharge(): number {
@@ -49,6 +49,7 @@ export class ReviewComponent implements OnInit {
   }
 
   onClick() {
+    // alert(this.orderTotal());
     this.reservation.totalCost = this.orderTotal();
     this.reservationService.changeReservation(this.reservation);
   }
