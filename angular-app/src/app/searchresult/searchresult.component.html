@@ -117,7 +117,7 @@
             <a href="#" title="Lorem ipsum" class="thumbnail"><img [src]="hotel?.firstImage" alt="Insert img" /></a>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-            <h3><a href="#" title="">{{hotel?.name}}</a></h3>
+            <h3><a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a></h3>
             <h6><p>{{hotel?.location}}</p></h6>
             <br>
             <i class="glyphicon glyphicon-star"></i> <span>{{hotel?.rating}}</span>
