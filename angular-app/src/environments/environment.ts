@@ -14,5 +14,6 @@ export const environment = {
     storageBucket: "inncredible-f5a15.appspot.com",
     messagingSenderId: "843852447968"
   },
+
   stripeKey: 'pk_test_bAS2MqNo9uMFeTAKVivyIFek',
 };

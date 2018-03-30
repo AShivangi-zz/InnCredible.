@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {UserProfileService} from '../../services/profile.service';
 @Component({
   selector: 'app-rewards',
   templateUrl: './rewards.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RewardsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userProfileService: UserProfileService) { }
 
   ngOnInit() {
   }

@@ -14,7 +14,7 @@
 
 <div class="container">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <h2> {{hotelInfo.getHotelName()}} </h2>
+    <h2> {{hotel?.name}} </h2>
     <!-- Indicators-->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -65,7 +65,7 @@
 
 <div id="hotels">
   <div class = 'hotelInfo'>
-    <p class = 'Hotel Address' ><b>Address: </b> {{hotelInfo.getLocation()}}</p>
+    <p class = 'Hotel Address' ><b>Address: </b> {{hotel?.location}}</p>
   </div>
 </div>
 <br><br>
@@ -73,10 +73,10 @@
 <div class="row">
   <div class="column1 leftbox" style="background-color:#aaa;">
     <h2> Hotel Description </h2>
-    <p id='descinfo'> {{hotelInfo.getDescription()}}</p>
+    <p id='descinfo'> {{hotel?.description}}</p>
     <br><br><br>
     <h3>Price: </h3>
-    <div id="price_sub"><h5><p> ${{hotelInfo.getPrice()}} </p></h5></div>
+    <div id="price_sub"><h5><p> ${{hotel?.price}}} </p></h5></div>
   </div>
   <div class="column2 rightbox" style="background-color:#bbb;">
     <h2>Hotel Amenities</h2>
@@ -88,15 +88,15 @@
 
 <div id='Review'>
     <h2><u>Reviews: </u></h2>
-    <p> {{hotelInfo.getRating()}} </p>
-    <img [src]= 'hotelInfo.getRatingImage()'>
-    <p> {{hotelInfo.getReview()}} </p>
+    <p> {{hotel?.rating}} </p>
+    <img [src]= 'hotel?.ratingImg'>
+    <p> {{hotel?.review_num}} </p>
 </div>
 
 <br>
 
 <div id="btn">
-  <button  [routerLink]="['/booking', hotelInfo.getHotelID()]" align="center">Book!</button>
+  <button  [routerLink]="['/booking', hotel?.hotelID]" align="center">Book!</button>
 </div>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

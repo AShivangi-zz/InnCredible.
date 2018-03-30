@@ -9,7 +9,7 @@
           <div class="col-md-4">
           <select
             id="numGuests" class="form-control" formControlName="guests"
-                  [(ngModel)]="reservationService.activeReservation.guests">
+                  [(ngModel)]="reservation.guests">
             <option *ngFor="let opt of guestOptions" [ngValue]="opt">
               {{ opt }}
             </option>
@@ -21,7 +21,7 @@
           <label class="col-md-4 control-label" for="numRooms">Number of Rooms</label>
           <div class="col-md-4">
             <input disabled class="form-control" id="numRooms" formControlName="rooms"
-                [(ngModel)]="reservationService.activeReservation.rooms"/>
+                [(ngModel)]="reservation.rooms"/>
           </div>
         </div>
 
@@ -30,17 +30,16 @@
       <label class="col-md-4 control-label" for="checkindate">Date Of Check In</label>
       <div class="col-md-4">
         <input type="date" class="form-control" id="checkindate"  formControlName="checkInDt"
-                [(ngModel)]="reservationService.activeReservation.checkInDt"/>
+                [(ngModel)]="reservation.checkInDt"/>
       </div>
     </div>
-
 
     <!-- Check out date -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="checkoutdate">Date Of Check Out</label>
       <div class="col-md-4">
         <input type="date" class="form-control" id="checkoutdate" formControlName="checkOutDt"
-                [(ngModel)]="reservationService.activeReservation.checkOutDt"/>
+                [(ngModel)]="reservation.checkOutDt"/>
       </div>
     </div>
 
@@ -50,7 +49,7 @@
       <label class="col-md-4 control-label" for="taComments">Comments</label>
       <div class="col-md-4">
         <textarea class="form-control" id="taComments" formControlName="comments"
-               [(ngModel)]="reservationService.activeReservation.comments"></textarea>
+               [(ngModel)]="reservation.comments"></textarea>
       </div>
     </div>
 

@@ -1,28 +1,91 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import {ReservationService} from './shared/reservation.service'
-import * as firebase from 'firebase';
+import { Component, OnInit /*, OnDestroy */} from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
+import { ReservationService } from './shared/reservation.service';
 import { Http, Headers, URLSearchParams} from '@angular/http';
+import { HotelInfo } from '../services/hotel-info';
+import { Hotel } from '../models/hotel';
+import { Reservation } from './shared/reservation.model';
+import {Location} from '@angular/common';
+import * as firebase from 'firebase'
+// import {Subscription} from "rxjs/Subscription";
 
-// import { UserProfileService } from '../services/profile.service';
 declare function createCharge(token);
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss'],
+  providers: [ReservationService]
 })
-export class BookingComponent implements OnInit {
+
+export class BookingComponent implements OnInit /*, OnDestroy */ {
 
   sub: any;
 
-  private hotelID: string;
+  private hotelData: Hotel;
+  private newResrv: Reservation;
 
   cardNumber: string;
   expiryMonth: string;
   expiryYear: string;
   cvc: string;
-
   message: string;
+  // resvSubscription: Subscription;
+
+  hotelID: string;
+  dataLoaded:boolean;
+
+  constructor(
+      private http: Http,
+      private reservationService: ReservationService,
+      private route: ActivatedRoute,
+      private hotel: HotelInfo,
+      private location: Location) {
+    /*this.hotel.activeHotel.subscribe(value => this.hotelData = value);
+    // this.resvSubscription =
+    this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
+    if(this.hotelData === null) {
+      this.location.back();
+      this.reservationService.setHotelID(this.hotelData.hotelID);
+    }*/
+    this.sub = this.route.params.subscribe(params => {
+      this.hotelID = params['id'];
+    });
+    this.getData(this.hotelID);
+  }
+
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.hotelID = params['id'];
+    });
+    this.getData(this.hotelID);
+  }
+   
+  private async getData(id: string) {
+    this.hotelData = new Hotel();
+    const id_ref =  firebase.database().ref('/hotel_id');
+    var promise2;
+    const promise = id_ref.once('value').then((snapshot) => {
+    const count = snapshot.numChildren();
+      for(var i = 0; i < count; i++) {
+        const number = i.toString();
+          if(snapshot.child(number).val() == id) {
+          promise2 = this.hotel.getHotelData(number)
+          return;
+        }
+      }
+    });
+    let value = await promise;
+    let value2 = await promise2;
+
+    this.hotelData = this.hotel.getHotel();
+    this.reservationService.setHotelID(this.hotelData.hotelID);
+    this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
+    this.dataLoaded = true;
+  }
+
+  // ngOnDestroy() {
+  //   this.resvSubscription.unsubscribe();
+  // }
 
   getToken() {
     this.message = 'Loading...';
@@ -48,34 +111,11 @@ export class BookingComponent implements OnInit {
 
   createCharge(data) {
     const headers = new Headers({
-      'Authorization': 'Bearer sk_test_S62sR6QYYNM9biuvTdPZOH7V', 
+      'Authorization': 'Bearer sk_test_S62sR6QYYNM9biuvTdPZOH7V',
       'Content-Type': 'application/x-www-form-urlencoded'
     });
     this.http.post('https://api.stripe.com/v1/charges', data, {headers: headers})
       .subscribe(resp => {console.log(resp);})
   }
-
-  constructor(private http: Http, private reservation: ReservationService, private route: ActivatedRoute) {
-    // this.hotelInfo.setHotelId('0');
-    
-  }
-
-  ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.hotelID = params['id'];
-    });
-  
-    const id_ref =  firebase.database().ref('/hotel_id');
-    id_ref.once('value').then((snapshot)=> {
-      const count = snapshot.numChildren();
-      for(var i = 0; i < count; i++) {
-        var number = i.toString();
-        if(snapshot.child(number).val() == this.hotelID) {
-          this.reservation.setHotelID(number);
-        }
-      }
-    });
-  }
-
 
 }

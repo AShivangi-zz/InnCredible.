@@ -19,16 +19,18 @@ import {BookingComponent} from "./booking/booking.component";
 
 
 export const router: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
+
+    {path: 'home', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'home', component: HomeComponent},
     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'contact', component: ContactComponent},
     {path: 'hotel-info/:id', component: HotelInfoComponent},
     {path: 'policy', component: PolicyComponent},
     {path: 'booking/:id', component: BookingComponent, canActivate:[AuthGuard]},
-    {path: 'searchresult', component: SearchresultComponent}
+    {path: 'searchresults/:id/:id2/:id3', component: SearchresultComponent},
+
+    {path: '**', redirectTo: 'home'}
 ]
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);
