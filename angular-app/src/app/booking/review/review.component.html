@@ -46,7 +46,7 @@
           <!--Check Out date field-->
           <div class="col-md-12">
             <strong>Nights reserved</strong>
-            <div class="pull-right"><span>{{reservation?.nights()}}</span></div>
+            <div class="pull-right"><span>{{nights()}}</span></div>
           </div>
 
           <!--Room price field-->
@@ -56,10 +56,10 @@
           </div>
 
           <!--Rewards field-->
-          <div class="col-md-12">
+          <div class="col-md-12" >
               <strong>Rewards Applied</strong>
-              <div class="pull-right"><span>-$</span><span>{{applyRewardAmnt().toFixed(2)}}</span></div>
-            </div>
+              <div class="pull-right" ></div><span>-$</span><span>{{applyRewardAmnt().toFixed(2)}}</span></div>
+          </div>
 
           <!--Tax price field-->
           <div class="col-md-12">
@@ -92,13 +92,15 @@
 
           <!-- Check out button -->
       <form #testForm="ngForm" (ngSubmit)="onSubmit()">
-          <div class="col-md-4">
-          <button id="checkoutid" class="btn btn-primary" type="submit"
-              (onClick)="onClick()">
-              <a href="#checkout" data-toggle="tab">
-                  <span class="round-tabs four active" style="color: white">Checkout</span>
-              </a>
+        <div class="col-md-4">
+          <button id="commentButton" type="submit" class="btn btn-primary" *ngIf="!submit">
+                  <span class="round-tabs two active" style="color: white">Checkout</span>
           </button>
+         <div class = 'next' *ngIf="submit" style="width: 100%">
+            <a href="#checkout" data-toggle="tab" >
+              <i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: skyblue"></i>
+            </a>
+          </div>
         </div>
       </form>
 

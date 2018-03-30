@@ -12,7 +12,7 @@ export class Reservation {
     Date Difference function retrieved from:
     https://www.htmlgoodies.com/html5/javascript/calculating-the-difference-between-two-dates-in-javascript.html
   */
-  nights(): number {
+  public nights(): number {
     if (   this.checkInDt   === null
         || this.checkOutDt  === null
     ) {
@@ -30,5 +30,5 @@ export class Reservation {
 
       // Convert back to days and return
       return Math.round(difference_ms / one_day);
-  };
+  }
 }
