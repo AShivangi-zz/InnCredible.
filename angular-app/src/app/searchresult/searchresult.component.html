@@ -24,18 +24,18 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Price</h3>
-          
+
         </div>
         <div class="input-group" style="margin: 5%">
           <div id="tab" class="btn-group" data-toggle="buttons" >
-          
+
             <a href="#prices" class="btn btn-default active" data-toggle="tab" >
           <input type="radio">$</a>
             <a href="#features" class="btn btn-default" data-toggle="tab">
           <input type="radio">$$</a>
             <a href="#requests" class="btn btn-default" data-toggle="tab">
           <input type="radio">$$$</a>
-          
+
           </div>
           </div>
       </div>
@@ -43,11 +43,11 @@
       <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Average customer review</h3>
-            
+
           </div>
           <div class="input-group" style="margin: 5%">
             <div id="tab" class="btn-group" data-toggle="buttons" >
-            
+
               <a href="#prices" class="btn btn-default active" data-toggle="tab" >
             <input type="radio">1</a>
               <a href="#features" class="btn btn-default" data-toggle="tab">
@@ -58,7 +58,7 @@
                     <input type="radio">4</a>
               <a href="#requests" class="btn btn-default" data-toggle="tab">
             <input type="radio">5</a>
-            
+
             </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
             enableCaseInsensitiveFiltering: true,
             buttonWidth: '100%',
             filterPlaceholder: 'Search Amenities',
-            
+
         });
     });
 </script>
@@ -115,25 +115,27 @@
           <div class="col-xs-12 col-sm-12 col-md-3">
             <a href="#" title="Lorem ipsum" class="thumbnail"><img [src]="hotel?.firstImage" alt="Insert img" /></a>
           </div>
+          <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+            <h3><a href="#" title="">{{hotel?.name}}</a></h3>
+            <h6><p>{{hotel?.location}}</p></h6>
+            <br>
+            <i class="glyphicon glyphicon-star"></i> <span>{{hotel?.rating}}</span>
+            <br>
+            <span><img [src]= 'hotel?.ratingImg'></span>
+          </div>
           <div class="col-xs-12 col-sm-12 col-md-2">
             <ul class="meta-search">
-              <div id="price12"><li><i class="glyphicon glyphicon-usd"></i><font size="3" color="#248dc1"><b> {{hotel?.price}}</b></font></li></div>
-              <li><i class="glyphicon glyphicon-star"></i> <span>{{hotel?.rating}}</span></li>
-              <li><i class="fa fa-tripadvisor"></i> <span>{{hotel?.review}}</span></li>
+              <div id="price12"><li><font size="3" color="#248dc1"><b><h4> ${{hotel?.price}}</h4></b></font></li></div>
+
               <!--<i class="glyphicon glyphicon-pencil"></i>-->
               <!--<span class="price"><font size="4" color ="red" >-->
             </ul>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-            <h3><a href="#" title="">{{hotel?.name}}</a></h3>
-            <p>{{hotel?.location}}</p>
-
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="commentButton"></label>
-              <div class="col-md-4">
-                <!-- Routes to the description page of the hotel -->
-                <button id="commentButton" [routerLink]="['/hotel-info', hotel?.hotelID]" class="btn btn-primary">Book</button>
-              </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="commentButton"></label>
+            <div class="col-md-4">
+              <!-- Routes to the description page of the hotel -->
+              <button id="commentButton" [routerLink]="['/hotel-info', hotel?.hotelID]" class="btn btn-primary">Book</button>
             </div>
           </div>
           <span class="clearfix borda"></span>
