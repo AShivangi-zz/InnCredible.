@@ -25,6 +25,8 @@ export class CheckoutComponent implements OnInit {
   getToken() {
     this.message = 'Loading...';
 
+    alert(this.reservation.totalCost);
+
     (<any>window).Stripe.card.createToken({
       number: this.cardNumber,
       exp_month: this.expiryMonth,
@@ -34,9 +36,9 @@ export class CheckoutComponent implements OnInit {
       if (status === 200) {
         this.message = `Success! Card token ${response.card.id}.`;
         let data = new URLSearchParams();
-        data.append('card', response.id)
-        data.append('currency', 'usd')
-        data.append('amount', '1000')
+        data.append('card', response.id);
+        data.append('currency', 'usd');
+        data.append('amount', Math.ceil(this.reservation.totalCost*100)+'');
         this.createCharge(data);
       } else {
         this.message = response.error.message;
