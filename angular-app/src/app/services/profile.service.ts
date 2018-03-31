@@ -18,6 +18,8 @@ export class UserProfileService {
     private country: string;
     private zipcode: string;
 
+    isRedeem: boolean;
+
     constructor() {
         this.uid = firebase.auth().currentUser.uid;
         firebase.database().ref('/users/' + this.uid).once('value')
@@ -79,8 +81,12 @@ export class UserProfileService {
         return this.rewardpoints/25;
     }
 
-    public awardRewardPoints(total: number){
-        return total/10;
+    public async awardRewardPoints(total: number){
+        var ref = firebase.database().ref();
+        var reward = {};
+        ref.update(reward);
+
+        return reward;
     }
 
 

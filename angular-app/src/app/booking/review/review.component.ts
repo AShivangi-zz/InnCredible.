@@ -19,18 +19,9 @@ export class ReviewComponent implements OnInit {
   private reservation: Reservation;
   // private subscription: Subscription;
 
-  sub: any;
-  hotelID: string;
-  dataLoaded:boolean = false;
-
-  constructor(private hotel: HotelInfo, 
-    private reservationService: ReservationService, 
-    private userProfileService: UserProfileService,
-    private route:ActivatedRoute) {
-    this.sub = this.route.params.subscribe(params => {
-      this.hotelID = params['id'];
-    });
-    this.getData(this.hotelID);
+  constructor(private hotel: HotelInfo, private reservationService: ReservationService, private userProfileService: UserProfileService) {
+    this.hotel.activeHotel.subscribe(value => this.hotelData = value);
+    this.reservationService.activeReservation.subscribe(value => this.reservation = value);
     this.taxRate = 8.25;
   }
 
@@ -42,17 +33,15 @@ export class ReviewComponent implements OnInit {
   }
 
   applyRewardAmnt(): number {
-    /* TODO if the user selects Skip or redeem*/
-    //if(redeem is clicked)
+    if(!this.profile.isRedeem) {
+      return 0;
+    }
     var x = this.userProfileService.getRewardPoints()/25;
     return x;
-    /* TODO set reward points to 0 if the user redeems*/
-    //else if skip is clicked
-    //return 0;
   }
 
   roomCharge(): number {
-    return (parseFloat(this.hotelData.price) * this.reservation.nights() * this.reservation.rooms);
+    return (parseFloat(this.hotelData.getPrice()) * this.reservation.nights * this.reservation.rooms);
   }
 
   taxCharge(): number {
@@ -64,8 +53,31 @@ export class ReviewComponent implements OnInit {
   }
 
   onClick() {
+    // alert(this.orderTotal());
     this.reservation.totalCost = this.orderTotal();
     this.reservationService.changeReservation(this.reservation);
+    this.profile.awardRewardPoints(this.roomCharge());
+    this.submit = true;
+  }
+
+  nights(): number {
+    if (   this.reservation.checkInDt   === null
+        || this.reservation.checkOutDt  === null
+    ) {
+      return null;
+    }
+      // Get 1 day in milliseconds
+      const one_day = 1000 * 60 * 60 * 24;
+
+      // Convert both dates to milliseconds
+      const date1_ms = new Date(this.reservation.checkInDt).getTime();
+      const date2_ms = new Date(this.reservation.checkOutDt).getTime();
+
+      // Calculate the difference in milliseconds
+      const difference_ms = date2_ms - date1_ms;
+
+      // Convert back to days and return
+      return Math.round(difference_ms / one_day);
   }
 
   private async getData(id: string) {

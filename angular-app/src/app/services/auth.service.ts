@@ -51,8 +51,6 @@ export class AuthService {
           country: 'Country',
           zipcode: '000000',
         });
-        //this.router.navigateByUrl('/home');
-        //location.reload();
         this.location.back();
       })
       .catch(error => this.handleError(error) );
