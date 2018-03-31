@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserProfileService} from '../services/profile.service';
 import { Reservation } from '../booking/shared/reservation.model';
+import {Hotel} from "../models/hotel";
 
 @Component({
   selector: 'app-profile',
@@ -27,6 +28,6 @@ export class ProfileComponent implements OnInit {
         console.log("Hotel iD:" + this.reservations[num].hotelID);
       }
   }
-  
+
 
 }

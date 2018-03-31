@@ -83,3 +83,202 @@
 }
 
 
+
+
+// modal
+.modal-custom-header{
+  background-color: #337ab7;
+  color: #fff;
+  text-align: center;
+}
+
+.input-group-addon {
+  color: #fff;
+  position: relative;
+  background-color: #337ab7;
+}
+
+.form-control, .input-group-addon, .btn, .modal-content {
+  border-radius: 2px;
+}
+label{
+  text-align: left !important;
+}
+.close:hover {
+  color: #fff;
+}
+
+//for bookings:
+
+*{
+  box-sizing: border-box;
+  margin: 0
+}
+body {
+  font-family: Century Gothic, sans-serif;
+  text-transform: uppercase;
+  background-color: #DADDE6;
+  color: #37383a;
+  letter-spacing: -1px;
+  padding: 30px 90px
+}
+h1 {
+  font-size: 40px;
+  letter-spacing: -4px;
+  margin-bottom: 20px;
+  margin-left: 10px
+}
+h1:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 30px;
+  background-color: #ff9800;
+  top:40px;
+  left: 80px
+}
+
+/* start of conatiner*/
+.container12 {
+  position: relative;
+  width: 570px;
+  background-color: #FFF;
+  border-radius: 8px;
+  display: inline-block;
+  float: left;
+  margin-bottom: 20px
+}
+
+.container12:first-of-type,
+.container12:nth-of-type(3) {
+  margin-right: 29px;
+}
+
+section {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+p {
+  color: #a7a7a7
+}
+/* end of conatiner*/
+
+/*start of left side*/
+
+.container12 .left:before {
+  content: "";
+  background-color: #DADDE6;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  top:-15px;
+  left: 131px
+}
+
+.container12 .left:after {
+  content: "";
+  background-color: #DADDE6;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  bottom:-15px;
+  left: 131px
+}
+
+.container12 .left {
+  border-right: 2px dashed #DADDE6;
+  padding: 70px 30px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -2px
+}
+
+.container12 .left p:first-child {
+  color: #37383a;
+  font-size: 80px;
+  padding: 0;
+}
+.container12 .left p:last-child {
+  font-size: 25px;
+  padding: 0
+}
+
+/*end of left side*/
+
+/*start of right side*/
+.container12 .right {
+  padding: 10px 5px 10px 45px  ;
+  width: 72%;
+}
+
+.container12.right h2 {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.container12:nth-of-type(4) .right h2 {
+  text-decoration: line-through
+}
+
+.container12 .right p:nth-of-type(2) {
+  margin-bottom: 35px;
+}
+
+.container12 .right p {
+  letter-spacing: 0px;
+  font-size: 14px;
+  font-weight: 600;
+  width: 70%
+}
+
+.container12 .right p:first-child {
+  margin: 0px;
+  font-size: 17px
+}
+
+.container12 .right .calendar:before {
+  content: "\f073";
+  font-family: FontAwesome;
+  position: absolute;
+  top:110px;
+  left:200px;
+  font-size: 40px;
+}
+
+.container12 .right .map-pin:before {
+  content: "\f041";
+  font-family: FontAwesome;
+  position: absolute;
+  top:180px;
+  left:210px;
+  font-size: 35px;
+}
+
+.calendar,.map-pin {
+  margin-left: 55px;
+}
+
+/*end of right side*/
+.container12 .right a {
+  vertical-align: bottom;
+  text-decoration: none;
+  color: #fff;
+  background-color: #DADDE6;
+  padding: 5px 20px;
+  font-weight: bold;
+  float: right;
+  text-align: center;
+  margin-bottom: -25px;
+  letter-spacing: -0.5px
+}
+
+.container12:nth-of-type(3) .right a {
+  background-color: #f00;
+}
+
+.container12:nth-of-type(4) .right a {
+  background-color: #00f;
+}
+
