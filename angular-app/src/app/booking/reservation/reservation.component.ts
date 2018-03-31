@@ -19,16 +19,11 @@ export class ReservationComponent implements OnInit {
   reservation: Reservation;
   submit: boolean = false;
 
-  sub: any;
+  // sub: any;
   hotelID: string;
 
-  constructor(private reservationService: ReservationService, 
-    private fb: FormBuilder, 
-    private route:ActivatedRoute) {
-      this.sub = this.route.params.subscribe(params => {
-        this.hotelID = params['id'];
-      });
-      this.reservationService.setHotelID(this.hotelID);
+  constructor(private reservationService: ReservationService,
+    private fb: FormBuilder) {
       this.reservationService.activeReservation.subscribe((value) => this.reservation = value);
   }
 
@@ -58,7 +53,6 @@ export class ReservationComponent implements OnInit {
   }
 
   isFieldValid(field: string) {
-    // return this.resvForm.get(field).value === '1';
     return !this.resvForm.get(field).valid && this.resvForm.get(field).touched;
   }
 
