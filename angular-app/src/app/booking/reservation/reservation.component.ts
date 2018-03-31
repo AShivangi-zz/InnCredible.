@@ -5,6 +5,7 @@ import {HotelInfo} from '../../services/hotel-info';
 import {Reservation} from "../shared/reservation.model";
 import {until} from "selenium-webdriver";
 import elementIsDisabled = until.elementIsDisabled;
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reservation',
@@ -18,8 +19,17 @@ export class ReservationComponent implements OnInit {
   reservation: Reservation;
   submit: boolean = false;
 
-  constructor(private reservationService: ReservationService, private fb: FormBuilder) {
-    this.reservationService.activeReservation.subscribe( value => this.reservation = value);
+  sub: any;
+  hotelID: string;
+
+  constructor(private reservationService: ReservationService, 
+    private fb: FormBuilder, 
+    private route:ActivatedRoute) {
+      this.sub = this.route.params.subscribe(params => {
+        this.hotelID = params['id'];
+      });
+      this.reservationService.setHotelID(this.hotelID);
+      this.reservationService.activeReservation.subscribe((value) => this.reservation = value);
   }
 
   ngOnInit() {
@@ -43,7 +53,7 @@ export class ReservationComponent implements OnInit {
         checkOutDt: null,
         comments: '',
         tAndC: [null, Validators.required],
-        hotelID: this.reservation.hotelID
+        hotelID: this.hotelID
       });
   }
 

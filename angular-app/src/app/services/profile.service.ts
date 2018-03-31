@@ -12,6 +12,13 @@ export class UserProfileService {
     private email: string;
     private phototUrl: any;
     private uid: string;
+    private streetAddress: string;
+    private city: string;
+    private state: string;
+    private country: string;
+    private zipcode: string;
+
+    isRedeem: boolean;
 
     constructor() {
         this.uid = firebase.auth().currentUser.uid;
@@ -23,6 +30,11 @@ export class UserProfileService {
                 console.log(this.rewardpoints);
                 this.email = snapshot.child('email').val();
                 this.phototUrl = snapshot.child('photoURL').val();
+                this.streetAddress = snapshot.child('streetAddress').val();
+                this.city = snapshot.child('city').val();
+                this.state = snapshot.child('state').val();
+                this.country = snapshot.child('country').val();
+                this.zipcode = snapshot.child('zipcode').val();
         });
     }
 
@@ -49,5 +61,34 @@ export class UserProfileService {
     public getPhotoURL() {
         return this.phototUrl;
     }
+    public getStreetAddress() {
+      return this.streetAddress;
+    }
+    public getCity() {
+      return this.city;
+    }
+    public getState() {
+      return this.state;
+    }
+    public getCountry() {
+      return this.country;
+    }
+    public getZipcode() {
+      return this.zipcode;
+    }
+
+    public reduceTotalBy(){
+        return this.rewardpoints/25;
+    }
+
+    public async awardRewardPoints(total: number){
+        var ref = firebase.database().ref();
+        var reward = {};
+        ref.update(reward);
+
+        return reward;
+    }
+
+
 
 }

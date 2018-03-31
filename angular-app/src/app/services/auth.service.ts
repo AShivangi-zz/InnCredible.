@@ -18,6 +18,11 @@ interface User {
   rewardPoints: any;
   firstname: string; 
   lastname: string;
+  streetAddress: string;
+  city: string;
+  state: string;
+  country: string;
+  zipcode: string;
 }
 
 @Injectable()
@@ -39,10 +44,13 @@ export class AuthService {
           lastname: lastname,
           email: email,
           photoURL: 'https://goo.gl/Fz9nrQ',
-          rewardPoints: 0
+          rewardPoints: 0,
+          streetAddress: 'StreetAddress',
+          city: 'City',
+          state: 'State',
+          country: 'Country',
+          zipcode: '000000',
         });
-        //this.router.navigateByUrl('/home');
-        //location.reload();
         this.location.back();
       })
       .catch(error => this.handleError(error) );
