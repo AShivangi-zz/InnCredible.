@@ -1,35 +1,29 @@
 
-
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <br><br>
-  <div class="col-sm-8"><h3 style="text-align:center"> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h3><br><br></div>
-  <div class="col-sm-4"style="text-align:right;">Sort by</div><br>
+  <div class="col-sm-8"><h3 style="text-align:center; padding: 2%"> Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity: </h3><br><br></div>
+
+  <!-- SORT -->
+  <div class="col-sm-4">
+          <select class="form-control form-control-lg" style="width:50%; margin-left: 30%">
+            <option value="">Relevancy </option>
+            <option value="High price">High Price</option>
+            <option value="Low Price">Low Price</option>
+            <option value="A-Z">A-Z</option>
+            <option value="Z-A">Z-A</option>
+            <option value="High Ratings">High Ratings</option>
+            <option value="Low Ratings">Low Ratings</option>
+          </select>
+      
+  </div><br>
+
+
   <!--FILTER from here -->
 
   <div class="row12">
-    <div class="col-sm-5">
-      <!-- <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Price</h3>
-
-        </div>
-        <div class="input-group" style="margin: 5%">
-          <div id="tab" class="btn-group" data-toggle="buttons" >
-
-            <a href="#prices" class="btn btn-default active" data-toggle="tab" >
-          <input type="radio">$</a>
-            <a href="#features" class="btn btn-default" data-toggle="tab">
-          <input type="radio">$$</a>
-            <a href="#requests" class="btn btn-default" data-toggle="tab">
-          <input type="radio">$$$</a>
-
-          </div>
-          </div>
-      </div> -->
-
-      
+    <div class="col-sm-5"> 
       <div class="panel panel-default" >
           <div class="panel-heading">
             <h2 class="panel-title"style="font-size:25px">Filter by</h2>
@@ -77,6 +71,9 @@
     </div></div>
 
 <!--to here (FILTER)-->
+
+
+
 <div class="container" class="col-sm-9">
   
   <ul>
@@ -90,14 +87,15 @@
             <h3><a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a></h3>
             <h6><p>{{hotel?.location}}</p></h6>
             
-            <span><i class="material-icons">star</i> {{hotel?.rating}}</span>
+            <span> {{hotel?.rating}}</span>
             <br>
             <span><img [src]= 'hotel?.ratingImg'></span><br>
+            {{hotel?.review_num}}
           </div>
           <div class="col-xs-12 col-sm-12 col-md-2">
             <ul class="meta-search">
-              <div id="price12"><li><font size="3" color="#248dc1"><b><h4> ${{hotel?.price}}</h4></b></font></li>
-                <button id="commentButton" [routerLink]="['/hotel-info', hotel?.hotelID]" class="btn btn-primary">Book</button><br>
+              <div><br><h3 style="color:#4CB648; text-align:center">${{hotel?.price}}</h3><br>
+                <button [routerLink]="['/hotel-info', hotel?.hotelID]"class="btn btn-primary  with-arrow">View Hotel<i class="icon-arrow-right"></i></button>
               </div>
             </ul>
           </div>
