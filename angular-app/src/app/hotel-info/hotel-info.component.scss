@@ -391,14 +391,20 @@ $hotelRatingItemHeight: 4rem;
   box-sizing: border-box;
 }
 
+
+ul {
+  list-style-type: none;
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
 /* Create two equal columns that floats next to each other */
 .column1 {
   margin-left: 10%;
   float: left;
-  width: 60%;
+  width: 85%;
   padding: 10px;
-  height: 430px;
-  background-color: aqua/* Should be removed. Only for demonstration */
 }
 .column2 {
   margin-right: 3%;
@@ -416,9 +422,6 @@ $hotelRatingItemHeight: 4rem;
   clear: both;
 }
 
-.leftbox{
-  background-color: #1b6d85;
-}
 
 //book button:
 #btn{
