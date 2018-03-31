@@ -81,20 +81,14 @@ export class UserProfileService {
         return this.rewardpoints/25;
     }
 
-    public awardRewardPoints(total: number){
-        const ref = firebase.database().ref();
-        const reward = {};
-        reward['/users/' + this.uid + '/rewardPoints'] = Math.floor(this.getRewardPoints() + total / 10);
+    public async awardRewardPoints(total: number){
+        var ref = firebase.database().ref();
+        var reward = {};
         ref.update(reward);
+
         return reward;
     }
 
-    public deductReward() {
-      const ref = firebase.database().ref();
-      const reward = {};
-      reward['/users/' + this.uid + '/rewardPoints'] = 0;
-      ref.update(reward);
-      return reward;
-    }
+
 
 }

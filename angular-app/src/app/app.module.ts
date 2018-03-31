@@ -41,6 +41,7 @@ import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import {Hotel} from './models/hotel';
 import {SearchService} from './services/search.service';
+import {SenditineraryinformationService} from "./services/senditineraryinformation.service";
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import {SearchService} from './services/search.service';
       UserProfileService,
       ReservationService,
       SearchService,
+      SenditineraryinformationService,
       HotelInfo,
       Hotel
     ],

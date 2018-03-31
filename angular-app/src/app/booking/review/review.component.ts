@@ -7,6 +7,7 @@ import { ReservationService } from '../shared/reservation.service';
 import { Reservation } from '../shared/reservation.model';
 import {ActivatedRoute} from '@angular/router';
 import * as firebase from 'firebase';
+import {SenditineraryinformationService} from "../../services/senditineraryinformation.service";
 
 @Component({
   selector: 'app-review',
@@ -21,10 +22,12 @@ export class ReviewComponent implements OnInit {
 
   constructor(private hotel: HotelInfo
               , private reservationService: ReservationService
-              , public userProfileService: UserProfileService) {
+              , private userProfileService: UserProfileService,
+              private service: SenditineraryinformationService) {
     this.subscription = this.hotel.activeHotel.subscribe(value => this.hotelData = value);
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
     this.taxRate = 8.25;
+    this.service = service;
   }
 
   ngOnInit() {
@@ -49,13 +52,18 @@ export class ReviewComponent implements OnInit {
     return this.roomCharge() + this.taxCharge() - this.applyRewardAmnt();
   }
 
-  public onClick() {
+  public async onClick() {
+    // alert(this.orderTotal());
     this.reservation.totalCost = this.orderTotal();
     this.reservationService.changeReservation(this.reservation);
-    if (this.userProfileService.isRedeem) {
-      this.userProfileService.deductReward();
-    } else {
-      this.userProfileService.awardRewardPoints(this.roomCharge());
-    }
+    const promise = this.userProfileService.awardRewardPoints(this.roomCharge());
+
+    await promise;
+    //name, address, guests, rooms, checkindate, checkoutdate, tbt, rewards, tax, total
+    this.service.saveInformation(this.hotelData.name, this.hotelData.description, this.reservation.guests,
+      this.reservation.rooms, this.reservation.checkInDt, this.reservation.checkOutDt,
+      this.roomCharge(), this.applyRewardAmnt(),this.taxCharge(),this.reservation.totalCost, firebase.auth().currentUser.email);
+    console.log("INSIDE CLICK");
+
   }
 }

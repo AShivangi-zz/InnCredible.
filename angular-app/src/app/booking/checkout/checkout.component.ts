@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http'
 import {Reservation} from "../shared/reservation.model";
 import {ReservationService} from "../shared/reservation.service";
+import {SenditineraryinformationService} from "../../services/senditineraryinformation.service";
+import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireAuth} from "angularfire2/auth";
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-checkout',
@@ -18,8 +22,17 @@ export class CheckoutComponent implements OnInit {
 
   message: string;
 
-  constructor(private http: Http,private reservationService: ReservationService) {
+  constructor(private http: Http,private reservationService: ReservationService,
+              private result: SenditineraryinformationService,
+              private db: AngularFireDatabase) {
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
+  }
+
+  onClick() {
+    alert(this.reservation.totalCost);
+    console.log(this.result.getModel().numberofrooms);
+    this.db.list('/users/' + firebase.auth().currentUser.uid +'/itinerary').push(this.result.getModel());
+
   }
 
   getToken() {
