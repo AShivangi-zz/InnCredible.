@@ -21,7 +21,7 @@ export class ReviewComponent implements OnInit {
 
   constructor(private hotel: HotelInfo
               , private reservationService: ReservationService
-              , private userProfileService: UserProfileService) {
+              , public userProfileService: UserProfileService) {
     this.subscription = this.hotel.activeHotel.subscribe(value => this.hotelData = value);
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
     this.taxRate = 8.25;
@@ -49,12 +49,13 @@ export class ReviewComponent implements OnInit {
     return this.roomCharge() + this.taxCharge() - this.applyRewardAmnt();
   }
 
-  public async onClick() {
-    // alert(this.orderTotal());
+  public onClick() {
     this.reservation.totalCost = this.orderTotal();
     this.reservationService.changeReservation(this.reservation);
-    const promise = this.userProfileService.awardRewardPoints(this.roomCharge());
-
-    await promise;
+    if (this.userProfileService.isRedeem) {
+      this.userProfileService.deductReward();
+    } else {
+      this.userProfileService.awardRewardPoints(this.roomCharge());
+    }
   }
 }

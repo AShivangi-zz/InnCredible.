@@ -22,10 +22,6 @@ export class CheckoutComponent implements OnInit {
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
   }
 
-  onClick() {
-    alert(this.reservation.totalCost);
-  }
-
   getToken() {
     this.message = 'Loading...';
 
