@@ -15,8 +15,8 @@ export class SearchresultComponent implements OnInit {
   returnedname = '';
   returnedcheckindate = '';
   returnedcheckoutdate = '';
-  hotels: any;
-  filteredHotels: any;
+  hotels: Hotel[]=[];
+  filteredHotels: Hotel[]= [];
 
   public sub: any;
 
@@ -30,13 +30,22 @@ export class SearchresultComponent implements OnInit {
       this.returnedcheckoutdate = params['id3'];
     });
 
-    this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
-    this.hotels = this.searchService.getObservableList();
+    this.getFilteredData();
+    
   }
 
   onRatingsFilter() {
-    this.hotels = this.filterService.filterByRating(this.hotels, 3); 
+    //console.log(this.hotels.length);
+    this.filteredHotels = this.filterService.filterByRating(this.hotels, 4); 
+    console.log(this.filteredHotels);
 
+  }
+
+  async getFilteredData(){
+    await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
+    this.hotels = this.searchService.getHotels();
+//console.log(this.hotels.length);
+     this.onRatingsFilter();
   }
 
 }

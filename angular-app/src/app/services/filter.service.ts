@@ -8,15 +8,16 @@ export class FilterService {
   
   filterByRating(hotel:Hotel[], rating: number){
     var filteredHotels: Hotel[] = [];
+   // console.log(hotel.length);
 
     for(var i = 0; i< hotel.length; i++){
 
-      let rating = hotel[i].rating;
-      var colonIndex = rating.indexOf(":")+1;
-      var slashIndex = rating.indexOf("/");
-      var rat = Number(rating.slice(colonIndex, slashIndex));
-
-      if(rat == Number(rating) || rat > Number(rating)) {
+      let rating_str = hotel[i].rating;
+      var colonIndex = rating_str.indexOf(":")+1;
+      var slashIndex = rating_str.indexOf("/");
+      var rat = Number(rating_str.slice(colonIndex, slashIndex));
+      //console.log(rat);
+      if(rat === rating || rat > rating) {
         filteredHotels.push(hotel[i]);
       }
       
