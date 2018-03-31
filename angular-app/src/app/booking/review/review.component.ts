@@ -14,9 +14,9 @@ import * as firebase from 'firebase';
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit {
-  private taxRate: number;
-  private hotelData: Hotel;
-  private reservation: Reservation;
+  public taxRate: number;
+  public hotelData: Hotel;
+  public reservation: Reservation;
   private subscription: Subscription;
 
   constructor(private hotel: HotelInfo

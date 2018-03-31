@@ -20,7 +20,7 @@ export class HotelInfoComponent implements OnInit {
   private id: string;
   public sub: any;
   public hotel: Hotel;
-  constructor(private hotelInfo: HotelInfo, private route: ActivatedRoute) {
+  constructor(public hotelInfo: HotelInfo, private route: ActivatedRoute) {
     // this.hotelInfo.setHotelId('0');
 
   }
