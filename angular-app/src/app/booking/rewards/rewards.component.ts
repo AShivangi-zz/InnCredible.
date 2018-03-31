@@ -9,7 +9,7 @@ export class RewardsComponent implements OnInit {
 
   submit: boolean = false;
 
-  constructor(private userProfileService: UserProfileService) { }
+  constructor(public userProfileService: UserProfileService) { }
 
   ngOnInit() {
   }

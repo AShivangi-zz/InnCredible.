@@ -29,7 +29,7 @@ import { RewardsComponent } from './booking/rewards/rewards.component';
 import { ReviewComponent } from './booking/review/review.component';
 import { CheckoutComponent } from './booking/checkout/checkout.component';
 import { ConfirmationComponent } from './booking/confirmation/confirmation.component';
-//import { ErrDisplayComponent } from './booking/err-display/err-display.component';
+import { ErrDisplayComponent } from './booking/err-display/err-display.component';
 
 // Services
 import { AuthGuard } from './services/auth-guard.service';
@@ -61,7 +61,7 @@ import {FilterService} from './services/filter.service';
     ReviewComponent,
     CheckoutComponent,
     ConfirmationComponent,
-    //ErrDisplayComponent,
+    ErrDisplayComponent,
   ],
   imports: [
     ReactiveFormsModule,

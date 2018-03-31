@@ -21,7 +21,7 @@ export class SearchresultComponent implements OnInit {
   public sub: any;
 
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
-  constructor(private route: ActivatedRoute, private searchService: SearchService, private filterService: FilterService) {}
+  constructor(private route: ActivatedRoute, public searchService: SearchService, private filterService: FilterService) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -31,12 +31,12 @@ export class SearchresultComponent implements OnInit {
     });
 
     this.getFilteredData();
-    
+
   }
 
   onRatingsFilter() {
     //console.log(this.hotels.length);
-    this.filteredHotels = this.filterService.filterByRating(this.hotels, 4); 
+    this.filteredHotels = this.filterService.filterByRating(this.hotels, 4);
     console.log(this.filteredHotels);
 
   }
