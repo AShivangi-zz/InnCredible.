@@ -14,6 +14,8 @@ export class Hotel {
   hotelText:string;
   firstImage:string;
   hotelIndex:string;
+  checkIn: string;
+  checkOut: string;
 
   constructor() {}
 
@@ -44,4 +46,8 @@ export class Hotel {
   setRoomText(rText) { this.roomText = rText; }
 
   setFirstImage(image) { this.firstImage = image; }
+
+  setCheckIn(checkIN) { this.checkIn = checkIN; }
+
+  setCheckOut(CheckOUT) {this.checkOut = CheckOUT; }
 }

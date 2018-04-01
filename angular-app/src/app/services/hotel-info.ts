@@ -13,7 +13,6 @@ export class HotelInfo {
   private images: URL[] = [];
   private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
   private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
-
   private _thisHotel = new BehaviorSubject<Hotel>(null);
   public activeHotel = this._thisHotel.asObservable();
 
@@ -42,6 +41,8 @@ export class HotelInfo {
         this.hotel.setRoomText(snapshot.child('/amenities/room-text').val());
         this.hotel.setHotelText(snapshot.child('/amenities/hotel-text').val());
         this.hotel.setFirstImage(snapshot.child('/images/0').val());
+        this.hotel.setCheckIn(snapshot.child('/availability/check-in').val());
+        this.hotel.setCheckOut(snapshot.child('/availability/check-out').val());
       });
       
       this._thisHotel.next(this.hotel);
