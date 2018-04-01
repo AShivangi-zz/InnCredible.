@@ -13,7 +13,9 @@ import * as firebase from 'firebase';
 })
 export class ProfileComponent implements OnInit {
 
-  public reservations: Reservation[];
+  reservations: Reservation[];
+  bookings: Booking[] = [];
+
   constructor(private userProfileService: UserProfileService,
   private hotelInfo: HotelInfo) {
 
@@ -23,11 +25,11 @@ export class ProfileComponent implements OnInit {
     this.pullReservations();
   }
 
-  bookings: Booking[] = [];
+  
 
   public async pullReservations(){
 
-    var prom = await this.userProfileService.getReservations();
+    await this.userProfileService.getReservations();
     this.reservations = this.userProfileService.reservation;
     let numRes = this.reservations.length;
     for(let i = 0; i < numRes; i++)
@@ -35,8 +37,7 @@ export class ProfileComponent implements OnInit {
         var num = i.toString();
         var hotel = new Hotel();
         var booking = new Booking();
-
-        console.log('Hotel iD:' + this.reservations[num].hotelID);
+        
         const id_ref =  firebase.database().ref('/hotel_id');
         var index;
         await id_ref.once('value').then((snapshot) => {

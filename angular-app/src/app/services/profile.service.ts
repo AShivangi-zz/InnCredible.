@@ -20,6 +20,7 @@ export class UserProfileService {
     public state: string;
     public country: string;
     public zipcode: string;
+
     public reservation: Reservation[] = [];
     //private res: Reservation;
     isRedeem: boolean;
@@ -45,8 +46,7 @@ export class UserProfileService {
         
     }
     public getReservations(){
-        var promise;
-        promise = firebase.database().ref('/users/'+  this.uid+'/reservations/').once('value')
+        var promise = firebase.database().ref('/users/'+  this.uid+'/reservations/').once('value')
                     .then((snapshot) => {
                         const countRes = snapshot.numChildren();
                         //console.log(countRes);
@@ -54,7 +54,7 @@ export class UserProfileService {
                             var number = i.toString();
                             let res = new Reservation();
                             var snap = Object.keys(snapshot.val());
-                            var key = snap[0];
+                            var key = snap[i];
                             res.checkInDt = snapshot.child(key+'/checkInDt').val();
                             res.checkOutDt = snapshot.child(key+'/checkOutDt').val();
                             res.comments = snapshot.child(key+'/comments').val();
