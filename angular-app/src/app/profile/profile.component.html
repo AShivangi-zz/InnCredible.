@@ -62,18 +62,24 @@
       <div class="tab-pane fade in active" id="tab1">
         <h1> upcoming reservations</h1>
 
-        <div class=container12>
-          <section class=left>
+        <div class='container12' *ngFor='let res of bookings'>
+          <section class='left'>
             <p> 23</p>
             <p> feb</p>
           </section>
 
           <section class=right>
-            <h2> Hotel Name </h2>
-            <p class=calendar> Check In Date: </p> <!-- can be used date  and br can be removed-->
-            <p> </p>
+            <h2> {{res.hotelName}}</h2> <!--hotel name-->
+            <p class=calendar> Check In Date:{{res.checkInDt}} </p> <!-- can be used date  and br can be removed-->
+            <p class=calendar> Check Out Date:{{res.checkOutDt}} </p>
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Cancel <i class="fa fa-sign-in" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">Edit <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+
+            <p>Address: {{res.hotelLoc}}</p>
+            <p>Guests: {{res.guests}}</p>
+            <p>Rooms: {{res.rooms}}</p>
+            <p>Total Cost: {{res.totalCost}}</p>
+            <p>Comments: {{res.comments}}</p>
 
           </section>
 

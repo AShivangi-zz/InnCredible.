@@ -39,8 +39,11 @@ import {HotelInfo} from './services/hotel-info';
 import { PolicyComponent } from './policy/policy.component';
 import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
-import {Hotel} from './models/hotel';
 import {SearchService} from './services/search.service';
+
+//Models
+import {Booking} from './models/booking'
+import {Hotel} from './models/hotel';
 
 
 @NgModule({
