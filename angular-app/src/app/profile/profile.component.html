@@ -1,139 +1,238 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <div class="col-lg-6 col-sm-6" style = "width: 80%; margin: 3% 10%" >
-    <div class="card hovercard">
-      <div class="card-background">
-        <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
-        <!-- http://lorempixel.com/850/280/people/9/ -->
-      </div>
-      <div class="useravatar">
-        <img alt="" src="http://lorempixel.com/100/100/people/9/">
-      </div>
-      <div class="card-info"> <span class="card-title">{{userProfileService.getFullName()}}</span>
-  
-      </div>
+  <div class="card hovercard">
+    <div class="card-background">
+      <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
+      <!-- http://lorempixel.com/850/280/people/9/ -->
     </div>
-    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
-      <div class="btn-group" role="group">
-        <button type="button" id="my bookings" class="btn btn-default" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-          <div class="hidden-xs">My Bookings</div>
-        </button>
-      </div>
-      <div class="btn-group" role="group">
-        <button type="button" id="history" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-          <div class="hidden-xs">History</div>
-        </button>
-      </div>
-      <div class="btn-group" role="group">
-        <button type="button" id="favorites" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-          <div class="hidden-xs">Favorites</div>
-        </button>
-      </div>
-      <div class="btn-group" role="group">
-        <button type="button" id="calendar" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-          <div class="hidden-xs">Calendar</div>
-        </button>
-      </div>
-      <div class="btn-group" role="group">
-        <button type="button" id="rewards" class="btn btn-default" href="#tab5" data-toggle="tab"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-          <div class="hidden-xs">Rewards</div>
-        </button>
-      </div>
-      <div class="btn-group" role="group">
-        <button type="button" id="profile" class="btn btn-default" href="#tab6" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-          <div class="hidden-xs">Profile</div>
-        </button>
-      </div>
-  
-  
+    <div class="useravatar">
+      <img alt="" src="http://lorempixel.com/100/100/people/9/">
     </div>
-  
-    <div class="well">
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="tab1">
-          <h3>This is tab 1</h3> <br> <br> <br> <br> <br>
-        </div>
-        <div class="tab-pane fade in" id="tab2">
-          <h3>This is tab 2</h3>
-        </div>
-        <div class="tab-pane fade in" id="tab3">
-          <h3>This is tab 3</h3>
-        </div>
-        <div class="tab-pane fade in" id="tab4">
-          <h3>This is tab 4</h3>
-        </div>
-        <div class="tab-pane fade in" id="tab5">
-          <h3 style='text-align: center'>You have:
-            <span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points.</h3>
-        </div>
-        <div class="tab-pane fade in" id="tab6">
+    <div class="card-info"> <span class="card-title">{{userProfileService.getFullName()}}</span>
+
+    </div>
+  </div>
+  <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+    <div class="btn-group" role="group">
+      <button type="button" id="my bookings" class="btn btn-default" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+        <div class="hidden-xs">My Bookings</div>
+      </button>
+    </div>
+    <div class="btn-group" role="group">
+      <button type="button" id="history" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+        <div class="hidden-xs">History</div>
+      </button>
+    </div>
+    <div class="btn-group" role="group">
+      <button type="button" id="favorites" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+        <div class="hidden-xs">Favorites</div>
+      </button>
+    </div>
+    <div class="btn-group" role="group">
+      <button type="button" id="calendar" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+        <div class="hidden-xs">Calendar</div>
+      </button>
+    </div>
+    <div class="btn-group" role="group">
+      <button type="button" id="rewards" class="btn btn-default" href="#tab5" data-toggle="tab"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <div class="hidden-xs">Rewards</div>
+      </button>
+    </div>
+    <div class="btn-group" role="group">
+      <button type="button" id="profile" class="btn btn-default" href="#tab6" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <div class="hidden-xs">Profile</div>
+      </button>
+    </div>
 
 
+  </div>
 
-            <form class="form-horizontal">
-                <fieldset>
-                
-                
+  <div class="well">
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="tab1">
+        <h1> upcoming reservations</h1>
+
+
+        <div class='container12' *ngFor='let res of bookings'>
+
+
+          <div class="flip">
+            <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+              <h1 class="text-shadow">Upcoming Reservation</h1>
+              {{res.hotelName}}
+            </div>
+            <div class="back">
+            <div class="back-align">
+              <font size="4" color ="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkInDt}}</font><br><br>
+              <font size="4" color ="grey" >Address: {{res.hotelLoc}}</font><br><br>
+              <font size="4" color ="grey">Guests: {{res.guests}}</font><br><br>
+              <font size="4" color ="grey">Rooms: {{res.rooms}}</font><br><br>
+              <font size="4" color ="grey">Comments: {{res.comments}}</font>
+            </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Cancel <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">Edit <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+
+        </div><br> <br> <br> <br> <br>
+      </div>
+        <div class="container">
+          <!-- Trigger the modal with a button -->
+
+          <!-- Modal -->
+          <div class="modal fade" id="cancelModal" role="dialog">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+                <div class="modal-header modal-custom-header">
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h4 class="modal-title">CancelBooking</h4>
+          <form class="form-horizontal">
+            <fieldset>
+
+
                 <!-- Text input-->
                 <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Email</label>  
+                  <label class="col-md-4 control-label" for="textinput">Email</label>
                   <div class="col-md-4">
                   <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text">
-                  <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text"> 
+                  <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text">
                   </div>
+
+                </div>
+                <div class="modal-body">
+                  <form id="loginform" class="form-horizontal" role="form">
+
+
+                    <div class="form-group">
+                      <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to cancel the booking?</label>
+                      <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
+                      <button id="" name="btnCancel" class="btn btn-primary">No</button>
+                    </div>
+                  </form>
+
+
                 </div>
 
+            </fieldset></form></div>
+            </div>
+          </div>
+          <!--Modal for Edit-->
+          <div class="modal fade" id="editModal" role="dialog">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+                <div class="modal-header modal-custom-header">
+                  <button type="button" class="close" data-dismiss="modal">×</button>
+                  <h4 class="modal-title">EditlBooking</h4>
+                </div>
+                <div class="modal-body">
+                  <form id="loginform" class="form-horizontal" role="form">
+
+                    <div class="form-group">
+                      <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to edit the booking?</label>
+                      <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
+                      <button id="" name="btnCancel" class="btn btn-primary">No</button>
+                    </div>
+                  </form>
+
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="tab-pane fade in" id="tab2">
+        <h3>This is tab 2</h3>
+      </div>
+      <div class="tab-pane fade in" id="tab3">
+        <h3>This is tab 3</h3>
+      </div>
+      <div class="tab-pane fade in" id="tab4">
+        <h3>This is tab 4</h3>
+      </div>
+      <div class="tab-pane fade in" id="tab5">
+        <h3 style='text-align: center'>You have:
+          <span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points.</h3>
+      </div>
+      <div class="tab-pane fade in" id="tab6">
+
+
+
+        <form class="form-horizontal">
+          <fieldset>
+
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="textinput">Email</label>
+              <div class="col-md-4">
+                <input id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text">
+
+              </div>
+            </div>
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Street Address</label>  
+                    <label class="col-md-4 control-label" for="textinput">Street Address</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getStreetAddress()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getStreetAddress()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
-                
+
                   <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">City</label>  
+                    <label class="col-md-4 control-label" for="textinput">City</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getCity()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getCity()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
-                
+
                   <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">State</label>  
+                    <label class="col-md-4 control-label" for="textinput">State</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getState()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getState()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
 
                   <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Country</label>  
+                    <label class="col-md-4 control-label" for="textinput">Country</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getCountry()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getCountry()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
 
                   <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Zipcode</label>  
+                    <label class="col-md-4 control-label" for="textinput">Zipcode</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getZipcode()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getZipcode()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
-                
+
                 <!-- Button (Double) -->
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="btnCancel"></label>
@@ -143,7 +242,7 @@
                       (click)="buttonDisabled = true">
                       Edit
                       </button>
-                      
+
                       <!-- enable the button -->
                       <button class="btn btn-success"
                       *ngIf="buttonDisabled"
@@ -152,10 +251,9 @@
                       </button>
                   </div>
                 </div>
-                
-                </fieldset>
-                </form>
-  
-<!-- Edit/Save buttons -->
+
+          </fieldset>
+        </form>
 
 
+</div></div></div></div>
