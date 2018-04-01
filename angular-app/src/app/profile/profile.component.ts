@@ -8,6 +8,8 @@ import {UserProfileService} from '../services/profile.service';
 })
 export class ProfileComponent implements OnInit {
 
+  public buttonDisabled: boolean;
+
   constructor(public userProfileService: UserProfileService) {
   }
 
