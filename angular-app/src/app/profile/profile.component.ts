@@ -13,6 +13,8 @@ import * as firebase from 'firebase';
 })
 export class ProfileComponent implements OnInit {
 
+
+  public buttonDisabled: boolean;
   public reservations: Reservation[];
   constructor(private userProfileService: UserProfileService,
   private hotelInfo: HotelInfo) {
