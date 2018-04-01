@@ -1,121 +1,116 @@
 <!--Following code is from this: https://bootsnipp.com/snippets/featured/credit-card-payment-with-stripe-->
-            <!-- Vendor libraries -->
-            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.2.3/jquery.payment.min.js"></script>
-
-            <!-- If you're using Stripe for payments -->
-            <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
-            <div class="container" style="margin-left: 27%">
-              <div class="row">
-                <!-- You can make it whatever width you want. I'm making it full width
-                     on <= small devices and 4/12 page width on >= medium devices -->
-                <div class="col-xs-12 col-md-4">
-
-                  <!-- CREDIT CARD FORM STARTS HERE -->
-                  <div class="panel panel-default credit-card-box">
-                    <div class="panel-heading display-table" >
-                      <div class="row display-tr" >
-                        <h3 class="panel-title display-td" >Payment Details</h3>
-                        <div class="display-td" >
-                          <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel-body">
-                      <form role="form" id="payment-form" method="POST" action="(submit)=>getToken()">
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <div class="form-group">
-                              <label for="cardNumber">CARD NUMBER</label>
-                              <div class="input-group">
-                                <input 
-                                [(ngModel)]="cardNumber" 
-                                class="form-control"
-                                name="card-number" 
-                                type="text" 
-                                size="20" 
-                                data-stripe="number"
-                                required autofocus
-                                />
-                                <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-xs-3 col-md-3">
-                            <div class="form-group">
-                              <label for="cardExpiry"><span class="hidden-xs">EXP MO</span></label>
-                              <input 
-                              [(ngModel)]="expiryMonth" 
-                              class="form-control"
-                              name="expiry-month" 
-                              placeholder="MM"
-                              type="text" 
-                              size="2" 
-                              data-stripe="exp_month"
-                              required
-                              />
-                            </div>
-                          </div>
-                          <div class="col-xs-3 col-md-3">
-                            <div class="form-group">
-                              <label for="cardExpiry">
-                                <span class="hidden-xs">EXP YR</span>
-                              </label>
-                              <input 
-                              [(ngModel)]="expiryYear" 
-                              class="form-control"
-                              name="expiry-year" 
-                              placeholder="YY"
-                              type="text" 
-                              size="2" 
-                              data-stripe="exp_year"
-                              required
-                              />
-                            </div>
-                          </div>
-                          <div class="col-xs-5 col-md-5 pull-right">
-                            <div class="form-group">
-                              <label for="cardCVC">CV CODE</label>
-                              <input 
-                              [(ngModel)]="cvc" 
-                              class="form-control"
-                              name="cvc" 
-                              placeholder="CVC"
-                              type="text" 
-                              size="4" 
-                              data-stripe="cvc"
-                              required
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <!-- work on awarding reward points here -->
-                        <!-- book hotel button -->
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <button id="bookhotel" class="subscribe btn btn-success btn-lg btn-block">
-                                <a href="#confirmation" data-toggle="tab">
-                                    <span class="round-tabs five active" style="color: white">Book Hotel</span>
-                                </a>
-                            </button>
-                          </div>
-                        </div>
-
-
-                        <div class="row" style="display:none;">
-                          <div class="col-xs-12">
-                            <p class="payment-errors"></p>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
+<!-- Vendor libraries -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.2.3/jquery.payment.min.js"></script>
+<!-- If you're using Stripe for payments -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<div class="container" style="margin-left: 27%">
+   <div class="row">
+      <!-- You can make it whatever width you want. I'm making it full width
+         on <= small devices and 4/12 page width on >= medium devices -->
+      <div class="col-xs-12 col-md-4">
+         <!-- CREDIT CARD FORM STARTS HERE -->
+         <div class="panel panel-default credit-card-box">
+            <div class="panel-heading display-table" >
+               <div class="row display-tr" >
+                  <h3 class="panel-title display-td" >Payment Details</h3>
+                  <div class="display-td" >
+                     <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
                   </div>
-                  <!-- CREDIT CARD FORM ENDS HERE -->
-
-                </div>
-              </div>
+               </div>
             </div>
+            <div class="panel-body">
+               <form role="form" id="payment-form" method="POST" (submit)="getToken()">
+                  <div class="row">
+                     <div class="col-xs-12">
+                        <div class="form-group">
+                           <label for="cardNumber">CARD NUMBER</label>
+                           <div class="input-group">
+                              <input
+                              [(ngModel)]="cardNumber"
+                              class="form-control"
+                              name="card-number"
+                              type="text"
+                              size="20"
+                              data-stripe="number"
+                              required autofocus
+                              />
+                              <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-3 col-md-3">
+                        <div class="form-group">
+                           <label for="cardExpiry"><span class="hidden-xs">EXP MO</span></label>
+                           <input
+                           [(ngModel)]="expiryMonth"
+                           class="form-control"
+                           name="expiry-month"
+                           placeholder="MM"
+                           type="text"
+                           size="2"
+                           data-stripe="exp_month"
+                           required
+                           />
+                        </div>
+                     </div>
+                     <div class="col-xs-3 col-md-3">
+                        <div class="form-group">
+                           <label for="cardExpiry">
+                           <span class="hidden-xs">EXP YR</span>
+                           </label>
+                           <input
+                           [(ngModel)]="expiryYear"
+                           class="form-control"
+                           name="expiry-year"
+                           placeholder="YY"
+                           type="text"
+                           size="2"
+                           data-stripe="exp_year"
+                           required
+                           />
+                        </div>
+                     </div>
+                     <div class="col-xs-5 col-md-5 pull-right">
+                        <div class="form-group">
+                           <label for="cardCVC">CV CODE</label>
+                           <input
+                           [(ngModel)]="cvc"
+                           class="form-control"
+                           name="cvc"
+                           placeholder="CVC"
+                           type="text"
+                           size="4"
+                           data-stripe="cvc"
+                           required
+                           />
+                        </div>
+                     </div>
+                  </div>
+                  <!-- work on awarding reward points here -->
+                  <!-- book hotel button -->
+                  <div class="row">
+                     <div class="col-xs-12">
+                        <button id="bookhotel" class="subscribe btn btn-success btn-lg btn-block"
+                           (click)="getToken()">
+                           <a href="#confirmation" data-toggle="tab">
+                           <span class="round-tabs five active" style="color: white">Book Hotel</span>
+                           </a>
+                        </button>
+                     </div>
+                  </div>
+                  <div class="row" style="display:none;">
+                     <div class="col-xs-12">
+                        <p class="payment-errors"></p>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <!-- CREDIT CARD FORM ENDS HERE -->
+      </div>
+   </div>
+</div>

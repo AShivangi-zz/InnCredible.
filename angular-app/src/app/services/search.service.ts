@@ -7,6 +7,7 @@ import {HotelInfo} from "./hotel-info"
 @Injectable()
 export class SearchService {
   constructor(private hotelInfo: HotelInfo) {}
+  hotels: Hotel[]=  [];
 
   _observableList: BehaviorSubject<Hotel[]> = new BehaviorSubject([]);
   
@@ -38,6 +39,7 @@ export class SearchService {
       //Find overlap?
       if (cityname.toUpperCase() == hotel.city.toUpperCase()) {
         hotelList.push(hotel);
+        this.hotels.push(hotel);
         //console.log(hotel);
         this._observableList.next(hotelList);
       }
@@ -47,6 +49,10 @@ export class SearchService {
   public getObservableList(): Observable<Hotel[]> {
     return this._observableList.asObservable(); 
   }
-
+   
+  public getHotels() {
+    //console.log(this.hotels);
+    return this.hotels;
+  }
 }
 

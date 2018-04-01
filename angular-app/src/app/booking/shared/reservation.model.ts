@@ -1,9 +1,10 @@
 export class Reservation {
-  $key:       string;
-  guests:     number;
-  rooms:      number;
-  checkInDt:  Date;
+  $key: string;
+  guests: number;
+  rooms: number;
+  checkInDt: Date;
   checkOutDt: Date;
+
   comments:   string;
   hotelID:    string;
   totalCost:  number;
@@ -33,5 +34,5 @@ export class Reservation {
       // Convert back to days and return
       return Math.round(difference_ms / one_day);
   };
- 
+
 }

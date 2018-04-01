@@ -12,9 +12,11 @@ import * as firebase from 'firebase';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
   public reservations: Reservation[];
   constructor(private userProfileService: UserProfileService,
   private hotelInfo: HotelInfo) {
+
   }
 
   ngOnInit() {

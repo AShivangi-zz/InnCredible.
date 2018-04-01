@@ -9,7 +9,7 @@
           <div class="col-md-4">
           <select
             id="numGuests" class="form-control" formControlName="guests"
-                  [(ngModel)]="reservation.guests">
+                  [(ngModel)]="this.reservation.guests">
             <option *ngFor="let opt of guestOptions" [ngValue]="opt">
               {{ opt }}
             </option>
@@ -21,7 +21,7 @@
           <label class="col-md-4 control-label" for="numRooms">Number of Rooms</label>
           <div class="col-md-4">
             <input disabled class="form-control" id="numRooms" formControlName="rooms"
-                [(ngModel)]="reservation.rooms"/>
+                [(ngModel)]="this.reservation.rooms"/>
           </div>
         </div>
 
@@ -30,7 +30,9 @@
       <label class="col-md-4 control-label" for="checkindate">Date Of Check In</label>
       <div class="col-md-4">
         <input type="date" class="form-control" id="checkindate"  formControlName="checkInDt"
-                [(ngModel)]="reservation.checkInDt"/>
+                [(ngModel)]="this.reservation.checkInDt"/>
+        <!--<input disabled class="form-control" id="hotelID" formControlName="hotelID"-->
+                <!--[(ngModel)]="this.reservation.hotelID"/>-->
       </div>
     </div>
 
@@ -39,7 +41,7 @@
       <label class="col-md-4 control-label" for="checkoutdate">Date Of Check Out</label>
       <div class="col-md-4">
         <input type="date" class="form-control" id="checkoutdate" formControlName="checkOutDt"
-                [(ngModel)]="reservation.checkOutDt"/>
+                [(ngModel)]="this.reservation.checkOutDt"/>
       </div>
     </div>
 
@@ -49,7 +51,7 @@
       <label class="col-md-4 control-label" for="taComments">Comments</label>
       <div class="col-md-4">
         <textarea class="form-control" id="taComments" formControlName="comments"
-               [(ngModel)]="reservation.comments"></textarea>
+               [(ngModel)]="this.reservation.comments"></textarea>
       </div>
     </div>
 
@@ -60,7 +62,7 @@
         <div class="checkbox">
           <label for="tAndC-0">
             <input type="checkbox" name="tAndC" id="tAndC-0" value="1" formControlName="tAndC" required>
-            <a href="/policy">Terms and Conditions</a>
+            <a href="/policy" target="_blank">Terms and Conditions</a>
             <!--<app-err-display
               [displayError]="isFieldValid('tAndC')"
               errorMsg="You must accept the Terms and Conditions to proceed.">

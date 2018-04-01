@@ -7,9 +7,17 @@ import {UserProfileService} from '../../services/profile.service';
 })
 export class RewardsComponent implements OnInit {
 
-  constructor(private userProfileService: UserProfileService) { }
+  submit: boolean = false;
+
+  constructor(public userProfileService: UserProfileService) { }
 
   ngOnInit() {
+  }
+
+
+  redeemPoints(redeem: boolean): void {
+    this.userProfileService.isRedeem = redeem;
+    this.submit = true;
   }
 
 }

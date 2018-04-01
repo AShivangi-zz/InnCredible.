@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http'
+import {Reservation} from "../shared/reservation.model";
+import {ReservationService} from "../shared/reservation.service";
 
 @Component({
   selector: 'app-checkout',
@@ -8,12 +10,17 @@ import { Http, Headers, URLSearchParams } from '@angular/http'
 })
 export class CheckoutComponent implements OnInit {
 
+  private reservation: Reservation;
   cardNumber: string;
   expiryMonth: string;
   expiryYear: string;
   cvc: string;
 
   message: string;
+
+  constructor(private http: Http,private reservationService: ReservationService) {
+    this.reservationService.activeReservation.subscribe(value => this.reservation = value);
+  }
 
   getToken() {
     this.message = 'Loading...';
@@ -27,9 +34,9 @@ export class CheckoutComponent implements OnInit {
       if (status === 200) {
         this.message = `Success! Card token ${response.card.id}.`;
         let data = new URLSearchParams();
-        data.append('card', response.id)
-        data.append('currency', 'usd')
-        data.append('amount', '1000')
+        data.append('card', response.id);
+        data.append('currency', 'usd');
+        data.append('amount', Math.ceil(this.reservation.totalCost*100)+'');
         this.createCharge(data);
       } else {
         this.message = response.error.message;
@@ -45,9 +52,6 @@ export class CheckoutComponent implements OnInit {
     this.http.post('https://api.stripe.com/v1/charges', data, { headers: headers })
       .subscribe(resp => { console.log(resp); })
   }
-
-
-  constructor(private http: Http) { }
 
   ngOnInit() {
   }

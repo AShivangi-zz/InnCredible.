@@ -13,7 +13,10 @@ export class LoginComponent implements OnInit {
   state: string = '';
   error: any;
 
-  constructor(public afa: AngularFireAuth, private router: Router, private location: Location) { 
+  email: string;
+  password: string;
+
+  constructor(public afa: AngularFireAuth, private router: Router, private location: Location) {
     /*this.afa.authState.subscribe(auth => {
         if(auth) {
 

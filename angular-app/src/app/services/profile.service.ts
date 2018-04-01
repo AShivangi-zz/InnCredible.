@@ -7,6 +7,7 @@ import { promise } from 'protractor';
 
 export class UserProfileService {
 
+
     public authInfo;
     public firstname: string;
     public lastname : string;
@@ -21,7 +22,10 @@ export class UserProfileService {
     public zipcode: string;
     public reservation: Reservation[] = [];
     //private res: Reservation;
-    
+    isRedeem: boolean;
+    buttonDisabled: boolean = false;
+
+
     constructor() {
         this.uid = firebase.auth().currentUser.uid;
         firebase.database().ref('/users/' + this.uid).once('value')
@@ -108,11 +112,20 @@ export class UserProfileService {
     }
 
     public awardRewardPoints(total: number){
-        return total/10;
+        const ref = firebase.database().ref();
+        const reward = {};
+        reward['/users/' + this.uid + '/rewardPoints'] = Math.floor(this.getRewardPoints() + total / 10);
+        ref.update(reward);
+        return reward;
     }
 
-    
 
-
+    public deductReward() {
+      const ref = firebase.database().ref();
+      const reward = {};
+      reward['/users/' + this.uid + '/rewardPoints'] = 0;
+      ref.update(reward);
+      return reward;
+    }
 
 }

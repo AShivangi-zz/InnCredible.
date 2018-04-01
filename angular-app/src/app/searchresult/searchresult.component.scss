@@ -11,7 +11,7 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 .search-result .thumbnail { border-radius: 0 !important; }
 .search-result:first-child { margin-top: 0 !important; }
 .search-result { margin-top: 20px; }
-.search-result .col-md-2 { border-right: 1px dotted #ccc; min-height: 140px; }
+.search-result .col-md-2 { border-left: 1px dotted #ccc; min-height: 140px; }
 .search-result ul { padding-left: 0 !important; list-style: none;  }
 .search-result ul li { font: 400 normal .85em "Roboto",Arial,Verdana,sans-serif;  line-height: 30px; }
 .search-result ul li i { padding-right: 5px; }
@@ -25,6 +25,10 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
 .search-result span.plus a i { color: #fff !important; }
 .search-result span.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted #ccc; }
 
+#price12{
+  align: right;
+  margin-top: 50%;
+}
 //background
 body{
   background-color: #ddd;
@@ -304,7 +308,7 @@ a.button:hover{
 
 .form-group{
   margin-right: 0.1%;
-  margin-left: 80%;
+  margin-left: 75%;
   margin-top: 7%
 }
 
@@ -550,7 +554,7 @@ $search-footer-height: 60px;
 }
 
 .row12{
-  margin-left: 0%;
+  margin-left: 2%;
   width: 45%;
 }
 
@@ -564,6 +568,9 @@ col-sm-3 col-md-3{
 
 .price12{
   font-size: 50px;
+  margin-right: 0.1%;
+  margin-left: 80%;
+  margin-top: 7%
 }
 
 

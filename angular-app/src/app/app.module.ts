@@ -29,7 +29,7 @@ import { RewardsComponent } from './booking/rewards/rewards.component';
 import { ReviewComponent } from './booking/review/review.component';
 import { CheckoutComponent } from './booking/checkout/checkout.component';
 import { ConfirmationComponent } from './booking/confirmation/confirmation.component';
-//import { ErrDisplayComponent } from './booking/err-display/err-display.component';
+import { ErrDisplayComponent } from './booking/err-display/err-display.component';
 
 // Services
 import { AuthGuard } from './services/auth-guard.service';
@@ -40,10 +40,11 @@ import { PolicyComponent } from './policy/policy.component';
 import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import {SearchService} from './services/search.service';
-
 //Models
 import {Booking} from './models/booking'
 import {Hotel} from './models/hotel';
+
+import {FilterService} from './services/filter.service';
 
 
 @NgModule({
@@ -64,7 +65,7 @@ import {Hotel} from './models/hotel';
     ReviewComponent,
     CheckoutComponent,
     ConfirmationComponent,
-    //ErrDisplayComponent,
+    ErrDisplayComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -84,7 +85,8 @@ import {Hotel} from './models/hotel';
       ReservationService,
       SearchService,
       HotelInfo,
-      Hotel
+      Hotel,
+      FilterService
     ],
   bootstrap: [AppComponent]
 })

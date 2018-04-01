@@ -11,7 +11,10 @@ export class HomeComponent implements OnInit {
 
   start: string;
   end: string;
-  city: string;
+
+  cityname: string;
+  checkindate: string;
+  checkoutdate: string;
 
   constructor(public afa: AngularFireAuth, private router: Router) {}
 
