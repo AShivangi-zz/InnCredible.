@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
+import { AngularFireAuth } from "angularfire2/auth";
 
 @Injectable()
 
@@ -9,8 +10,8 @@ export class UserProfileService {
     private firstname: string;
     private lastname : string;
     private rewardpoints: number;
-    private email: string;
-    private phototUrl: any;
+    public email: string;
+    public phototURL: string;
     private uid: string;
     private streetAddress: string;
     private city: string;
@@ -21,21 +22,26 @@ export class UserProfileService {
     isRedeem: boolean;
     buttonDisabled: boolean = false;
 
-    constructor() {
+    constructor(public afAuth: AngularFireAuth) {
+        //afAuth used in profile component to upload picture
+    }
+
+    async getUserInfo() {
         this.uid = firebase.auth().currentUser.uid;
-        firebase.database().ref('/users/' + this.uid).once('value')
+        await firebase.database().ref('/users/' + this.uid).once('value')
             .then((snapshot) => {// ** My only change ** or use snapshot
                 this.firstname = snapshot.child('firstname').val();
                 this.lastname = snapshot.child('lastname').val();
                 this.rewardpoints = snapshot.child('rewardPoints').val();
                 console.log(this.rewardpoints);
                 this.email = snapshot.child('email').val();
-                this.phototUrl = snapshot.child('photoURL').val();
+                this.phototURL = snapshot.child('photoURL').val();
                 this.streetAddress = snapshot.child('streetAddress').val();
                 this.city = snapshot.child('city').val();
                 this.state = snapshot.child('state').val();
                 this.country = snapshot.child('country').val();
                 this.zipcode = snapshot.child('zipcode').val();
+                return;
         });
     }
 
@@ -60,7 +66,7 @@ export class UserProfileService {
     }
 
     public getPhotoURL() {
-        return this.phototUrl;
+        return this.phototURL;
     }
     public getStreetAddress() {
       return this.streetAddress;
@@ -97,5 +103,46 @@ export class UserProfileService {
       ref.update(reward);
       return reward;
     }
+
+    updateName(fName: string, lName: string) {
+        if(fName.length > 0 && lName.length > 0) {
+            const ref = firebase.database().ref();
+            const user = {};
+            this.firstname = fName;
+            this.lastname = lName;
+            user['/users/' + this.uid + '/firstname'] = fName;
+            user['/users/' + this.uid + '/lastname'] = lName;
+            ref.update(user);
+        }
+
+
+    }
+
+    changeEmail(Email: string) {
+        if(Email.length > 0 ) {
+            const ref = firebase.database().ref();
+            const user = {};
+            this.email = Email;
+            user['/users/' + this.uid + '/email'] = this.email;
+            ref.update(user);
+
+            firebase.auth().currentUser.updateEmail(Email)
+            .then(function() {
+                console.log('Email changed');
+            });
+        }
+    }
+
+    changePassword(password: string, re_pass: string) {
+        if(password.length > 0 && re_pass.length > 0 && password === re_pass) {
+            firebase.auth().currentUser.updatePassword(password)
+            .then(function() {
+                console.log("Password changed");
+            });
+        }
+        else {
+            console.log("Passwords don't match");
+        }
+    } 
 
 }

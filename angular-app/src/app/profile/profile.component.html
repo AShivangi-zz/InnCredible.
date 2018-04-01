@@ -8,7 +8,8 @@
         <!-- http://lorempixel.com/850/280/people/9/ -->
       </div>
       <div class="useravatar">
-        <img alt="" src="http://lorempixel.com/100/100/people/9/">
+        <img *ngIf="photoURL != null" id="user-pic" alt="User Picture" src="{{userProfile.photoURL}}">
+        <img *ngIf="photoURL == null" id="user-pic" alt="User Picture" src="../assets/images/default.png">
       </div>
       <div class="card-info"> <span class="card-title">{{userProfileService.getFullName()}}</span>
   
@@ -69,92 +70,52 @@
         </div>
         <div class="tab-pane fade in" id="tab6">
 
-
-
-            <form class="form-horizontal">
-                <fieldset>
+                <!-- Profile: User Picture -->
+                <div class="profile-tab">
+                <div class ="profile-pic">
+                  <div class='icon-wrapper'>
+                    <img *ngIf="userProfileService.photoURL != null" class="user-photo" id="profile-img" alt="User Picture"  src="{{userProfileService.photoURL}}"/>
+                    <img *ngIf="userProfileService.photoURL == null" class="user-photo" id="profile-img"  alt="User Picture"  src="../assets/images/default.png"/>
+                  </div> 
+                  <button id="change-pic" class="alter-pic" *ngIf="changePic == false" (click)="changePic=true;">Change Picture <span class="glyphicon glyphicon-pencil"></span></button>
+                  <input id="input-pic" class="alter-pic" *ngIf="changePic == true" type="file" (change) = "uploadPic($event);"/>
+                </div>
+            
+                <!-- Profile: Name field -->
+                <div  class="form-group">
+                  <label for="name">Name:</label>
+                  <span *ngIf="!newName" class ='user-info' style="border: none" >{{userProfileService.getFullName()}}</span>
+                  <span *ngIf="!newName" id = "edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
                 
-                
-                <!-- Text input-->
+                  <input *ngIf="newName" type="text" class="user-info" placeholder="First Name" onfocus="this.value=''" [(ngModel)]="fName" required>
+                  <input *ngIf="newName" type="text" class="user-info" placeholder="Last Name" onfocus="this.value=''" [(ngModel)]="lName" required>
+                  <button *ngIf="newName" type="submit" id= "save" class="alter-info" (click)="userProfileService.updateName(fName, lName); newName = false">Save</button>                
+                </div>    
+
+                <!-- Profile: Email -->
                 <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Email</label>  
-                  <div class="col-md-4">
-                  <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text">
-                  <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text"> 
-                  </div>
+                  <label for="name">Email:</label>
+                  <span *ngIf="newEmail == false" style="border: none" >{{userProfileService.email}}</span>
+                  <input *ngIf="newEmail == true" type="Email" id="user-info" placeholder="Enter new email" onfocus="this.value=''" [(ngModel)]="Email" (keydown.enter)="userProfileService.changeEmail(Email); newEmail = false;">
+                  <span *ngIf="newEmail == false" id = "edit" (click)="newEmail=true;" class="glyphicon glyphicon-pencil"></span>
+                  <button *ngIf="newEmail == true" id= "save" class="alter-info" (click)="userServiceProfile.changeEmail(Email); newEmail = true;">Save</button>
                 </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Street Address</label>  
-                    <div class="col-md-4">
-                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getStreetAddress()}}" class="form-control input-md" required="" type="text">
-                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getStreetAddress()}}" class="form-control input-md" required="" type="text">
-                      
-                    </div>
-                  </div>
+                <!--Profile: Change Password-->
+                <button id="change-pass" class="alter-pass" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
                 
-                  <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">City</label>  
-                    <div class="col-md-4">
-                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getCity()}}" class="form-control input-md" required="" type="text">
-                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getCity()}}" class="form-control input-md" required="" type="text">
-                      
-                    </div>
+                <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
+                  <div *ngIf="newPassword" id="changePass"  class="form-group">
+                    <label for="name">New Password:</label>
+                    <input type="Password" class="user-info" id="pass1" placeholder="Enter new password" value='' onfocus="this.value=''" [(ngModel)]="password"><br>
+                    <label for="name">Re-enter Password:</label>
+                    <input type="Password" class="user-info" id='pass2' placeholder="Re-enter new password" value='' onfocus="this.value=''" [(ngModel)]="repass"><br>
+                    <button class="alter-info" style="display: inline-block; margin-left: 30%; margin-right: 5px; margin-bottom: 10px;" (click)="newPassword = false;">Cancel</button>
+                    <button class="alter-info" (click)= 'userProfileService.changePassword(password, repass); newPassword = false;'>Save</button>
                   </div>
-                
-                  <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">State</label>  
-                    <div class="col-md-4">
-                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getState()}}" class="form-control input-md" required="" type="text">
-                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getState()}}" class="form-control input-md" required="" type="text">
-                      
-                    </div>
-                  </div>
-
-                  <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Country</label>  
-                    <div class="col-md-4">
-                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getCountry()}}" class="form-control input-md" required="" type="text">
-                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getCountry()}}" class="form-control input-md" required="" type="text">
-                      
-                    </div>
-                  </div>
-
-                  <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Zipcode</label>  
-                    <div class="col-md-4">
-                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getZipcode()}}" class="form-control input-md" required="" type="text">
-                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getZipcode()}}" class="form-control input-md" required="" type="text">
-                      
-                    </div>
-                  </div>
-                
-                <!-- Button (Double) -->
-                <div class="form-group">
-                  <label class="col-md-4 control-label" for="btnCancel"></label>
-                  <div class="col-md-8">
-                      <button class="btn btn-primary"
-                      *ngIf="!buttonDisabled"
-                      (click)="buttonDisabled = true">
-                      Edit
-                      </button>
-                      
-                      <!-- enable the button -->
-                      <button class="btn btn-success"
-                      *ngIf="buttonDisabled"
-                      (click)="buttonDisabled = false">
-                      Save
-                      </button>
-                  </div>
-                </div>
-                
-                </fieldset>
-                </form>
+                <!--</form>-->
+              </div>
+              </div>
   
 <!-- Edit/Save buttons -->
 

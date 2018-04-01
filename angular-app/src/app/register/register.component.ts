@@ -66,8 +66,11 @@ error: any;
     if(this.password.value === this.confirm_password.value) {
       var err = this.auth.emailSignUp(this.email.value, this.password.value, this.firstname.value, this.lastname.value)
       if(err) {
-        this.error = 'The email already exists';
+        this.error = err;
       }
+
+      window.location.reload();
+
     }
     else {
       this.error = 'Passwords do not match';
