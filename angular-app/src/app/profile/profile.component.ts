@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
         var hotel = new Hotel();
         var booking = new Booking();
 
-        console.log("Hotel iD:" + this.reservations[num].hotelID);
+        console.log('Hotel iD:' + this.reservations[num].hotelID);
         const id_ref =  firebase.database().ref('/hotel_id');
         var index;
         await id_ref.once('value').then((snapshot) => {

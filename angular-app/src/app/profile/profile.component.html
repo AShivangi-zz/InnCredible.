@@ -64,27 +64,28 @@
 
 
         <div class='container12' *ngFor='let res of bookings'>
-          <section class='left'>
-            <p> 23</p>
-            <p> feb</p>
-          </section>
 
-          <section class=right>
-            <h2> {{res.hotelName}}</h2> <!--hotel name-->
-            <p class=calendar> Check In Date: {{res.checkInDt}} </p> <!-- can be used date  and br can be removed-->
-            <p class=calendar> Check Out Date: {{res.checkOutDt}} </p>
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Cancel <i class="fa fa-sign-in" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">Edit <i class="fa fa-sign-in" aria-hidden="true"></i></button>
 
-            <p>Address: {{res.hotelLoc}}</p>
-            <p>Guests: {{res.guests}}</p>
-            <p>Rooms: {{res.rooms}}</p>
-            <p>Comments: {{res.comments}}</p>
-
-          </section>
+          <div class="flip">
+            <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+              <h1 class="text-shadow">Upcoming Reservation</h1>
+              {{res.hotelName}}
+            </div>
+            <div class="back">
+            <div class="back-align">
+              <font size="4" color ="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkInDt}}</font><br><br>
+              <font size="4" color ="grey" >Address: {{res.hotelLoc}}</font><br><br>
+              <font size="4" color ="grey">Guests: {{res.guests}}</font><br><br>
+              <font size="4" color ="grey">Rooms: {{res.rooms}}</font><br><br>
+              <font size="4" color ="grey">Comments: {{res.comments}}</font>
+            </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Cancel <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">Edit <i class="fa fa-sign-in" aria-hidden="true"></i></button>
 
         </div><br> <br> <br> <br> <br>
-
+      </div>
         <div class="container">
           <!-- Trigger the modal with a button -->
 
@@ -95,17 +96,16 @@
                 <div class="modal-header modal-custom-header">
                   <button type="button" class="close" data-dismiss="modal">×</button>
                   <h4 class="modal-title">CancelBooking</h4>
+          <form class="form-horizontal">
+            <fieldset>
 
-            <form class="form-horizontal">
-                <fieldset>
-                
-                
+
                 <!-- Text input-->
                 <div class="form-group">
-                  <label class="col-md-4 control-label" for="textinput">Email</label>  
+                  <label class="col-md-4 control-label" for="textinput">Email</label>
                   <div class="col-md-4">
                   <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text">
-                  <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text"> 
+                  <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text">
                   </div>
 
                 </div>
@@ -123,7 +123,7 @@
 
                 </div>
 
-              </div>
+            </fieldset></form></div>
             </div>
           </div>
           <!--Modal for Edit-->
@@ -185,54 +185,54 @@
             </div>
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Street Address</label>  
+                    <label class="col-md-4 control-label" for="textinput">Street Address</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getStreetAddress()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getStreetAddress()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
-                
+
                   <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">City</label>  
+                    <label class="col-md-4 control-label" for="textinput">City</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getCity()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getCity()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
-                
+
                   <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">State</label>  
+                    <label class="col-md-4 control-label" for="textinput">State</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getState()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getState()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
 
                   <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Country</label>  
+                    <label class="col-md-4 control-label" for="textinput">Country</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getCountry()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getCountry()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
 
                   <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Zipcode</label>  
+                    <label class="col-md-4 control-label" for="textinput">Zipcode</label>
                     <div class="col-md-4">
                     <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getZipcode()}}" class="form-control input-md" required="" type="text">
                     <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getZipcode()}}" class="form-control input-md" required="" type="text">
-                      
+
                     </div>
                   </div>
-                
+
                 <!-- Button (Double) -->
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="btnCancel"></label>
@@ -242,7 +242,7 @@
                       (click)="buttonDisabled = true">
                       Edit
                       </button>
-                      
+
                       <!-- enable the button -->
                       <button class="btn btn-success"
                       *ngIf="buttonDisabled"
@@ -251,8 +251,9 @@
                       </button>
                   </div>
                 </div>
-                
-                </fieldset>
-                </form>
+
+          </fieldset>
+        </form>
 
 
+</div></div></div></div>
