@@ -8,6 +8,4 @@ export class Booking {
     checkInDt:  Date;
     checkOutDt: Date;
     comments:   string;
-    totalCost:  number;
-
 }

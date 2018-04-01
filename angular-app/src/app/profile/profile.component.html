@@ -70,15 +70,14 @@
 
           <section class=right>
             <h2> {{res.hotelName}}</h2> <!--hotel name-->
-            <p class=calendar> Check In Date:{{res.checkInDt}} </p> <!-- can be used date  and br can be removed-->
-            <p class=calendar> Check Out Date:{{res.checkOutDt}} </p>
+            <p class=calendar> Check In Date: {{res.checkInDt}} </p> <!-- can be used date  and br can be removed-->
+            <p class=calendar> Check Out Date: {{res.checkOutDt}} </p>
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Cancel <i class="fa fa-sign-in" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">Edit <i class="fa fa-sign-in" aria-hidden="true"></i></button>
 
             <p>Address: {{res.hotelLoc}}</p>
             <p>Guests: {{res.guests}}</p>
             <p>Rooms: {{res.rooms}}</p>
-            <p>Total Cost: {{res.totalCost}}</p>
             <p>Comments: {{res.comments}}</p>
 
           </section>

@@ -57,7 +57,6 @@ export class ProfileComponent implements OnInit {
         booking.comments = this.reservations[num].comments;
         booking.guests = this.reservations[num].guests;
         booking.rooms = this.reservations[num].rooms;
-        booking.totalCost = this.reservations[num].totalCost;
 
         this.bookings.push(booking);
       }
