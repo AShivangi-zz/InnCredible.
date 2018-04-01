@@ -79,8 +79,8 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="textinput">Email</label>  
                   <div class="col-md-4">
-                  <input id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text">
-                    
+                  <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text">
+                  <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md" required="" type="text"> 
                   </div>
                 </div>
 
@@ -88,7 +88,8 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Street Address</label>  
                     <div class="col-md-4">
-                    <input id="textinput" name="textinput" value="{{userProfileService.getStreetAddress()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getStreetAddress()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getStreetAddress()}}" class="form-control input-md" required="" type="text">
                       
                     </div>
                   </div>
@@ -97,7 +98,8 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">City</label>  
                     <div class="col-md-4">
-                    <input id="textinput" name="textinput" value="{{userProfileService.getCity()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getCity()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getCity()}}" class="form-control input-md" required="" type="text">
                       
                     </div>
                   </div>
@@ -106,7 +108,8 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">State</label>  
                     <div class="col-md-4">
-                    <input id="textinput" name="textinput" value="{{userProfileService.getState()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getState()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getState()}}" class="form-control input-md" required="" type="text">
                       
                     </div>
                   </div>
@@ -115,7 +118,8 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Country</label>  
                     <div class="col-md-4">
-                    <input id="textinput" name="textinput" value="{{userProfileService.getCountry()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getCountry()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getCountry()}}" class="form-control input-md" required="" type="text">
                       
                     </div>
                   </div>
@@ -124,7 +128,8 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Zipcode</label>  
                     <div class="col-md-4">
-                    <input id="textinput" name="textinput" value="{{userProfileService.getZipcode()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getZipcode()}}" class="form-control input-md" required="" type="text">
+                    <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getZipcode()}}" class="form-control input-md" required="" type="text">
                       
                     </div>
                   </div>
@@ -133,12 +138,24 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="btnCancel"></label>
                   <div class="col-md-8">
-                    <button id="btnCancel" name="btnCancel" class="btn btn-primary">Edit</button>
-                    <button id="btnSave" name="btnSave" class="btn btn-success">Save</button>
+                      <button class="btn btn-primary"
+                      *ngIf="!buttonDisabled"
+                      (click)="buttonDisabled = true">
+                      Edit
+                      </button>
+                      
+                      <!-- enable the button -->
+                      <button class="btn btn-success"
+                      *ngIf="buttonDisabled"
+                      (click)="buttonDisabled = false">
+                      Save
+                      </button>
                   </div>
                 </div>
                 
                 </fieldset>
                 </form>
   
+<!-- Edit/Save buttons -->
+
 

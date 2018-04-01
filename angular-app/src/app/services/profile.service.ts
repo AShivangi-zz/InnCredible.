@@ -19,6 +19,7 @@ export class UserProfileService {
     private zipcode: string;
 
     isRedeem: boolean;
+    buttonDisabled: boolean = false;
 
     constructor() {
         this.uid = firebase.auth().currentUser.uid;
