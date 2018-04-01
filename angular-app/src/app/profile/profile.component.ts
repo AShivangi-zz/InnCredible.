@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit {
   reservations: Reservation[];
   bookings: Booking[] = [];
 
+  public buttonDisabled: boolean;
+
   constructor(private userProfileService: UserProfileService,
   private hotelInfo: HotelInfo) {
 
