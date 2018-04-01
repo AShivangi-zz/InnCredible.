@@ -133,12 +133,24 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="btnCancel"></label>
                   <div class="col-md-8">
-                    <button id="btnCancel" name="btnCancel" class="btn btn-primary">Edit</button>
-                    <button id="btnSave" name="btnSave" class="btn btn-success">Save</button>
+                      <button class="btn btn-primary"
+                      *ngIf="!buttonDisabled"
+                      (click)="buttonDisabled = true">
+                      Edit
+                      </button>
+                      
+                      <!-- enable the button -->
+                      <button class="btn btn-success"
+                      *ngIf="buttonDisabled"
+                      (click)="buttonDisabled = false">
+                      Save
+                      </button>
                   </div>
                 </div>
                 
                 </fieldset>
                 </form>
   
+<!-- Edit/Save buttons -->
+
 
