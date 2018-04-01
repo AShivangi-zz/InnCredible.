@@ -26,11 +26,12 @@
   height: 130px;
 }
 .card-background img {
+  /*
   -webkit-filter: blur(25px);
   -moz-filter: blur(25px);
   -o-filter: blur(25px);
   -ms-filter: blur(25px);
-  filter: blur(25px);
+  filter: blur(25px);*/
   margin-left: -100px;
   margin-top: -200px;
   min-width: 130%;
@@ -61,7 +62,7 @@
   padding:0 5px;
   font-size: 20px;
   line-height: 1;
-  color: #262626;
+  color: beige;
   background-color: rgba(255, 255, 255, 0.1);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;

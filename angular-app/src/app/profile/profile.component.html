@@ -4,7 +4,7 @@
 <div class="col-lg-6 col-sm-6" style = "width: 80%; margin: 3% 10%" >
     <div class="card hovercard">
       <div class="card-background">
-        <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
+        <img class="card-bkimg" alt="" src="https://i.pinimg.com/originals/77/55/dc/7755dcc9a749c80fba1c71c8cb05a269.gif">
         <!-- http://lorempixel.com/850/280/people/9/ -->
       </div>
       <div class="useravatar">
@@ -79,8 +79,8 @@
                   <span *ngIf="!newName" class ='user-info' style="border: none" >{{userProfileService.getFullName()}}</span>
                   <span *ngIf="!newName" id = "edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
                 
-                  <input *ngIf="newName" type="text" class="user-info" placeholder="First Name" onfocus="this.value=''" [(ngModel)]="fName" required>
-                  <input *ngIf="newName" type="text" class="user-info" placeholder="Last Name" onfocus="this.value=''" [(ngModel)]="lName" required>
+                  <input *ngIf="newName" type="text" class="user-info" placeholder="First Name" onfocus="this.value=''" [(ngModel)]="fName" required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
+                  <input *ngIf="newName" type="text" class="user-info" placeholder="Last Name" onfocus="this.value=''" [(ngModel)]="lName" required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
                   <button *ngIf="newName" type="submit" id= "save" class="alter-info" (click)="userProfileService.updateName(fName, lName); newName = false">Save</button>                
                 </div>    
 
@@ -116,9 +116,9 @@
                 <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
                   <div *ngIf="newPassword" id="changePass"  class="form-group">
                     <label for="name">New Password:</label>
-                    <input type="Password" class="user-info" id="pass1" placeholder="Enter new password" value='' onfocus="this.value=''" [(ngModel)]="password"><br>
+                    <input type="Password" class="user-info" id="pass1" placeholder="Enter new password" value='' onfocus="this.value=''" [(ngModel)]="password" required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;"><br>
                     <label for="name">Re-enter Password:</label>
-                    <input type="Password" class="user-info" id='pass2' placeholder="Re-enter new password" value='' onfocus="this.value=''" [(ngModel)]="repass"><br>
+                    <input type="Password" class="user-info" id='pass2' placeholder="Re-enter new password" value='' onfocus="this.value=''" [(ngModel)]="repass" required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;"><br>
                     <button class="alter-info" style="display: inline-block; margin-left: 30%; margin-right: 5px; margin-bottom: 10px;" (click)="newPassword = false;">Cancel</button>
                     <button class="alter-info" (click)= 'userProfileService.changePassword(password, repass); newPassword = false;'>Save</button>
                   </div>
