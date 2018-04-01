@@ -18,6 +18,10 @@ export class UserProfileService {
     private state: string;
     private country: string;
     private zipcode: string;
+    public picIndex: number;
+
+    hasPicture: boolean;
+
 
     isRedeem: boolean;
     buttonDisabled: boolean = false;
@@ -41,6 +45,11 @@ export class UserProfileService {
                 this.state = snapshot.child('state').val();
                 this.country = snapshot.child('country').val();
                 this.zipcode = snapshot.child('zipcode').val();
+
+                if(snapshot.child('pictureIndex').exists()) {
+                    this.picIndex = snapshot.child('pictureIndex').val();
+                    this.hasPicture = true;
+                } else {this.hasPicture = false;}
                 return;
         });
     }
@@ -105,7 +114,7 @@ export class UserProfileService {
     }
 
     updateName(fName: string, lName: string) {
-        if(fName.length > 0 && lName.length > 0) {
+        if(fName != null && lName != null && fName.length > 0 && lName.length >0) {
             const ref = firebase.database().ref();
             const user = {};
             this.firstname = fName;
@@ -118,8 +127,12 @@ export class UserProfileService {
 
     }
 
+    setHasPic(bool: boolean) {
+        this.hasPicture = bool;
+    }
+
     changeEmail(Email: string) {
-        if(Email.length > 0 ) {
+        if(Email != null && Email.length > 0 ) {
             const ref = firebase.database().ref();
             const user = {};
             this.email = Email;
@@ -134,7 +147,7 @@ export class UserProfileService {
     }
 
     changePassword(password: string, re_pass: string) {
-        if(password.length > 0 && re_pass.length > 0 && password === re_pass) {
+        if(password != null && re_pass != null && password.length > 0 && re_pass.length > 0 && password === re_pass) {
             firebase.auth().currentUser.updatePassword(password)
             .then(function() {
                 console.log("Password changed");
@@ -143,6 +156,17 @@ export class UserProfileService {
         else {
             console.log("Passwords don't match");
         }
-    } 
+    }
+    
+    setPicIndex(index: number) {
+        const ref = firebase.database().ref();
+        const user = {};
+        this.picIndex = index;
+        this.hasPicture = true;
+        console.log(index);
+        user['/users/' + this.uid + '/pictureIndex'] = this.picIndex;
+        ref.update(user);
+
+    }
 
 }

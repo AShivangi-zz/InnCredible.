@@ -8,8 +8,9 @@
         <!-- http://lorempixel.com/850/280/people/9/ -->
       </div>
       <div class="useravatar">
-        <img *ngIf="photoURL != null" id="user-pic" alt="User Picture" src="{{userProfile.photoURL}}">
-        <img *ngIf="photoURL == null" id="user-pic" alt="User Picture" src="../assets/images/default.png">
+        <!--<img *ngIf="userProfileService.hasPicture != null" id="user-pic" alt="User Picture" src="{{pictures[userProfileService.picIndex]}}">-->
+        <img *ngIf="!userProfileService.hasPicture" class="user-pic" alt="User Picture" src="../assets/images/default.png">
+        <img *ngIf="userProfileService.hasPicture" id="upic" class="user-pic" alt="User Picture" src="{{getAvatars()[userProfileService.picIndex]}}" style="background: grey">
       </div>
       <div class="card-info"> <span class="card-title">{{userProfileService.getFullName()}}</span>
   
@@ -70,16 +71,7 @@
         </div>
         <div class="tab-pane fade in" id="tab6">
 
-                <!-- Profile: User Picture -->
                 <div class="profile-tab">
-                <div class ="profile-pic">
-                  <div class='icon-wrapper'>
-                    <img *ngIf="userProfileService.photoURL != null" class="user-photo" id="profile-img" alt="User Picture"  src="{{userProfileService.photoURL}}"/>
-                    <img *ngIf="userProfileService.photoURL == null" class="user-photo" id="profile-img"  alt="User Picture"  src="../assets/images/default.png"/>
-                  </div> 
-                  <button id="change-pic" class="alter-pic" *ngIf="changePic == false" (click)="changePic=true;">Change Picture <span class="glyphicon glyphicon-pencil"></span></button>
-                  <input id="input-pic" class="alter-pic" *ngIf="changePic == true" type="file" (change) = "uploadPic($event);"/>
-                </div>
             
                 <!-- Profile: Name field -->
                 <div  class="form-group">
@@ -96,13 +88,30 @@
                 <div class="form-group">
                   <label for="name">Email:</label>
                   <span *ngIf="newEmail == false" style="border: none" >{{userProfileService.email}}</span>
-                  <input *ngIf="newEmail == true" type="Email" id="user-info" placeholder="Enter new email" onfocus="this.value=''" [(ngModel)]="Email" (keydown.enter)="userProfileService.changeEmail(Email); newEmail = false;">
+                  <input *ngIf="newEmail == true" type="Email" class="user-info" placeholder="Enter new email" onfocus="this.value=''" [(ngModel)]="Email" (keydown.enter)="userProfileService.changeEmail(Email); newEmail = false;">
                   <span *ngIf="newEmail == false" id = "edit" (click)="newEmail=true;" class="glyphicon glyphicon-pencil"></span>
-                  <button *ngIf="newEmail == true" id= "save" class="alter-info" (click)="userServiceProfile.changeEmail(Email); newEmail = true;">Save</button>
+                  <button *ngIf="newEmail == true" id= "save" class="alter-info" (click)="userProfileService.changeEmail(Email); newEmail = false;">Save</button>
                 </div>
 
+                <!-- Profile: User Picture -->
+                <div class ="profile-pic">
+                    <button id="change-pic" class="alter-pass-pic" *ngIf="!changePic" (click)="changePic=true;">Change Avatar</button>
+  
+                    <!-- Picture upload -->
+                    <!--<input id="input-pic" class="alter-pic" *ngIf="changePic == true" type="file" (change) = "uploadPic($event);"/>-->
+  
+                    <div class="avatars-list" *ngIf="changePic" (click)="changePic = false">
+                      <img class="pic-choice" src='../assets/user_avatars/man_1.png' (click)="userProfileService.setPicIndex(0)"> 
+                      <img class="pic-choice" src='../assets/user_avatars/man_2.png' (click)="userProfileService.setPicIndex(1)">
+                      <img class="pic-choice" src='../assets/user_avatars/man_3.png' (click)="userProfileService.setPicIndex(2)"><br>
+                      <img class="pic-choice" src='../assets/user_avatars/woman_1.png' (click)="userProfileService.setPicIndex(3)">
+                      <img class="pic-choice" src='../assets/user_avatars/woman_2.png' (click)="userProfileService.setPicIndex(4)">
+                      <img class="pic-choice" src='../assets/user_avatars/woman_3.png' (click)="userProfileService.setPicIndex(5)">
+                    </div>
+                  </div>
+
                 <!--Profile: Change Password-->
-                <button id="change-pass" class="alter-pass" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
+                <button id="change-pass" class="alter-pass-pic" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
                 
                 <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
                   <div *ngIf="newPassword" id="changePass"  class="form-group">

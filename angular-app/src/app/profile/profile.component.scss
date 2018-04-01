@@ -166,16 +166,38 @@ label {
   margin-right: auto;
 }
 
-.alter-pass {
+.alter-pass-pic {
   background-color: Transparent;
   background-repeat:no-repeat;
   border: none;
   cursor:pointer;
   overflow: hidden;
   outline:none;
+  color: deepskyblue;
+  margin-bottom: 15px;
+}
+
+.alter-pass-pic:hover {
+  color: gray;
+}
+
+.pic-choice {
+  padding: 5px;
+  margin: 0px 5px 0px 5px;
+}
+
+.pic-choice:hover{
+  opacity: 75%;
+  border: 1px solid deepskyblue;
+}
+
+.avatars-list {
+  width: 70%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  color: deepskyblue;
 }
 
+.glyphicon-pencil:hover {
+  color: deepskyblue;
+}
