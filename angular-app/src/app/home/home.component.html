@@ -32,23 +32,22 @@
                     <a href="#">Search for Hotels</a>
                   </h3>
                   <form #searchformdata="ngForm" (ngSubmit)="onSubmit(searchformdata)">
-                    <div id="search-box">
-                      <input type="text" class="form-control" id="cityname" required [(ngModel)]="cityname" name="cityname" placeholder="Name of city..">
-                    </div>
-                    <p></p>
-                    <p class="fh5co-property-specification">
-                      <label for="checkindate">Date Of Check In</label>
-                      <input type="date" class="form-control" id="checkindate" [(ngModel)]="checkindate" name="checkindate">
-                      <label for="checkoutdate">Date Of Check Out</label>
-                      <input type="date" class="form-control" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate">
-                    </p>
 
 
-                    <p>
-                      <button type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Book Now!
-                        <i class="icon-arrow-right"></i>
-                      </button>
-                    </p>
+                  <div id="search-box">
+                    <input type="text" class="form-control" id="cityname" required [(ngModel)]="cityname" name="cityname" placeholder="Name of city..">
+                  </div>
+                  <p></p>
+                  <p class="fh5co-property-specification">
+                    <label for="checkindate">Date Of Check In</label>
+                    <input type="date" class="form-control" id="checkindate" [(ngModel)]="checkindate" name="checkindate">
+                    <label for="checkoutdate">Date Of Check Out</label>
+                    <input type="date" class="form-control" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate">
+                  </p>
+
+
+                    <p><button type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Book Now!<i class="icon-arrow-right"></i></button></p>
+
                   </form>
 
                 </div>

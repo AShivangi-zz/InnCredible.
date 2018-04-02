@@ -202,77 +202,17 @@
       <div class="tab-pane fade in" id="tab6">
         <div class="profile-tab">
 
-<<<<<<< Updated upstream
-                <!-- Profile: User Picture -->
-                <div class ="profile-pic">
-  
-                    <div class="avatars-list" *ngIf="changePic" (click)="changePic = false">
-                      <img class="pic-choice" src='../assets/user_avatars/man_1.png' (click)="userProfileService.setPicIndex(0)"> 
-                      <img class="pic-choice" src='../assets/user_avatars/man_2.png' (click)="userProfileService.setPicIndex(1)">
-                      <img class="pic-choice" src='../assets/user_avatars/man_3.png' (click)="userProfileService.setPicIndex(2)"><br>
-                      <img class="pic-choice" src='../assets/user_avatars/woman_1.png' (click)="userProfileService.setPicIndex(3)">
-                      <img class="pic-choice" src='../assets/user_avatars/woman_2.png' (click)="userProfileService.setPicIndex(4)">
-                      <img class="pic-choice" src='../assets/user_avatars/woman_3.png' (click)="userProfileService.setPicIndex(5)">
-                    </div>
-                  </div>
-
-                <!--Profile: Change Password-->
-
-                <button id="change-pass" class="alter-pass-pic" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button><br>
-                <button id="change-pic" class="alter-pass-pic" *ngIf="!changePic" (click)="changePic=true;">Change Avatar</button><br>
-                 <!-- DO NOT DELETE THIS CODE     
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#avatar">Change Avatar</button>  -->
-                
-                
-                <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
-                  <div *ngIf="newPassword" id="changePass"  class="form-group">
-                    <label for="name">New Password:</label>
-                    <input type="Password" class="user-info" id="pass1" placeholder="Enter new password" value='' onfocus="this.value=''" [(ngModel)]="password" required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;"><br>
-                    <label for="name">Re-enter Password:</label>
-                    <input type="Password" class="user-info" id='pass2' placeholder="Re-enter new password" value='' onfocus="this.value=''" [(ngModel)]="repass" required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;"><br>
-                    <button class="alter-info" style="display: inline-block; margin-left: 30%; margin-right: 5px; margin-bottom: 10px;" (click)="newPassword = false;">Cancel</button>
-                    <button class="alter-info" (click)= 'userProfileService.changePassword(password, repass); newPassword = false;'>Save</button>
-                  </div>
-                <!--</form>-->
-              </div>
-              </div>
-=======
           <!-- Profile: Name field -->
           <div>
             <label for="name">Name:</label>
             <span *ngIf="!newName" class='user-info' style="border: none">{{userProfileService.getFullName()}}</span>
             <span *ngIf="!newName" id="edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
->>>>>>> Stashed changes
 
             <input *ngIf="newName" type="text" class="user-info" placeholder="First Name" onfocus="this.value=''" [(ngModel)]="fName"
               required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
             <input *ngIf="newName" type="text" class="user-info" placeholder="Last Name" onfocus="this.value=''" [(ngModel)]="lName"
               required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
 
-<<<<<<< Updated upstream
-           
-                
- <!-- DO NOT DELETE THIS CODE -->          
-
-                    <!-- Modal 
-  <div class="modal" id="avatar" role="dialog">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header modal-custom-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4 class="modal-title" style="color: #fff" >Choose an Avatar</h4>
-        </div>
-        <div class="modal-body ">
-             <div (click)="changePic = false"></div>
-
-              <img class="pic-choice" src='../assets/user_avatars/man_1.png' (click)="userProfileService.setPicIndex(0)" data-dismiss="modal"> 
-              <img class="pic-choice" src='../assets/user_avatars/man_2.png' (click)="userProfileService.setPicIndex(1)"data-dismiss="modal">
-              <img class="pic-choice" src='../assets/user_avatars/man_3.png' (click)="userProfileService.setPicIndex(2)" data-dismiss="modal"><div class="col-sm-3"></div><br>
-              <img class="pic-choice" src='../assets/user_avatars/woman_1.png' (click)="userProfileService.setPicIndex(3)" data-dismiss="modal" >
-              <img class="pic-choice" src='../assets/user_avatars/woman_2.png' (click)="userProfileService.setPicIndex(4)" data-dismiss="modal">
-              <img class="pic-choice" src='../assets/user_avatars/woman_3.png' (click)="userProfileService.setPicIndex(5)" data-dismiss="modal" ><div class="col-sm-3"></div>
-            
-=======
             <!--<div class='save-cancel' *ngIf="newName" style="display: block; margin-left: 40%;">-->
               <button  *ngIf="newName" style="display: inline-block; margin-left: 30%; margin-right: 5px; margin-bottom: 10px;" id="save" class="alter-info" (click)="userProfileService.updateName(fName, lName); newName = false">Save</button>
               <button *ngIf="newName" class="alter-info" (click)="newName = false;">Cancel</button>
@@ -303,7 +243,6 @@
               <img class="pic-choice" src='../assets/user_avatars/woman_2.png' (click)="userProfileService.setPicIndex(4)">
               <img class="pic-choice" src='../assets/user_avatars/woman_3.png' (click)="userProfileService.setPicIndex(5)">
             </div>
->>>>>>> Stashed changes
           </div>
 
           <!--Profile: Change Password-->
@@ -362,13 +301,7 @@
 </div>
 end modal -->
 
-      <!-- DO NOT DELETE THIS CODE -->
     </div>
   </div>
-<<<<<<< Updated upstream
-  end modal -->
-
- <!-- DO NOT DELETE THIS CODE -->     
-=======
 </div>
->>>>>>> Stashed changes
+
