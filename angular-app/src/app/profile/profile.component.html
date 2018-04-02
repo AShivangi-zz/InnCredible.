@@ -1,4 +1,4 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <div class="col-lg-6 col-sm-6" style = "width: 80%; margin: 3% 10%" >
@@ -74,31 +74,30 @@
                 <div class="profile-tab">
             
                 <!-- Profile: Name field -->
-                <div  class="form-group">
+                <div >
                   <label for="name">Name:</label>
                   <span *ngIf="!newName" class ='user-info' style="border: none" >{{userProfileService.getFullName()}}</span>
                   <span *ngIf="!newName" id = "edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
                 
                   <input *ngIf="newName" type="text" class="user-info" placeholder="First Name" onfocus="this.value=''" [(ngModel)]="fName" required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
                   <input *ngIf="newName" type="text" class="user-info" placeholder="Last Name" onfocus="this.value=''" [(ngModel)]="lName" required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
-                  <button *ngIf="newName" type="submit" id= "save" class="alter-info" (click)="userProfileService.updateName(fName, lName); newName = false">Save</button>                
-                </div>    
+                
+                    <button *ngIf="newName" type="submit" id= "save" class="alter-info" (click)="userProfileService.updateName(fName, lName); newName = false">Save</button>
+                    <button *ngIf="newName" class="alter-info" (click)="newName = false;">Cancel</button>                
+                  </div>   
 
                 <!-- Profile: Email -->
-                <div class="form-group">
+                <div>
                   <label for="name">Email:</label>
                   <span *ngIf="newEmail == false" style="border: none" >{{userProfileService.email}}</span>
                   <input *ngIf="newEmail == true" type="Email" class="user-info" placeholder="Enter new email" onfocus="this.value=''" [(ngModel)]="Email" (keydown.enter)="userProfileService.changeEmail(Email); newEmail = false;">
                   <span *ngIf="newEmail == false" id = "edit" (click)="newEmail=true;" class="glyphicon glyphicon-pencil"></span>
                   <button *ngIf="newEmail == true" id= "save" class="alter-info" (click)="userProfileService.changeEmail(Email); newEmail = false;">Save</button>
+                  <button *ngIf="newEmail == true" class="alter-info" (click)="newEmail = false;">Cancel</button>
                 </div>
 
                 <!-- Profile: User Picture -->
                 <div class ="profile-pic">
-                    <button id="change-pic" class="alter-pass-pic" *ngIf="!changePic" (click)="changePic=true;">Change Avatar</button>
-  
-                    <!-- Picture upload -->
-                    <!--<input id="input-pic" class="alter-pic" *ngIf="changePic == true" type="file" (change) = "uploadPic($event);"/>-->
   
                     <div class="avatars-list" *ngIf="changePic" (click)="changePic = false">
                       <img class="pic-choice" src='../assets/user_avatars/man_1.png' (click)="userProfileService.setPicIndex(0)"> 
@@ -111,7 +110,11 @@
                   </div>
 
                 <!--Profile: Change Password-->
-                <button id="change-pass" class="alter-pass-pic" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
+
+                <button id="change-pass" class="alter-pass-pic" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button><br>
+                <button id="change-pic" class="alter-pass-pic" *ngIf="!changePic" (click)="changePic=true;">Change Avatar</button><br>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#avatar">Change Avatar</button>
+                
                 
                 <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
                   <div *ngIf="newPassword" id="changePass"  class="form-group">
@@ -125,7 +128,34 @@
                 <!--</form>-->
               </div>
               </div>
-  
-<!-- Edit/Save buttons -->
 
 
+           
+                
+           
+
+                    <!-- Modal -->
+  <div class="modal" id="avatar" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header modal-custom-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title" style="color: #fff" >Choose an Avatar</h4>
+        </div>
+        <div class="modal-body col-sm-2">
+             <div (click)="changePic = false">
+              <img class="pic-choice" src='../assets/user_avatars/man_1.png' (click)="userProfileService.setPicIndex(0)" data-dismiss="modal"> 
+              <img class="pic-choice" src='../assets/user_avatars/man_2.png' (click)="userProfileService.setPicIndex(1)"data-dismiss="modal">
+              <img class="pic-choice" src='../assets/user_avatars/man_3.png' (click)="userProfileService.setPicIndex(2)" data-dismiss="modal"><br>
+              <img class="pic-choice" src='../assets/user_avatars/woman_1.png' (click)="userProfileService.setPicIndex(3)" data-dismiss="modal" >
+              <img class="pic-choice" src='../assets/user_avatars/woman_2.png' (click)="userProfileService.setPicIndex(4)" data-dismiss="modal">
+              <img class="pic-choice" src='../assets/user_avatars/woman_3.png' (click)="userProfileService.setPicIndex(5)" data-dismiss="modal" >
+            
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- end modal -->
