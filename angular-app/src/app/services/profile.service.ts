@@ -1,33 +1,36 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from "angularfire2/auth";
+import { Reservation } from '../booking/shared/reservation.model';
+import { promise } from 'protractor';
 
 @Injectable()
 
 export class UserProfileService {
 
-    private authInfo;
-    private firstname: string;
-    private lastname : string;
-    private rewardpoints: number;
-    public email: string;
-    public phototURL: string;
-    private uid: string;
-    private streetAddress: string;
-    private city: string;
-    private state: string;
-    private country: string;
-    private zipcode: string;
-    public picIndex: number;
+    authInfo;
+    firstname: string;
+    lastname: string;
+    rewardpoints: number;
+    email: string;
+    phototURL: string;
+    uid: string;
+    streetAddress: string;
+    city: string;
+    state: string;
+    country: string;
+    zipcode: string;
 
-    hasPicture: boolean;
-
-
+    reservation: Reservation[] = [];
+    //private res: Reservation;
     isRedeem: boolean;
     buttonDisabled: boolean = false;
+    hasPicture: boolean;
+    picIndex: number;
 
-    constructor(public afAuth: AngularFireAuth) {
+    constructor(afAuth: AngularFireAuth) {
         //afAuth used in profile component to upload picture
+        this.getUserInfo();
     }
 
     async getUserInfo() {
@@ -37,7 +40,7 @@ export class UserProfileService {
                 this.firstname = snapshot.child('firstname').val();
                 this.lastname = snapshot.child('lastname').val();
                 this.rewardpoints = snapshot.child('rewardPoints').val();
-                console.log(this.rewardpoints);
+                //console.log(this.rewardpoints);
                 this.email = snapshot.child('email').val();
                 this.phototURL = snapshot.child('photoURL').val();
                 this.streetAddress = snapshot.child('streetAddress').val();
@@ -46,58 +49,81 @@ export class UserProfileService {
                 this.country = snapshot.child('country').val();
                 this.zipcode = snapshot.child('zipcode').val();
 
-                if(snapshot.child('pictureIndex').exists()) {
+                if (snapshot.child('pictureIndex').exists()) {
                     this.picIndex = snapshot.child('pictureIndex').val();
                     this.hasPicture = true;
-                } else {this.hasPicture = false;}
+                } else { this.hasPicture = false; }
                 return;
-        });
+            });
     }
 
-    public getFirstName() {
+    getReservations() {
+        var promise = firebase.database().ref('/users/' + this.uid + '/reservations/').once('value')
+            .then((snapshot) => {
+                const countRes = snapshot.numChildren();
+                //console.log(countRes);
+                for (var i = 0; i < countRes; i++) {
+                    var number = i.toString();
+                    let res = new Reservation();
+                    var snap = Object.keys(snapshot.val());
+                    var key = snap[i];
+                    res.checkInDt = snapshot.child(key + '/checkInDt').val();
+                    res.checkOutDt = snapshot.child(key + '/checkOutDt').val();
+                    res.comments = snapshot.child(key + '/comments').val();
+                    res.guests = snapshot.child(key + '/guests').val();
+                    res.hotelID = snapshot.child(key + '/hotelID').val();
+                    res.rooms = snapshot.child(key + '/rooms').val();
+                    this.reservation.push(res);
+                }
+            });
+        return promise;
+        // return this.reservation;
+    }
+
+    getFirstName() {
         return this.firstname;
     }
 
-    public getLastName() {
+    getLastName() {
         return this.lastname;
     }
 
-    public getFullName() {
+    getFullName() {
         return this.firstname + ' ' + this.lastname;
     }
 
-    public getRewardPoints() {
+    getRewardPoints() {
         return this.rewardpoints;
     }
 
-    public getUserEmail() {
+    getUserEmail() {
         return this.email;
     }
 
-    public getPhotoURL() {
+    getPhotoURL() {
         return this.phototURL;
     }
-    public getStreetAddress() {
-      return this.streetAddress;
+    getStreetAddress() {
+        return this.streetAddress;
     }
-    public getCity() {
-      return this.city;
+    getCity() {
+        return this.city;
     }
-    public getState() {
-      return this.state;
+    getState() {
+        return this.state;
     }
-    public getCountry() {
-      return this.country;
+    getCountry() {
+        return this.country;
     }
-    public getZipcode() {
-      return this.zipcode;
-    }
-
-    public reduceTotalBy(){
-        return this.rewardpoints/25;
+    getZipcode() {
+        return this.zipcode;
     }
 
-    public awardRewardPoints(total: number){
+    reduceTotalBy() {
+        return this.rewardpoints / 25;
+    }
+
+    awardRewardPoints(total: number) {
         const ref = firebase.database().ref();
         const reward = {};
         reward['/users/' + this.uid + '/rewardPoints'] = Math.floor(this.getRewardPoints() + total / 10);
@@ -105,16 +131,17 @@ export class UserProfileService {
         return reward;
     }
 
-    public deductReward() {
-      const ref = firebase.database().ref();
-      const reward = {};
-      reward['/users/' + this.uid + '/rewardPoints'] = 0;
-      ref.update(reward);
-      return reward;
+
+    deductReward() {
+        const ref = firebase.database().ref();
+        const reward = {};
+        reward['/users/' + this.uid + '/rewardPoints'] = 0;
+        ref.update(reward);
+        return reward;
     }
 
     updateName(fName: string, lName: string) {
-        if(fName != null && lName != null && fName.length > 0 && lName.length >0) {
+        if (fName != null && lName != null && fName.length > 0 && lName.length > 0) {
             const ref = firebase.database().ref();
             const user = {};
             this.firstname = fName;
@@ -123,8 +150,6 @@ export class UserProfileService {
             user['/users/' + this.uid + '/lastname'] = lName;
             ref.update(user);
         }
-
-
     }
 
     setHasPic(bool: boolean) {
@@ -132,7 +157,7 @@ export class UserProfileService {
     }
 
     changeEmail(Email: string) {
-        if(Email != null && Email.length > 0 ) {
+        if (Email != null && Email.length > 0) {
             const ref = firebase.database().ref();
             const user = {};
             this.email = Email;
@@ -140,24 +165,24 @@ export class UserProfileService {
             ref.update(user);
 
             firebase.auth().currentUser.updateEmail(Email)
-            .then(function() {
-                console.log('Email changed');
-            });
+                .then(function () {
+                    console.log('Email changed');
+                });
         }
     }
 
     changePassword(password: string, re_pass: string) {
-        if(password != null && re_pass != null && password.length > 0 && re_pass.length > 0 && password === re_pass) {
+        if (password != null && re_pass != null && password.length > 0 && re_pass.length > 0 && password === re_pass) {
             firebase.auth().currentUser.updatePassword(password)
-            .then(function() {
-                console.log("Password changed");
-            });
+                .then(function () {
+                    console.log("Password changed");
+                });
         }
         else {
             console.log("Passwords don't match");
         }
     }
-    
+
     setPicIndex(index: number) {
         const ref = firebase.database().ref();
         const user = {};
