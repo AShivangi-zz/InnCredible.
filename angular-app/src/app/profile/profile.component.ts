@@ -18,9 +18,7 @@ export class ProfileComponent implements OnInit {
 
   public buttonDisabled: boolean;
 
-  public reservations: Reservation[];
-  constructor(public userProfileService: UserProfileService,
-
+  constructor(private userProfileService: UserProfileService,
   private hotelInfo: HotelInfo) {
 
   }
