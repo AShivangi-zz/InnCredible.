@@ -35,10 +35,14 @@ export class AuthService {
   private router: Router,
   private location: Location){}
 
-  emailSignUp(email: string, password: string, firstname: string, lastname:string) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then(user => {
+  async emailSignUp(email: string, password: string, firstname: string, lastname:string) {
+    var err;
+    var promise = this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+    await promise.then(user => {
         //Put user data in firebase
+        console.log('going to register');
+        //this.handleError(false);
+        err = false;
         firebase.database().ref('users/' + user.uid).set({
           firstname: firstname,
           lastname: lastname,
@@ -53,7 +57,10 @@ export class AuthService {
         });
         this.location.back();
       })
-      .catch(error => this.handleError(error) );
+      .catch(error => {
+        err = true;
+      });
+      return err;   
   }
 
 
@@ -61,12 +68,5 @@ export class AuthService {
   // Update properties on the user document
   updateUser(user: User, data: any) {
     this.db.object('users/' + user.uid).update(data)
-  }
-
-  // If error, console log and notify user
-  private handleError(error) : boolean{
-    console.error(error)
-    return true
-    //this.notify.update(error.message, 'error')
   }
 }

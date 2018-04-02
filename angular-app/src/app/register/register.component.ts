@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +16,7 @@ export class RegisterComponent implements OnInit {
 signupForm: FormGroup;
 error: any;
 
-  constructor(private auth: AuthService, private fb: FormBuilder) { }
+  constructor(public afa: AngularFireAuth, private auth: AuthService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
 
@@ -51,6 +53,11 @@ error: any;
      
       
     });
+    this.afa.authState.subscribe(auth => {
+      if(auth) {
+        this.router.navigateByUrl('/home');
+      }
+    });
   }
   
   get email() { return this.signupForm.get('email') }
@@ -61,12 +68,17 @@ error: any;
 
 
   // Step 1
-  signup() {
+  async signup() {
 
     if(this.password.value === this.confirm_password.value) {
-      var err = this.auth.emailSignUp(this.email.value, this.password.value, this.firstname.value, this.lastname.value)
+      this.error = null;
+      var err = await this.auth.emailSignUp(this.email.value, this.password.value, this.firstname.value, this.lastname.value);
+      
       if(err) {
-        this.error = err;
+        this.error = 'The email address is already in use by another account';
+      }
+      else {
+        window.location.reload();
       }
 
       window.location.reload();
