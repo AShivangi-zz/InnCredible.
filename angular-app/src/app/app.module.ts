@@ -50,6 +50,7 @@ import { FavoritesComponent } from './profile/favorites/favorites.component';
 import { CalendarComponent } from './profile/calendar/calendar.component';
 import { UserprofileComponent } from './profile/userprofile/userprofile.component';
 import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.component';
+import { HistoryComponent } from './profile/history/history.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.compo
     CalendarComponent,
     UserprofileComponent,
     RewardpointsComponent,
+    HistoryComponent,
   ],
   imports: [
     ReactiveFormsModule,
