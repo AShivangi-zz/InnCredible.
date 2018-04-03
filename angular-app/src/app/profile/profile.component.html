@@ -71,216 +71,27 @@
   <div class="well">
     <div class="tab-content">
       <div class="tab-pane fade in active" id="tab1">
-        <h1> upcoming reservations</h1>
-
-
-        <div class='container12' *ngFor='let res of bookings'>
-
-
-          <div class="flip col-sm-6">
-            <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-              <h1 class="text-shadow">Upcoming Reservation</h1>
-              {{res.hotelName}}
-            </div>
-            <div class="back">
-              <div class="back-align">
-                <font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkInDt}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Address: {{res.hotelLoc}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Guests: {{res.guests}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Rooms: {{res.rooms}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Comments: {{res.comments}}</font>
-              </div>
-            </div>
-          </div>
-          <div ><br><br><br><br>
-          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Cancel
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-          </button><br> <br>
-          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">&nbsp;&nbsp;Edit &nbsp;&nbsp;
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-          </button></div>
-
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <app-mybookings></app-mybookings>
       </div>
-      <div class="container">
-        <!-- Trigger the modal with a button -->
 
-        <!-- Modal -->
-        <div class="modal fade" id="cancelModal" role="dialog">
-          <div class="modal-dialog modal-md">
-            <div class="modal-content">
-              <div class="modal-header modal-custom-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title">CancelBooking</h4>
-                <form class="form-horizontal">
-                  <fieldset>
-
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="textinput">Email</label>
-                      <div class="col-md-4">
-                        <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md"
-                          required="" type="text">
-                        <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md"
-                          required="" type="text">
-                      </div>
-
-                    </div>
-                    <div class="modal-body">
-                      <form id="loginform" class="form-horizontal" role="form">
-
-
-                        <div class="form-group">
-                          <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to cancel the booking?</label>
-                          <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
-                          <button id="" name="btnCancel" class="btn btn-primary">No</button>
-                        </div>
-                      </form>
-
-
-                    </div>
-
-                  </fieldset>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-                  <!--Modal for Edit-->
-                  <div class="modal fade" id="editModal" role="dialog">
-                    <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                        <div class="modal-header modal-custom-header">
-                          <button type="button" class="close" data-dismiss="modal">×</button>
-                          <h4 class="modal-title">EditlBooking</h4>
-                        </div>
-                        <div class="modal-body">
-                          <form id="loginform" class="form-horizontal" role="form">
-        
-                            <div class="form-group">
-                              <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to edit the booking?</label>
-                              <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
-                              <button id="" name="btnCancel" class="btn btn-primary">No</button>
-                            </div>
-                          </form>
-        
-        
-                        </div>
-        
-                      </div>
-                    </div>
-                  </div>
-
-
-      </div>
       <div class="tab-pane fade in" id="tab2">
         <h3>This is tab 2</h3>
       </div>
       <div class="tab-pane fade in" id="tab3">
-        <h3>This is tab 3</h3>
+        <app-favorites></app-favorites>
       </div>
       <div class="tab-pane fade in" id="tab4">
-        <h3>This is tab 4</h3>
+        <app-calendar></app-calendar>
       </div>
       <div class="tab-pane fade in" id="tab5">
-        <h3 style='text-align: center'>You have:
-          <span style="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points.</h3>
+        <app-rewardpoints></app-rewardpoints>
       </div>
       <div class="tab-pane fade in" id="tab6">
-        <div class="profile-tab">
-
-          <!-- Profile: Name field -->
-          <div>
-            <label for="name">Name:</label>
-            <span *ngIf="!newName" class='user-info' style="border: none">{{userProfileService.getFullName()}}</span>
-            <span *ngIf="!newName" id="edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
-
-            <input *ngIf="newName" type="text" class="user-info" placeholder="First Name" onfocus="this.value=''" [(ngModel)]="fName"
-              required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
-            <input *ngIf="newName" type="text" class="user-info" placeholder="Last Name" onfocus="this.value=''" [(ngModel)]="lName"
-              required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
-
-            <!--<div class='save-cancel' *ngIf="newName" style="display: block; margin-left: 40%;">-->
-              <button  *ngIf="newName" style="display: inline-block; margin-left: 30%; margin-right: 5px; margin-bottom: 10px;" id="save" class="alter-info" (click)="userProfileService.updateName(fName, lName); newName = false">Save</button>
-              <button *ngIf="newName" class="alter-info" (click)="newName = false;">Cancel</button>
-            <!--</div>-->
-          </div>
-
-          <!-- Profile: Email -->
-          <div>
-            <label for="name">Email:</label>
-            <span *ngIf="newEmail == false" style="border: none">{{userProfileService.email}}</span>
-            <input *ngIf="newEmail == true" type="Email" class="user-info" placeholder="Enter new email" onfocus="this.value=''" [(ngModel)]="Email"
-              (keydown.enter)="userProfileService.changeEmail(Email); newEmail = false;">
-            <span *ngIf="newEmail == false" id="edit" (click)="newEmail=true;" class="glyphicon glyphicon-pencil"></span>
-            <button style="margin-right: 5px;"  *ngIf="newEmail == true" id="save" class="alter-info" (click)="userProfileService.changeEmail(Email); newEmail = false;">Save</button>
-            <button *ngIf="newEmail == true" class="alter-info" (click)="newEmail = false;">Cancel</button>
-          </div>
-
-        
-
-          <!--Profile: Change Password-->
-
-          <button id="change-pass" class="alter-pass-pic" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
-          <br> 
-              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#avatar">Change Avatar</button>  
-
-
-          <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
-          <div *ngIf="newPassword" id="changePass" class="form-group">
-            <label for="name">New Password:</label>
-            <input type="Password" class="user-info" id="pass1" placeholder="Enter new password" value='' onfocus="this.value=''" [(ngModel)]="password"
-              required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;">
-            <br>
-            <label for="name">Re-enter Password:</label>
-            <input type="Password" class="user-info" id='pass2' placeholder="Re-enter new password" value='' onfocus="this.value=''"
-              [(ngModel)]="repass" required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;">
-            <br>
-            <button class="alter-info" style="display: inline-block; margin-left: 30%; margin-right: 5px; margin-bottom: 10px;" (click)='userProfileService.changePassword(password, repass); newPassword = false;'>Save</button>
-            <button class="alter-info" (click)="newPassword = false;">Cancel</button>
-          </div>
-          <!--</form>-->
-        </div>
+        <app-userprofile></app-userprofile>
       </div>
 
 
-      <!-- Modal -->
-<div class="modal" id="avatar" role="dialog">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header modal-custom-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h4 class="modal-title" style="color: #fff" >Choose an Avatar</h4>
-      </div>
-      <div class="modal-body ">
-           <div (click)="changePic = false"></div>
-            <img class="pic-choice" src='../assets/user_avatars/man_1.png' (click)="userProfileService.setPicIndex(0)" data-dismiss="modal"> 
-            <img class="pic-choice" src='../assets/user_avatars/man_2.png' (click)="userProfileService.setPicIndex(1)"data-dismiss="modal">
-            <img class="pic-choice" src='../assets/user_avatars/man_3.png' (click)="userProfileService.setPicIndex(2)" data-dismiss="modal"><div class="col-sm-3"></div><br>
-            <img class="pic-choice" src='../assets/user_avatars/woman_1.png' (click)="userProfileService.setPicIndex(3)" data-dismiss="modal" >
-            <img class="pic-choice" src='../assets/user_avatars/woman_2.png' (click)="userProfileService.setPicIndex(4)" data-dismiss="modal">
-            <img class="pic-choice" src='../assets/user_avatars/woman_3.png' (click)="userProfileService.setPicIndex(5)" data-dismiss="modal" ><div class="col-sm-3"></div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!--end modal -->
+      
 
     </div>
   </div>
