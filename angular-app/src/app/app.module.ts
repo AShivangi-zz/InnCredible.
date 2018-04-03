@@ -5,7 +5,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
 // Routes
 import { routes } from './app.router';
 
@@ -86,7 +87,9 @@ import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.compo
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    routes
+    routes,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot()
   ],
   providers:
     [ AuthGuard,
