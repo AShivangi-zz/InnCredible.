@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserProfileService } from '../../services/profile.service';
 import * as firebase from 'firebase';
 import {
@@ -20,9 +20,8 @@ import { Subject } from 'rxjs/Subject';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss',
-  './../../../../node_modules/angular-calendar/css/angular-calendar.css'
-]
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./../../../../node_modules/angular-calendar/css/angular-calendar.css']
 })
 export class CalendarComponent implements OnInit {
 
