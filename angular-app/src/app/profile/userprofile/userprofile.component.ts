@@ -19,16 +19,6 @@ export class UserprofileComponent implements OnInit {
   ngOnInit() {
     this.userProfileService.getUserInfo();
   }
-  getAvatars(): string[] {
-    var avatars: string[] = [];
-    avatars.push('../assets/user_avatars/man_1.png');
-    avatars.push('../assets/user_avatars/man_2.png');
-    avatars.push('../assets/user_avatars/man_3.png');
-    avatars.push('../assets/user_avatars/woman_1.png');
-    avatars.push('../assets/user_avatars/woman_2.png');
-    avatars.push('../assets/user_avatars/woman_3.png');
-
-    return avatars;
-  }
+  
 
 }
