@@ -1,0 +1,154 @@
+
+  .btn-pref .btn {
+    -webkit-border-radius:0 !important;
+  }
+  
+  .form-group {
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    vertical-align: middle;
+    border-color: black;
+    margin-bottom: 15px;
+  }
+  
+  label {
+    padding: 5px 25px 10px 0px;
+    width: 25%;
+  }
+  
+  .user-info {
+    width: 30%;
+    padding: 0px;
+    margin-right: 5px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    border-bottom: 1px solid grey;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+  }
+  
+  .alter-info {
+    background-color: deepskyblue;
+    border: none;
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    text-align: center;
+    color: white;
+  }
+  
+  .alter-info:hover  {
+    color:deepskyblue;
+    background-color: white;
+    border: 1px solid deepskyblue;
+  }
+  
+  .profile-pic {
+    margin-top: 25px;
+    height: 25%;
+    align-items: center;
+  }
+  
+  .alter-pic {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    padding-top: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+  
+  .user-photo {
+    height: 25%;
+    width: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #user-pic {
+    background-color: white;
+  }
+  
+  .profile-tab {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .alter-pass-pic {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color: deepskyblue;
+    margin-bottom: 15px;
+  }
+  
+  .alter-pass-pic:hover {
+    color: gray;
+  }
+  
+  .pic-choice {
+    padding: 5px;
+    margin: 0px 5px 0px 5px;
+  }
+  
+  .pic-choice:hover{
+    opacity: 75%;
+    border: 1px solid deepskyblue;
+  }
+  
+  .avatars-list {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .glyphicon-pencil:hover {
+    color: deepskyblue;
+  }
+  
+
+  
+  
+  
+  // modal
+  .modal-custom-header{
+    background-color: #337ab7;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .input-group-addon {
+    color: #fff;
+    position: relative;
+    background-color: #337ab7;
+  }
+  
+  .form-control, .input-group-addon, .btn, .modal-content {
+    border-radius: 2px;
+  }
+  label{
+    text-align: left !important;
+  }
+  .close:hover {
+    color: #fff;
+  }
+  
+
+  
+  
