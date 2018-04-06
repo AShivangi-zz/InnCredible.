@@ -32,7 +32,7 @@ export class UserProfileService {
     bookings: Booking[] = [];
     private _observableList: BehaviorSubject<Booking[]> = new BehaviorSubject([])
     bookingsObs: Observable<Booking[]>;
-
+  
     isRedeem: boolean;
     buttonDisabled: boolean = false;
     hasPicture: boolean;
@@ -87,7 +87,6 @@ export class UserProfileService {
                     console.log(booking);
                 }
             });
-
             this._observableList.next(this.bookings.reverse());
     }
 
@@ -104,13 +103,13 @@ export class UserProfileService {
                   break;
                 }
             }
-        });
+        }); 
         await this.hotelInfo.getHotelData(index);
         hotel = this.hotelInfo.getHotel();
         booking.hotelName = hotel.name;
         booking.hotelLoc = hotel.location;
     }
-
+  
     public async removeReservation(key) {
 
      await firebase.database().ref('/users/' + this.uid + '/reservations/').child(key).remove();
