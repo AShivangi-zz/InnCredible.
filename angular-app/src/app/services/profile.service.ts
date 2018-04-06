@@ -111,10 +111,11 @@ export class UserProfileService {
         booking.hotelLoc = hotel.location;
     }
 
-    public removeReservation(key) {
-    var db = firebase.database();
-     const removeReservation = ref('/users/'+  this.uid+ '/reservations/').child(key).remove();
-    // return;
+    public async removeReservation(key) {
+
+     await firebase.database().ref('/users/' + this.uid + '/reservations/').child(key).remove();
+     window.location.reload();
+
     }
 
     getBookingsObs():Observable<Booking[]> {
