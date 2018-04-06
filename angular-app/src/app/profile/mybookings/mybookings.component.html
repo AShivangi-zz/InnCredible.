@@ -71,12 +71,11 @@
 
                         <div class="form-group">
                           <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to cancel the booking?</label>
-                          <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
-                          <button id="" name="btnCancel" class="btn btn-primary">No</button>
+                           <button id="" name="btnCancel" class="btn btn-primary" (click)="userProfileService.removeReservation(res.$key)" data-dismiss="modal">Yes</button>
+
+                           <button id="" name="btnCancel" class="btn btn-primary">No</button>
                         </div>
                       </form>
-
-
                     </div>
 
                   </fieldset>
@@ -85,7 +84,7 @@
             </div>
           </div>
         </div>
-                  
+
 
 
       </div>
@@ -145,11 +144,10 @@
 
                 <div class="form-group">
                   <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to cancel the booking?</label>
-                  <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
+                  <button id="" name="btnCancel" class="btn btn-primary" (click)="userProfileService.removeReservation(res.$key)" data-dismiss="modal">Yes</button>
                   <button id="" name="btnCancel" class="btn btn-primary">No</button>
                 </div>
               </form>
-
 
             </div>
 
@@ -158,5 +156,5 @@
       </div>
     </div>
   </div>
+
 </div>
-          
