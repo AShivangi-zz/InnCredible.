@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFireAuth} from 'angularfire2/auth';
-import {Router} from '@angular/router';
-import {Location} from '@angular/common';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,35 +17,25 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(public afa: AngularFireAuth, private router: Router, private location: Location) {
-    /*this.afa.authState.subscribe(auth => {
-        if(auth) {
-
-        }
-        this.router.navigateByUrl('/home');
-      });*/
-  }
+  constructor(public auth: AuthService, private router: Router, private location: Location) {}
 
   onSubmit(formData) {
-    if(formData.valid) {
-      this.afa.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
-        .then((success)=> {
-          //this.router.navigateByUrl('/home');
+    if (formData.valid) {
+      this.auth.afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
+        .then((success) => {
           this.location.back();
-        }).catch(
-          (err) => {
+        }).catch( (err) => {
             this.error = err;
-          }
-        )
-    }
+          });
   }
+}
 
-  ngOnInit() : void {
-    this.afa.authState.subscribe(auth => {
-      if(auth) {
-        this.router.navigateByUrl('/home');
-      }
-    });
-  }
+ngOnInit() : void {
+  this.auth.afAuth.authState.subscribe(auth => {
+    if (auth) {
+      this.router.navigateByUrl('/home');
+    }
+  });
+}
 
 }

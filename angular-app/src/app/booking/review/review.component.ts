@@ -34,7 +34,7 @@ export class ReviewComponent implements OnInit {
     if (!this.userProfileService.isRedeem) {
       return 0;
     }
-    return this.userProfileService.getRewardPoints() / 25;
+    return this.userProfileService.rewardpoints / 25;
   }
 
   roomCharge(): number {
