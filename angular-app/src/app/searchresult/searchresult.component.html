@@ -96,7 +96,7 @@
           <div class="col-xs-12 col-sm-12 col-md-2">
             <ul class="meta-search">
               <div><br><h3 style="color:#4CB648; text-align:center">${{hotel?.price}}</h3><br>
-                <button [routerLink]="['/hotel-info', hotel?.hotelID]"class="btn btn-primary  with-arrow">View Hotel<i class="icon-arrow-right"></i></button>
+                <button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]"class="btn btn-primary  with-arrow">View Hotel<i class="icon-arrow-right"></i></button>
               </div>
             </ul>
           </div>
