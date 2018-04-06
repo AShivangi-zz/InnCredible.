@@ -30,8 +30,8 @@ export class SearchService {
       hotel = this.hotelInfo.getHotel();
       let date1 = new Date(  (hotel.checkIn) );
       let date2 = new Date( hotel.checkOut )
-      console.log("check in date: " + date1);
-      console.log("check out date: " + date2);
+      //console.log("check in date: " + date1);
+      //console.log("check out date: " + date2);
 
       //hotel.checkIn and hotel.checkout (Timestamp)
       //convert timestamp to date

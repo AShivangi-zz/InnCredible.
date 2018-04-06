@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from "../services/search.service";
 import {Hotel} from "../models/hotel";
-import { ActivatedRoute } from '@angular/router';
+import {Router, ActivatedRoute } from '@angular/router';
 import {FilterService} from "../services/filter.service";
-import { Observable } from '@firebase/util';
-
+import {Observable} from "rxjs/Observable";
 @Component({
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
@@ -15,13 +14,18 @@ export class SearchresultComponent implements OnInit {
   returnedname = '';
   returnedcheckindate = '';
   returnedcheckoutdate = '';
+
   hotels: Hotel[]=[];
-  filteredHotels: Hotel[]= [];
+  hotelsObs: Observable<Hotel[]>;
+  isEmpty: boolean = false;
 
   public sub: any;
 
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
-  constructor(private route: ActivatedRoute, public searchService: SearchService, private filterService: FilterService) {}
+  constructor(private route: ActivatedRoute, 
+    public router: Router,
+    public searchService: SearchService, 
+    private filterService: FilterService) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -29,23 +33,29 @@ export class SearchresultComponent implements OnInit {
       this.returnedcheckindate = params['id2'];
       this.returnedcheckoutdate = params['id3'];
     });
-
-    this.getFilteredData();
-
+    this.getData();
   }
 
-  onRatingsFilter() {
-    //console.log(this.hotels.length);
-    this.filteredHotels = this.filterService.filterByRating(this.hotels, 4);
-    console.log(this.filteredHotels);
-
+  async onRatingsFilter(rating: number) {
+    
+    this.isEmpty = await this.filterService.filterByRating(this.hotels, rating);
+    if(!this.isEmpty) { 
+      this.hotelsObs = this.filterService.getObservableList();
+    }
   }
 
-  async getFilteredData(){
+  async getData(){
+    this.hotels = [];
     await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
     this.hotels = this.searchService.getHotels();
-//console.log(this.hotels.length);
-     this.onRatingsFilter();
+
+    this.hotelsObs = this.searchService.getObservableList();
+    
+  }
+
+  goBack(): void {
+    this.router.navigateByUrl('/home');
+    window.location.reload();
   }
 
 }
