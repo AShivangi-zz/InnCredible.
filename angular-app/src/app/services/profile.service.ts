@@ -114,43 +114,8 @@ export class UserProfileService {
         return this._observableList.asObservable();
     }
 
-    getFirstName() {
-        return this.firstname;
-    }
-
-    getLastName() {
-        return this.lastname;
-    }
-
-    getFullName() {
-        return this.firstname + ' ' + this.lastname;
-    }
-
-    getRewardPoints() {
-        return this.rewardpoints;
-    }
-
-    getUserEmail() {
-        return this.email;
-    }
-
-    getPhotoURL() {
-        return this.phototURL;
-    }
-    getStreetAddress() {
-        return this.streetAddress;
-    }
-    getCity() {
-        return this.city;
-    }
-    getState() {
-        return this.state;
-    }
-    getCountry() {
-        return this.country;
-    }
-    getZipcode() {
-        return this.zipcode;
+    getFullName() : string {
+        return this.firstname + " " + this.lastname;
     }
 
     reduceTotalBy() {
@@ -160,7 +125,7 @@ export class UserProfileService {
     awardRewardPoints(total: number) {
         const ref = firebase.database().ref();
         const reward = {};
-        reward['/users/' + this.uid + '/rewardPoints'] = Math.floor(this.getRewardPoints() + total / 10);
+        reward['/users/' + this.uid + '/rewardPoints'] = Math.floor(this.rewardpoints + total / 10);
         ref.update(reward);
         return reward;
     }
