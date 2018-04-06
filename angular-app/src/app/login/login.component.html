@@ -14,10 +14,11 @@
       <h4 class="modal-title" id="myModalLabel">Login</h4>
     </div>
     <div class="modal-body">
-      <p *ngIf="error">{{error}}</p>
       <div class="row">
         <div class="col-xs-6">
           <div class="well">
+
+            <p *ngIf="error" style="color: red">{{error}}</p>
             <form id="loginForm" method="POST" action="/login/" novalidate="novalidate" #formData='ngForm' (ngSubmit)="onSubmit(formData)">
               <div class="form-group">
                 <!--<form #formData='ngForm' (ngSubmit)="onSubmit(formData)">-->
