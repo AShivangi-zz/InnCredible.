@@ -30,6 +30,7 @@ import { Reservation } from '../../booking/shared/reservation.model';
 export class CalendarComponent implements OnInit {
   reservations: Reservation[];
   bookings: Booking[] = [];
+  events: CalendarEvent[] = [];
 
   viewDate: Date = new Date();
   view = 'week';
@@ -41,40 +42,8 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
     this.pullReservations();
     this.userProfileService.getUserInfo();
+    this.createEvents();
   }
-
-  events: CalendarEvent[] = [
-    {
-      start: addHours(startOfDay(new Date()), 7),
-      end: addHours(startOfDay(new Date()), 9),
-      title: 'First Event',
-      cssClass: 'custom-event',
-      color: {
-        primary: '#488aff',
-        secondary: '#bbd0f5'
-      },
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 10),
-      end: addHours(startOfDay(new Date()), 12),
-      title: 'Second Event',
-      cssClass: 'custom-event',
-      color: {
-        primary: '#488aff',
-        secondary: '#bbd0f5'
-      },
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
 
   eventTimesChanged({ event, newStart, newEnd }: CalendarEventTimesChangedEvent): void {
     if (this.isDragging) {
@@ -148,23 +117,40 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  public createEvent(){
+  public async createEvents(){
     this.bookings.forEach(element => {
-      this.events.push({
+      let newEvent: CalendarEvent = {
+        start: element.checkInDt,
+        end: addHours(element.checkOutDt, 1),
         title: element.hotelName,
-        start: addHours(startOfDay(element.checkInDt),8),
-        end: addHours(startOfDay(element.checkOutDt),12),
         cssClass: 'custom-event',
         color: {
           primary: '#488aff',
           secondary: '#bbd0f5'
         },
         resizable: {
-          beforeStart: false,
-          afterEnd: false
+          beforeStart: true,
+          afterEnd: true
         },
-        draggable: false
-      });
+        draggable: true
+      }
+      this.events.push(newEvent);
+      this.refresh.next();
+    });
+    this.events.push({
+      start: startOfDay(new Date()),
+      end: startOfDay(new Date()),
+      title: 'Test Event',
+      cssClass: 'custom-event',
+      color: {
+        primary: '#488aff',
+        secondary: '#bbd0f5'
+      },
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
     });
   }
 }
