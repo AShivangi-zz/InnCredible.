@@ -25,9 +25,9 @@ export const router: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'contact', component: ContactComponent},
-    {path: 'hotel-info/:id', component: HotelInfoComponent},
+    {path: 'hotel-info/:id/:id2/:id3', component: HotelInfoComponent},
     {path: 'policy', component: PolicyComponent},
-    {path: 'booking/:id', component: BookingComponent, canActivate:[AuthGuard]},
+    {path: 'booking/:id/:id2/:id3', component: BookingComponent, canActivate:[AuthGuard]},
     {path: 'searchresults/:id/:id2/:id3', component: SearchresultComponent},
 
     {path: '**', redirectTo: 'home'}
