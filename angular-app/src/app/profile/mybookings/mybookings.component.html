@@ -1,4 +1,4 @@
-<div class='container12' *ngFor='let res of bookings'>
+<div class='container12' *ngFor='let res of bookings.reverse()'>
 
 
           <div class="flip col-sm-6">
@@ -8,7 +8,7 @@
             </div>
             <div class="back">
               <div class="back-align">
-                <font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkInDt}}</font>
+                <font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkOutDt}}</font>
                 <br>
                 <br>
                 <font size="4" color="grey">Address: {{res.hotelLoc}}</font>
