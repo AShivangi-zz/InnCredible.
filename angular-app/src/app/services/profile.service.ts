@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from "angularfire2/auth";
 import { Reservation } from '../booking/shared/reservation.model';
-import { AngularFireDatabase } from 'angularfire2/database';
+
 import { promise } from 'protractor';
 
 @Injectable()
@@ -29,7 +29,7 @@ export class UserProfileService {
     hasPicture: boolean;
     picIndex: number;
 
-    constructor(afAuth: AngularFireAuth, private db: AngularFireDatabase ) {
+    constructor(afAuth: AngularFireAuth ) {
         //afAuth used in profile component to upload picture
         this.getUserInfo();
     }
@@ -82,13 +82,9 @@ export class UserProfileService {
     }
 
     public removeReservation(key) {
-    //  this.key.remove(key);
-    //  var db = firebase.database();
-    //  return af.database.ref('/users/'+  this.uid+ '/reservations/').remove();
-    //  af.database.ref('/users/'+  this.uid+ '/reservations/').remove();
-      var db = firebase.database();
-      var removeReservation = db.ref('/users/'+  this.uid+ '/reservations/');
-           removeReservation.child().remove();
+        var db = firebase.database();
+     const removeReservation = db.ref('/users/'+  this.uid+ '/reservations/' +this.uid).child(key).remove(key);
+     return;
         }
 
     getFirstName() {
