@@ -30,7 +30,7 @@ interface User {
 export class AuthService {
   user: Observable<User>;
 
- constructor(private afAuth: AngularFireAuth,
+ constructor(public afAuth: AngularFireAuth,
   private db : AngularFireDatabase,
   private router: Router,
   private location: Location){}
@@ -39,9 +39,6 @@ export class AuthService {
     var err;
     var promise = this.afAuth.auth.createUserWithEmailAndPassword(email, password);
     await promise.then(user => {
-        //Put user data in firebase
-        console.log('going to register');
-        //this.handleError(false);
         err = false;
         firebase.database().ref('users/' + user.uid).set({
           firstname: firstname,
@@ -62,9 +59,7 @@ export class AuthService {
       });
       return err;   
   }
-
-
-
+  
   // Update properties on the user document
   updateUser(user: User, data: any) {
     this.db.object('users/' + user.uid).update(data)
