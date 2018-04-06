@@ -75,8 +75,9 @@
 
 
 <div class="container" class="col-sm-9">
-  
-  <ul>
+
+  <p *ngIf="isEmpty" style="font-size:25px">No hotels found</p>
+  <ul *ngIf="!isEmpty">
     <div *ngFor="let hotel of hotelsObs | async">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">

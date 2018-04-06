@@ -27,7 +27,10 @@ export class FilterService {
       }
       
     }
-    return filteredHotels;
+    if(filteredHotels.length == 0) {
+      return true;
+    }
+    return false;
   }
 
   public getObservableList(): Observable<Hotel[]> {

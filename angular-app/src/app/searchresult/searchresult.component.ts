@@ -14,8 +14,10 @@ export class SearchresultComponent implements OnInit {
   returnedname = '';
   returnedcheckindate = '';
   returnedcheckoutdate = '';
+
   hotels: Hotel[]=[];
   hotelsObs: Observable<Hotel[]>;
+  isEmpty: boolean = false;
 
   public sub: any;
 
@@ -33,8 +35,10 @@ export class SearchresultComponent implements OnInit {
 
   async onRatingsFilter(rating: number) {
     
-    await this.filterService.filterByRating(this.hotels, rating);
-    this.hotelsObs = this.filterService.getObservableList();
+    this.isEmpty = await this.filterService.filterByRating(this.hotels, rating);
+    if(!this.isEmpty) { 
+      this.hotelsObs = this.filterService.getObservableList();
+    }
   }
 
   async getData(){
