@@ -1,4 +1,4 @@
-<div class='container12' *ngFor='let res of bookings'>
+<div class='container12' *ngFor='let res of  userProfileService.getBookingsObs() |async'>
 
 
           <div class="flip col-sm-6">
