@@ -3,6 +3,13 @@ import * as firebase from 'firebase';
 import { AngularFireAuth } from "angularfire2/auth";
 import { Reservation } from '../booking/shared/reservation.model';
 import { promise } from 'protractor';
+import { Hotel } from "../models/hotel";
+import { HotelInfo } from '../services/hotel-info';
+import { Booking } from '../models/booking';
+
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
+
 
 @Injectable()
 
@@ -21,14 +28,16 @@ export class UserProfileService {
     country: string;
     zipcode: string;
 
-    reservation: Reservation[] = [];
-    //private res: Reservation;
+    bookings: Booking[] = [];
+    private _observableList: BehaviorSubject<Booking[]> = new BehaviorSubject([])
+    bookingsObs: Observable<Booking[]>;
+    
     isRedeem: boolean;
     buttonDisabled: boolean = false;
     hasPicture: boolean;
     picIndex: number;
 
-    constructor(afAuth: AngularFireAuth) {
+    constructor(private afAuth: AngularFireAuth, private hotelInfo: HotelInfo) {
         //afAuth used in profile component to upload picture
         this.getUserInfo();
     }
@@ -57,27 +66,52 @@ export class UserProfileService {
             });
     }
 
-    getReservations() {
-        var promise = firebase.database().ref('/users/' + this.uid + '/reservations/').once('value')
+    async pullReservations() {
+        await firebase.database().ref('/users/' + this.uid + '/reservations/').once('value')
             .then((snapshot) => {
                 const countRes = snapshot.numChildren();
-                //console.log(countRes);
                 for (var i = 0; i < countRes; i++) {
                     var number = i.toString();
-                    let res = new Reservation();
+                    let booking = new Booking();
                     var snap = Object.keys(snapshot.val());
                     var key = snap[i];
-                    res.checkInDt = snapshot.child(key + '/checkInDt').val();
-                    res.checkOutDt = snapshot.child(key + '/checkOutDt').val();
-                    res.comments = snapshot.child(key + '/comments').val();
-                    res.guests = snapshot.child(key + '/guests').val();
-                    res.hotelID = snapshot.child(key + '/hotelID').val();
-                    res.rooms = snapshot.child(key + '/rooms').val();
-                    this.reservation.push(res);
+                    booking.$key = key;
+                    booking.checkInDt = snapshot.child(key + '/checkInDt').val();
+                    booking.checkOutDt = snapshot.child(key + '/checkOutDt').val();
+                    booking.comments = snapshot.child(key + '/comments').val();
+                    booking.guests = snapshot.child(key + '/guests').val();
+                    booking.rooms = snapshot.child(key + '/rooms').val();
+                    this.getHotelInfo(snapshot.child(key + '/hotelID').val(), booking);
+                    this.bookings.push(booking);
+                    console.log(booking);
                 }
             });
-        return promise;
-        // return this.reservation;
+        
+            this._observableList.next(this.bookings.reverse());
+    }
+
+    async getHotelInfo(hotelID: string, booking: Booking) {
+        var hotel = new Hotel();
+        const id_ref = firebase.database().ref('/hotel_id');
+        var index;
+        await id_ref.once('value').then((snapshot) => {
+            const count = snapshot.numChildren();
+            for (var i = 0; i < count; i++) {
+                const number = i.toString();
+                if (snapshot.child(number).val() == hotelID) {
+                  index = number;
+                  break;
+                }
+            }
+        }); 
+        await this.hotelInfo.getHotelData(index);
+        hotel = this.hotelInfo.getHotel();
+        booking.hotelName = hotel.name;
+        booking.hotelLoc = hotel.location;
+    }
+
+    getBookingsObs():Observable<Booking[]> {
+        return this._observableList.asObservable();
     }
 
     getFirstName() {

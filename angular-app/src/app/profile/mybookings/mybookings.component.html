@@ -1,166 +1,107 @@
+<div class='container12' *ngFor="let res of userProfileService.getBookingsObs() |async">
 
-<div class='container12' *ngFor='let res of bookings.reverse()'>
-
-
-
-          <div class="flip col-sm-6">
-            <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-              <h1 class="text-shadow">Upcoming Reservation</h1>
-              {{res.hotelName}}
-            </div>
-            <div class="back">
-              <div class="back-align">
-
-                <font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkOutDt}}</font>
-
-                <br>
-                <br>
-                <font size="4" color="grey">Address: {{res.hotelLoc}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Guests: {{res.guests}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Rooms: {{res.rooms}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Comments: {{res.comments}}</font>
-              </div>
-            </div>
-          </div>
-          <div ><br><br><br><br>
-          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Cancel
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-          </button><br> <br>
-          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">&nbsp;&nbsp;Edit &nbsp;&nbsp;
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-          </button></div>
-
-        </div>
+  <div class="flip col-sm-6">
+    <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+      <h1 class="text-shadow">Upcoming Reservation</h1>
+      {{res.hotelName}}
+    </div>
+    <div class="back">
+      <div class="back-align">
+        <font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkOutDt}}</font>
         <br>
         <br>
+        <font size="4" color="grey">Address: {{res.hotelLoc}}</font>
         <br>
         <br>
+        <font size="4" color="grey">Guests: {{res.guests}}</font>
         <br>
+        <br>
+        <font size="4" color="grey">Rooms: {{res.rooms}}</font>
+        <br>
+        <br>
+        <font size="4" color="grey">Comments: {{res.comments}}</font>
+      </div>
+    </div>
+  </div>
+  <div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Cancel
+      <i class="fa fa-sign-in" aria-hidden="true"></i>
+    </button>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">&nbsp;&nbsp;Edit &nbsp;&nbsp;
+      <i class="fa fa-sign-in" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
 
-      <div class="container">
-        <!-- Trigger the modal with a button -->
+  <div class="container">
+    <!-- Trigger the modal with a button -->
 
-        <!-- Modal -->
-        <div class="modal fade" id="cancelModal" role="dialog">
-          <div class="modal-dialog modal-md">
-            <div class="modal-content">
-              <div class="modal-header modal-custom-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title">CancelBooking</h4>
-                <form class="form-horizontal">
-                  <fieldset>
+    <!-- Modal -->
+    <div class="modal fade" id="cancelModal" role="dialog">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header modal-custom-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h4 class="modal-title">CancelBooking</h4>
+            <form class="form-horizontal">
+              <fieldset>
+
+                <div class="modal-body">
+                  <form id="loginform" class="form-horizontal" role="form">
 
 
-                    <!-- Text input-->
                     <div class="form-group">
-                      <label class="col-md-4 control-label" for="textinput">Email</label>
-                      <div class="col-md-4">
-                        <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md"
-                          required="" type="text">
-                        <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md"
-                          required="" type="text">
-                      </div>
-
+                      <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to cancel the booking?</label>
+                      <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
+                      <button id="" name="btnCancel" class="btn btn-primary">No</button>
                     </div>
-                    <div class="modal-body">
-                      <form id="loginform" class="form-horizontal" role="form">
+                  </form>
 
 
-                        <div class="form-group">
-                          <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to cancel the booking?</label>
-                          <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
-                          <button id="" name="btnCancel" class="btn btn-primary">No</button>
-                        </div>
-                      </form>
+                </div>
 
-
-                    </div>
-
-                  </fieldset>
-                </form>
-              </div>
-            </div>
+              </fieldset>
+            </form>
           </div>
         </div>
-                  
-
-
       </div>
-
-
-<!--Modal for Edit-->
-<div class="modal fade" id="editModal" role="dialog">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header modal-custom-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h4 class="modal-title">EditlBooking</h4>
-      </div>
-      <div class="modal-body">
-        <form id="loginform" class="form-horizontal" role="form">
-
-          <div class="form-group">
-            <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to edit the booking?</label>
-            <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
-            <button id="" name="btnCancel" class="btn btn-primary">No</button>
+    </div>
+    <!--Modal for Edit-->
+    <div class="modal fade" id="editModal" role="dialog">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header modal-custom-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h4 class="modal-title">EditlBooking</h4>
           </div>
-        </form>
+          <div class="modal-body">
+            <form id="loginform" class="form-horizontal" role="form">
 
-
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
- <!-- Modal -->
- <div class="modal fade" id="cancelModal" role="dialog">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header modal-custom-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h4 class="modal-title">CancelBooking</h4>
-        <form class="form-horizontal">
-          <fieldset>
-
-
-            <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textinput">Email</label>
-              <div class="col-md-4">
-                <input *ngIf="buttonDisabled" id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md"
-                  required="" type="text">
-                <input *ngIf="!buttonDisabled" disabled id="textinput" name="textinput" value="{{userProfileService.getUserEmail()}}" class="form-control input-md"
-                  required="" type="text">
+              <div class="form-group">
+                <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to edit the booking?</label>
+                <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
+                <button id="" name="btnCancel" class="btn btn-primary">No</button>
               </div>
-
-            </div>
-            <div class="modal-body">
-              <form id="loginform" class="form-horizontal" role="form">
+            </form>
 
 
-                <div class="form-group">
-                  <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to cancel the booking?</label>
-                  <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
-                  <button id="" name="btnCancel" class="btn btn-primary">No</button>
-                </div>
-              </form>
+          </div>
 
-
-            </div>
-
-          </fieldset>
-        </form>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
-          

@@ -20,10 +20,10 @@ export class HistoryComponent implements OnInit {
   constructor(public userProfileService: UserProfileService, private hotelInfo: HotelInfo) { }
 
   ngOnInit() {
-    this.pullReservations();
+    //this.pullReservations();
     this.userProfileService.getUserInfo();
   }
-
+/*
   public async pullReservations() {
     await this.userProfileService.getReservations();
     this.reservations = this.userProfileService.reservation;
@@ -58,7 +58,7 @@ export class HistoryComponent implements OnInit {
       booking.rooms = this.reservations[num].rooms;
       this.bookings.push(booking);
     }
-  }
+  }*/
 
 
 }
