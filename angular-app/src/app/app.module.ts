@@ -45,6 +45,12 @@ import {Booking} from './models/booking'
 import {Hotel} from './models/hotel';
 
 import {FilterService} from './services/filter.service';
+import { MybookingsComponent } from './profile/mybookings/mybookings.component';
+import { FavoritesComponent } from './profile/favorites/favorites.component';
+import { CalendarComponent } from './profile/calendar/calendar.component';
+import { UserprofileComponent } from './profile/userprofile/userprofile.component';
+import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.component';
+import { HistoryComponent } from './profile/history/history.component';
 
 
 @NgModule({
@@ -66,6 +72,12 @@ import {FilterService} from './services/filter.service';
     CheckoutComponent,
     ConfirmationComponent,
     ErrDisplayComponent,
+    MybookingsComponent,
+    FavoritesComponent,
+    CalendarComponent,
+    UserprofileComponent,
+    RewardpointsComponent,
+    HistoryComponent,
   ],
   imports: [
     ReactiveFormsModule,
