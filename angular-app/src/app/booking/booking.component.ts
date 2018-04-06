@@ -54,10 +54,10 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    /*this.sub = this.route.params.subscribe(params => {
       this.hotelID = params['id'];
     });
-    this.getData(this.hotelID);
+    this.getData(this.hotelID);*/
   }
    
   private async getData(id: string) {
