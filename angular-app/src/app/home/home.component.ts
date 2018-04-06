@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
   checkindate: string;
   checkoutdate: string;
 
+  done: boolean = false;
+
   constructor(public afa: AngularFireAuth, private router: Router) {}
 
   // This gets the information from the searchformdata in home.component.html
