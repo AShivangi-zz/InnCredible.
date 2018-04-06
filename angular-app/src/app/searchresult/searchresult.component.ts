@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from "../services/search.service";
 import {Hotel} from "../models/hotel";
-import { ActivatedRoute } from '@angular/router';
+import {Router, ActivatedRoute } from '@angular/router';
 import {FilterService} from "../services/filter.service";
 import {Observable} from "rxjs/Observable";
 @Component({
@@ -22,7 +22,10 @@ export class SearchresultComponent implements OnInit {
   public sub: any;
 
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
-  constructor(private route: ActivatedRoute, public searchService: SearchService, private filterService: FilterService) {}
+  constructor(private route: ActivatedRoute, 
+    public router: Router,
+    public searchService: SearchService, 
+    private filterService: FilterService) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -48,6 +51,11 @@ export class SearchresultComponent implements OnInit {
 
     this.hotelsObs = this.searchService.getObservableList();
     
+  }
+
+  goBack(): void {
+    this.router.navigateByUrl('/home');
+    window.location.reload();
   }
 
 }
