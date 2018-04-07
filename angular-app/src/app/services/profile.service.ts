@@ -122,20 +122,21 @@ export class UserProfileService {
         return this.rewardpoints / 25;
     }
 
-    awardRewardPoints(total: number) {
+    async awardRewardPoints(total: number) {
         const ref = firebase.database().ref();
         const reward = {};
         reward['/users/' + this.uid + '/rewardPoints'] = Math.floor(this.rewardpoints + total / 10);
-        ref.update(reward);
+        await ref.update(reward);
         return reward;
     }
 
 
-    deductReward() {
+    async deductReward() {
         const ref = firebase.database().ref();
         const reward = {};
         reward['/users/' + this.uid + '/rewardPoints'] = 0;
-        ref.update(reward);
+        this.rewardpoints = 0;
+        await ref.update(reward);
         return reward;
     }
 
