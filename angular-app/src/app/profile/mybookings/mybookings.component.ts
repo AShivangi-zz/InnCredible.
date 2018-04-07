@@ -10,9 +10,14 @@ import * as firebase from 'firebase';
 
 export class MybookingsComponent implements OnInit {
   public key: string;
-  constructor(public userProfileService: UserProfileService) { }
 
-  ngOnInit() {}
-   setkey(value){
-   this.key=value;
+  constructor(public userProfileService: UserProfileService) {
   }
+
+  ngOnInit() {
+  }
+
+  setkey(value) {
+    this.key = value;
+  }
+}
