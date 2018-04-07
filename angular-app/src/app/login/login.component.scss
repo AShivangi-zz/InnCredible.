@@ -10,12 +10,28 @@
 .col-xs-2{
   width:auto;
 }
+
+//Background image
+.background{
+  background-image: url("../../assets/images/hdgif2.gif");
+  background-repeat:no-repeat;
+  background-size:cover;
+  padding-top:5px;
+  padding-bottom: 18%;
+  height: auto;
+  width: auto;
+  //margin-bottom: auto;
+}
+
 body {
-  margin: 0;
-  padding: 0;
+  size: auto;
+  margin: auto;
+  padding: auto;
   font-family: sans-serif;
   background: #f7f7f7;
+
 }
+
 .container {
 
   margin: 0;

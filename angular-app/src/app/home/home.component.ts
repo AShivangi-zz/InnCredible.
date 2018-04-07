@@ -16,12 +16,15 @@ export class HomeComponent implements OnInit {
   checkindate: string;
   checkoutdate: string;
 
+  done: boolean = false;
+
   constructor(public afa: AngularFireAuth, private router: Router) {}
 
   // This gets the information from the searchformdata in home.component.html
   onSubmit(searchformdata) {
+
     if (searchformdata.valid) {
-      this.router.navigate(['/searchresults', searchformdata.value.cityname, searchformdata.value.checkindate, searchformdata.value.checkoutdate]);
+      this.router.navigate(['/searchresults', searchformdata.value.cityname.toLowerCase(), searchformdata.value.checkindate, searchformdata.value.checkoutdate]);
     }
   }
 

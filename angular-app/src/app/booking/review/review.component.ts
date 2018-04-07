@@ -19,6 +19,8 @@ export class ReviewComponent implements OnInit {
   public reservation: Reservation;
   private subscription: Subscription;
 
+  submit:boolean =false;
+
   constructor(private hotel: HotelInfo
               , private reservationService: ReservationService
               , public userProfileService: UserProfileService) {
@@ -34,7 +36,7 @@ export class ReviewComponent implements OnInit {
     if (!this.userProfileService.isRedeem) {
       return 0;
     }
-    return this.userProfileService.getRewardPoints() / 25;
+    return this.userProfileService.rewardpoints / 25;
   }
 
   roomCharge(): number {
@@ -49,13 +51,13 @@ export class ReviewComponent implements OnInit {
     return this.roomCharge() + this.taxCharge() - this.applyRewardAmnt();
   }
 
-  public onClick() {
+  onClick() {
     this.reservation.totalCost = this.orderTotal();
     this.reservationService.changeReservation(this.reservation);
+    console.log(this.userProfileService.isRedeem);
     if (this.userProfileService.isRedeem) {
       this.userProfileService.deductReward();
-    } else {
-      this.userProfileService.awardRewardPoints(this.roomCharge());
     }
+    this.userProfileService.awardRewardPoints(this.roomCharge());
   }
 }

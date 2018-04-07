@@ -16,7 +16,11 @@ export class HotelInfoComponent implements OnInit {
 
   public imagesURL: URL[] = [];
   public imgDone: boolean = false;
+
   private hotelID: string;
+  returnedcheckindate:string;
+  returnedcheckoutdate:string;
+
   private id: string;
   public sub: any;
   public hotel: Hotel;
@@ -28,6 +32,8 @@ export class HotelInfoComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.hotelID = params['id'];
+      this.returnedcheckindate = params['id2'];
+      this.returnedcheckoutdate = params['id3'];
     });
 
     this.hotel = new Hotel();

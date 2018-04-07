@@ -4,13 +4,13 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
+<body class="background">
 <div id="login-overlay" class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
       <!--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>-->
       <span class= "error" *ngIf="error">{{error}}</span>
-      <span class= "error" *ngIf="password.invalid && password.touched">Passward must be between 6 and 24 chars and have at least one number</span>
+      <span class= "error" *ngIf="password.invalid && password.touched">Password must be between 6 and 24 chars and have at least one number</span>
       <h4 class="modal-title" id="myModalLabel">Register</h4>
     </div>
     <div class="modal-body" >
@@ -61,7 +61,7 @@
   </div>
 </div>
 
-
+</body>
 
 
 

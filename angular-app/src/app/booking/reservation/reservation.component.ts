@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ReservationService } from '../shared/reservation.service';
 import {HotelInfo} from '../../services/hotel-info';
@@ -14,20 +14,29 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class ReservationComponent implements OnInit {
+
   guestOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   resvForm: FormGroup;
   reservation: Reservation;
   submit: boolean = false;
 
-  // sub: any;
+  sub: any;
   hotelID: string;
+  returnedcheckindate: string;
+  returnedcheckoutdate: string;
 
   constructor(private reservationService: ReservationService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private route: ActivatedRoute) {
       this.reservationService.activeReservation.subscribe((value) => this.reservation = value);
   }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.hotelID = params['id'];
+      this.returnedcheckindate = params['id2'];
+      this.returnedcheckoutdate = params['id3'];
+    });
     this.resvForm = this.createGuestForm();
     const guests = this.resvForm.get('guests');
     const rooms = this.resvForm.get('rooms');
@@ -41,14 +50,14 @@ export class ReservationComponent implements OnInit {
   }
 
   createGuestForm() {
-      return this.fb.group({
-        guests: 1,
-        rooms:  1,
-        checkInDt: null,
-        checkOutDt: null,
-        comments: '',
-        tAndC: [null, Validators.required],
-        hotelID: this.hotelID
+      return new FormGroup({
+        guests: new FormControl({value: 1, disabled: false},Validators.required),
+        rooms:  new FormControl({value: 1, disabled: false}),
+        checkInDt: new FormControl({value: this.returnedcheckindate, disabled: false}),
+        checkOutDt: new FormControl({value: this.returnedcheckoutdate, disabled: false}),
+        comments: new FormControl({value: '', disabled: false}),
+        tAndC: new FormControl({value: null, disabled: false},Validators.required),
+        hotelID: new FormControl({value: this.hotelID, disabled: false})
       });
   }
 
