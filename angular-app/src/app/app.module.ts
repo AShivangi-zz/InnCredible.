@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 // Routes
 import { routes } from './app.router';
@@ -80,6 +81,7 @@ import { HistoryComponent } from './profile/history/history.component';
     HistoryComponent,
   ],
   imports: [
+    GooglePlaceModule,
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
