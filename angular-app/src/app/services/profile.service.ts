@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from "angularfire2/auth";
 import { Reservation } from '../booking/shared/reservation.model';
+
 import { promise } from 'protractor';
 import { Hotel } from "../models/hotel";
-import { HotelInfo } from '../services/hotel-info';
+import { HotelInfo } from './hotel-info';
 import { Booking } from '../models/booking';
 
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
@@ -31,7 +32,7 @@ export class UserProfileService {
     bookings: Booking[] = [];
     private _observableList: BehaviorSubject<Booking[]> = new BehaviorSubject([])
     bookingsObs: Observable<Booking[]>;
-    
+  
     isRedeem: boolean;
     buttonDisabled: boolean = false;
     hasPicture: boolean;
@@ -86,7 +87,6 @@ export class UserProfileService {
                     console.log(booking);
                 }
             });
-        
             this._observableList.next(this.bookings.reverse());
     }
 
@@ -108,6 +108,13 @@ export class UserProfileService {
         hotel = this.hotelInfo.getHotel();
         booking.hotelName = hotel.name;
         booking.hotelLoc = hotel.location;
+    }
+  
+    public async removeReservation(key) {
+
+     await firebase.database().ref('/users/' + this.uid + '/reservations/').child(key).remove();
+     window.location.reload();
+
     }
 
     getBookingsObs():Observable<Booking[]> {
@@ -193,5 +200,6 @@ export class UserProfileService {
         ref.update(user);
 
     }
+
 
 }
