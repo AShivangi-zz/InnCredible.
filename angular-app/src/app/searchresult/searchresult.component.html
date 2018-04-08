@@ -82,7 +82,7 @@
 
   <p *ngIf="isEmpty" style="font-size:25px">No hotels found. Try Searching hotels in the following cities: San Francisco, Miami, Los Angeles</p>
   <ul *ngIf="!isEmpty">
-    <div *ngFor="let hotel of hotelsObs | async">
+    <div *ngFor="let hotel of hotelsObs | async | orderBy: order">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">

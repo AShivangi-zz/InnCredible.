@@ -4,6 +4,7 @@ import {Hotel} from "../models/hotel";
 import {Router, ActivatedRoute } from '@angular/router';
 import {FilterService} from "../services/filter.service";
 import {Observable} from "rxjs/Observable";
+
 @Component({
   selector: 'app-searchresult',
   templateUrl: './searchresult.component.html',
@@ -18,13 +19,15 @@ export class SearchresultComponent implements OnInit {
   hotels: Hotel[]=[];
   hotelsObs: Observable<Hotel[]>;
   isEmpty: boolean = false;
+  order = 'price';
+  reverse = false;
 
   public sub: any;
 
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
     public router: Router,
-    public searchService: SearchService, 
+    public searchService: SearchService,
     private filterService: FilterService) {}
 
   ngOnInit() {
@@ -37,9 +40,9 @@ export class SearchresultComponent implements OnInit {
   }
 
   async onRatingsFilter(rating: number) {
-    
+
     this.isEmpty = await this.filterService.filterByRating(this.hotels, rating);
-    if(!this.isEmpty) { 
+    if(!this.isEmpty) {
       this.hotelsObs = this.filterService.getObservableList();
     }
   }
@@ -50,7 +53,7 @@ export class SearchresultComponent implements OnInit {
     this.hotels = this.searchService.getHotels();
 
     this.hotelsObs = this.searchService.getObservableList();
-    
+
   }
 
   goBack(): void {
