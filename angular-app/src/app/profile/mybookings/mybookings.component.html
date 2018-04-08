@@ -28,7 +28,7 @@
     <br>
     <br>
     <br>
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal">Cancel
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal" (click)= 'setkey(res.$key)'>Cancel
       <i class="fa fa-sign-in" aria-hidden="true"></i>
     </button>
     <br>
@@ -44,11 +44,10 @@
   <br>
   <br>
 
-
   <div class="container">
     <!-- Trigger the modal with a button -->
 
-    <!-- Modal -->
+    <!-- Modal for Cancel -->
     <div class="modal fade" id="cancelModal" role="dialog">
       <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -60,16 +59,12 @@
 
                 <div class="modal-body">
                   <form id="loginform" class="form-horizontal" role="form">
-
-
                     <div class="form-group">
                       <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to cancel the booking?</label>
-                      <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
+                      <button id="" name="btnCancel" class="btn btn-primary" (click)="userProfileService.removeReservation(key)" data-dismiss="modal">Yes</button>
                       <button id="" name="btnCancel" class="btn btn-primary">No</button>
                     </div>
                   </form>
-
-
                 </div>
 
               </fieldset>
@@ -95,13 +90,9 @@
                 <button id="" name="btnCancel" class="btn btn-primary">No</button>
               </div>
             </form>
-
-
           </div>
-
         </div>
       </div>
     </div>
   </div>
-
 </div>

@@ -9,8 +9,15 @@ import * as firebase from 'firebase';
 })
 
 export class MybookingsComponent implements OnInit {
-  constructor(public userProfileService: UserProfileService) { }
+  public key: string;
 
-  ngOnInit() {}
+  constructor(public userProfileService: UserProfileService) {
+  }
 
+  ngOnInit() {
+  }
+
+  setkey(value) {
+    this.key = value;
+  }
 }
