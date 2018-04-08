@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-import { HotelInfo } from '../services/hotel-info';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
-import * as firebase from 'firebase';
-import { ActivatedRoute } from '@angular/router';
-import {Hotel} from '../models/hotel';
-=======
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HotelInfo } from '../services/hotel-info';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -15,7 +6,6 @@ import * as firebase from 'firebase';
 import { ActivatedRoute } from '@angular/router';
 import { Hotel } from '../models/hotel';
 import { } from '@types/googlemaps';
->>>>>>> 8a31394e5c629e466d5899d18d150bc14ee3e98e
 
 @Component({
   selector: 'app-hotel-info',
@@ -25,23 +15,15 @@ import { } from '@types/googlemaps';
 
 export class HotelInfoComponent implements OnInit {
 
-<<<<<<< HEAD
-=======
   @ViewChild('gmap') gmapElement: any;
   //map: google.maps.Map;
 
->>>>>>> 8a31394e5c629e466d5899d18d150bc14ee3e98e
   public imagesURL: URL[] = [];
   public imgDone: boolean = false;
 
   private hotelID: string;
-<<<<<<< HEAD
-  returnedcheckindate:string;
-  returnedcheckoutdate:string;
-=======
   returnedcheckindate: string;
   returnedcheckoutdate: string;
->>>>>>> 8a31394e5c629e466d5899d18d150bc14ee3e98e
 
   private id: string;
   public sub: any;
@@ -60,48 +42,6 @@ export class HotelInfoComponent implements OnInit {
 
     this.hotel = new Hotel();
     this.hotelInfo = new HotelInfo();
-<<<<<<< HEAD
-    const id_ref =  firebase.database().ref('/hotel_id');
-    id_ref.once('value').then((snapshot) => {
-      const count = snapshot.numChildren();
-        for(var i = 0; i < count; i++) {
-          const number = i.toString();
-          if(snapshot.child(number).val() == this.hotelID) {
-            this.getData(number);
-            this.hotelInfo.retrieveAmenities(number);
-            const images_ref =  firebase.database().ref('/hotels/'+ number + '/images/');
-            images_ref.once('value')
-            .then((snapshot_img) => {
-              const countImage = snapshot_img.numChildren();
-              for(var i = 0; i < countImage; i++) {
-                var number = i.toString();
-                this.setImagesURL(snapshot_img.child(number).val());
-                if(i == countImage -1) {
-                  this.setImgDone();
-                }
-               }
-            });
-            i = count;
-          }
-        }
-    });
-  }
-
-  public async getData(number) {
-    var promise = await this.hotelInfo.getHotelData(number);
-    this.hotel = this.hotelInfo.getHotel();
-  }
-
-  public setImagesURL(image){
-    this.imagesURL.push(image);
-  }
-
-  public setImgDone(){
-    this.imgDone = true;
-  }
-
-  }
-=======
     const id_ref = firebase.database().ref('/hotel_id');
     id_ref.once('value').then((snapshot) => {
       const count = snapshot.numChildren();
@@ -178,4 +118,3 @@ export class HotelInfoComponent implements OnInit {
   }
 
 }
->>>>>>> 8a31394e5c629e466d5899d18d150bc14ee3e98e

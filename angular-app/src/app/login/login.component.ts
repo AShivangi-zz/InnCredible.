@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(public afa: AngularFireAuth, private router: Router, private location: Location,
-    public ups: UserProfileService, private auth: AuthService) { }
+  constructor(public afa: AngularFireAuth, private router: Router, private location: Location, private auth: AuthService) { }
 
   signInWithGoogle() {
     return this.afa.auth.signInWithPopup(

@@ -93,14 +93,6 @@
           <!-- Check out button -->
       <!--<form #testForm="ngForm" (ngSubmit)="onSubmit()">-->
           <div class="col-md-4">
-<<<<<<< HEAD
-          <button id="checkoutid" class="btn btn-primary"
-              (click)="this.onClick()">
-              <a href="#checkout" data-toggle="tab">
-                  <span class="round-tabs four active" style="color: white">Checkout</span>
-              </a>
-          </button>
-=======
               <button id="checkoutid" class="btn btn-primary" *ngIf="!submit" (click)="submit = true; onClick()">
                   <span class="round-tabs two active" style="color: white">Checkout</span>
                 </button>
@@ -110,7 +102,6 @@
                   </a>
                 </div>
               </div>
->>>>>>> 8a31394e5c629e466d5899d18d150bc14ee3e98e
         </div>
       <!--</form>-->
 
