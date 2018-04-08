@@ -32,6 +32,7 @@ import { CheckoutComponent } from './booking/checkout/checkout.component';
 import { ConfirmationComponent } from './booking/confirmation/confirmation.component';
 import { ErrDisplayComponent } from './booking/err-display/err-display.component';
 
+
 // Services
 import { AuthGuard } from './services/auth-guard.service';
 import {AuthService} from './services/auth.service';
@@ -41,6 +42,8 @@ import { PolicyComponent } from './policy/policy.component';
 import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import {SearchService} from './services/search.service';
+import {SenditineraryinformationService} from "./services/senditineraryinformation.service";
+
 //Models
 import {Booking} from './models/booking'
 import {Hotel} from './models/hotel';
@@ -98,6 +101,7 @@ import { HistoryComponent } from './profile/history/history.component';
       UserProfileService,
       ReservationService,
       SearchService,
+      SenditineraryinformationService,
       HotelInfo,
       Hotel,
       FilterService
