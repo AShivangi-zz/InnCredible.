@@ -9,14 +9,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import { AngularFireDatabase } from 'angularfire2/database';
 import {Location} from '@angular/common';
-//import {NotifyService} from
+//import {NotifyService} from 
 
 interface User {
   uid: string;
   email: string;
   photoURL: string;
   rewardPoints: any;
-  firstname: string;
+  firstname: string; 
   lastname: string;
   streetAddress: string;
   city: string;
@@ -29,27 +29,11 @@ interface User {
 
 export class AuthService {
   user: Observable<User>;
-  private userDetails: firebase.User = null;
 
  constructor(public afAuth: AngularFireAuth,
   private db : AngularFireDatabase,
   private router: Router,
   private location: Location){}
-
-  /*signInWithGoogle() {
-
-    return this.afAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    )
-  }
-
-  isLoggedIn() {
-    if (this.userDetails == null ) {
-      return false;
-    } else {
-      return true;
-    }
-  }*/
 
   async emailSignUp(email: string, password: string, firstname: string, lastname:string) {
     var err;
@@ -73,11 +57,9 @@ export class AuthService {
       .catch(error => {
         err = true;
       });
-      return err;
+      return err;   
   }
-
-
-
+  
   // Update properties on the user document
   updateUser(user: User, data: any) {
     this.db.object('users/' + user.uid).update(data)

@@ -2,13 +2,34 @@
 //
 //  padding-left:200px;
 //}
+
+
+.modal-body{
+  background: #7f7f7f;
+  border: #7f7f7f
+}
 .modal-header{
-  //padding-left:250px;
   text-align:center;
+  background: #7f7f7f;
+  color: white
 }
 
 .col-xs-2{
   width:auto;
+}
+
+.well
+{
+  background: #7f7f7f;
+  border: #bab9b9;
+  color: #bab9b9
+}
+.lead{
+  color: #bab9b9
+}
+
+.li{
+  color: #bab9b9
 }
 
 //Background image
@@ -18,8 +39,8 @@
   background-size:cover;
   padding-top:5px;
   padding-bottom: 18%;
-  height: auto;
-  width: auto;
+  height: 100%;
+  width: 100%;
   //margin-bottom: auto;
 }
 
@@ -28,10 +49,11 @@ body {
   margin: auto;
   padding: auto;
   font-family: sans-serif;
-  background: #f7f7f7;
 
 }
-
+.text-success{
+  color: #60d160
+}
 .container {
 
   margin: 0;

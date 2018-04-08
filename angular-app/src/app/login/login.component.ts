@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import * as firebase from 'firebase';
-import { UserProfileService } from "../services/profile.service";
 import { AuthService } from '../services/auth.service';
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-login',
@@ -19,15 +18,28 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(public afa: AngularFireAuth, private router: Router, private location: Location, private auth: AuthService) { }
+  constructor(public auth: AuthService, private router: Router, private location: Location) {}
 
-  signInWithGoogle() {
-    return this.afa.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    )
+  onSubmit(formData) {
+    if (formData.valid) {
+      this.auth.afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
+        .then((success) => {
+          this.location.back();
+        }).catch( (err) => {
+            this.error = err;
+          });
   }
+}
 
-  public onClick() {
+ngOnInit() : void {
+  this.auth.afAuth.authState.subscribe(auth => {
+    if (auth) {
+      this.router.navigateByUrl('/home');
+    }
+  });
+}
+
+  public onClick(){
 
     // Create a Google Provider
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -35,57 +47,47 @@ export class LoginComponent implements OnInit {
     provider.addScope('email');
 
     // Sign In With the given provider (Google in this case)
-    firebase.auth().signInWithPopup(provider).then(function (result) {
+    firebase.auth().signInWithPopup(provider).then(function(result){
       var token = result.credential.accessToken; // Not used
       var user = result.user; // Not used
-      console.log(user.email); // Testing to display email
-      console.log(user.displayName)// Testing to disiplay name
 
       var names = user.displayName; // Not used
 
       var splitname = names.split(" "); // Not used
-      //console.log(splitname[0]);
+      var uid = user.uid;
 
-      //this.ups.updateName(splitname[0], splitname[1]);
+      const ref = firebase.database().ref('/users/');
+      const dbUser = {};
+      ref.once("value").then(function (snapshot) {
+        if(!snapshot.hasChild(uid)){
+          dbUser[uid + '/email'] = user.email;
+          dbUser[uid + '/firstname'] = splitname[0];
 
+          if(splitname.length > 1){
+            dbUser[uid + '/lastname'] = splitname[1];
+          }
 
-      console.log(token);
-      console.log(user);
+          dbUser[uid + '/rewardPoints'] = 0;
+          ref.update(dbUser);
+        }
+
+      });
+      this.location.back();
+      window.location.reload();
 
       //firebase.auth().signInWithCredential(result.credential);
       //this.router.navigateByUrl('/home');
       window.location.reload();
-    }).catch(function (error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      var email = error.email;
-      var credential = error.credential;
+    }).catch(function(error){
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
 
-      console.log(errorCode);
-    }
+        console.log(errorCode);
+      }
 
     );
-  }
-
-
-
-  onSubmit(formData) {
-    if (formData.valid) {
-      this.auth.afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
-        .then((success) => {
-          this.location.back();
-        }).catch((err) => {
-          this.error = err;
-        });
-    }
-  }
-
-  ngOnInit(): void {
-    this.auth.afAuth.authState.subscribe(auth => {
-      if (auth) {
-        this.router.navigateByUrl('/home');
-      }
-    });
   }
 
 }

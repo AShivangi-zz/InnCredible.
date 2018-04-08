@@ -20,6 +20,7 @@
             <option value="High Ratings">High Ratings</option>
             <option value="Low Ratings">Low Ratings</option>
           </select>
+
   </div><br>
 
 
@@ -35,6 +36,7 @@
               <div class="input-group"><h4 style="color:#2998f2"><b>Customer Ratings</b></h4>
               <div class="input-group" style="margin: 5%">
                   <div id="tab" class="btn-group" data-toggle="buttons" >
+
                     <a href="#prices" class="btn btn-default active" data-toggle="tab" (click)="onRatingsFilter(1);">
                   <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
                     <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(2);">
@@ -45,6 +47,7 @@
                           <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
                     <a href="#requests" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(5);">
                   <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a>
+
                   </div>
                   </div><br>
             <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
@@ -68,6 +71,7 @@
                   <button type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
         </div>
       </div>
+
     </div></div>
 
 <!--to here (FILTER)-->
@@ -87,6 +91,7 @@
           <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
             <h3><a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a></h3>
             <h6><p>{{hotel?.location}}</p></h6>
+
             <span> {{hotel?.rating}}</span>
             <br>
             <span><img [src]= 'hotel?.ratingImg'></span><br>
@@ -99,6 +104,7 @@
               </div>
             </ul>
           </div>
+
           <hr color="black" size="10" width="100%">
         </article>
       </section>
