@@ -1,6 +1,9 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<head>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
 <!------ Include the above in your HEAD tag ---------->
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -50,7 +53,7 @@
                 <span class="help-block"></span>
               </div>
               <div id="loginErrorMsg" class="alert alert-error hide">Wrong username or password</div>
-
+              <div class="g-recaptcha" data-sitekey="6Ld_IlAUAAAAANJ3sW8q6HHh_A97J5llBESxtwJJ"></div>
               <button type="submit" [disabled]="!signupForm.valid" class="btn btn-success btn-block">Register</button>
               <a href="/login" class="btn btn-default btn-block">Login</a>
             </form>
