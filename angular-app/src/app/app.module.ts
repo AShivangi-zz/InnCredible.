@@ -6,6 +6,7 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { RecaptchaModule } from 'angular-google-recaptcha';
 
 // Routes
 import { routes } from './app.router';
@@ -78,7 +79,7 @@ import { HistoryComponent } from './profile/history/history.component';
     CalendarComponent,
     UserprofileComponent,
     RewardpointsComponent,
-    HistoryComponent,
+    HistoryComponent
   ],
   imports: [
     GooglePlaceModule,
@@ -90,7 +91,10 @@ import { HistoryComponent } from './profile/history/history.component';
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    routes
+    routes,
+    RecaptchaModule.forRoot({
+      siteKey: '6LcxzVEUAAAAAKyNKo47zY56Fgd8Yni3RBVPSL6o',
+  })
   ],
   providers:
     [ AuthGuard,
