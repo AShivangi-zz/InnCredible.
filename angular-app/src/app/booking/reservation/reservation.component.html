@@ -1,0 +1,95 @@
+<form class="form-horizontal" #reservationForm="ngForm" (ngSubmit)="onSubmit(reservationForm); submit = true;" [formGroup]="resvForm">
+  <fieldset>
+    <!--&lt;!&ndash; Form Name &ndash;&gt;-->
+    <!--<legend>Form Name</legend>-->
+
+    <!-- Select Basic -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="numGuests">Number Of Guests</label>
+          <div class="col-md-4">
+          <select
+            id="numGuests" class="form-control" formControlName="guests"
+                  [(ngModel)]="this.reservation.guests">
+            <option *ngFor="let opt of guestOptions" [ngValue]="opt">
+              {{ opt }}
+            </option>
+          </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="numRooms">Number of Rooms</label>
+          <div class="col-md-4">
+            <input disabled class="form-control" id="numRooms" formControlName="rooms"
+                [(ngModel)]="this.reservation.rooms"/>
+          </div>
+        </div>
+
+    <!-- Check in date -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="checkindate">Date Of Check In</label>
+      <div class="col-md-4">
+        <input type="date" class="form-control" id="checkindate"  formControlName="checkInDt"
+                [(ngModel)]="this.reservation.checkInDt"/>
+        <!--<input disabled class="form-control" id="hotelID" formControlName="hotelID"-->
+                <!--[(ngModel)]="this.reservation.hotelID"/>-->
+      </div>
+    </div>
+
+    <!-- Check out date -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="checkoutdate">Date Of Check Out</label>
+      <div class="col-md-4">
+        <input type="date" class="form-control" id="checkoutdate" formControlName="checkOutDt"
+                [(ngModel)]="this.reservation.checkOutDt"/>
+      </div>
+    </div>
+
+
+    <!-- Textarea -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="taComments">Comments</label>
+      <div class="col-md-4">
+        <textarea class="form-control" id="taComments" formControlName="comments"
+               [(ngModel)]="this.reservation.comments"></textarea>
+      </div>
+    </div>
+
+    <!-- Terms and conditions -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="tAndC">Read and Accept</label>
+      <div class="col-md-4" [ngClass]="displayFieldCss('tAndC')">
+        <div class="checkbox">
+          <label for="tAndC-0">
+            <input type="checkbox" name="tAndC" id="tAndC-0" value="1" formControlName="tAndC" required>
+            <a href="/policy" target="_blank">Terms and Conditions</a>
+            <!--<app-err-display
+              [displayError]="isFieldValid('tAndC')"
+              errorMsg="You must accept the Terms and Conditions to proceed.">
+            </app-err-display>-->
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="commentButton"></label>
+      <div class="col-md-4">
+        <button id="commentButton" type="submit" class="btn btn-primary" *ngIf="!submit">
+            <!--<a href="#rewards" data-toggle="tab">-->
+                <span class="round-tabs two active" style="color: white">Save</span>
+            <!--</a>-->
+        </button>
+       <!--</a>-->
+       <div class = 'next' *ngIf="submit" style="width: 100%">
+          <a href="#rewards" data-toggle="tab" >
+            <i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: skyblue"></i>
+          </a>
+      </div>
+      </div>
+    </div>
+
+
+  </fieldset>
+</form>

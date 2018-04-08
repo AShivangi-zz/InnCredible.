@@ -1,0 +1,155 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<section style="background:#efefe9; ">
+  <div class="container">
+    <div class="row">
+      <div class="board" style = "height: Auto">
+        <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
+        <!-- <div class="board-inner">
+          <ul class="nav nav-tabs" id="myTab">
+            <div class="liner"></div>
+            <li class="active">
+              <a href="#roomDetails" data-toggle="tab" title="Room Details">
+                      <span class="round-tabs one">
+                              <i class="glyphicon glyphicon-home"></i>
+                      </span>
+              </a></li>
+
+            <li><a href="#rewards" data-toggle="tab" title="Rewards">
+                     <span class="round-tabs two">
+                         <i class="glyphicon glyphicon-star"></i>
+                     </span>
+              </a>
+            </li>
+            <li><a href="#reviewOrder" data-toggle="tab" title="Review Order">
+                     <span class="round-tabs three">
+                          <i class="glyphicon glyphicon-shopping-cart"></i>
+                     </span> </a>
+            </li>
+
+            <li><a href="#checkout" data-toggle="tab" title="Checkout">
+                         <span class="round-tabs four">
+                              <i class="glyphicon glyphicon-credit-card"></i>
+                         </span>
+            </a></li>
+
+            <li><a href="#confirmation" data-toggle="tab" title="Confirmation">
+                         <span class="round-tabs five">
+                              <i class="glyphicon glyphicon-ok"></i>
+                         </span> </a>
+            </li>
+
+          </ul></div> -->
+
+        <div class="board-inner">
+          <ul class="nav nav-tabs" id="myTab">
+            <div class="liner"></div>
+            <li >
+              <a title="Room Details">
+                      <span class="round-tabs one">
+                              <i class="glyphicon glyphicon-home"></i>
+                      </span>
+              </a></li>
+
+            <li><a title="Rewards">
+                     <span class="round-tabs two">
+                         <i class="glyphicon glyphicon-star"></i>
+                     </span>
+            </a>
+            </li>
+            <li><a title="Review Order">
+                     <span class="round-tabs three">
+                          <i class="glyphicon glyphicon-shopping-cart"></i>
+                     </span> </a>
+            </li>
+
+            <li><a title="Checkout">
+                         <span class="round-tabs four">
+                              <i class="glyphicon glyphicon-credit-card"></i>
+                         </span>
+            </a></li>
+
+            <li><a title="Confirmation">
+                         <span class="round-tabs five">
+                              <i class="glyphicon glyphicon-ok"></i>
+                         </span> </a>
+            </li>
+
+          </ul></div>
+
+
+
+
+
+
+
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="roomDetails">
+
+            <h3 class="head text-center" style="margin-top:-8px"> Enter Hotel Details</h3>
+
+            <app-reservation></app-reservation>
+
+
+          </div>
+
+
+          <!--Rewards-->
+
+          <div class="tab-pane fade" id="rewards">
+            <app-rewards></app-rewards>
+          </div>
+
+
+
+
+
+          <!--Review order -->
+          <div class="tab-pane fade page" id="reviewOrder">
+              <app-review></app-review>
+          </div>
+
+          <div class="tab-pane fade" id="checkout">
+
+          <app-checkout></app-checkout>
+
+          </div>
+
+          <!-- Confirmation -->
+          <div class="tab-pane fade" id="confirmation">
+            <app-confirmation></app-confirmation>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer id="fh5co-footer" role="contentinfo" >
+
+    <div class="container" style="height: 10%">
+      <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+        <p style="color: #bab9b9">&copy; 2018 InnCredible</p>
+      </div>
+      <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+
+      </div>
+
+      <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+        <ul class="fh5co-social">
+          <li><a href="#"><i class="icon-twitter"></i></a></li>
+          <li><a href="#"><i class="icon-facebook"></i></a></li>
+          <li><a href="#"><i class="icon-google-plus"></i></a></li>
+          <li><a href="#"><i class="icon-instagram"></i></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>

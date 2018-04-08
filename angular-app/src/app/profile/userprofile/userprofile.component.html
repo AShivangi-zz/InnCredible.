@@ -1,0 +1,79 @@
+<div class="profile-tab">
+
+  <!-- Profile: Name field -->
+  <div>
+    <label for="name">Name:</label>
+    <span *ngIf="!newName" class='user-info' style="border: none">{{userProfileService.getFullName()}}</span>
+    <span *ngIf="!newName" id="edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
+
+    <input *ngIf="newName" type="text" class="user-info" placeholder="First Name" onfocus="this.value=''" [(ngModel)]="fName"
+      required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
+    <input *ngIf="newName" type="text" class="user-info" placeholder="Last Name" onfocus="this.value=''" [(ngModel)]="lName"
+      required (keydown.enter)="userProfileService.updateName(fName, lName); newName = false;">
+
+    <!--<div class='save-cancel' *ngIf="newName" style="display: block; margin-left: 40%;">-->
+      <button  *ngIf="newName" style="display: inline-block; margin-left: 30%; margin-right: 5px; margin-bottom: 10px;" id="save" class="alter-info" (click)="userProfileService.updateName(fName, lName); newName = false">Save</button>
+      <button *ngIf="newName" class="alter-info" (click)="newName = false;">Cancel</button>
+    <!--</div>-->
+  </div>
+
+  <!-- Profile: Email -->
+  <div>
+    <label for="name">Email:</label>
+    <span *ngIf="newEmail == false" style="border: none">{{userProfileService.email}}</span>
+    <input *ngIf="newEmail == true" type="Email" class="user-info" placeholder="Enter new email" onfocus="this.value=''" [(ngModel)]="Email"
+      (keydown.enter)="userProfileService.changeEmail(Email); newEmail = false;">
+    <span *ngIf="newEmail == false" id="edit" (click)="newEmail=true;" class="glyphicon glyphicon-pencil"></span>
+    <button style="margin-right: 5px;"  *ngIf="newEmail == true" id="save" class="alter-info" (click)="userProfileService.changeEmail(Email); newEmail = false;">Save</button>
+    <button *ngIf="newEmail == true" class="alter-info" (click)="newEmail = false;">Cancel</button>
+  </div>
+
+
+
+  <!--Profile: Change Password-->
+
+  <button id="change-pass" class="alter-pass-pic" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
+  <br> 
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#avatar">Change Avatar</button>  
+
+
+  <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
+  <div *ngIf="newPassword" id="changePass" class="form-group">
+    <label for="name">New Password:</label>
+    <input type="Password" class="user-info" id="pass1" placeholder="Enter new password" value='' onfocus="this.value=''" [(ngModel)]="password"
+      required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;">
+    <br>
+    <label for="name">Re-enter Password:</label>
+    <input type="Password" class="user-info" id='pass2' placeholder="Re-enter new password" value='' onfocus="this.value=''"
+      [(ngModel)]="repass" required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;">
+    <br>
+    <button class="alter-info" style="display: inline-block; margin-left: 30%; margin-right: 5px; margin-bottom: 10px;" (click)='userProfileService.changePassword(password, repass); newPassword = false;'>Save</button>
+    <button class="alter-info" (click)="newPassword = false;">Cancel</button>
+  </div>
+  <!--</form>-->
+</div>
+
+
+<!-- Modal -->
+<div class="modal" id="avatar" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header modal-custom-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title" style="color: #fff" >Choose an Avatar</h4>
+      </div>
+      <div class="modal-body ">
+           <div (click)="changePic = false"></div>
+            <img class="pic-choice" src='../assets/user_avatars/man_1.png' (click)="userProfileService.setPicIndex(0)" data-dismiss="modal"> 
+            <img class="pic-choice" src='../assets/user_avatars/man_2.png' (click)="userProfileService.setPicIndex(1)"data-dismiss="modal">
+            <img class="pic-choice" src='../assets/user_avatars/man_3.png' (click)="userProfileService.setPicIndex(2)" data-dismiss="modal"><div class="col-sm-3"></div><br>
+            <img class="pic-choice" src='../assets/user_avatars/woman_1.png' (click)="userProfileService.setPicIndex(3)" data-dismiss="modal" >
+            <img class="pic-choice" src='../assets/user_avatars/woman_2.png' (click)="userProfileService.setPicIndex(4)" data-dismiss="modal">
+            <img class="pic-choice" src='../assets/user_avatars/woman_3.png' (click)="userProfileService.setPicIndex(5)" data-dismiss="modal" ><div class="col-sm-3"></div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--end modal -->

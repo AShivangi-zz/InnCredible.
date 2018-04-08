@@ -1,0 +1,44 @@
+.well
+{
+  margin-right: -300px;
+}
+
+.modal-header{
+  text-align:center;
+}
+
+
+.form-container {
+  margin: auto;
+  position: absolute;
+  top:100px; left: 0; bottom: 0; right: 0;
+  width: 40%;
+  background: azure
+}
+
+.form-container button{
+    background: deepskyblue;
+    color: white;
+    padding: 15px;
+    display: block;
+    width: 100%;
+}
+
+.form-container button:hover {
+    background: white;
+    color: deepskyblue;
+    border: 2px solid deepskyblue;
+}
+
+.form-container input {
+    display: block;
+    border: 1px solid #ccc;
+    background: white;
+    padding: 15px;
+    width: 100%;
+
+}
+
+.error {
+    color: orangered;
+}

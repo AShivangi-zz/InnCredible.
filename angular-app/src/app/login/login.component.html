@@ -1,0 +1,132 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="843852447968-37st9uf26i1h4qcgabjqignqa6igav81.apps.googleusercontent.com">
+
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div id="login-overlay" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <!--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>-->
+
+      <h4 class="modal-title" id="myModalLabel">Login</h4>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="well">
+            <form id="loginForm" method="POST" action="/login/" novalidate="novalidate" #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+              <div class="form-group">
+                <!--<form #formData='ngForm' (ngSubmit)="onSubmit(formData)">-->
+                <label for="email" class="control-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="" required title="Please enter your email" placeholder="example@gmail.com" (ngModel) = "email">
+                <span class="help-block"></span>
+              </div>
+              <div class="form-group">
+                <label for="password" class="control-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password" placeholder="Password" (ngModel) = "password">
+                <span class="help-block"></span>
+              </div>
+              <div id="loginErrorMsg" class="alert alert-error hide">Wrong email or password</div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="remember" id="remember"> Remember login
+                </label>
+              </div>
+
+              <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+              <div class="container">
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+
+                  <!-- CLICK FOR GOOGLE BUTTON -->
+                  <li><button (click)="this.onClick()"><i class="fa fa-google-plus" aria-hidden="true"></i></button></li>
+
+                  <!--
+                  <li><div class="g-signin2" data-onsuccess="onSignIn" (onclick)="onSignIn()"></div></li>
+                  <script>
+                    function onSignIn(googleUser) {
+                      console.log('Google Auth Response', googleUser);
+                      // We need to register an Observer on Firebase Auth to make sure auth is initialized.
+                      var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
+                        unsubscribe();
+                        // Check if we are already signed-in Firebase with the correct user.
+                        if (!isUserEqual(googleUser, firebaseUser)) {
+                          // Build Firebase credential with the Google ID token.
+                          var credential = firebase.auth.GoogleAuthProvider.credential(
+                            googleUser.getAuthResponse().id_token);
+                          // Sign in with credential from the Google user.
+                          firebase.auth().signInWithCredential(credential).catch(function(error) {
+                            // Handle Errors here.
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            // The email of the user's account used.
+                            var email = error.email;
+                            // The firebase.auth.AuthCredential type that was used.
+                            var credential = error.credential;
+                            // ...
+                          });
+                        } else {
+                          console.log('User already signed-in Firebase.');
+                        }
+                      });
+                      consoloe.log("RIGHT")
+                      var profile = googleUser.getBasicProfile();
+                      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                      console.log('Name: ' + profile.getName());
+                      console.log('Image URL: ' + profile.getImageUrl());
+                      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                    }
+                  </script>
+
+                  <li>TESTING</li>
+                  -->
+
+                  <div style="clear: both;"></div>
+                </ul>
+              </div>
+
+              <button type="submit" [disabled]="!formData.valid" class="btn btn-success btn-block">Login</button>
+              <a href="/forgot" class="btn btn-default btn-block">Forgot Password</a>
+            </form>
+          </div>
+        </div>
+        <div class="col-xs-2">
+          <p class="lead">Register now for <span class="text-success">FREE</span></p>
+          <ul class="list-unstyled" style="line-height: 1">
+            <li><span class="fa fa-check text-success"></span> See all your bookings</li>
+            <li><span class="fa fa-check text-success"></span> Fast re-order</li>
+            <li><span class="fa fa-check text-success"></span> Save your favorites</li>
+            <li><span class="fa fa-check text-success"></span> Fast checkout</li>
+            <li><span class="fa fa-check text-success"></span> Earn Rewards</li>
+          </ul>
+          <p><a href="/register" class="btn btn-info btn-block">Register now!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="form-container">-->
+
+
+  <!--<h2>Login</h2>-->
+
+   <!--<span class= "error" *ngIf="error">{{error}}</span>-->
+
+  <!--<form #formData='ngForm' (ngSubmit)="onSubmit(formData)">-->
+
+    <!--<input type="email" placeholder="Email Address" (ngModel) = "email" name="email" class="txt" required/>-->
+    <!--<input type="password" placeholder="Password" (ngModel) = "password" name="password" class="txt" required/>-->
+
+    <!--<button type="submit" [disabled]="!formData.valid" class="btn">Login</button>-->
+    <!--<a id="prompt" routerLink="/register" class="alc">Don't have an account? Create one here. </a>-->
+
+  <!--</form>-->
+
+<!--</div>-->

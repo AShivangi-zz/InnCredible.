@@ -1,0 +1,444 @@
+<div id="fh5co-page">
+  <!--
+  <header id="fh5co-header" role="banner">
+    <div class="container">
+      <div class="row">
+        <div class="header-inner">
+          <img src="../assets/images/Logo.png" alt ="InnCredible" href="index.html" style="width: 25%; padding: 20px"/>
+          <nav role="navigation">
+            <ul>
+              <li><a href="buy.html">Buy</a></li>
+              <li><a href="rent.html">Rent</a></li>
+              <li><a href="properties.html">Properties</a></li>
+              <li class="call"><a href="tel://123456789"><i class="icon-phone"></i> +1 123 456 789</a></li>
+              <li class="cta"><a href="contact.html">Contact us</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  -->
+  <aside id="fh5co-hero" clsas="js-fullheight">
+    <div class="flexslider js-fullheight">
+      <ul class="slides">
+        <li style="background-image: url(https://cdn.hotelplanner.com/Common/Images/_HotelPlanner/Home-Page/fade/sld6.jpg);">
+          <div class="container">
+            <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
+              <div class="fh5co-property-brief-inner">
+                <div class="fh5co-box">
+
+                  <h3>
+                    <a href="#">Search for Hotels</a>
+                  </h3>
+                  <form #searchformdata="ngForm" (ngSubmit)="onSubmit(searchformdata)">
+
+
+                  <div id="search-box">
+                    <input type="text" class="form-control" id="cityname" required [(ngModel)]="cityname" name="cityname" placeholder="Name of city..">
+                  </div>
+                  <p></p>
+                  <p class="fh5co-property-specification">
+                    <label for="checkindate">Date Of Check In</label>
+                    <input type="date" class="form-control" id="checkindate" [(ngModel)]="checkindate" name="checkindate">
+                    <label for="checkoutdate">Date Of Check Out</label>
+                    <input type="date" class="form-control" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate">
+                  </p>
+
+
+                    <p><button type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Book Now!<i class="icon-arrow-right"></i></button></p>
+
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!--
+        <li style="background-image: url(../assets/images/slide_1.jpg);">
+          <div class="container">
+            <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
+              <div class="fh5co-property-brief-inner">
+                <div class="fh5co-box">
+                  <h3><a href="#">15 Apartments Of Type B</a></h3>
+                  <div class="price-status">
+                    <span class="price">$2,200<span class="per">/Month</span> <a href="#" class="tag">For Rent</a></span>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
+                  <p class="fh5co-property-specification">
+                    <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
+                  </p>
+                  <p><a href="#" class="btn btn-primary">Learn more</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li style="background-image: url(../assets/images/slide_3.jpg);">
+          <div class="container">
+            <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
+              <div class="fh5co-property-brief-inner">
+                <div class="fh5co-box">
+                  <h3><a href="#">401 Biscayne Boulevard, Miami</a></h3>
+                  <div class="price-status">
+                    <span class="price">$1,540,000 <a href="#" class="tag">For Sale</a></span>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
+                  <p class="fh5co-property-specification">
+                    <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
+                  </p>
+                  <p><a href="#" class="btn btn-primary">Learn more</a></p>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>-->
+
+      </ul>
+    </div>
+  </aside>
+  <div id="best-deal">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+          <h2>We are Offering the Best Hotel Deals</h2>
+          <p></p>
+        </div>
+        <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+
+
+          <div class="fh5co-property">
+            <figure>
+              <img src="https://a0.muscache.com/pictures/22903873/large.jpg" class="img-responsive">
+              <a href="#" class="tag">10 days left</a>
+            </figure>
+            <div class="fh5co-property-innter">
+              <h3>
+                <a href="#">Holua Resort</a>
+              </h3>
+              <div class="price-status">
+                <span class="price">
+                  <s>
+                    <font size="4" color="red">$2000</font>
+                  </s> $1393
+                  <span class="per">/week</span>
+                </span>
+              </div>
+              <p>Located on the Big Island of Kailua-Kona, this beautiful resort is just minutes from many exciting attractions.
+                Only a few minutes away from the beach in a quiet, serene setting.</p>
+            </div>
+            <p class="fh5co-property-specification">
+              <span>
+                <strong> 2</strong> Beds</span>
+              <span>
+                <strong>2.5</strong> Baths</span>
+              <span>
+                <strong>6</strong> Days</span>
+              <span>
+                <strong>7</strong> Nights</span>
+            </p>
+          </div>
+
+
+        </div>
+        <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+
+
+          <div class="fh5co-property">
+            <figure>
+              <img src="https://a2.muscache.com/pictures/49857892/large.jpg" class="img-responsive">
+              <a href="#" class="tag">6 days left</a>
+            </figure>
+            <div class="fh5co-property-innter">
+              <h3>
+                <a href="#">NAME??</a>
+              </h3>
+              <div class="price-status">
+                <span class="price">
+                  <s>
+                    <font size="4" color="red">$485</font>
+                  </s> $185
+                  <span class="per">/weekend</span>
+                </span>
+              </div>
+              <p>Take wonderful day trips up to the summit of Haleakala and watch the sunrise, or drive to Hana and see beautiful
+                waterfalls and forests. Walk to Charlie Young beach is one of the most beautiful of the South Maui beaches.</p>
+            </div>
+            <p class="fh5co-property-specification">
+              <span>
+                <strong> 1</strong> Bed</span>
+              <span>
+                <strong>1</strong> Bath</span>
+              <span>
+                <strong>2</strong> Days</span>
+              <span>
+                <strong>1</strong>Night </span>
+            </p>
+          </div>
+
+
+        </div>
+        <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+
+
+          <div class="fh5co-property">
+            <figure>
+              <img src="https://a1.muscache.com/pictures/18191701/large.jpg" class="img-responsive">
+              <a href="#" class="tag">4 days left</a>
+            </figure>
+            <div class="fh5co-property-innter">
+              <h3>
+                <a href="#">NAME??</a>
+              </h3>
+              <div class="price-status">
+                <span class="price">
+                  <s>
+                    <font size="4" color="red">$600</font>
+                  </s> $169
+                  <span class="per">/night</span>
+                </span>
+              </div>
+              <p> Breathtaking sunrises over the dormant volcano, Mt Haleakala. Central Maui location allows guests to take part
+                in any activity on island. Walking distance to longest beach on Maui. Come stay with us and enjoy.</p>
+            </div>
+            <p class="fh5co-property-specification">
+              <span>
+                <strong> 4</strong> Beds</span>
+              <span>
+                <strong>4</strong> Baths</span>
+              <span>
+                <strong>2</strong> Days</span>
+              <span>
+                <strong>1</strong> Night</span>
+            </p>
+          </div>
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="fh5co-section-with-image">
+
+    <img src="https://ihg.scene7.com/is/image/ihg/hotel-indigo-basking-ridge-3807896896-2x1" alt="" class="img-responsive">
+    <div class="fh5co-box animate-box">
+      <h2>Security, Comfort, &amp; Convenience</h2>
+      <p>Creating a world where everyone can truly belong requires a foundation of trust. So, as InnCredible continues to grow,
+        it’s vital we collect and publish the standards that have always underpinned this global community, both to convey
+        our values and guide behavior.
+      </p>
+    </div>
+
+  </div>
+
+  <div id="fh5co-testimonial">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+          <h2>Happy Clients</h2>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+            </p>
+        </div>
+        <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <blockquote>
+            <p>&ldquo; She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached
+              the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove,
+              the headline of. &rdquo;</p>
+            <p>
+              <span class="fh5co-author">
+                <cite>Jason Davidson</cite>
+              </span>
+              <i class="icon twitter-color icon-twitter pull-right"></i>
+            </p>
+
+          </blockquote>
+        </div>
+        <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <blockquote>
+            <p>&ldquo; Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over
+              her cheek, then she continued her way. She had a last view back on the skyline of her hometown Bookmarksgrove,
+              the headline of. &rdquo;</p>
+            <p>
+              <span class="fh5co-author">
+                <cite>Kyle Smith</cite>
+              </span>
+              <i class="icon googleplus-color icon-google-plus pull-right"></i>
+            </p>
+          </blockquote>
+        </div>
+        <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+
+          <blockquote>
+            <p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks
+              and devious Semikoli, but the Little Blind Text didn’t listen. S he had a last view back on the skyline of
+              her hometown Bookmarksgrove. &rdquo;</p>
+            <p>
+              <span class="fh5co-author">
+                <cite>Rick Cook</cite>
+              </span>
+              <i class="icon facebook-color icon-facebook pull-right"></i>
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="fh5co-agents">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center fh5co-heading white animate-box" data-animate-effect="fadeIn">
+          <h2>Our Team</h2>
+        </div>
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/Shivangi.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Shivangi Agarwal</h3>
+            <h4>Project Manager</h4>
+          </div>
+
+        </div>
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/Tyler.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Tyler Bruno</h3>
+            <h4>Product Owner/Developer</h4>
+          </div>
+        </div>
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/hedi.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Hedi Moalla</h3>
+            <h4>Product Owner/Tester</h4>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/Devanshi.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Devanshi Sukhadia</h3>
+            <h4>Software Architect</h4>
+          </div>
+
+        </div>
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/Shridhar.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Shridhar Suryanarayan</h3>
+            <h4>Technical Lead</h4>
+          </div>
+        </div>
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/Crystle.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Crystle Johnson</h3>
+            <h4>Software Developer/Tester</h4>
+          </div>
+        </div>
+
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/Inderjit.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Inderjit Bassi</h3>
+            <h4>Software Developer/Tester</h4>
+          </div>
+        </div>
+
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/Paul.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Paul Nguyen</h3>
+            <h4>Software Developer/Tester</h4>
+          </div>
+        </div>
+
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/Lance.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Lance Barrett</h3>
+            <h4>Software Developer/Documentation</h4>
+          </div>
+        </div>
+
+
+        <div class="col-md-3 text-center item-block animate-box" data-animate-effect="fadeIn">
+          <div class="fh5co-agent">
+            <figure>
+              <img src="../assets/images/Avani.jpg" alt="Free Website Template by FreeHTML5.co">
+            </figure>
+            <h3>Avani Bhatnagar</h3>
+            <h4>Software Developer/Documentation</h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <footer id="fh5co-footer" role="contentinfo">
+
+    <div class="container" style="height: 10%">
+      <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+        <p style="color: #bab9b9">&copy; 2018 InnCredible</p>
+      </div>
+      <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+
+      </div>
+
+      <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+        <ul class="fh5co-social">
+          <li>
+            <a href="#">
+              <i class="icon-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="icon-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="icon-google-plus"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="icon-instagram"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+</div>

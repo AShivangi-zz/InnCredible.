@@ -1,0 +1,37 @@
+<div class='container12' *ngFor='let res of bookings'>
+
+
+          <div class="flip col-sm-6">
+            <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+              <h1 class="text-shadow">Old Reservation</h1>
+              {{res.hotelName}}
+            </div>
+            <div class="back">
+              <div class="back-align">
+                <font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkInDt}}</font>
+                <br>
+                <br>
+                <font size="4" color="grey">Address: {{res.hotelLoc}}</font>
+                <br>
+                <br>
+                <font size="4" color="grey">Guests: {{res.guests}}</font>
+                <br>
+                <br>
+                <font size="4" color="grey">Rooms: {{res.rooms}}</font>
+                <br>
+                <br>
+                <font size="4" color="grey">Comments: {{res.comments}}</font>
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+  
+
+
+
+
+
+
+          
