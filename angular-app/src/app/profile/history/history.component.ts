@@ -13,6 +13,7 @@ import * as firebase from 'firebase';
 })
 export class HistoryComponent implements OnInit {
 
+<<<<<<< HEAD
   reservations: Reservation[];
   bookings: Booking[] = [];
 
@@ -61,4 +62,11 @@ export class HistoryComponent implements OnInit {
   }
 
 
+=======
+  constructor(public userProfileService: UserProfileService, private hotelInfo: HotelInfo) { }
+
+  ngOnInit() {
+  }
+
+>>>>>>> 8a31394e5c629e466d5899d18d150bc14ee3e98e
 }

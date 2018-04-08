@@ -93,12 +93,24 @@
           <!-- Check out button -->
       <!--<form #testForm="ngForm" (ngSubmit)="onSubmit()">-->
           <div class="col-md-4">
+<<<<<<< HEAD
           <button id="checkoutid" class="btn btn-primary"
               (click)="this.onClick()">
               <a href="#checkout" data-toggle="tab">
                   <span class="round-tabs four active" style="color: white">Checkout</span>
               </a>
           </button>
+=======
+              <button id="checkoutid" class="btn btn-primary" *ngIf="!submit" (click)="submit = true; onClick()">
+                  <span class="round-tabs two active" style="color: white">Checkout</span>
+                </button>
+               <div class = 'next' *ngIf="submit" style="width: 100%">
+                  <a href="#checkout" data-toggle="tab" >
+                    <i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: deepskyblue"></i>
+                  </a>
+                </div>
+              </div>
+>>>>>>> 8a31394e5c629e466d5899d18d150bc14ee3e98e
         </div>
       <!--</form>-->
 

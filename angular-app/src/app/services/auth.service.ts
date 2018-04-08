@@ -31,7 +31,7 @@ export class AuthService {
   user: Observable<User>;
   private userDetails: firebase.User = null;
 
- constructor(private afAuth: AngularFireAuth,
+ constructor(public afAuth: AngularFireAuth,
   private db : AngularFireDatabase,
   private router: Router,
   private location: Location){}
@@ -55,9 +55,6 @@ export class AuthService {
     var err;
     var promise = this.afAuth.auth.createUserWithEmailAndPassword(email, password);
     await promise.then(user => {
-        //Put user data in firebase
-        console.log('going to register');
-        //this.handleError(false);
         err = false;
         firebase.database().ref('users/' + user.uid).set({
           firstname: firstname,

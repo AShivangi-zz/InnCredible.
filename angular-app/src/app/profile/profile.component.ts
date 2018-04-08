@@ -9,14 +9,13 @@ import * as firebase from 'firebase';
 })
 export class ProfileComponent implements OnInit {
 
-
   constructor(public userProfileService: UserProfileService) { }
 
   ngOnInit() {
     this.userProfileService.getUserInfo();
+
+    this.userProfileService.pullReservations();
   }
-
-
   getAvatars(): string[] {
     var avatars: string[] = [];
     avatars.push('../assets/user_avatars/man_1.png');

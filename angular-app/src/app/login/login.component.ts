@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFireAuth} from 'angularfire2/auth';
-import {Router} from '@angular/router';
-import {Location} from '@angular/common';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import * as firebase from 'firebase';
-import { UserProfileService} from "../services/profile.service";
-
+import { UserProfileService } from "../services/profile.service";
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,26 +19,16 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-
-
   constructor(public afa: AngularFireAuth, private router: Router, private location: Location,
-              public ups: UserProfileService) {
-    /*this.afa.authState.subscribe(auth => {
-        if(auth) {
+    public ups: UserProfileService, private auth: AuthService) { }
 
-        }
-        this.router.navigateByUrl('/home');
-      });*/
-
-  }
-
-  signInWithGoogle(){
+  signInWithGoogle() {
     return this.afa.auth.signInWithPopup(
       new firebase.auth.GoogleAuthProvider()
     )
   }
 
-  public onClick(){
+  public onClick() {
 
     // Create a Google Provider
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -46,7 +36,7 @@ export class LoginComponent implements OnInit {
     provider.addScope('email');
 
     // Sign In With the given provider (Google in this case)
-    firebase.auth().signInWithPopup(provider).then(function(result){
+    firebase.auth().signInWithPopup(provider).then(function (result) {
       var token = result.credential.accessToken; // Not used
       var user = result.user; // Not used
       console.log(user.email); // Testing to display email
@@ -66,14 +56,14 @@ export class LoginComponent implements OnInit {
       //firebase.auth().signInWithCredential(result.credential);
       //this.router.navigateByUrl('/home');
       window.location.reload();
-      }).catch(function(error){
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
+    }).catch(function (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      var email = error.email;
+      var credential = error.credential;
 
-        console.log(errorCode);
-      }
+      console.log(errorCode);
+    }
 
     );
   }
@@ -81,35 +71,22 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(formData) {
-    if(formData.valid) {
-      this.afa.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
-        .then((success)=> {
-          //this.router.navigateByUrl('/home');
+    if (formData.valid) {
+      this.auth.afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
+        .then((success) => {
           this.location.back();
-        }).catch(
-          (err) => {
-            this.error = err;
-          }
-        )
+        }).catch((err) => {
+          this.error = err;
+        });
     }
-
-
   }
 
-  ngOnInit() : void {
-    this.afa.authState.subscribe(auth => {
-      if(auth) {
+  ngOnInit(): void {
+    this.auth.afAuth.authState.subscribe(auth => {
+      if (auth) {
         this.router.navigateByUrl('/home');
       }
     });
-
-    /* This was used for the other google button but it's not needed
-
-    var script = document.createElement('script');
-    script.src = 'https://apis.google.com/js/platform.js';
-    document.body.appendChild(script);
-
-    */
   }
 
 }
