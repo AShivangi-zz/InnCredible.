@@ -80,8 +80,8 @@ export class CalendarComponent implements OnInit {
   public async createEvents(){
     this.bookings.forEach(element => element.forEach(item=>{
       let newEvent: CalendarEvent = {
-        start: item.checkInDt,
-        end: addHours(item.checkOutDt, 1),
+        start: addHours(item.checkInDt,1),
+        end: addHours(item.checkOutDt, 2),
         title: item.hotelName,
         cssClass: 'custom-event',
         color: {
