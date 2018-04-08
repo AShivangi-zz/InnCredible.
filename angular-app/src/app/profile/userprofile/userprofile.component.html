@@ -1,7 +1,7 @@
-<div class="profile-tab">
+<div class="profile-tab" style="text-align: center">
 
   <!-- Profile: Name field -->
-  <div>
+  <div><br>
     <label for="name">Name:</label>
     <span *ngIf="!newName" class='user-info' style="border: none">{{userProfileService.getFullName()}}</span>
     <span *ngIf="!newName" id="edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
@@ -31,10 +31,10 @@
 
 
   <!--Profile: Change Password-->
-
-  <button id="change-pass" class="alter-pass-pic" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
-  <br> 
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#avatar">Change Avatar</button>  
+<br>
+  <button id="change-pass" type="button" class="alter-info" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
+  <br> <br>
+      <button type="button" class="alter-info" data-toggle="modal" data-target="#avatar">Change Avatar</button>  <br><br><br><br>
 
 
   <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
