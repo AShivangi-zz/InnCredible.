@@ -5,7 +5,6 @@ import { UserProfileService } from '../../services/profile.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ReservationService } from '../shared/reservation.service';
 import { Reservation } from '../shared/reservation.model';
-import {SenditineraryinformationService} from "../../services/senditineraryinformation.service";
 import {ActivatedRoute} from '@angular/router';
 import * as firebase from 'firebase';
 
@@ -24,12 +23,10 @@ export class ReviewComponent implements OnInit {
 
   constructor(private hotel: HotelInfo
               , private reservationService: ReservationService
-              , public userProfileService: UserProfileService,
-              private service: SenditineraryinformationService) {
+              , public userProfileService: UserProfileService) {
     this.subscription = this.hotel.activeHotel.subscribe(value => this.hotelData = value);
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
     this.taxRate = 8.25;
-    this.service = service;
   }
 
   ngOnInit() {
@@ -62,8 +59,5 @@ export class ReviewComponent implements OnInit {
       this.userProfileService.deductReward();
     }
     this.userProfileService.awardRewardPoints(this.roomCharge());
-    this.service.saveInformation(this.hotelData.name, this.hotelData.description, this.reservation.guests,
-      this.reservation.rooms, this.reservation.checkInDt, this.reservation.checkOutDt,
-      this.roomCharge(), this.applyRewardAmnt(),this.taxCharge(),this.reservation.totalCost, firebase.auth().currentUser.email);
   }
 }
