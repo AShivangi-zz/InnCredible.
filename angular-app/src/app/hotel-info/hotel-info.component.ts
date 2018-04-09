@@ -91,7 +91,7 @@ export class HotelInfoComponent implements OnInit {
           position: new google.maps.LatLng(latitude, longitude),
           map: map,
           title: address,
-          icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+          icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
         };
         marker = new google.maps.Marker(markerOptions);
       }
