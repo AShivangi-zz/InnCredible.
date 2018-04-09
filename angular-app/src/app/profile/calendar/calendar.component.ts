@@ -11,10 +11,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import {
-  CalendarEvent,
-  CalendarEventTimesChangedEvent,
-} from 'angular-calendar';
+import { CalendarEvent, CalendarEventTimesChangedEvent,} from 'angular-calendar';
 import { Subject } from 'rxjs/Subject';
 import { Booking } from '../../models/booking';
 
@@ -32,6 +29,7 @@ export class CalendarComponent implements OnInit {
   view = 'week';
   isDragging = false;
   refresh: Subject<any> = new Subject();
+  activeDayIsOpen: boolean = true;
 
   constructor(public userProfileService: UserProfileService) { }
 
@@ -78,11 +76,11 @@ export class CalendarComponent implements OnInit {
   }
 
   public async createEvents(){
-    this.bookings.forEach(element => element.forEach(item=>{
+    this.bookings.subscribe(element => element.forEach(item=>{
       let newEvent: CalendarEvent = {
-        start: addHours(item.checkInDt,1),
-        end: addHours(item.checkOutDt, 2),
-        title: item.hotelName,
+        start: startOfDay(item.checkInDt),
+        end: endOfDay(item.checkOutDt),
+        title: item.hotelName+'',
         cssClass: 'custom-event',
         color: {
           primary: '#488aff',
@@ -99,7 +97,7 @@ export class CalendarComponent implements OnInit {
     }));
     this.events.push({
       start: startOfDay(new Date()),
-      end: startOfDay(new Date()),
+      end: endOfDay(new Date()),
       title: 'Test Event',
       cssClass: 'custom-event',
       color: {
@@ -113,4 +111,19 @@ export class CalendarComponent implements OnInit {
       draggable: true
     });
   }
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+        this.viewDate = date;
+      }
+    }
+  }
+
 }
