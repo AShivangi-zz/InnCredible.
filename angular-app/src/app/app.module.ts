@@ -41,6 +41,7 @@ import { PolicyComponent } from './policy/policy.component';
 import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import {SearchService} from './services/search.service';
+
 //Models
 import {Booking} from './models/booking'
 import {Hotel} from './models/hotel';
@@ -52,6 +53,7 @@ import { CalendarComponent } from './profile/calendar/calendar.component';
 import { UserprofileComponent } from './profile/userprofile/userprofile.component';
 import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.component';
 import { HistoryComponent } from './profile/history/history.component';
+import {SenditineraryinformationService} from "./services/senditineraryinformation.service";
 
 
 @NgModule({
@@ -98,6 +100,7 @@ import { HistoryComponent } from './profile/history/history.component';
       UserProfileService,
       ReservationService,
       SearchService,
+      SenditineraryinformationService,
       HotelInfo,
       Hotel,
       FilterService
