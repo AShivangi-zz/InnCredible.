@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http'
 import {Reservation} from "../shared/reservation.model";
 import {ReservationService} from "../shared/reservation.service";
-import {SenditineraryinformationService} from "../../services/senditineraryinformation.service";
-import { AngularFireDatabase } from "angularfire2/database";
-import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-checkout',
@@ -21,9 +18,7 @@ export class CheckoutComponent implements OnInit {
 
   message: string;
 
-  constructor(private http: Http,private reservationService: ReservationService,
-              private result: SenditineraryinformationService,
-              private db: AngularFireDatabase) {
+  constructor(private http: Http,private reservationService: ReservationService) {
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
   }
 
@@ -43,7 +38,6 @@ export class CheckoutComponent implements OnInit {
         data.append('currency', 'usd');
         data.append('amount', Math.ceil(this.reservation.totalCost*100)+'');
         this.createCharge(data);
-        this.db.list('/users/' + firebase.auth().currentUser.uid +'/itinerary').push(this.result.getModel());
       } else {
         this.message = response.error.message;
       }
