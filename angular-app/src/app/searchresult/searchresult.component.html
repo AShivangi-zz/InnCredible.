@@ -11,16 +11,12 @@
 
   <!-- SORT -->
   <div class="col-sm-4">
-          <select class="form-control form-control-lg" style="width:50%; margin-left: 30%">
-            <option value="">Relevancy </option>
-            <option value="High price">High Price</option>
-            <option value="Low Price">Low Price</option>
-            <option value="A-Z">A-Z</option>
-            <option value="Z-A">Z-A</option>
-            <option value="High Ratings">High Ratings</option>
-            <option value="Low Ratings">Low Ratings</option>
-          </select>
-
+    <label class = "col-sm-4 control-label" for="sortTyp">Sort By:</label>
+    <select id="sortTyp" class="form-control" [(ngModel)]="sortTyp" (change)="sortTypChange()">
+      <option *ngFor="let type of sortOptions" [ngValue]="type">
+        {{ type }}
+      </option>
+    </select>
   </div><br>
 
 
@@ -82,7 +78,7 @@
 
   <p *ngIf="isEmpty" style="font-size:25px">No hotels found. Try Searching hotels in the following cities: San Francisco, Miami, Los Angeles</p>
   <ul *ngIf="!isEmpty">
-    <div *ngFor="let hotel of hotelsObs | async | orderBy: order">
+    <div *ngFor="let hotel of hotelsObs | async | orderBy: order : reverse">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">
