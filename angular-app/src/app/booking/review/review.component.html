@@ -32,15 +32,15 @@
           </div>
 
           <!--Check in Date field-->
-          <div class="col-md-12">
+          <div class="col-md-12" *ngIf="reservation?.checkInDt">
             <strong>Check In Date</strong>
-            <div class="pull-right"><span>{{reservation?.checkInDt}}</span></div>
+            <div class="pull-right"><span>{{formatDate(reservation.checkInDt)}}</span></div>
           </div>
 
           <!--Check Out date field-->
-          <div class="col-md-12">
+          <div class="col-md-12" *ngIf="reservation?.checkOutDt">
             <strong>Check Out Date</strong>
-            <div class="pull-right"><span>{{reservation?.checkOutDt}}</span></div>
+            <div class="pull-right"><span>{{formatDate(reservation.checkOutDt)}}</span></div>
           </div>
 
           <!--Check Out date field-->
