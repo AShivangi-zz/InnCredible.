@@ -35,7 +35,6 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
     this.userProfileService.getUserInfo();
-    this.userProfileService.pullReservations();
     this.createEvents();
   }
 
