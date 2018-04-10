@@ -6,6 +6,7 @@ export class Hotel {
   price:string;
   image:URL;
   rating:string;
+  ratingValue:number;
   ratingImg: URL;
   review_num:string;
   hotelID:string;
@@ -31,7 +32,12 @@ export class Hotel {
 
   setImage(input_image) { this.image = input_image; }
 
-  setRating(input_rating) {  this.rating = input_rating; }
+  setRating(input_rating) {
+    this.rating = input_rating;
+    const temp = input_rating.replace('Trip Adviser vote: ', '');
+    const rated = temp.split('/');
+    this.ratingValue = rated[0];
+  }
 
   setRatingImg(input_ratingImg) {  this.ratingImg = input_ratingImg; }
 
