@@ -40,6 +40,9 @@ export class ReviewComponent implements OnInit {
   }
 
   roomCharge(): number {
+    if(this.reservation === null || this.reservation.nights === null) {
+      return -1;
+    }
     return (parseFloat(this.hotelData.price) * this.reservation.nights * this.reservation.rooms);
   }
 
@@ -59,5 +62,20 @@ export class ReviewComponent implements OnInit {
       this.userProfileService.deductReward();
     }
     this.userProfileService.awardRewardPoints(this.roomCharge());
+  }
+
+  formatDate(date) {
+    if(date === null) {
+      return "";
+    }
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
   }
 }
