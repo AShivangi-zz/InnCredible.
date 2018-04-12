@@ -53,6 +53,7 @@ import { CalendarComponent } from './profile/calendar/calendar.component';
 import { UserprofileComponent } from './profile/userprofile/userprofile.component';
 import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.component';
 import { HistoryComponent } from './profile/history/history.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { HistoryComponent } from './profile/history/history.component';
     CalendarComponent,
     UserprofileComponent,
     RewardpointsComponent,
-    HistoryComponent
+    HistoryComponent,
+    FooterComponent
   ],
   imports: [
     GooglePlaceModule,
