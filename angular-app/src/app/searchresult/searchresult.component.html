@@ -85,7 +85,10 @@
             <a [routerLink]="['/hotel-info', hotel?.hotelID]" class="thumbnail"><img [src]="hotel?.firstImage" alt="Insert img" /></a>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-            <h3><a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a></h3>
+            
+
+            <h3><button class="button button5"><i class="fa fa-heart-o"></i></button>
+              <button class="button button5"><i class="fa fa-heart" style="color:red"></i></button><a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a></h3>
             <h6><p>{{hotel?.location}}</p></h6>
 
             <span> {{hotel?.rating}}</span>
