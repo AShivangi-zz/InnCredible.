@@ -22,9 +22,12 @@ export class CheckoutComponent implements OnInit {
 
   message: string;
 
+  submit:boolean =false;
+
   constructor(private http: Http,private reservationService: ReservationService,
               private result: SenditineraryinformationService,
               private db: AngularFireDatabase) {
+
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
   }
 
