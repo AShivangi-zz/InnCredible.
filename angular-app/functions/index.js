@@ -35,7 +35,7 @@ exports.sendmailNOW = functions.database.ref('/users/{userid}/itinerary/{itinera
     " Tax:" + event.data.val().tax + "Total:" + event.data.val().ordertotal,
 
     from: 'myself@thisvideo.com',
-    to: event.data.val().email,//email,//'webtestingapp415@gmail.com',
+    to: event.data.val().currentemail,//email,//'webtestingapp415@gmail.com',
     subject: 'Wow, we can send an email this way',
   }, (err, message) => {
     if (err)
