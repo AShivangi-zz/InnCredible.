@@ -43,6 +43,7 @@ import { PolicyComponent } from './policy/policy.component';
 import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import {SearchService} from './services/search.service';
+
 //Models
 import {Booking} from './models/booking'
 import {Hotel} from './models/hotel';
@@ -57,6 +58,7 @@ import { HistoryComponent } from './profile/history/history.component';
 import { FooterComponent } from './footer/footer.component';
 
 
+import {SenditineraryinformationService} from "./services/senditineraryinformation.service";
 
 @NgModule({
   declarations: [
@@ -107,6 +109,7 @@ import { FooterComponent } from './footer/footer.component';
       UserProfileService,
       ReservationService,
       SearchService,
+      SenditineraryinformationService,
       HotelInfo,
       Hotel,
       FilterService

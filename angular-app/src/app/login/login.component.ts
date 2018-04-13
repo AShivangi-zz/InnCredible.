@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import * as firebase from "firebase";
 
 @Component({
   selector: 'app-login',
@@ -41,5 +42,57 @@ ngOnInit() : void {
     }
   });
 }
+
+
+  public onClick(){
+
+    // Create a Google Provider
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+
+    // Sign In With the given provider (Google in this case)
+    firebase.auth().signInWithPopup(provider).then(function(result){
+      var token = result.credential.accessToken; // Not used
+      var user = result.user; // Not used
+
+      var names = user.displayName; // Not used
+
+      var splitname = names.split(" "); // Not used
+      var uid = user.uid;
+
+      const ref = firebase.database().ref('/users/');
+      const dbUser = {};
+      ref.once("value").then(function (snapshot) {
+        if(!snapshot.hasChild(uid)){
+          dbUser[uid + '/email'] = user.email;
+          dbUser[uid + '/firstname'] = splitname[0];
+
+          if(splitname.length > 1){
+            dbUser[uid + '/lastname'] = splitname[1];
+          }
+
+          dbUser[uid + '/rewardPoints'] = 0;
+          ref.update(dbUser);
+        }
+
+      });
+      this.location.back();
+      window.location.reload();
+
+      //firebase.auth().signInWithCredential(result.credential);
+      //this.router.navigateByUrl('/home');
+      window.location.reload();
+    }).catch(function(error){
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+
+        console.log(errorCode);
+      }
+
+    );
+  }
 
 }
