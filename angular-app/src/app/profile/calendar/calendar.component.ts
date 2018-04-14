@@ -29,7 +29,7 @@ export class CalendarComponent implements OnInit {
   view = 'week';
   isDragging = false;
   refresh: Subject<any> = new Subject();
-  activeDayIsOpen: true;
+  activeDayIsOpen: boolean = true;
 
   constructor(public userProfileService: UserProfileService) { }
 
