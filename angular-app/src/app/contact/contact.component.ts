@@ -13,4 +13,8 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
   }
 
+  resetForm() {
+    (document.getElementById('myForm') as HTMLFormElement).reset();
+  }
+
 }
