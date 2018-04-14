@@ -11,7 +11,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { CalendarEvent, CalendarEventTimesChangedEvent,} from 'angular-calendar';
+import { CalendarEvent, CalendarEventTimesChangedEvent } from 'angular-calendar';
 import { Subject } from 'rxjs/Subject';
 import { Booking } from '../../models/booking';
 
@@ -29,7 +29,7 @@ export class CalendarComponent implements OnInit {
   view = 'week';
   isDragging = false;
   refresh: Subject<any> = new Subject();
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: true;
 
   constructor(public userProfileService: UserProfileService) { }
 
@@ -54,7 +54,7 @@ export class CalendarComponent implements OnInit {
   }
 
   hourSegmentClicked(event): void {
-    let newEvent: CalendarEvent = {
+    const newEvent: CalendarEvent = {
       start: event.date,
       end: addHours(event.date, 1),
       title: 'TEST EVENT',
@@ -68,18 +68,17 @@ export class CalendarComponent implements OnInit {
         afterEnd: true
       },
       draggable: true
-    }
-
+    };
     this.events.push(newEvent);
     this.refresh.next();
   }
 
-  public async createEvents(){
-    this.bookings.subscribe(element => element.forEach(item=>{
-      let newEvent: CalendarEvent = {
+  public async createEvents() {
+    this.bookings.subscribe(element => element.forEach(item => {
+      const newEvent: CalendarEvent = {
         start: startOfDay(item.checkInDt),
         end: endOfDay(item.checkOutDt),
-        title: item.hotelName+'',
+        title: item.hotelName + '',
         cssClass: 'custom-event',
         color: {
           primary: '#488aff',
@@ -90,25 +89,10 @@ export class CalendarComponent implements OnInit {
           afterEnd: true
         },
         draggable: true
-      }
+      };
       this.events.push(newEvent);
       this.refresh.next();
     }));
-    this.events.push({
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      title: 'Test Event',
-      cssClass: 'custom-event',
-      color: {
-        primary: '#488aff',
-        secondary: '#bbd0f5'
-      },
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    });
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
