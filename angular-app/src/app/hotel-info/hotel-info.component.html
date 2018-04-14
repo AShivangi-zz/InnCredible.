@@ -85,10 +85,10 @@
   </div>
 
 </div>
-
+<br><br>
 <div class="col-sm-8">
-  <div class="column1 leftbox" style="background-color:#aaa;">
-    <h2 style="margin-bottom:1%"> Hotel Details </h2>
+  <div class="column1 leftbox">
+    <h2 style="margin-bottom:1%"> Hotel Details </h2><hr style="border-width: 2px; border-color: black">
   </div>
 </div>
 
@@ -105,8 +105,8 @@
 </div>
 
 <div class="col-sm-8">
-  <div class="column1 leftbox" style="background-color:#aaa;">
-    <h2 style="margin-bottom:1%"> Hotel Amenities </h2>
+  <div class="column1 leftbox"> 
+    <h2 style="margin-bottom:1%"> Hotel Amenities </h2><hr style="border-width: 2px; border-color: black">
   </div>
 </div>
 
@@ -116,14 +116,29 @@
   <div class="column1 leftbox">
     <ul id="amenities_list">
       <li *ngFor='let amenity of hotelInfo.getAmenities() | async'>
-        <i class="fa fa-check-square-o"></i>&nbsp;{{amenity}}</li>
+        <i class="fa fa-check-square-o"></i>&nbsp;{{amenity}} {{hotel?.city}}</li>
     </ul>
   </div>
 </div>
 
-<div class="col-sm-3"><br><br>
-  <a target="_blank" href="http://www.booked.net/weather/miami-18227"><img src="https://w.bookcdn.com/weather/picture/3_18227_0_1_118cf0_310_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=46047"  alt="booked.net"/></a>
+<div class="col-sm-3" *ngIf="miami" ><br><br>
+<a target="_blank" href="http://www.booked.net/weather/miami-18227"><img src="https://w.bookcdn.com/weather/picture/3_18227_0_1_137AE9_297_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=23808"  alt="booked.net"/></a>  
+</div>
+
+  <div class="col-sm-3" *ngIf="sf"><br><br>
+  <a target="_blank" href="http://www.booked.net/weather/san-francisco-18163"><img src="https://w.bookcdn.com/weather/picture/3_18163_0_1_137AE9_297_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=23808"  alt="booked.net"/></a>  
   </div>
+
+  <div class="col-sm-3" *ngIf="boston"><br><br>
+    <a target="_blank" href="http://www.booked.net/weather/boston-60"><img src="https://w.bookcdn.com/weather/picture/3_60_0_1_137AE9_297_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=23808"  alt="booked.net"/></a>
+    </div>
+    <div class="col-sm-3" *ngIf="la"><br><br>
+      <a target="_blank" href="http://www.booked.net/weather/los-angeles-18353"><img src="https://w.bookcdn.com/weather/picture/3_18353_0_1_137AE9_297_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=23808"  alt="booked.net"/></a>
+    </div>
+
+    <div class="col-sm-3" *ngIf="ny"><br><br>
+      <a target="_blank" href="http://www.booked.net/weather/new-windsor-6040"><img src="https://w.bookcdn.com/weather/picture/3_6040_0_1_137AE9_297_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=23808"  alt="booked.net"/></a>
+    </div>
 
 <br>
 <div class="col-sm-5">
@@ -136,3 +151,42 @@
     <i class="icon-arrow-right"></i>
   </button>
 </div>
+
+
+<footer id="fh5co-footer" role="contentinfo">
+
+  <div class="container" style="height: 10%">
+    <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+      <p style="color: #bab9b9">&copy; 2018 InnCredible</p>
+    </div>
+    <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+
+    </div>
+
+    <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+      <ul class="fh5co-social">
+        <li>
+          <a href="#">
+            <i class="icon-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="icon-facebook"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="icon-google-plus"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="icon-instagram"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</footer>

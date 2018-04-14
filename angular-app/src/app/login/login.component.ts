@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     if (formData.valid) {
       this.auth.afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
         .then((success) => {
-          console.log('User logged in');
+          this.location.back();
         }).catch( (err) => {
             this.error = err;
           });
@@ -34,17 +34,13 @@ export class LoginComponent implements OnInit {
 ngOnInit() : void {
   this.auth.afAuth.authState.subscribe(auth => {
     if (auth) {
-      this.location.back();
-      if(document.referrer === 'http://localhost:4200/home') {
-        console.log(document.referrer);
-        window.location.reload();
-      }
+      this.router.navigateByUrl('/home');
     }
   });
 }
 
 
-  public onClick(){
+googlSignIn(){
 
     // Create a Google Provider
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -77,12 +73,6 @@ ngOnInit() : void {
         }
 
       });
-      this.location.back();
-      window.location.reload();
-
-      //firebase.auth().signInWithCredential(result.credential);
-      //this.router.navigateByUrl('/home');
-      window.location.reload();
     }).catch(function(error){
         var errorCode = error.code;
         var errorMessage = error.message;

@@ -11,12 +11,16 @@
 
   <!-- SORT -->
   <div class="col-sm-4">
-    <label class = "col-sm-4 control-label" for="sortTyp">Sort By:</label>
-    <select id="sortTyp" class="form-control" [(ngModel)]="sortTyp" (change)="sortTypChange()">
-      <option *ngFor="let type of sortOptions" [ngValue]="type">
-        {{ type }}
-      </option>
-    </select>
+          <select class="form-control form-control-lg" style="width:50%; margin-left: 30%">
+            <option value="">Relevancy </option>
+            <option value="High price">High Price</option>
+            <option value="Low Price">Low Price</option>
+            <option value="A-Z">A-Z</option>
+            <option value="Z-A">Z-A</option>
+            <option value="High Ratings">High Ratings</option>
+            <option value="Low Ratings">Low Ratings</option>
+          </select>
+
   </div><br>
 
 
@@ -32,18 +36,18 @@
               <div class="input-group"><h4 style="color:#2998f2"><b>Customer Ratings</b></h4>
               <div class="input-group" style="margin: 5%">
                   <div id="tab" class="btn-group" data-toggle="buttons" >
-
-                    <a href="#prices" class="btn btn-default active" data-toggle="tab" (click)="onRatingsFilter(1);">
+<br>
+                    <a href="#requests" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(5);" style="padding:5px !important; height:35px !important">
+                      <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
+                      <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(4);" style="padding:5px !important; height:35px !important">
+                        <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
+                        <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(3);" style="padding:5px !important; height:35px !important">
+                          <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
+                          <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(2);" style="padding:5px !important; height:35px !important">
+                            <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>              
+                    <a href="#prices" class="btn btn-default active" data-toggle="tab" (click)="onRatingsFilter(1);" style="padding:5px !important; height:35px !important">
                   <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-                    <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(2);">
-                  <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-                  <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(3);">
-                      <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-                      <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(4);">
-                          <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-                    <a href="#requests" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(5);">
-                  <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a>
-
+                            
                   </div>
                   </div><br>
             <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
@@ -78,7 +82,7 @@
 
   <p *ngIf="isEmpty" style="font-size:25px">No hotels found. Try Searching hotels in the following cities: San Francisco, Miami, Los Angeles</p>
   <ul *ngIf="!isEmpty">
-    <div *ngFor="let hotel of hotelsObs | async | orderBy: order : reverse">
+    <div *ngFor="let hotel of hotelsObs | async">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">

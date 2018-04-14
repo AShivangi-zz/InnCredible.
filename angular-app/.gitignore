@@ -17,6 +17,7 @@
 *.launch
 .settings/
 *.sublime-workspace
+./angular-app/functions/node_modules/*
 
 # IDE - VSCode
 .vscode/*
