@@ -18,7 +18,7 @@ export class SearchresultComponent implements OnInit {
   returnedcheckindate = '';
   returnedcheckoutdate = '';
 
-  hotels: Hotel[] = [];
+  hotels: Hotel[]=[];
   hotelsObs: Observable<Hotel[]>;
   isEmpty = false;
 
@@ -34,8 +34,7 @@ export class SearchresultComponent implements OnInit {
   public sub: any;
 
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
-  constructor(
-    private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, 
     public router: Router,
     public searchService: SearchService,
     private filterService: FilterService,
@@ -49,45 +48,11 @@ export class SearchresultComponent implements OnInit {
       this.returnedcheckindate = params['id2'];
       this.returnedcheckoutdate = params['id3'];
     });
-
     this.getData();
   }
 
-  /* ====== sortTypChange() =======
-    I need a way to convert between the display values in the drop down and the actual named variables
-    in Hotel.ts as well as set the direction of sort.
-   */
-  sortTypChange() {
-    switch (this.sortTyp) {
-      case 'Highest Price':
-        this.order = 'price';
-        this.reverse = true;
-        break;
-      case 'Lowest Price':
-        this.order = 'price';
-        this.reverse = false;
-        break;
-      case 'Name (A-Z)':
-        this.order = 'name';
-        this.reverse = false;
-        break;
-      case 'Name (Z-A)':
-        this.order = 'name';
-        this.reverse = true;
-        break;
-      case 'Highest Rating':
-        this.order = 'ratingValue';
-        this.reverse = true;
-        break;
-      case 'Lowest Rating':
-        this.order = 'ratingValue';
-        this.reverse = false;
-        break;
-    }
-  }
-
   async onRatingsFilter(rating: number) {
-
+    
     this.isEmpty = await this.filterService.filterByRating(this.hotels, rating);
     if (!this.isEmpty) {
       this.hotelsObs = this.filterService.getObservableList();

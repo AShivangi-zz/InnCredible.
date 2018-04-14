@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     if (formData.valid) {
       this.auth.afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
         .then((success) => {
-          console.log('User logged in');
+          this.location.back();
         }).catch( (err) => {
             this.error = err;
           });
@@ -44,7 +44,7 @@ ngOnInit() : void {
 }
 
 
-  public onClick(){
+googlSignIn(){
 
     // Create a Google Provider
     var provider = new firebase.auth.GoogleAuthProvider();

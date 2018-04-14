@@ -22,6 +22,12 @@ export class HomeComponent implements OnInit {
 
   done: boolean = false;
 
+  options = {
+    types: ['(cities)'],
+    componentRestrictions: {country: 'usa'}
+  };
+  
+
   constructor(public afa: AngularFireAuth, private router: Router) { }
 
   // This gets the information from the searchformdata in home.component.html

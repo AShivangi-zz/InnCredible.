@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http'
-import {Reservation} from "../shared/reservation.model";
-import {ReservationService} from "../shared/reservation.service";
-import {SenditineraryinformationService} from "../../services/senditineraryinformation.service";
-import { AngularFireDatabase } from "angularfire2/database";
+import { Http, Headers, URLSearchParams } from '@angular/http';
+import {Reservation} from '../shared/reservation.model';
+import {ReservationService} from '../shared/reservation.service';
+import {SenditineraryinformationService} from '../../services/senditineraryinformation.service';
+import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
 
@@ -21,13 +21,11 @@ export class CheckoutComponent implements OnInit {
   cvc: string;
 
   message: string;
+  submit: false;
 
-  submit:boolean =false;
-
-  constructor(private http: Http,private reservationService: ReservationService,
+  constructor(private http: Http, private reservationService: ReservationService,
               private result: SenditineraryinformationService,
               private db: AngularFireDatabase) {
-
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
   }
 
@@ -45,11 +43,9 @@ export class CheckoutComponent implements OnInit {
         let data = new URLSearchParams();
         data.append('card', response.id);
         data.append('currency', 'usd');
-        data.append('amount', Math.ceil(this.reservation.totalCost*100)+'');
+        data.append('amount', Math.ceil(this.reservation.totalCost * 100) + '');
         this.createCharge(data);
-        console.log("HERE");
-
-        this.db.list('/users/' + firebase.auth().currentUser.uid +'/itinerary').push(this.result.getModel());
+        console.log('HERE');
       } else {
         this.message = response.error.message;
       }
@@ -57,11 +53,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   onClick() {
-    //alert(this.reservation.totalCost);
+    // alert(this.reservation.totalCost);
     console.log(this.result.getModel().numberofrooms);
-    console.log("HERE");
-
-    this.db.list('/users/' + firebase.auth().currentUser.uid +'/itinerary').push(this.result.getModel());
+    console.log('HERE');
+    this.getToken();
+    this.db.list('/users/' + firebase.auth().currentUser.uid + '/itinerary').push(this.result.getModel());
 
   }
 
@@ -71,7 +67,7 @@ export class CheckoutComponent implements OnInit {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
     this.http.post('https://api.stripe.com/v1/charges', data, { headers: headers })
-      .subscribe(resp => { console.log(resp); })
+      .subscribe(resp => { console.log(resp); });
   }
 
   ngOnInit() {
