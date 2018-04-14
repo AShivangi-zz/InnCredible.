@@ -6,8 +6,6 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
-import { RecaptchaModule } from 'angular-google-recaptcha';
-import { OrderModule } from 'ngx-order-pipe';
 
 // Routes
 import { routes } from './app.router';
@@ -55,10 +53,8 @@ import { CalendarComponent } from './profile/calendar/calendar.component';
 import { UserprofileComponent } from './profile/userprofile/userprofile.component';
 import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.component';
 import { HistoryComponent } from './profile/history/history.component';
-import { FooterComponent } from './footer/footer.component';
-
-
 import {SenditineraryinformationService} from "./services/senditineraryinformation.service";
+
 
 @NgModule({
   declarations: [
@@ -85,7 +81,6 @@ import {SenditineraryinformationService} from "./services/senditineraryinformati
     UserprofileComponent,
     RewardpointsComponent,
     HistoryComponent,
-    FooterComponent
   ],
   imports: [
     GooglePlaceModule,
@@ -97,11 +92,7 @@ import {SenditineraryinformationService} from "./services/senditineraryinformati
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    routes,
-    RecaptchaModule.forRoot({
-      siteKey: '6LcxzVEUAAAAAKyNKo47zY56Fgd8Yni3RBVPSL6o',
-  }),
-    OrderModule
+    routes
   ],
   providers:
     [ AuthGuard,

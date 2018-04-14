@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     if (formData.valid) {
       this.auth.afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
         .then((success) => {
-          console.log('User logged in');
+          this.location.back();
         }).catch( (err) => {
             this.error = err;
           });
@@ -34,11 +34,7 @@ export class LoginComponent implements OnInit {
 ngOnInit() : void {
   this.auth.afAuth.authState.subscribe(auth => {
     if (auth) {
-      this.location.back();
-      if(document.referrer === 'http://localhost:4200/home') {
-        console.log(document.referrer);
-        window.location.reload();
-      }
+      this.router.navigateByUrl('/home');
     }
   });
 }
