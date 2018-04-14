@@ -8,8 +8,6 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
-import { RecaptchaModule } from 'angular-google-recaptcha';
-import { OrderModule } from 'ngx-order-pipe';
 
 // Routes
 import { routes } from './app.router';
@@ -57,10 +55,8 @@ import { CalendarComponent } from './profile/calendar/calendar.component';
 import { UserprofileComponent } from './profile/userprofile/userprofile.component';
 import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.component';
 import { HistoryComponent } from './profile/history/history.component';
-import { FooterComponent } from './footer/footer.component';
-
-
 import {SenditineraryinformationService} from "./services/senditineraryinformation.service";
+
 
 @NgModule({
   declarations: [
@@ -87,7 +83,6 @@ import {SenditineraryinformationService} from "./services/senditineraryinformati
     UserprofileComponent,
     RewardpointsComponent,
     HistoryComponent,
-    FooterComponent
   ],
   imports: [
     GooglePlaceModule,
@@ -99,13 +94,7 @@ import {SenditineraryinformationService} from "./services/senditineraryinformati
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    routes,
-    BrowserAnimationsModule,
-    CalendarModule.forRoot(),
-    RecaptchaModule.forRoot({
-      siteKey: '6LcxzVEUAAAAAKyNKo47zY56Fgd8Yni3RBVPSL6o',
-  }),
-    OrderModule
+    routes
   ],
   providers:
     [ AuthGuard,

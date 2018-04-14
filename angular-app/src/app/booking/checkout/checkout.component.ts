@@ -22,12 +22,9 @@ export class CheckoutComponent implements OnInit {
 
   message: string;
 
-  submit:boolean =false;
-
   constructor(private http: Http,private reservationService: ReservationService,
               private result: SenditineraryinformationService,
               private db: AngularFireDatabase) {
-
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
   }
 
@@ -48,8 +45,6 @@ export class CheckoutComponent implements OnInit {
         data.append('amount', Math.ceil(this.reservation.totalCost*100)+'');
         this.createCharge(data);
         console.log("HERE");
-
-        this.db.list('/users/' + firebase.auth().currentUser.uid +'/itinerary').push(this.result.getModel());
       } else {
         this.message = response.error.message;
       }
@@ -60,7 +55,7 @@ export class CheckoutComponent implements OnInit {
     //alert(this.reservation.totalCost);
     console.log(this.result.getModel().numberofrooms);
     console.log("HERE");
-
+    this.getToken();
     this.db.list('/users/' + firebase.auth().currentUser.uid +'/itinerary').push(this.result.getModel());
 
   }
