@@ -21,6 +21,7 @@ export class CheckoutComponent implements OnInit {
   cvc: string;
 
   message: string;
+  submit: boolean = false;
 
   constructor(private http: Http,private reservationService: ReservationService,
               private result: SenditineraryinformationService,
