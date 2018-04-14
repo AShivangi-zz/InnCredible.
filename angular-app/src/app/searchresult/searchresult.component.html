@@ -88,8 +88,15 @@
             
 
             <h3>
-              <button *ngIf="!favorite" class="button button5" (click)='favorite = true; profileService.addToFav(hotel?.hotelID)'><i class="fa fa-heart-o" ></i></button>
-              <button *ngIf="favorite" class="button button5" (click)='favorite = false; profileService.removeFav(hotel?.hotelID)'><i class="fa fa-heart" style="color:red !important"></i></button>
+              <!--Favorite Button-->
+              <button *ngIf="!checkFavorite(hotel.hotelID);else red" class="button button5" (click)='profileService.addToFav(hotel?.hotelID);'>
+                <i class="fa fa-heart-o" ></i>
+              </button>
+              <ng-template #red>
+                <button class="button button5" (click)='profileService.removeFav(hotel?.hotelID);'>
+                  <i class="fa fa-heart" style="color:red !important"></i>
+                </button>
+              </ng-template>
               <a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a>
             </h3>
             <h6><p>{{hotel?.location}}</p></h6>

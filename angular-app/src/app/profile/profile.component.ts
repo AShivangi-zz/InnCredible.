@@ -12,10 +12,17 @@ export class ProfileComponent implements OnInit {
   constructor(public userProfileService: UserProfileService) { }
 
   ngOnInit() {
-    this.userProfileService.getUserInfo();
-
-    this.userProfileService.pullReservations();
+   this.getUserData();
   }
+
+  async getUserData() {
+    await this.userProfileService.getUserInfo();
+
+    await this.userProfileService.pullReservations();
+
+    await this.userProfileService.pullFavHotels();
+  }
+
   getAvatars(): string[] {
     var avatars: string[] = [];
     avatars.push('../assets/user_avatars/man_1.png');

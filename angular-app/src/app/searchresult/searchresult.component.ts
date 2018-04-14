@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService} from "../services/search.service";
-import { Hotel} from "../models/hotel";
+import { SearchService } from "../services/search.service";
+import { Hotel } from "../models/hotel";
 import { Router, ActivatedRoute } from '@angular/router';
-import { FilterService} from "../services/filter.service";
-import { Observable} from "rxjs/Observable";
+import { FilterService } from "../services/filter.service";
 import { UserProfileService } from '../services/profile.service';
+import { AuthService } from '../services/auth.service';
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-searchresult',
@@ -22,12 +23,13 @@ export class SearchresultComponent implements OnInit {
   isEmpty = false;
 
   faves: string[] = [];
-  favesObs: Observable<string[]>;
 
   sortOptions = ['Lowest Price', 'Highest Price', 'Name (A-Z)', 'Name (Z-A)', 'Highest Rating', 'Lowest Rating'];
   sortTyp = 'Lowest Price';
   order = 'price';
   reverse = false;
+
+  loggedIn: boolean;
 
   public sub: any;
 
@@ -37,9 +39,11 @@ export class SearchresultComponent implements OnInit {
     public router: Router,
     public searchService: SearchService,
     private filterService: FilterService,
-    private profileService: UserProfileService) {  }
+    private profileService: UserProfileService) { }
 
   ngOnInit() {
+    //this.profileService.getUserInfo();
+
     this.sub = this.route.params.subscribe(params => {
       this.returnedname = params['id'];
       this.returnedcheckindate = params['id2'];
@@ -85,23 +89,31 @@ export class SearchresultComponent implements OnInit {
   async onRatingsFilter(rating: number) {
 
     this.isEmpty = await this.filterService.filterByRating(this.hotels, rating);
-    if(!this.isEmpty) {
+    if (!this.isEmpty) {
       this.hotelsObs = this.filterService.getObservableList();
     }
   }
 
-  async getData(){
+  async getData() {
     this.hotels = [];
     await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
     this.hotels = this.searchService.getHotels();
+    this.hotelsObs = this.searchService.getObservableList();
+
 
     this.faves = [];
-    await this.profileService.pullFavHotels(this.hotels);
+    await this.profileService.pullFavHotels();
     this.faves = this.profileService.getFavesList();
+  }
 
-    this.favesObs = this.profileService.getFavesObs();
-    console.log(this.faves);
-
+  checkFavorite(hotelID) {
+    var favList: Hotel[] = [];
+    for (var i = 0; i < this.faves.length; i++) {
+      if (this.faves[i] === hotelID) {
+        return true;
+      }
+    }
+    return false;
   }
 
   goBack(): void {
