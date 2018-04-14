@@ -94,7 +94,9 @@ import {SenditineraryinformationService} from "./services/senditineraryinformati
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    routes
+    routes,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot()
   ],
   providers:
     [ AuthGuard,
