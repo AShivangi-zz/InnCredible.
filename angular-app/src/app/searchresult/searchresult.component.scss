@@ -584,3 +584,15 @@ col-sm-3 col-md-3{
   color: deepskyblue;
 }
 
+.button {
+  background-color: white; /* Green */
+  border: none;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button5 {border-radius: 50%;}
