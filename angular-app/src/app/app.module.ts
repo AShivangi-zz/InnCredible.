@@ -99,7 +99,7 @@ import {SenditineraryinformationService} from "./services/senditineraryinformati
     AngularFireModule.initializeApp(environment.firebase),
     routes,
     RecaptchaModule.forRoot({
-      siteKey: '6LcxzVEUAAAAAKyNKo47zY56Fgd8Yni3RBVPSL6o',
+      siteKey: '6Ld_IlAUAAAAANJ3sW8q6HHh_A97J5llBESxtwJJ',
   }),
     OrderModule
   ],
