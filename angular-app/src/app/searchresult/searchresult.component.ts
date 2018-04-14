@@ -4,6 +4,7 @@ import { Hotel} from "../models/hotel";
 import { Router, ActivatedRoute } from '@angular/router';
 import { FilterService} from "../services/filter.service";
 import { Observable} from "rxjs/Observable";
+import { UserProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-searchresult',
@@ -20,6 +21,9 @@ export class SearchresultComponent implements OnInit {
   hotelsObs: Observable<Hotel[]>;
   isEmpty = false;
 
+  faves: string[] = [];
+  favesObs: Observable<string[]>;
+
   sortOptions = ['Lowest Price', 'Highest Price', 'Name (A-Z)', 'Name (Z-A)', 'Highest Rating', 'Lowest Rating'];
   sortTyp = 'Lowest Price';
   order = 'price';
@@ -32,7 +36,8 @@ export class SearchresultComponent implements OnInit {
     private route: ActivatedRoute,
     public router: Router,
     public searchService: SearchService,
-    private filterService: FilterService) {  }
+    private filterService: FilterService,
+    private profileService: UserProfileService) {  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -90,7 +95,12 @@ export class SearchresultComponent implements OnInit {
     await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
     this.hotels = this.searchService.getHotels();
 
-    this.hotelsObs = this.searchService.getObservableList();
+    this.faves = [];
+    await this.profileService.pullFavHotels(this.hotels);
+    this.faves = this.profileService.getFavesList();
+
+    this.favesObs = this.profileService.getFavesObs();
+    console.log(this.faves);
 
   }
 

@@ -77,12 +77,6 @@ ngOnInit() : void {
         }
 
       });
-      this.location.back();
-      window.location.reload();
-
-      //firebase.auth().signInWithCredential(result.credential);
-      //this.router.navigateByUrl('/home');
-      window.location.reload();
     }).catch(function(error){
         var errorCode = error.code;
         var errorMessage = error.message;

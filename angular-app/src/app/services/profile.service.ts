@@ -32,6 +32,10 @@ export class UserProfileService {
     bookings: Booking[] = [];
     private _observableList: BehaviorSubject<Booking[]> = new BehaviorSubject([])
     bookingsObs: Observable<Booking[]>;
+
+    favorites: string[] =[];
+    private _observableFavList: BehaviorSubject<string[]> = new BehaviorSubject([])
+    bookingsFavObs: Observable<string[]>;
   
     isRedeem: boolean;
     buttonDisabled: boolean = false;
@@ -200,6 +204,42 @@ export class UserProfileService {
         ref.update(user);
 
     }
+
+    addToFav(hotelID) {
+        this.uid = firebase.auth().currentUser.uid;
+        console.log(this.uid);
+        const ref = firebase.database().ref('/users/' + this.uid).child('/favorites/').push(hotelID);
+    }
+  
+    removeFav(hotelID) {
+        //
+    }
+
+    async pullFavHotels(hotels: Hotel[]) {
+        this.uid = firebase.auth().currentUser.uid;
+        await firebase.database().ref('/users/' + this.uid + '/favorites/').once('value')
+            .then((snapshot) => {
+                const countFav = snapshot.numChildren();
+                for (var i = 0; i < countFav; i++) {
+                    var snap = Object.keys(snapshot.val());
+                    var key = snap[i];
+                    this.favorites.push(snapshot.child(key).val());
+                }
+            });
+            this._observableFavList.next(this.favorites);
+    }
+
+    getFavesObs():Observable<string[]> {
+        return this._observableFavList.asObservable();
+    }
+
+    getFavesList() {
+        return this.favorites;
+    }
+
+
+
+
 
 
 }
