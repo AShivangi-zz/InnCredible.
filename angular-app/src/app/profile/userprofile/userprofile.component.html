@@ -1,7 +1,9 @@
-<div class="profile-tab" style="text-align: center">
 
+
+<div class="profile-tab " >
+  <div class="col-sm-3"></div>
   <!-- Profile: Name field -->
-  <div><br>
+  <div class="col-sm-9"><br>
     <label for="name">Name:</label>
     <span *ngIf="!newName" class='user-info' style="border: none">{{userProfileService.getFullName()}}</span>
     <span *ngIf="!newName" id="edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
@@ -16,9 +18,9 @@
       <button *ngIf="newName" class="alter-info" (click)="newName = false;">Cancel</button>
     <!--</div>-->
   </div>
-
+  <div class="col-sm-3"></div>
   <!-- Profile: Email -->
-  <div>
+  <div class="col-sm-9">
     <label for="name">Email:</label>
     <span *ngIf="newEmail == false" style="border: none">{{userProfileService.email}}</span>
     <input *ngIf="newEmail == true" type="Email" class="user-info" placeholder="Enter new email" onfocus="this.value=''" [(ngModel)]="Email"
@@ -26,19 +28,20 @@
     <span *ngIf="newEmail == false" id="edit" (click)="newEmail=true;" class="glyphicon glyphicon-pencil"></span>
     <button style="margin-right: 5px;"  *ngIf="newEmail == true" id="save" class="alter-info" (click)="userProfileService.changeEmail(Email); newEmail = false;">Save</button>
     <button *ngIf="newEmail == true" class="alter-info" (click)="newEmail = false;">Cancel</button>
+    <br><br><br>
   </div>
 
 
-
+<div style="text-align:center">
   <!--Profile: Change Password-->
-<br>
+
   <button id="change-pass" type="button" class="alter-info" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
   <br> <br>
       <button type="button" class="alter-info" data-toggle="modal" data-target="#avatar">Change Avatar</button>  <br><br><br><br>
-
+    </div>
 
   <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
-  <div *ngIf="newPassword" id="changePass" class="form-group">
+  <div *ngIf="newPassword" id="changePass" class="form-group" style="text-align:center">
     <label for="name">New Password:</label>
     <input type="Password" class="user-info" id="pass1" placeholder="Enter new password" value='' onfocus="this.value=''" [(ngModel)]="password"
       required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;">
