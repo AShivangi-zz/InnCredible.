@@ -5,6 +5,7 @@ import { UserProfileService } from '../../services/profile.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ReservationService } from '../shared/reservation.service';
 import { Reservation } from '../shared/reservation.model';
+import {SenditineraryinformationService} from "../../services/senditineraryinformation.service";
 import {ActivatedRoute} from '@angular/router';
 import * as firebase from 'firebase';
 
@@ -23,10 +24,12 @@ export class ReviewComponent implements OnInit {
 
   constructor(private hotel: HotelInfo
               , private reservationService: ReservationService
-              , public userProfileService: UserProfileService) {
+              , public userProfileService: UserProfileService,
+              private service: SenditineraryinformationService) {
     this.subscription = this.hotel.activeHotel.subscribe(value => this.hotelData = value);
     this.reservationService.activeReservation.subscribe(value => this.reservation = value);
     this.taxRate = 8.25;
+    this.service = service;
   }
 
   ngOnInit() {
@@ -40,6 +43,9 @@ export class ReviewComponent implements OnInit {
   }
 
   roomCharge(): number {
+    if(this.reservation === null || this.reservation.nights === null) {
+      return -1;
+    }
     return (parseFloat(this.hotelData.price) * this.reservation.nights * this.reservation.rooms);
   }
 
@@ -58,6 +64,26 @@ export class ReviewComponent implements OnInit {
     if (this.userProfileService.isRedeem) {
       this.userProfileService.deductReward();
     }
+
     this.userProfileService.awardRewardPoints(this.roomCharge());
+    this.userProfileService.awardRewardPoints(this.roomCharge());
+    this.service.saveInformation(this.hotelData.name, this.hotelData.description, this.reservation.guests,
+      this.reservation.rooms, this.reservation.checkInDt, this.reservation.checkOutDt,
+      this.roomCharge(), this.applyRewardAmnt(),this.taxCharge(),this.reservation.totalCost, firebase.auth().currentUser.email);
+  }
+
+  formatDate(date) {
+    if(date === null) {
+      return "";
+    }
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
   }
 }

@@ -1,121 +1,147 @@
 <div class="col-md-8 box">
-    <div>
+  <div>
 
-      <!--REVIEW ORDER-->
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h4>Order Summary</h4>
+    <!--REVIEW ORDER-->
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <h4>Order Summary</h4>
+      </div>
+      <div class="panel-body">
+        <!--Hotel name field-->
+        <div class="col-md-12">
+          <strong>Hotel Name</strong>
+          <div class="pull-right">
+            <span>{{hotelData?.name}}</span>
+          </div>
         </div>
-        <div class="panel-body">
-          <!--Hotel name field-->
-          <div class="col-md-12">
-            <strong>Hotel Name</strong>
-            <div class="pull-right"><span>{{this.hotelData.name}}</span></div>
+
+        <!--Hotel address field-->
+        <div class="col-md-12">
+          <strong>Address</strong>
+          <div class="pull-right">
+            <span>{{hotelData?.location}}</span>
           </div>
+        </div>
 
-          <!--Hotel address field-->
-          <div class="col-md-12">
-            <strong>Address</strong>
-            <div class="pull-right"><span>{{this.hotelData.location}}</span></div>
+        <!--Number of guests field-->
+        <div class="col-md-12">
+          <strong>Number Of Guests</strong>
+          <div class="pull-right">
+            <span>{{reservation?.guests}}</span>
           </div>
+        </div>
 
-          <!--Number of guests field-->
-          <div class="col-md-12">
-            <strong>Number Of Guests</strong>
-            <div class="pull-right"><span>{{this.reservation.guests}}</span></div>
+        <!--Number of beds field-->
+        <div class="col-md-12">
+          <strong>Number Of Rooms</strong>
+          <div class="pull-right">
+            <span>{{reservation?.rooms}}</span>
           </div>
+        </div>
 
-          <!--Number of beds field-->
-          <div class="col-md-12">
-            <strong>Number Of Rooms</strong>
-            <div class="pull-right"><span>{{this.reservation.rooms}}</span></div>
+        <!--Check in Date field-->
+        <div class="col-md-12" *ngIf="reservation?.checkInDt">
+          <strong>Check In Date</strong>
+          <div class="pull-right">
+            <span>{{formatDate(reservation.checkInDt)}}</span>
           </div>
+        </div>
 
-          <!--Check in Date field-->
-          <div class="col-md-12">
-            <strong>Check In Date</strong>
-            <div class="pull-right"><span>{{this.reservation.checkInDt}}</span></div>
+        <!--Check Out date field-->
+        <div class="col-md-12" *ngIf="reservation?.checkOutDt">
+          <strong>Check Out Date</strong>
+          <div class="pull-right">
+            <span>{{formatDate(reservation.checkOutDt)}}</span>
           </div>
+        </div>
 
-          <!--Check Out date field-->
-          <div class="col-md-12">
-            <strong>Check Out Date</strong>
-            <div class="pull-right"><span>{{this.reservation.checkOutDt}}</span></div>
+        <!--Check Out date field-->
+        <div class="col-md-12">
+          <strong>Nights reserved</strong>
+          <div class="pull-right">
+            <span>{{reservation?.nights}}</span>
           </div>
+        </div>
 
-          <!--Check Out date field-->
-          <div class="col-md-12">
-            <strong>Nights reserved</strong>
-            <div class="pull-right"><span>{{this.reservation.nights}}</span></div>
+        <!--Room price field-->
+        <div class="col-md-12">
+          <strong>Total before tax</strong>
+          <div class="pull-right">
+            <span>$</span>
+            <span>{{roomCharge().toFixed(2)}}</span>
           </div>
+        </div>
 
-          <!--Room price field-->
-          <div class="col-md-12">
-            <strong>Total before tax</strong>
-            <div class="pull-right"><span>$</span><span>{{this.roomCharge().toFixed(2)}}</span></div>
+        <!--Rewards field-->
+        <div class="col-md-12">
+          <strong>Rewards Applied</strong>
+          <div class="pull-right">
+            <span>-$</span>
+            <span>{{applyRewardAmnt().toFixed(2)}}</span>
           </div>
+        </div>
 
-          <!--Rewards field-->
-          <div class="col-md-12">
-              <strong>Rewards Applied</strong>
-              <div class="pull-right"><span>-$</span><span>{{this.applyRewardAmnt().toFixed(2)}}</span></div>
-            </div>
-
-          <!--Tax price field-->
-          <div class="col-md-12">
-            <strong>Tax (@ {{this.taxRate}}%)</strong>
-            <div class="pull-right"><span>$</span><span>{{this.taxCharge().toFixed(2)}}</span></div>
+        <!--Tax price field-->
+        <div class="col-md-12">
+          <strong>Tax (@ {{taxRate}}%)</strong>
+          <div class="pull-right">
+            <span>$</span>
+            <span>{{taxCharge().toFixed(2)}}</span>
           </div>
+        </div>
 
-          <!-- horizontal line-->
-          <div class="col-md-12">
-            <hr>
+        <!-- horizontal line-->
+        <div class="col-md-12">
+          <hr>
+        </div>
+        <div class="col-md-12">
+
+          <!-- Order total -->
+          <strong>Order Total</strong>
+          <div class="pull-right">
+            <span>$</span>
+            <span>{{orderTotal().toFixed(2)}}</span>
           </div>
-          <div class="col-md-12">
-
-            <!-- Order total -->
-            <strong>Order Total</strong>
-            <div class="pull-right"><span>$</span><span>{{this.orderTotal().toFixed(2)}}</span></div>
-            <hr>
-          </div>
+          <hr>
+        </div>
 
 
-          <!-- Back button -->
-    <div class="form-group ">
-      <div class="col-md-4">
-          <button id="back" class="btn btn-success">
+        <!-- Back button -->
+        <div class="form-group ">
+          <div class="col-md-4">
+            <button id="back" class="btn btn-success">
               <a href="#rewards" data-toggle="tab">
-                  <span class="round-tabs two active" style="color: white">Back</span>
+                <span class="round-tabs two active" style="color: white">Back</span>
               </a>
+            </button>
+          </div>
+
+          <!-- Check out button -->
+          <!--<form #testForm="ngForm" (ngSubmit)="onSubmit()">-->
+          <div class="col-md-4">
+            <button id="checkoutid" class="btn btn-primary" *ngIf="!submit" (click)="submit = true; onClick()">
+              <span class="round-tabs two active" style="color: white">Checkout</span>
+            </button>
+            <div class='next' *ngIf="submit" style="width: 100%">
+              <a href="#checkout" data-toggle="tab">
+                <i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: deepskyblue"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!--</form>-->
+
+        <!-- Cancel button -->
+        <div class="col-md-4">
+          <button class="btn btn-danger">
+            <a href="/profile">
+              <span style="color: white">Cancel</span>
+            </a>
           </button>
         </div>
 
-          <!-- Check out button -->
-      <!--<form #testForm="ngForm" (ngSubmit)="onSubmit()">-->
-          <div class="col-md-4">
-              <button id="checkoutid" class="btn btn-primary" *ngIf="!submit" (click)="submit = true; onClick()">
-                  <span class="round-tabs two active" style="color: white">Checkout</span>
-                </button>
-               <div class = 'next' *ngIf="submit" style="width: 100%">
-                  <a href="#checkout" data-toggle="tab" >
-                    <i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: deepskyblue"></i>
-                  </a>
-                </div>
-              </div>
-        </div>
-      <!--</form>-->
-
-          <!-- Cancel button -->
-          <div class="col-md-4">
-                <button class="btn btn-danger">
-                    <a href="/profile" >
-                        <span style="color: white">Cancel</span>
-                    </a>
-                </button>
-                </div>
-
-            </div>
       </div>
-      <!--REVIEW ORDER END-->
     </div>
+    <!--REVIEW ORDER END-->
   </div>
+</div>

@@ -8,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { RecaptchaModule } from 'angular-google-recaptcha';
+import { OrderModule } from 'ngx-order-pipe';
 
 // Routes
 import { routes } from './app.router';
@@ -43,6 +45,7 @@ import { PolicyComponent } from './policy/policy.component';
 import { ReservationService} from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import {SearchService} from './services/search.service';
+
 //Models
 import {Booking} from './models/booking'
 import {Hotel} from './models/hotel';
@@ -54,7 +57,10 @@ import { CalendarComponent } from './profile/calendar/calendar.component';
 import { UserprofileComponent } from './profile/userprofile/userprofile.component';
 import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.component';
 import { HistoryComponent } from './profile/history/history.component';
+import { FooterComponent } from './footer/footer.component';
 
+
+import {SenditineraryinformationService} from "./services/senditineraryinformation.service";
 
 @NgModule({
   declarations: [
@@ -81,6 +87,7 @@ import { HistoryComponent } from './profile/history/history.component';
     UserprofileComponent,
     RewardpointsComponent,
     HistoryComponent,
+    FooterComponent
   ],
   imports: [
     GooglePlaceModule,
@@ -94,7 +101,11 @@ import { HistoryComponent } from './profile/history/history.component';
     AngularFireModule.initializeApp(environment.firebase),
     routes,
     BrowserAnimationsModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    RecaptchaModule.forRoot({
+      siteKey: '6LcxzVEUAAAAAKyNKo47zY56Fgd8Yni3RBVPSL6o',
+  }),
+    OrderModule
   ],
   providers:
     [ AuthGuard,
@@ -102,6 +113,7 @@ import { HistoryComponent } from './profile/history/history.component';
       UserProfileService,
       ReservationService,
       SearchService,
+      SenditineraryinformationService,
       HotelInfo,
       Hotel,
       FilterService
