@@ -38,7 +38,7 @@ export class UserProfileService {
     hasPicture: boolean;
     picIndex: number;
 
-    constructor(private afAuth: AngularFireAuth, private hotelInfo: HotelInfo) {
+    constructor(public afAuth: AngularFireAuth, private hotelInfo: HotelInfo) {
         //afAuth used in profile component to upload picture
         this.getUserInfo();
     }

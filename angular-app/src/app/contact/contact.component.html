@@ -27,7 +27,7 @@
           </ul>
         </div>
         <div class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-          <div class="row" id="myForm">
+          <form class="row" id="myForm">
             <div class="col-md-6">
               <div class="form-group">
                 <input class="form-control" placeholder="Name" type="text">
@@ -45,10 +45,10 @@
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#success">Submit</button>
+                  <button type="button" (click)="resetForm();" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#success">Submit</button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

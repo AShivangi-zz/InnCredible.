@@ -18,6 +18,8 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns'
+import { RecaptchaModule } from 'angular-google-recaptcha';
+import { OrderModule } from 'ngx-order-pipe';
 
 // Routes
 import { routes } from './app.router';
@@ -43,6 +45,13 @@ import { ReviewComponent } from './booking/review/review.component';
 import { CheckoutComponent } from './booking/checkout/checkout.component';
 import { ConfirmationComponent } from './booking/confirmation/confirmation.component';
 import { ErrDisplayComponent } from './booking/err-display/err-display.component';
+import { MybookingsComponent } from './profile/mybookings/mybookings.component';
+import { FavoritesComponent } from './profile/favorites/favorites.component';
+import { CalendarComponent } from './profile/calendar/calendar.component';
+import { UserprofileComponent } from './profile/userprofile/userprofile.component';
+import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.component';
+import { HistoryComponent } from './profile/history/history.component';
+import {FooterComponent} from './footer/footer.component';
 
 // Services
 import { AuthGuard } from './services/auth-guard.service';
@@ -53,19 +62,13 @@ import { PolicyComponent } from './policy/policy.component';
 import { ReservationService } from './booking/shared/reservation.service';
 import { SearchresultComponent } from './searchresult/searchresult.component';
 import { SearchService } from './services/search.service';
+import { FilterService } from './services/filter.service';
+import { SenditineraryinformationService } from "./services/senditineraryinformation.service";
 
 //Models
 import { Booking } from './models/booking'
 import { Hotel } from './models/hotel';
 
-import { FilterService } from './services/filter.service';
-import { MybookingsComponent } from './profile/mybookings/mybookings.component';
-import { FavoritesComponent } from './profile/favorites/favorites.component';
-import { CalendarComponent } from './profile/calendar/calendar.component';
-import { UserprofileComponent } from './profile/userprofile/userprofile.component';
-import { RewardpointsComponent } from './profile/rewardpoints/rewardpoints.component';
-import { HistoryComponent } from './profile/history/history.component';
-import { SenditineraryinformationService } from "./services/senditineraryinformation.service";
 
 
 @NgModule({
@@ -93,6 +96,7 @@ import { SenditineraryinformationService } from "./services/senditineraryinforma
     UserprofileComponent,
     RewardpointsComponent,
     HistoryComponent,
+    FooterComponent
   ],
   imports: [
     GooglePlaceModule,
@@ -105,6 +109,10 @@ import { SenditineraryinformationService } from "./services/senditineraryinforma
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     routes,
+    RecaptchaModule.forRoot({
+      siteKey: '6Ld_IlAUAAAAANJ3sW8q6HHh_A97J5llBESxtwJJ',
+  }),
+    OrderModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot()
   ],
