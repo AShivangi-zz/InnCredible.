@@ -3,8 +3,7 @@
 <div class="profile-tab " >
   <div class="col-sm-3"></div>
   <!-- Profile: Name field -->
-  <div>
-    <br>
+  <div class="col-sm-9"><br>
     <label for="name">Name:</label>
     <span *ngIf="!newName" class='user-info' style="border: none">{{userProfileService.getFullName()}}</span>
     <span *ngIf="!newName" id="edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
