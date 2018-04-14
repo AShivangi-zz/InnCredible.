@@ -5,7 +5,8 @@ import * as firebase from 'firebase';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss',
+'./../../../node_modules/angular-calendar/css/angular-calendar.css']
 })
 export class ProfileComponent implements OnInit {
 
