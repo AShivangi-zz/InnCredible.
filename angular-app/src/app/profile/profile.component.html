@@ -17,10 +17,9 @@
       <!-- http://lorempixel.com/850/280/people/9/ -->
     </div>
     <div class="useravatar">
-      <!--<img *ngIf="userProfileService.hasPicture != null" id="user-pic" alt="User Picture" src="{{pictures[userProfileService.picIndex]}}">-->
-      <img *ngIf="!userProfileService.hasPicture" class="user-pic" alt="User Picture" src="../assets/images/default.png">
-      <img *ngIf="userProfileService.hasPicture" id="upic" class="user-pic" alt="User Picture" src="{{getAvatars()[userProfileService.picIndex]}}"
-        style="background: grey">
+        <img *ngIf="userProfileService.afAuth.auth?.currentUser?.photoURL" class="user-pic" id="profile-img" alt="User Picture" src="{{userProfileService.afAuth.auth?.currentUser?.photoURL}}"/>
+        <img *ngIf="!userProfileService.afAuth.auth?.currentUser?.photoURL" class="user-pic" id="profile-img" alt="User Picture" src="../assets/images/default.png"/>
+        <!--<img *ngIf="userProfileService.hasPicture" id="upic" class="user-pic" alt="User Picture" src="{{getAvatars()[userProfileService.picIndex]}}" style="background: grey">-->
     </div>
     <div class="card-info">
       <span class="card-title" *ngIf='userProfileService?.firstname && userProfileService?.lastname'>{{userProfileService.getFullName()}}</span>
