@@ -1,2 +1,5 @@
 .idea/
 .node_modules/
+angular-app/functions
+package-lock.json
+.angulardoc.json
