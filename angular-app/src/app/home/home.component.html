@@ -35,8 +35,7 @@
 
 
                   <div id="search-box">
-                    <!--<input type="text" class="form-control" id="cityname" required [(ngModel)]="cityname" name="cityname" placeholder="Name of city..">-->
-                    <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" class="form-control" id="cityname" required [(ngModel)]="cityname" name="cityname"/>
+                    <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" class="form-control" id="cityname" required [(ngModel)]="cityname" name="cityname"/>
                   </div>
                   <p></p>
                   <p class="fh5co-property-specification">
@@ -396,4 +395,41 @@
       </div>
     </div>
   </div>
+  <footer id="fh5co-footer" role="contentinfo">
+
+    <div class="container" style="height: 10%">
+      <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+        <p style="color: #bab9b9">&copy; 2018 InnCredible</p>
+      </div>
+      <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+
+      </div>
+
+      <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+        <ul class="fh5co-social">
+          <li>
+            <a href="#">
+              <i class="icon-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="icon-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="icon-google-plus"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="icon-instagram"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
 </div>

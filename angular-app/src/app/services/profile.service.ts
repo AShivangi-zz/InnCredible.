@@ -69,7 +69,7 @@ export class UserProfileService {
 
     async pullReservations() {
         await firebase.database().ref('/users/' + this.uid + '/reservations/').once('value')
-            .then((snapshot) => {
+            .then(async(snapshot) => {
                 const countRes = snapshot.numChildren();
                 for (var i = 0; i < countRes; i++) {
                     var number = i.toString();
@@ -82,9 +82,8 @@ export class UserProfileService {
                     booking.comments = snapshot.child(key + '/comments').val();
                     booking.guests = snapshot.child(key + '/guests').val();
                     booking.rooms = snapshot.child(key + '/rooms').val();
-                    this.getHotelInfo(snapshot.child(key + '/hotelID').val(), booking);
+                    await this.getHotelInfo(snapshot.child(key + '/hotelID').val(), booking);
                     this.bookings.push(booking);
-                    console.log(booking);
                 }
             });
             this._observableList.next(this.bookings.reverse());
