@@ -34,7 +34,11 @@ export class LoginComponent implements OnInit {
 ngOnInit() : void {
   this.auth.afAuth.authState.subscribe(auth => {
     if (auth) {
-      this.router.navigateByUrl('/home');
+      this.location.back();
+      if(document.referrer === 'http://localhost:4200/home' || document.referrer === 'https://www.inn-credible.com/home') {
+        console.log(document.referrer);
+        window.location.reload();
+      }
     }
   });
 }

@@ -8,9 +8,10 @@ import { Hotel } from "../models/hotel";
 import { HotelInfo } from './hotel-info';
 import { Booking } from '../models/booking';
 
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
 import { DatePipe } from '@angular/common';
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Observable } from "rxjs/Observable";
+import { snapshotChanges } from 'angularfire2/database';
 
 
 @Injectable()
@@ -35,7 +36,10 @@ export class UserProfileService {
     private _observableList2: BehaviorSubject<Booking[]> = new BehaviorSubject([])
     bookingsObs: Observable<Booking[]>;
 
-  
+    favorites: string[] = [];
+    private _observableFavList: BehaviorSubject<Hotel[]> = new BehaviorSubject([]);
+    favEmpty: boolean = false;
+    favHotels: Hotel[] = [];
     isRedeem: boolean;
     buttonDisabled: boolean = false;
     hasPicture: boolean;
@@ -46,30 +50,32 @@ export class UserProfileService {
         //afAuth used in profile component to upload picture
         this.getUserInfo();
         this.pipe = new DatePipe("en-US");
+
     }
 
     async getUserInfo() {
-        this.uid = firebase.auth().currentUser.uid;
-        await firebase.database().ref('/users/' + this.uid).once('value')
-            .then((snapshot) => {// ** My only change ** or use snapshot
-                this.firstname = snapshot.child('firstname').val();
-                this.lastname = snapshot.child('lastname').val();
-                this.rewardpoints = snapshot.child('rewardPoints').val();
-                //console.log(this.rewardpoints);
-                this.email = snapshot.child('email').val();
-                this.phototURL = snapshot.child('photoURL').val();
-                this.streetAddress = snapshot.child('streetAddress').val();
-                this.city = snapshot.child('city').val();
-                this.state = snapshot.child('state').val();
-                this.country = snapshot.child('country').val();
-                this.zipcode = snapshot.child('zipcode').val();
+        this.uid = await firebase.auth().currentUser.uid;
+        if (this.uid !== null) {
+            await firebase.database().ref('/users/' + this.uid).once('value')
+                .then((snapshot) => {// ** My only change ** or use snapshot
+                    this.firstname = snapshot.child('firstname').val();
+                    this.lastname = snapshot.child('lastname').val();
+                    this.rewardpoints = snapshot.child('rewardPoints').val();
+                    this.email = snapshot.child('email').val();
+                    this.phototURL = snapshot.child('photoURL').val();
+                    this.streetAddress = snapshot.child('streetAddress').val();
+                    this.city = snapshot.child('city').val();
+                    this.state = snapshot.child('state').val();
+                    this.country = snapshot.child('country').val();
+                    this.zipcode = snapshot.child('zipcode').val();
 
-                if (snapshot.child('pictureIndex').exists()) {
-                    this.picIndex = snapshot.child('pictureIndex').val();
-                    this.hasPicture = true;
-                } else { this.hasPicture = false; }
-                return;
-            });
+                    if (snapshot.child('pictureIndex').exists()) {
+                        this.picIndex = snapshot.child('pictureIndex').val();
+                        this.hasPicture = true;
+                    } else { this.hasPicture = false; }
+                    return;
+                });
+        }
     }
 
     async pullReservations() {
@@ -118,25 +124,25 @@ export class UserProfileService {
             for (var i = 0; i < count; i++) {
                 const number = i.toString();
                 if (snapshot.child(number).val() == hotelID) {
-                  index = number;
-                  break;
+                    index = number;
+                    break;
                 }
             }
-        }); 
+        });
         await this.hotelInfo.getHotelData(index);
         hotel = this.hotelInfo.getHotel();
         booking.hotelName = hotel.name;
         booking.hotelLoc = hotel.location;
     }
-  
+
     public async removeReservation(key) {
 
-     await firebase.database().ref('/users/' + this.uid + '/reservations/').child(key).remove();
-     window.location.reload();
+        await firebase.database().ref('/users/' + this.uid + '/reservations/').child(key).remove();
+        window.location.reload();
 
     }
 
-    getBookingsObs():Observable<Booking[]> {
+    getBookingsObs(): Observable<Booking[]> {
         return this._observableList.asObservable();
     }
     
@@ -144,7 +150,7 @@ export class UserProfileService {
         return this._observableList2.asObservable();
     }
 
-    getFullName() : string {
+    getFullName(): string {
         return this.firstname + " " + this.lastname;
     }
 
@@ -224,5 +230,75 @@ export class UserProfileService {
 
     }
 
-    
+    async addToFav(hotelID) {
+        this.uid = firebase.auth().currentUser.uid;
+        console.log(this.uid);
+        const ref = await firebase.database().ref('/users/' + this.uid).child('/favorites/').push(hotelID);
+        window.location.reload();
+    }
+
+    async removeFav(hotelID) {
+        var key: string;
+        const ref = firebase.database().ref('/users/' + this.uid + '/favorites/');
+        await ref.once('value')
+            .then(async (snapshot) => {
+                const countRes = snapshot.numChildren();
+                for (var i = 0; i < countRes; i++) {
+                    var snap = Object.keys(snapshot.val());
+                    key = snap[i];
+                    if(snapshot.child(key).val() == hotelID) {
+                        console.log('REMOVE');
+                        await ref.child(key).remove();
+                        window.location.reload();
+                    }
+                }
+            });
+
+    }
+
+    async pullFavHotels() {
+        this.uid = firebase.auth().currentUser.uid;
+        await firebase.database().ref('/users/' + this.uid + '/favorites/').once('value')
+            .then(async (snapshot) => {
+                const countFav = snapshot.numChildren();
+                for (var i = 0; i < countFav; i++) {
+                    var snap = Object.keys(snapshot.val());
+                    var key = snap[i];
+                    var htlID = snapshot.child(key).val();
+
+                    this.favorites.push(htlID);
+
+                    await this.getFavHotelInfo(htlID);
+                }
+            });
+        this._observableFavList.next(this.favHotels);
+    }
+
+    async getFavHotelInfo(htlID) {
+        var hotel = new Hotel();
+        const id_ref = firebase.database().ref('/hotel_id');
+        var index;
+        await id_ref.once('value').then((snapshot) => {
+            const count = snapshot.numChildren();
+            for (var i = 0; i < count; i++) {
+                const number = i.toString();
+                if (snapshot.child(number).val() == htlID) {
+                    index = number;
+                    break;
+                }
+            }
+        });
+        await this.hotelInfo.getHotelData(index);
+        hotel = this.hotelInfo.getHotel();
+        this.favHotels.push(this.hotelInfo.getHotel())
+    }
+
+    getFavesList() {
+        return this.favorites;
+    }
+
+    getFavesObs(): Observable<Hotel[]> {
+        return this._observableFavList.asObservable();
+    }
+
 }
