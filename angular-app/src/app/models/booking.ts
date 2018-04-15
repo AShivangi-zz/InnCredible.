@@ -5,7 +5,7 @@ export class Booking {
     $key:       string;
     guests:     number;
     rooms:      number;
-    checkInDt:  Date;
-    checkOutDt: Date;
+    checkInDt:  string;
+    checkOutDt: string;
     comments:   string;
 }
