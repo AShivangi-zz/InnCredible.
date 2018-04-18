@@ -40,7 +40,7 @@ export class CheckoutComponent implements OnInit {
     }, (status: number, response: any) => {
       if (status === 200) {
         this.message = `Success! Card token ${response.card.id}.`;
-        let data = new URLSearchParams();
+        const data = new URLSearchParams();
         data.append('card', response.id);
         data.append('currency', 'usd');
         data.append('amount', Math.ceil(this.reservation.totalCost * 100) + '');
