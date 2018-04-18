@@ -122,9 +122,6 @@
     color: #337ab7;
   }
   
-
-  
-  
   
   // modal
   .modal-custom-header{
@@ -148,6 +145,31 @@
   .close:hover {
     color: #fff;
   }
+
+  /**Need to hide input field*/
+#input-pic {
+  position: absolute;
+  margin-top: 5px;
+  left: 44%;
+  z-index: 1;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/*Replacement for input field*/
+#pic-label {
+  width: fit-content;
+  position: absolute;
+  left: 44%;
+  z-index: 0;
+  padding: 5px 10px 5px 10px;
+  border-radius: 50px;
+  background-color: #337ab7;
+  color: white;
+  display: inline-block;
+  font-size: 14px;
+  transition: .3s ease;
+}
   
 
   

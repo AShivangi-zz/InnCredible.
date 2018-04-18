@@ -16,10 +16,17 @@ export class HomeComponent implements OnInit {
   end: string;
 
   cityname: string;
+  citynameAuto: string;
   checkindate: string;
   checkoutdate: string;
 
   done: boolean = false;
+
+  options = {
+    types: ['(cities)'],
+    componentRestrictions: {country: 'usa'}
+  };
+  
 
   constructor(public afa: AngularFireAuth, private router: Router) { }
 
@@ -27,11 +34,11 @@ export class HomeComponent implements OnInit {
   onSubmit(searchformdata) {
 
     if (searchformdata.valid) {
-      if(this.cityname != null) {
-        this.router.navigate(['/searchresults', this.cityname, searchformdata.value.checkindate, searchformdata.value.checkoutdate]);
+      if(this.citynameAuto != null) {
+        this.router.navigate(['/searchresults', this.citynameAuto, searchformdata.value.checkindate, searchformdata.value.checkoutdate]);
       }
       else {
-        this.router.navigate(['/searchresults', searchformdata.value.cityname.toLowerCase(), searchformdata.value.checkindate, searchformdata.value.checkoutdate]);
+        this.router.navigate(['/searchresults', searchformdata.value.cityname, searchformdata.value.checkindate, searchformdata.value.checkoutdate]);
       }
     }
   }
@@ -42,7 +49,7 @@ export class HomeComponent implements OnInit {
   handleAddressChange(event) {
     var location = event.formatted_address;
     var segments = location.split(',');
-    this.cityname = segments[0].toLowerCase();
+    this.citynameAuto = segments[0];
   }
 
 }

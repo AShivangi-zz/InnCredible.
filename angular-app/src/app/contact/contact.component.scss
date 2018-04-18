@@ -1,15 +1,23 @@
+.fh5co-page-title h1 .colored{
+  color:lightblue;
+}
+
 .modal-custom-header{
     background-color: #337ab7;
     color: #fff;
     text-align: center;
   }
-  
+
   .input-group-addon {
     color: #fff;
     position: relative;
     background-color: #337ab7;
   }
-  
+.fh5co-page-title {
+  padding: 0 !important;
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
 
   label{
     text-align: left !important;
@@ -18,5 +26,4 @@
   .close:hover {
     color: #fff;
   }
-  
-  
+

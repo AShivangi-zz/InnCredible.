@@ -1,1 +1,49 @@
-<h3>This is tab 3</h3>
+<div class="container" class="col-sm-9">
+
+    <p *ngIf="userProfileService.favorites === undefined || userProfileService.favorites === null || userProfileService.favorites.length == 0"
+        style="font-size:25px">No favorite hotels found.</p>
+    <ul *ngIf="userProfileService.favorites !== undefined && userProfileService.favorites !== null && userProfileService.favorites.length != 0">
+        <div *ngFor="let hotel of userProfileService.getFavesObs() | async ">
+            <section class="col-xs-12 col-sm-6 col-md-12">
+                <article class="search-result row">
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <a [routerLink]="['/hotel-info', hotel?.hotelID]" class="thumbnail">
+                            <img [src]="hotel?.firstImage" alt="Insert img" />
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+
+
+                        <h3>
+                            <a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a>
+                        </h3>
+                        <h6>
+                            <p>{{hotel?.location}}</p>
+                        </h6>
+
+                        <span> {{hotel?.rating}}</span>
+                        <br>
+                        <span>
+                            <img [src]='hotel?.ratingImg'>
+                        </span>
+                        <br> {{hotel?.review_num}}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+                        <ul class="meta-search">
+                            <div>
+                                <br>
+                                <h3 style="color:#4CB648; text-align:center">${{hotel?.price}}</h3>
+                                <br>
+                                <button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel
+                                    <i class="icon-arrow-right"></i>
+                                </button>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <hr color="black" size="10" width="100%">
+                </article>
+            </section>
+        </div>
+    </ul>
+</div>

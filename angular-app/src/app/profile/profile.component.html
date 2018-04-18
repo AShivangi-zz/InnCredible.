@@ -17,10 +17,9 @@
       <!-- http://lorempixel.com/850/280/people/9/ -->
     </div>
     <div class="useravatar">
-      <!--<img *ngIf="userProfileService.hasPicture != null" id="user-pic" alt="User Picture" src="{{pictures[userProfileService.picIndex]}}">-->
-      <img *ngIf="!userProfileService.hasPicture" class="user-pic" alt="User Picture" src="../assets/images/default.png">
-      <img *ngIf="userProfileService.hasPicture" id="upic" class="user-pic" alt="User Picture" src="{{getAvatars()[userProfileService.picIndex]}}"
-        style="background: grey">
+        <img *ngIf="userProfileService.afAuth.auth?.currentUser?.photoURL" class="user-pic" id="profile-img" alt="User Picture" src="{{userProfileService.afAuth.auth?.currentUser?.photoURL}}"/>
+        <img *ngIf="!userProfileService.afAuth.auth?.currentUser?.photoURL" class="user-pic" id="profile-img" alt="User Picture" src="../assets/images/default.png"/>
+        <!--<img *ngIf="userProfileService.hasPicture" id="upic" class="user-pic" alt="User Picture" src="{{getAvatars()[userProfileService.picIndex]}}" style="background: grey">-->
     </div>
     <div class="card-info">
       <span class="card-title">{{userProfileService.getFullName()}}</span>
@@ -69,24 +68,24 @@
   </div>
 
   <div class="well">
-    <div class="tab-content">
-      <div class="tab-pane fade in active" id="tab1">
+    <div class="tab-content" >
+      <div class="tab-pane fade in active" id="tab1" style="height: 300px;">
         <app-mybookings></app-mybookings>
       </div>
 
-      <div class="tab-pane fade in" id="tab2">
+      <div class="tab-pane fade in" id="tab2"style="height: 300px;">
         <app-history></app-history>
       </div>
-      <div class="tab-pane fade in" id="tab3">
+      <div class="tab-pane fade in" id="tab3" style="height: 300px;">
         <app-favorites></app-favorites>
       </div>
-      <div class="tab-pane fade in" id="tab4">
+      <div class="tab-pane fade in" id="tab4" style="height: 300px;">
         <app-calendar></app-calendar>
       </div>
-      <div class="tab-pane fade in" id="tab5">
+      <div class="tab-pane fade in" id="tab5" style="height: 300px;">
         <app-rewardpoints></app-rewardpoints>
       </div>
-      <div class="tab-pane fade in" id="tab6">
+      <div class="tab-pane fade in" id="tab6" style="height: 300px;">
         <app-userprofile></app-userprofile>
       </div>
 

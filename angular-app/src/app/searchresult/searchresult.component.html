@@ -36,18 +36,18 @@
               <div class="input-group"><h4 style="color:#2998f2"><b>Customer Ratings</b></h4>
               <div class="input-group" style="margin: 5%">
                   <div id="tab" class="btn-group" data-toggle="buttons" >
-
-                    <a href="#prices" class="btn btn-default active" data-toggle="tab" (click)="onRatingsFilter(1);">
+<br>
+                    <a href="#requests" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(5);" style="padding:5px !important; height:35px !important">
+                      <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
+                      <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(4);" style="padding:5px !important; height:35px !important">
+                        <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
+                        <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(3);" style="padding:5px !important; height:35px !important">
+                          <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
+                          <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(2);" style="padding:5px !important; height:35px !important">
+                            <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>              
+                    <a href="#prices" class="btn btn-default active" data-toggle="tab" (click)="onRatingsFilter(1);" style="padding:5px !important; height:35px !important">
                   <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-                    <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(2);">
-                  <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-                  <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(3);">
-                      <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-                      <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(4);">
-                          <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-                    <a href="#requests" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(5);">
-                  <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a>
-
+                            
                   </div>
                   </div><br>
             <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
@@ -80,7 +80,7 @@
 
 <div class="container" class="col-sm-9">
 
-  <p *ngIf="isEmpty" style="font-size:25px">No hotels found. Try Searching hotels in the following cities: San Francisco, Miami, Los Angeles</p>
+  <p *ngIf="isEmpty" style="font-size:25px">No hotels found. Try removing some filters.</p>
   <ul *ngIf="!isEmpty">
     <div *ngFor="let hotel of hotelsObs | async">
       <section class="col-xs-12 col-sm-6 col-md-12">
@@ -89,7 +89,20 @@
             <a [routerLink]="['/hotel-info', hotel?.hotelID]" class="thumbnail"><img [src]="hotel?.firstImage" alt="Insert img" /></a>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-            <h3><a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a></h3>
+            
+
+            <h3>
+              <!--Favorite Button-->
+              <button *ngIf="!checkFavorite(hotel.hotelID);else red" class="button button5" (click)='profileService.addToFav(hotel?.hotelID);'>
+                <i class="fa fa-heart-o" ></i>
+              </button>
+              <ng-template #red>
+                <button class="button button5" (click)='profileService.removeFav(hotel?.hotelID);'>
+                  <i class="fa fa-heart" style="color:red !important"></i>
+                </button>
+              </ng-template>
+              <a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a>
+            </h3>
             <h6><p>{{hotel?.location}}</p></h6>
 
             <span> {{hotel?.rating}}</span>

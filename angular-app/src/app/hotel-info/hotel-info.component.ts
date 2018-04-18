@@ -28,6 +28,13 @@ export class HotelInfoComponent implements OnInit {
   private id: string;
   public sub: any;
   public hotel: Hotel;
+
+  public miami: boolean;
+  public sf: boolean;
+  public ny:boolean;
+  public boston:boolean;
+  public la: boolean;
+
   constructor(public hotelInfo: HotelInfo, private route: ActivatedRoute) {
     // this.hotelInfo.setHotelId('0');
 
@@ -51,6 +58,7 @@ export class HotelInfoComponent implements OnInit {
           this.getData(number);
           this.hotelInfo.retrieveAmenities(number);
           const images_ref = firebase.database().ref('/hotels/' + number + '/images/');
+          
           images_ref.once('value')
             .then((snapshot_img) => {
               const countImage = snapshot_img.numChildren();
@@ -66,6 +74,8 @@ export class HotelInfoComponent implements OnInit {
         }
       }
     });
+    
+
   }
 
   async getLocation(address: string) {
@@ -97,6 +107,7 @@ export class HotelInfoComponent implements OnInit {
       }
     });
 
+
   }
 
   setMarker(map, position, title) {
@@ -107,6 +118,7 @@ export class HotelInfoComponent implements OnInit {
     var promise = await this.hotelInfo.getHotelData(number);
     this.hotel = this.hotelInfo.getHotel();
     this.getLocation(this.hotel.location);
+    this.getcity(this.hotel.location);
   }
 
   public setImagesURL(image) {
@@ -116,5 +128,26 @@ export class HotelInfoComponent implements OnInit {
   public setImgDone() {
     this.imgDone = true;
   }
+
+  async getcity(address: string){
+    console.log(this.hotelInfo.getHotel().city);
+    if(this.hotel.city=="Miami"){
+      this.miami=true;
+    }
+    if(this.hotel.city=="San Francisco"){
+      this.sf=true;
+    }
+    if(this.hotel.city=="New York"){
+      this.ny=true;
+    }
+    if(this.hotel.city=="Boston"){
+      this.boston=true;
+    }
+    if(this.hotel.city=="Los Angeles"){
+      this.la=true;
+    }
+
+  }
+
 
 }
