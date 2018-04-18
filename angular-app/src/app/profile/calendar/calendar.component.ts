@@ -101,8 +101,8 @@ export class CalendarComponent implements OnInit {
         title: item.hotelName + '',
         cssClass: 'custom-event',
         color: {
-          primary: '#488aff',
-          secondary: '#bbd0f5'
+          primary: '#ad2121',
+          secondary: '#FAE3E3'
         },
         resizable: {
           beforeStart: true,
