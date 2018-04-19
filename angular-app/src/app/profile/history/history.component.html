@@ -1,36 +1,69 @@
 <div *ngFor='let res of userProfileService.getHistoryObs() |async'>
 
-          <div class="flip col-sm-6">
-            <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-              <h1 class="text-shadow">Old Reservation</h1>
-              {{res.hotelName}}
-            </div>
-            <div class="back">
-              <div class="back-align">
-                <font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkInDt}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Address: {{res.hotelLoc}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Guests: {{res.guests}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Rooms: {{res.rooms}}</font>
-                <br>
-                <br>
-                <font size="4" color="grey">Comments: {{res.comments}}</font>
-              </div>
-            </div>
+  <!--Hotel card from: https://bootsnipp.com/snippets/qrPQ9-->
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <div class='container'>
+    <div class='list-card'>
+      <div class='list-label'>Old Reservation</div>
+      <!--<img alt='' src='https://is1-1.housingcdn.com/4f2250e8/cec532fdfbfb4c0213bee9f5028c4486/v1/_logo.jpg'>-->
+      <img alt='' src='https://is1-1.housingcdn.com/4f2250e8/cec532fdfbfb4c0213bee9f5028c4486/v1/_logo.jpg'>
+
+      <div class='list-details'>
+        <div class='list-name'>{{res.hotelName}}</div>
+
+        <!--<div class='list-landmark'>Neptune Group</div>-->
+        <div class='list-location'>{{res.hotelLoc}}</div>
+        <div class='list-guests'>Guests: {{res.guests}}</div>
+        <div class='list-price'>Price Here</div>
+        <div class='list-bottom'>
+          <div class='list-bottom-section'>
+            <span>{{res.checkInDt}}</span>
+            <span>Check In</span>
           </div>
-          
-
+          <div class='list-bottom-section'>
+            <span>{{res.checkoutdateDt}}</span>
+            <span>Check Out</span>
+          </div>
+          <div class='list-bottom-section'>
+            <span>{{res.rooms}}</span>
+            <span>Rooms</span>
+          </div>
         </div>
-  
+
+      </div>
+    </div>
+  </div>
+
+          <!--<div class="flip col-sm-6">-->
+            <!--<div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">-->
+              <!--<h1 class="text-shadow">Old Reservation</h1>-->
+              <!--{{res.hotelName}}-->
+            <!--</div>-->
+            <!--<div class="back">-->
+              <!--<div class="back-align">-->
+                <!--<font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkInDt}}</font>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<font size="4" color="grey">Address: {{res.hotelLoc}}</font>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<font size="4" color="grey">Guests: {{res.guests}}</font>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<font size="4" color="grey">Rooms: {{res.rooms}}</font>-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<font size="4" color="grey">Comments: {{res.comments}}</font>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!---->
+
+</div>
 
 
 
 
 
 
-          
+

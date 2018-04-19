@@ -1,48 +1,86 @@
 <div *ngFor="let res of userProfileService.getBookingsObs() |async">
+  <!--Hotel card from: https://bootsnipp.com/snippets/qrPQ9-->
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+  <div class='container'>
+    <div class='list-card'>
+      <div class='list-label'>Current Bookings</div>
+      <!--<img alt='' src='https://is1-1.housingcdn.com/4f2250e8/cec532fdfbfb4c0213bee9f5028c4486/v1/_logo.jpg'>-->
+      <img alt='' src='https://is1-1.housingcdn.com/4f2250e8/cec532fdfbfb4c0213bee9f5028c4486/v1/_logo.jpg'>
 
-  <div class="flip col-sm-6">
-    <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-      <h1 class="text-shadow">Upcoming Reservation</h1>
-      {{res.hotelName}}
-    </div>
-    <div class="back">
-      <div class="back-align">
-        <font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkOutDt}}</font>
-        <br>
-        <br>
-        <font size="4" color="grey">Address: {{res.hotelLoc}}</font>
-        <br>
-        <br>
-        <font size="4" color="grey">Guests: {{res.guests}}</font>
-        <br>
-        <br>
-        <font size="4" color="grey">Rooms: {{res.rooms}}</font>
-        <br>
-        <br>
-        <font size="4" color="grey">Comments: {{res.comments}}</font>
+      <div class='list-details'>
+        <div class='list-name'>{{res.hotelName}}</div>
+
+        <!--<div class='list-landmark'>Neptune Group</div>-->
+        <div class='list-location'>{{res.hotelLoc}}</div>
+        <div class='list-guests'>Guests: {{res.guests}}</div>
+        <div class='list-price'>Price Here</div>
+        <div class='list-bottom'>
+          <div class='list-bottom-section'>
+            <span>{{res.checkInDt}}</span>
+            <span>Check In</span>
+          </div>
+          <div class='list-bottom-section'>
+            <span>{{res.checkOutDt}}</span>
+            <span>Check Out</span>
+          </div>
+          <div class='list-bottom-section'>
+            <span>{{res.rooms}}</span>
+            <span>Rooms</span>
+
+          </div>
+
+        </div>
+
+        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal" (click)= 'setkey(res.$key)' ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</a>
+        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+
+
       </div>
     </div>
   </div>
-  <div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal" (click)= 'setkey(res.$key)'>Cancel
-      <i class="fa fa-sign-in" aria-hidden="true"></i>
-    </button>
-    <br>
-    <br>
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">&nbsp;&nbsp;Edit &nbsp;&nbsp;
-      <i class="fa fa-sign-in" aria-hidden="true"></i>
-    </button>
-  </div>
+  <!--<div class="flip col-sm-6">-->
+  <!--<div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">-->
+  <!--<h1 class="text-shadow">Upcoming Reservation</h1>-->
+  <!--{{res.hotelName}}-->
+  <!--</div>-->
+  <!--<div class="back">-->
+  <!--<div class="back-align">-->
+  <!--<font size="4" color="grey">CheckIn Date: {{res.checkInDt}} - Check Out Date: {{res.checkOutDt}}</font>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<font size="4" color="grey">Address: {{res.hotelLoc}}</font>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<font size="4" color="grey">Guests: {{res.guests}}</font>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<font size="4" color="grey">Rooms: {{res.rooms}}</font>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<font size="4" color="grey">Comments: {{res.comments}}</font>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--<div>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cancelModal" (click)= 'setkey(res.$key)'>Cancel-->
+  <!--<i class="fa fa-sign-in" aria-hidden="true"></i>-->
+  <!--</button>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal">&nbsp;&nbsp;Edit &nbsp;&nbsp;-->
+  <!--<i class="fa fa-sign-in" aria-hidden="true"></i>-->
+  <!--</button>-->
+  <!--</div>-->
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  <!--<br>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<br>-->
+  <!--<br>-->
 
   <div class="container">
     <!-- Trigger the modal with a button -->
