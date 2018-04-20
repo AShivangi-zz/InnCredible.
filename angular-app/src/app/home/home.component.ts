@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     types: ['(cities)'],
     componentRestrictions: {country: 'usa'}
   };
-  
+
 
   constructor(public afa: AngularFireAuth, private router: Router) { }
 

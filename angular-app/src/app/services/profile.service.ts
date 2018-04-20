@@ -8,7 +8,6 @@ import { Hotel } from "../models/hotel";
 import { HotelInfo } from './hotel-info';
 import { Booking } from '../models/booking';
 
-import { DatePipe } from '@angular/common';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Observable } from "rxjs/Observable";
 import { snapshotChanges } from 'angularfire2/database';
@@ -30,27 +29,24 @@ export class UserProfileService {
     state: string;
     country: string;
     zipcode: string;
+
     bookings: Booking[] = [];
-    history: Booking[] = [];
     private _observableList: BehaviorSubject<Booking[]> = new BehaviorSubject([])
-    private _observableList2: BehaviorSubject<Booking[]> = new BehaviorSubject([])
     bookingsObs: Observable<Booking[]>;
 
     favorites: string[] = [];
     private _observableFavList: BehaviorSubject<Hotel[]> = new BehaviorSubject([]);
     favEmpty: boolean = false;
     favHotels: Hotel[] = [];
+
     isRedeem: boolean;
     buttonDisabled: boolean = false;
     hasPicture: boolean;
     picIndex: number;
-    pipe : DatePipe;
 
     constructor(public afAuth: AngularFireAuth, private hotelInfo: HotelInfo) {
         //afAuth used in profile component to upload picture
-        this.getUserInfo();
-        this.pipe = new DatePipe("en-US");
-
+        //this.getUserInfo();
     }
 
     async getUserInfo() {
@@ -94,26 +90,11 @@ export class UserProfileService {
                     booking.guests = snapshot.child(key + '/guests').val();
                     booking.rooms = snapshot.child(key + '/rooms').val();
                     await this.getHotelInfo(snapshot.child(key + '/hotelID').val(), booking);
-
-                    var dat: string = this.pipe.transform(new Date, 'yyyy-MM-dd')
-                    var today = Date.parse(dat);
-                    var chIn = Date.parse(booking.checkInDt);
-                    var chOut = Date.parse(booking.checkOutDt);
-
-                    if(chIn > today)
-                    {
-                        console.log(booking.checkInDt);
-                        this.bookings.push(booking);
-                    }
-                    else {
-                        this.history.push(booking);
-                    }
+                    this.bookings.push(booking);
                 }
             });
-            this._observableList.next(this.bookings.reverse());
-            this._observableList2.next(this.history.reverse());
+        this._observableList.next(this.bookings.reverse());
     }
-
 
     async getHotelInfo(hotelID: string, booking: Booking) {
         var hotel = new Hotel();
@@ -144,10 +125,6 @@ export class UserProfileService {
 
     getBookingsObs(): Observable<Booking[]> {
         return this._observableList.asObservable();
-    }
-    
-    getHistoryObs():Observable<Booking[]> {
-        return this._observableList2.asObservable();
     }
 
     getFullName(): string {
@@ -300,5 +277,8 @@ export class UserProfileService {
     getFavesObs(): Observable<Hotel[]> {
         return this._observableFavList.asObservable();
     }
+
+
+
 
 }

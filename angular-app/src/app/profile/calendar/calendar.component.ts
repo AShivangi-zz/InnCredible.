@@ -23,14 +23,13 @@ import { Booking } from '../../models/booking';
 })
 export class CalendarComponent implements OnInit {
   bookings = this.userProfileService.getBookingsObs();
-  history = this.userProfileService.getHistoryObs();
   events: CalendarEvent[] = [];
 
   viewDate: Date = new Date();
   view = 'week';
   isDragging = false;
   refresh: Subject<any> = new Subject();
-  activeDayIsOpen = true;
+  activeDayIsOpen: boolean = true;
 
   constructor(public userProfileService: UserProfileService) { }
 
@@ -84,25 +83,6 @@ export class CalendarComponent implements OnInit {
         color: {
           primary: '#488aff',
           secondary: '#bbd0f5'
-        },
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        },
-        draggable: true
-      };
-      this.events.push(newEvent);
-      this.refresh.next();
-    }));
-    this.history.subscribe(element => element.forEach(item => {
-      const newEvent: CalendarEvent = {
-        start: startOfDay(item.checkInDt),
-        end: endOfDay(item.checkOutDt),
-        title: item.hotelName + '',
-        cssClass: 'custom-event',
-        color: {
-          primary: '#ad2121',
-          secondary: '#FAE3E3'
         },
         resizable: {
           beforeStart: true,
