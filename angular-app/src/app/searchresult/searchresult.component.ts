@@ -7,6 +7,7 @@ import { UserProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Observable } from "rxjs/Observable";
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-searchresult',
@@ -52,7 +53,8 @@ export class SearchresultComponent implements OnInit {
     public router: Router,
     public searchService: SearchService,
     private filterService: FilterService,
-    private profileService: UserProfileService) { }
+    private profileService: UserProfileService,
+    public spinner: NgxSpinnerService) { }
 
   ngOnInit() {
 
@@ -95,6 +97,7 @@ export class SearchresultComponent implements OnInit {
   }
 
   async getData() {
+    this.spinner.show();
     this.hotels = [];
     await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
     this.hotels = this.searchService.getHotels();
@@ -104,6 +107,7 @@ export class SearchresultComponent implements OnInit {
     this.faves = [];
     await this.profileService.pullFavHotels();
     this.faves = this.profileService.getFavesList();
+    this.spinner.hide();
   }
 
   checkFavorite(hotelID) {

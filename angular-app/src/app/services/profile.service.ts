@@ -56,8 +56,7 @@ export class UserProfileService {
     async getUserInfo() {
         this.uid = await firebase.auth().currentUser.uid;
         if (this.uid !== null) {
-            await firebase.database().ref('/users/' + this.uid).once('value')
-                .then((snapshot) => {// ** My only change ** or use snapshot
+            await firebase.database().ref('/users/' + this.uid).on('value', (snapshot) => {// ** My only change ** or use snapshot
                     this.firstname = snapshot.child('firstname').val();
                     this.lastname = snapshot.child('lastname').val();
                     this.rewardpoints = snapshot.child('rewardPoints').val();
@@ -79,8 +78,8 @@ export class UserProfileService {
     }
 
     async pullReservations() {
-        await firebase.database().ref('/users/' + this.uid + '/reservations/').once('value')
-            .then(async(snapshot) => {
+        await firebase.database().ref('/users/' + this.uid + '/reservations/').once('value').then( 
+            async(snapshot) => {
                 const countRes = snapshot.numChildren();
                 for (var i = 0; i < countRes; i++) {
                     var number = i.toString();
@@ -102,7 +101,6 @@ export class UserProfileService {
 
                     if(chIn > today)
                     {
-                        console.log(booking.checkInDt);
                         this.bookings.push(booking);
                     }
                     else {
@@ -167,12 +165,12 @@ export class UserProfileService {
     }
 
 
-    async deductReward() {
+    deductReward() {
         const ref = firebase.database().ref();
         const reward = {};
         reward['/users/' + this.uid + '/rewardPoints'] = 0;
         this.rewardpoints = 0;
-        await ref.update(reward);
+        ref.update(reward);
         return reward;
     }
 
@@ -231,10 +229,7 @@ export class UserProfileService {
     }
 
     async addToFav(hotelID) {
-        this.uid = firebase.auth().currentUser.uid;
-        console.log(this.uid);
         const ref = await firebase.database().ref('/users/' + this.uid).child('/favorites/').push(hotelID);
-        window.location.reload();
     }
 
     async removeFav(hotelID) {
@@ -257,9 +252,8 @@ export class UserProfileService {
     }
 
     async pullFavHotels() {
-        this.uid = firebase.auth().currentUser.uid;
-        await firebase.database().ref('/users/' + this.uid + '/favorites/').once('value')
-            .then(async (snapshot) => {
+        await firebase.database().ref('/users/' + this.uid + '/favorites/').on('value',
+            async (snapshot) => {
                 const countFav = snapshot.numChildren();
                 for (var i = 0; i < countFav; i++) {
                     var snap = Object.keys(snapshot.val());
@@ -270,8 +264,9 @@ export class UserProfileService {
 
                     await this.getFavHotelInfo(htlID);
                 }
+
+                this._observableFavList.next(this.favHotels);
             });
-        this._observableFavList.next(this.favHotels);
     }
 
     async getFavHotelInfo(htlID) {

@@ -20,6 +20,7 @@ import {
 } from 'date-fns'
 import { RecaptchaModule } from 'angular-google-recaptcha';
 import { OrderModule } from 'ngx-order-pipe';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 // Routes
 import { routes } from './app.router';
@@ -100,6 +101,7 @@ import { Hotel } from './models/hotel';
   ],
   imports: [
     GooglePlaceModule,
+    NgxSpinnerModule,
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
