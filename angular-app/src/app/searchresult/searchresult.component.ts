@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { SearchService } from "../services/search.service";
 import { Hotel } from "../models/hotel";
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { FilterService } from "../services/filter.service";
 import { UserProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Observable } from "rxjs/Observable";
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 
 @Component({
   selector: 'app-searchresult',
@@ -14,6 +15,9 @@ import { Observable } from "rxjs/Observable";
 })
 
 export class SearchresultComponent implements OnInit {
+
+  @ViewChild("placesRef") placesRef: GooglePlaceDirective;
+
   returnedname = '';
   returnedcheckindate = '';
   returnedcheckoutdate = '';
@@ -23,6 +27,16 @@ export class SearchresultComponent implements OnInit {
   isEmpty = false;
 
   faves: string[] = [];
+
+  cityname: string;
+  citynameAuto: string;
+  checkindate: string;
+  checkoutdate: string;
+
+  options = {
+    types: ['(cities)'],
+    componentRestrictions: {country: 'usa'}
+  };
 
   sortOptions = ['Lowest Price', 'Highest Price', 'Name (A-Z)', 'Name (Z-A)', 'Highest Rating', 'Lowest Rating'];
   sortTyp = 'Lowest Price';
@@ -34,13 +48,14 @@ export class SearchresultComponent implements OnInit {
   public sub: any;
 
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
     public router: Router,
     public searchService: SearchService,
     private filterService: FilterService,
     private profileService: UserProfileService) { }
 
   ngOnInit() {
+
     //this.profileService.getUserInfo();
 
     this.sub = this.route.params.subscribe(params => {
@@ -51,8 +66,28 @@ export class SearchresultComponent implements OnInit {
     this.getData();
   }
 
+  onSubmit(searchformdata)
+  {
+    if (searchformdata.valid) {
+      if(this.citynameAuto != null) {
+        this.router.navigate(['/searchresults', this.citynameAuto, searchformdata.value.checkindate, searchformdata.value.checkoutdate]);
+        window.location.reload();
+      }
+      else {
+        this.router.navigate(['/searchresults', searchformdata.value.cityname, searchformdata.value.checkindate, searchformdata.value.checkoutdate]);
+        window.location.reload();
+      }
+    }
+  }
+
+  handleAddressChange(event) {
+    var location = event.formatted_address;
+    var segments = location.split(',');
+    this.citynameAuto = segments[0];
+  }
+
   async onRatingsFilter(rating: number) {
-    
+
     this.isEmpty = await this.filterService.filterByRating(this.hotels, rating);
     if (!this.isEmpty) {
       this.hotelsObs = this.filterService.getObservableList();
