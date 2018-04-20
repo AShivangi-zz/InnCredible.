@@ -17,13 +17,13 @@ export class SearchresultComponent implements OnInit {
   returnedname = '';
   returnedcheckindate = '';
   returnedcheckoutdate = '';
-
+  
   hotels: Hotel[]=[];
   hotelsObs: Observable<Hotel[]>;
   isEmpty = false;
-
+  //aminities: string[]=[];
   faves: string[] = [];
-
+  
   sortOptions = ['Lowest Price', 'Highest Price', 'Name (A-Z)', 'Name (Z-A)', 'Highest Rating', 'Lowest Rating'];
   sortTyp = 'Lowest Price';
   order = 'price';
@@ -64,7 +64,7 @@ export class SearchresultComponent implements OnInit {
     await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
     this.hotels = this.searchService.getHotels();
     this.hotelsObs = this.searchService.getObservableList();
-
+    
 
     this.faves = [];
     await this.profileService.pullFavHotels();

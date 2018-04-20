@@ -16,6 +16,7 @@ export class Hotel {
   hotelIndex:string;
   checkIn: string;
   checkOut: string;
+ // aminities: string[];
 
   constructor() {}
 
@@ -50,4 +51,6 @@ export class Hotel {
   setCheckIn(checkIN) { this.checkIn = checkIN; }
 
   setCheckOut(CheckOUT) {this.checkOut = CheckOUT; }
+
+ // setAmenities(aminities) {this.aminities = aminities; }
 }

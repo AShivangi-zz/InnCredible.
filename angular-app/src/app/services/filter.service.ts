@@ -33,6 +33,8 @@ export class FilterService {
     return false;
   }
 
+ // filterByAminities(hotel:Hotel[])
+
   public getObservableList(): Observable<Hotel[]> {
     return this._observableList.asObservable(); 
   }

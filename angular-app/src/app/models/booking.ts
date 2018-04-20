@@ -1,5 +1,5 @@
 export class Booking {
-
+    
     hotelName:  string;
     hotelLoc:   string;
     $key:       string;
