@@ -64,7 +64,7 @@ export class ReviewComponent implements OnInit {
 
     this.userProfileService.awardRewardPoints(this.roomCharge());
     this.userProfileService.awardRewardPoints(this.roomCharge());
-    this.service.saveInformation(this.hotelData.name, this.hotelData.description, this.reservation.guests,
+    this.service.saveInformation(this.hotelData.name, this.hotelData.location, this.reservation.guests,
       this.reservation.rooms, this.reservation.checkInDt, this.reservation.checkOutDt,
       this.roomCharge(), this.applyRewardAmnt(),this.taxCharge(),this.reservation.totalCost, firebase.auth().currentUser.email);
   }
