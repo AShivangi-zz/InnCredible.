@@ -23,8 +23,8 @@
       <td> <label for="checkoutdate">Date Of Check Out</label> </td>
     <td><input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" id="cityname" required [(ngModel)]="cityname" name="cityname"/></td>
 
-    <td><input type="date" style="text-align: center" id="checkindate" [(ngModel)]="checkindate" name="checkindate"></td>
-    <td><input type="date" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate"></td>
+    <td><input type="date" style="text-align: center" id="checkindate" [(ngModel)]="checkindate" name="checkindate" (change)="updateDate()"></td>
+    <td><input type="date" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate" min=""></td>
 
     <p><button type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Book Now!<i class="icon-arrow-right"></i></button></p>
     </table>
@@ -102,14 +102,14 @@
 
 <!--to here (FILTER)-->
 
-
+<ngx-spinner bdOpacity = 0.9 bdColor = "#333333" size = "medium" color = "#17c0d4" type = "ball-spin"></ngx-spinner>
 
 <div class="container" class="col-sm-9">
 
-  <p *ngIf="isEmpty" style="font-size:25px; visibility: collapse;">No hotels found. Try removing some filters.</p>
-  <p id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</p>
+  <span *ngIf="isEmpty" style="font-size:25px; visibility: collapse;">No hotels found. Try removing some filters.</span>
+  <span id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</span>
 
-  <ngx-spinner bdOpacity = 0.9 bdColor = "#333333" size = "medium" color = "#17c0d4" type = "ball-spin"></ngx-spinner>
+  
   <ul *ngIf="!isEmpty || !hotelsObs.isEmpty()">
     <div *ngFor="let hotel of hotelsObs | async">
       <section class="col-xs-12 col-sm-6 col-md-12">

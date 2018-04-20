@@ -30,7 +30,7 @@
       <label class="col-md-4 control-label" for="checkindate">Date Of Check In</label>
       <div class="col-md-4">
         <input type="date" class="form-control" id="checkindate"  formControlName="checkInDt"
-                [(ngModel)]="this.reservation.checkInDt"/>
+                [(ngModel)]="this.reservation.checkInDt" (change)="updateDate()"/>
         <!--<input disabled class="form-control" id="hotelID" formControlName="hotelID"-->
                 <!--[(ngModel)]="this.reservation.hotelID"/>-->
       </div>
