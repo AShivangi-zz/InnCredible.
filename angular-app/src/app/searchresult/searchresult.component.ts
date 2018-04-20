@@ -102,6 +102,11 @@ export class SearchresultComponent implements OnInit {
     await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
     this.hotels = this.searchService.getHotels();
     this.hotelsObs = this.searchService.getObservableList();
+    this.hotelsObs.subscribe(results => {
+      if(results.length === 0) {
+        (<HTMLParagraphElement>document.getElementById('nohotels')).style.visibility = 'visible';
+      }
+    });
 
 
     this.faves = [];

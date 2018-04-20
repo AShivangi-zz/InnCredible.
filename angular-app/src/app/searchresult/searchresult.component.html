@@ -106,7 +106,8 @@
 
 <div class="container" class="col-sm-9">
 
-  <p *ngIf="isEmpty" style="font-size:25px">No hotels found. Try removing some filters.</p>
+  <p *ngIf="isEmpty" style="font-size:25px; visibility: collapse;">No hotels found. Try removing some filters.</p>
+  <p id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</p>
 
   <ngx-spinner bdOpacity = 0.9 bdColor = "#333333" size = "medium" color = "#17c0d4" type = "ball-spin"></ngx-spinner>
   <ul *ngIf="!isEmpty || !hotelsObs.isEmpty()">
