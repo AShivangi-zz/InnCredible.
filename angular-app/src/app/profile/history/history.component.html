@@ -9,7 +9,7 @@
       <img alt='' src='https://is1-1.housingcdn.com/4f2250e8/cec532fdfbfb4c0213bee9f5028c4486/v1/_logo.jpg'>
 
       <div class='list-details'>
-        <div class='list-name'>{{res.hotelName}}</div>
+        <div class='list-name' ><a [routerLink]="['/hotel-info', res.hotelID, returnedcheckindate, returnedcheckoutdate]">{{res.hotelName}}</a></div>
 
         <!--<div class='list-landmark'>Neptune Group</div>-->
         <div class='list-location'>{{res.hotelLoc}}</div>
@@ -21,7 +21,7 @@
             <span>Check In</span>
           </div>
           <div class='list-bottom-section'>
-            <span>{{res.checkoutdateDt}}</span>
+            <span>{{res.checkOutDt}}</span>
             <span>Check Out</span>
           </div>
           <div class='list-bottom-section'>
@@ -32,6 +32,7 @@
 
       </div>
     </div>
+
   </div>
 
           <!--<div class="flip col-sm-6">-->
@@ -58,7 +59,7 @@
             <!--</div>-->
           <!--</div>-->
           <!---->
-
+  <br>
 </div>
 
 
