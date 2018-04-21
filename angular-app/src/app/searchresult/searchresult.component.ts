@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchService } from "../services/search.service";
 import { Hotel } from "../models/hotel";
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +7,7 @@ import { UserProfileService } from '../services/profile.service';
 import { AuthService } from '../services/auth.service';
 import { Observable } from "rxjs/Observable";
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-searchresult',
@@ -22,7 +23,7 @@ export class SearchresultComponent implements OnInit {
   returnedcheckindate = '';
   returnedcheckoutdate = '';
 
-  hotels: Hotel[]=[];
+  hotels: Hotel[] = [];
   hotelsObs: Observable<Hotel[]>;
   isEmpty = false;
 
@@ -33,9 +34,11 @@ export class SearchresultComponent implements OnInit {
   checkindate: string;
   checkoutdate: string;
 
+
+
   options = {
     types: ['(cities)'],
-    componentRestrictions: {country: 'usa'}
+    componentRestrictions: { country: 'usa' }
   };
 
   sortOptions = ['Lowest Price', 'Highest Price', 'Name (A-Z)', 'Name (Z-A)', 'Highest Rating', 'Lowest Rating'];
@@ -52,11 +55,14 @@ export class SearchresultComponent implements OnInit {
     public router: Router,
     public searchService: SearchService,
     private filterService: FilterService,
-    private profileService: UserProfileService) { }
+    private profileService: UserProfileService,
+    public spinner: NgxSpinnerService) { }
 
   ngOnInit() {
 
     //this.profileService.getUserInfo();
+    var dtToday = new Date();
+    document.getElementById('checkindate').setAttribute("min", dtToday.toISOString().split('T')[0]);
 
     this.sub = this.route.params.subscribe(params => {
       this.returnedname = params['id'];
@@ -66,10 +72,17 @@ export class SearchresultComponent implements OnInit {
     this.getData();
   }
 
-  onSubmit(searchformdata)
-  {
+  updateDate() {
+    console.log('activated');
+    var checkIn = (<HTMLInputElement>document.getElementById('checkindate'));
+    var checkOut = (<HTMLInputElement>document.getElementById('checkoutdate'));
+    
+    checkOut.setAttribute("min", checkIn.value);
+  }
+
+  onSubmit(searchformdata) {
     if (searchformdata.valid) {
-      if(this.citynameAuto != null) {
+      if (this.citynameAuto != null) {
         this.router.navigate(['/searchresults', this.citynameAuto, searchformdata.value.checkindate, searchformdata.value.checkoutdate]);
         window.location.reload();
       }
@@ -95,15 +108,22 @@ export class SearchresultComponent implements OnInit {
   }
 
   async getData() {
+    this.spinner.show();
     this.hotels = [];
     await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
     this.hotels = this.searchService.getHotels();
     this.hotelsObs = this.searchService.getObservableList();
+    this.hotelsObs.subscribe(results => {
+      if (results.length === 0) {
+        (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
+      }
+    });
 
 
     this.faves = [];
     await this.profileService.pullFavHotels();
     this.faves = this.profileService.getFavesList();
+    this.spinner.hide();
   }
 
   checkFavorite(hotelID) {
@@ -120,6 +140,17 @@ export class SearchresultComponent implements OnInit {
     this.router.navigateByUrl('/home');
     window.location.reload();
   }
+/*
+  setCheckIn() {
+    this.newCheckIn = (<HTMLInputElement>document.getElementById("checkIn")).value;
+    if ((<HTMLInputElement>document.getElementById("checkoutdate")).value === null) {
+      (<HTMLInputElement>document.getElementById("checkoutdate")).setAttribute("min", this.newCheckIn);
+    }
+    else {
+      (<HTMLInputElement>document.getElementById("checkoutdate")).value = this.newCheckIn;
+    }
+
+  }*/
 
 }
 

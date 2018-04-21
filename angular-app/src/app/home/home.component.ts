@@ -44,12 +44,23 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    var dtToday = new Date();
+    document.getElementById('checkindate').setAttribute("min", dtToday.toISOString().split('T')[0]);
+
   }
 
   handleAddressChange(event) {
     var location = event.formatted_address;
     var segments = location.split(',');
     this.citynameAuto = segments[0];
+  }
+
+  updateDate() {
+    console.log('activated');
+    var checkIn = (<HTMLInputElement>document.getElementById('checkindate'));
+    var checkOut = (<HTMLInputElement>document.getElementById('checkoutdate'));
+    
+    checkOut.setAttribute("min", checkIn.value);
   }
 
 }

@@ -32,6 +32,10 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    var dtToday = new Date();
+    document.getElementById('checkindate').setAttribute("min", dtToday.toISOString().split('T')[0]);
+
     this.sub = this.route.params.subscribe(params => {
       this.hotelID = params['id'];
       this.returnedcheckindate = params['id2'];
@@ -70,5 +74,13 @@ export class ReservationComponent implements OnInit {
       'has-error': !this.isFieldValid(field),
       'has-feedback': !this.isFieldValid(field)
     };
+  }
+
+  updateDate() {
+    console.log('activated');
+    var checkIn = (<HTMLInputElement>document.getElementById('checkindate'));
+    var checkOut = (<HTMLInputElement>document.getElementById('checkoutdate'));
+    
+    checkOut.setAttribute("min", checkIn.value);
   }
 }
