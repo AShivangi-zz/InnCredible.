@@ -45,7 +45,6 @@ export class HotelInfo {
         this.hotel.setCheckIn(snapshot.child('/availability/check-in').val());
         this.hotel.setCheckOut(snapshot.child('/availability/check-out').val());
 
-        
       });
       
       
@@ -53,7 +52,6 @@ export class HotelInfo {
       console.log(this.hotel);
       this._thisHotel.next(this.hotel);
       return promise;
-      this._amenities = [];
   }
 
   public getHotel() {
