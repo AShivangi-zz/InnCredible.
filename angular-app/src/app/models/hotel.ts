@@ -58,5 +58,5 @@ export class Hotel {
 
   setCheckOut(CheckOUT) {this.checkOut = CheckOUT; }
 
-  setAmenities(amen) {this.amenities = amen}
+  setAmenities(amen: string[]) { this.amenities = amen; }
 }

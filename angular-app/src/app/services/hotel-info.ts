@@ -9,9 +9,8 @@ import {AngularFireDatabase} from 'angularfire2/database';
 
 export class HotelInfo {
 
-  private amenities: string[] = [];
   private images: URL[] = [];
-  private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  // private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
   private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
   private _thisHotel = new BehaviorSubject<Hotel>(null);
   public activeHotel = this._thisHotel.asObservable();
@@ -25,7 +24,7 @@ export class HotelInfo {
   public getHotelData(index: string) {
     this.hotel = new Hotel();
     const ref = firebase.database().ref('/hotels/' + index);
-    
+
     const promise = ref.once('value')
       .then((snapshot) => {// ** My only change ** or use snapshot
         this.hotel.setIndex(index);
@@ -44,7 +43,8 @@ export class HotelInfo {
         this.hotel.setCheckIn(snapshot.child('/availability/check-in').val());
         this.hotel.setCheckOut(snapshot.child('/availability/check-out').val());
       });
-      
+
+      this.retrieveAmenities(index);
       this._thisHotel.next(this.hotel);
       return promise;
   }
@@ -53,15 +53,17 @@ export class HotelInfo {
     return this.hotel;
   }
 
-  public retrieveAmenities(id:string): void {
-    const amenities_ref =  firebase.database().ref('/hotels/' + id +"/amenities/");
-
+  public retrieveAmenities(id: string) {
+    const amenities_ref =  firebase.database().ref('/hotels/' + id + '/amenities/');
+    const amenities: string[] = [];
     amenities_ref.child('room/').once('value')
       .then((snapshot) => {
         const countRoom = snapshot.numChildren();
-        for(var i = 0; i < countRoom; i++) {
-          var number = i.toString();
-          this.setAmenities(snapshot.child(number).val());
+        for (let i = 0; i < countRoom; i++) {
+          const number = i.toString();
+          amenities.push(snapshot.child(number).val());
+          // alert(snapshot.child(number).val());
+          // this.setAmenities(snapshot.child(number).val());
         }
       });
 
@@ -70,19 +72,22 @@ export class HotelInfo {
         const countHotel = snapshot.numChildren();
         for(var i = 0; i < countHotel; i++) {
           var number = i.toString();
-          this.setAmenities(snapshot.child(number).val());
+          amenities.push(snapshot.child(number).val());
+          // this.setAmenities(snapshot.child(number).val());
         }
       });
+
+    this.hotel.setAmenities(amenities);
   }
 
-  public setAmenities(HotelAmenity:string){
-    this.amenities.push(HotelAmenity);
-    this._amenitiesList.next(this.amenities);
-  }
-
-  public getAmenities(): Observable<string[]>{
-    return this._amenitiesList.asObservable();
-  }
+  // public setAmenities(HotelAmenity:string){
+  //   this.amenities.push(HotelAmenity);
+  //   this._amenitiesList.next(this.amenities);
+  // }
+  //
+  // public getAmenities(): Observable<string[]>{
+  //   return this._amenitiesList.asObservable();
+  // }
 }
 
 

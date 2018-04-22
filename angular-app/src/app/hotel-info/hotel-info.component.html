@@ -59,28 +59,28 @@
 <div class="container">
   <div style="margin-left: 3%;">
     <div class="col-sm-8">
-      <h2 style="color:#118DF0;"> {{hotel?.name}} </h2>
+      <h2 style="color:#118DF0;"> {{hotelInfo?.getHotel().name}} </h2>
     </div>
 
     <div class="col-sm-2">
-      <h2 style="color:#4CB648">${{hotel?.price}}</h2>
+      <h2 style="color:#4CB648">${{hotelInfo?.getHotel().price}}</h2>
 
     </div>
 
     <div class="col-sm-8">
       <i class="material-icons" style="color:#118DF0;">location_on</i>
-      {{hotel?.location}}
+      {{hotelInfo?.getHotel().location}}
       <br>
       <br>
-      <button [routerLink]="['/booking', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary btn-outline with-arrow">Book Now!
+      <button [routerLink]="['/booking', hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary btn-outline with-arrow">Book Now!
         <i class="icon-arrow-right"></i>
       </button>
     </div>
     <div class="col-sm-3">
-      {{hotel?.rating}}
+      {{hotelInfo?.getHotel().rating}}
       <br>
-      <img [src]='hotel?.ratingImg'>
-      <p> {{hotel?.review_num}} </p>
+      <img [src]='hotelInfo?.getHotel().ratingImg'>
+      <p> {{hotelInfo?.getHotel().review_num}} </p>
     </div>
   </div>
 
@@ -96,7 +96,7 @@
 
 <div class="col-sm-8">
   <div class="column1 leftbox">
-    <p id='descinfo'> {{hotel?.description}}</p>
+    <p id='descinfo'> {{hotelInfo?.getHotel().description}}</p>
   </div>
 </div>
 
@@ -105,28 +105,28 @@
 </div>
 
 <div class="col-sm-8">
-  <div class="column1 leftbox"> 
+  <div class="column1 leftbox">
     <h2 style="margin-bottom:1%"> Hotel Amenities </h2><hr style="border-width: 2px; border-color: black">
   </div>
 </div>
 
 <div class="col-sm-2"></div>
 
-<div class="col-sm-8">
-  <div class="column1 leftbox">
-    <ul id="amenities_list">
-      <li *ngFor='let amenity of hotelInfo.getAmenities() | async'>
-        <i class="fa fa-check-square-o"></i>&nbsp;{{amenity}} {{hotel?.city}}</li>
-    </ul>
-  </div>
-</div>
+<!--<div class="col-sm-8">-->
+  <!--<div class="column1 leftbox">-->
+    <!--<ul id="amenities_list">-->
+      <!--<li *ngFor='let amenity of hotelInfo?.getHotel().amenities | async'>-->
+        <!--<i class="fa fa-check-square-o"></i>&nbsp;{{amenity}} {{hotelInfo?.getHotel().city}}</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+<!--</div>-->
 
 <div class="col-sm-3" *ngIf="miami" ><br><br>
-<a target="_blank" href="http://www.booked.net/weather/miami-18227"><img src="https://w.bookcdn.com/weather/picture/3_18227_0_1_137AE9_297_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=23808"  alt="booked.net"/></a>  
+<a target="_blank" href="http://www.booked.net/weather/miami-18227"><img src="https://w.bookcdn.com/weather/picture/3_18227_0_1_137AE9_297_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=23808"  alt="booked.net"/></a>
 </div>
 
   <div class="col-sm-3" *ngIf="sf"><br><br>
-  <a target="_blank" href="http://www.booked.net/weather/san-francisco-18163"><img src="https://w.bookcdn.com/weather/picture/3_18163_0_1_137AE9_297_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=23808"  alt="booked.net"/></a>  
+  <a target="_blank" href="http://www.booked.net/weather/san-francisco-18163"><img src="https://w.bookcdn.com/weather/picture/3_18163_0_1_137AE9_297_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=23808"  alt="booked.net"/></a>
   </div>
 
   <div class="col-sm-3" *ngIf="boston"><br><br>
@@ -147,7 +147,7 @@
   <br>
 </div>
 <div class="col-sm-7">
-  <button [routerLink]="['/booking', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary btn-outline with-arrow">Book Now!
+  <button [routerLink]="['/booking', hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary btn-outline with-arrow">Book Now!
     <i class="icon-arrow-right"></i>
   </button>
 </div>
