@@ -40,7 +40,7 @@
                   <p></p>
                   <p class="fh5co-property-specification">
                     <label for="checkindate">Date Of Check In</label>
-                    <input type="date" class="form-control" id="checkindate" [(ngModel)]="checkindate" name="checkindate" (change)="updateDate()">
+                    <input type="date" class="form-control" id="checkindate" [min]="dtToday" [(ngModel)]="checkindate" name="checkindate" (change)="updateDate()">
                     <label for="checkoutdate">Date Of Check Out</label>
                     <input type="date" class="form-control" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate">
                   </p>
