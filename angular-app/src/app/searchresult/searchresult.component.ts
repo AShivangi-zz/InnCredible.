@@ -34,7 +34,7 @@ export class SearchresultComponent implements OnInit {
   checkindate: string;
   checkoutdate: string;
 
-
+  dtToday = (new Date).toISOString().split('T')[0];
 
   options = {
     types: ['(cities)'],
@@ -59,24 +59,52 @@ export class SearchresultComponent implements OnInit {
     public spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-
-    //this.profileService.getUserInfo();
-    var dtToday = new Date();
-    document.getElementById('checkindate').setAttribute("min", dtToday.toISOString().split('T')[0]);
-
     this.sub = this.route.params.subscribe(params => {
       this.returnedname = params['id'];
       this.returnedcheckindate = params['id2'];
       this.returnedcheckoutdate = params['id3'];
     });
+
     this.getData();
   }
 
+  /* ====== sortTypChange() =======
+    I need a way to convert between the display values in the drop down and the actual named variables
+    in Hotel.ts as well as set the direction of sort.
+   */
+  sortTypChange() {
+    switch (this.sortTyp) {
+      case 'Highest Price':
+        this.order = 'price';
+        this.reverse = true;
+        break;
+      case 'Lowest Price':
+        this.order = 'price';
+        this.reverse = false;
+        break;
+      case 'Name (A-Z)':
+        this.order = 'name';
+        this.reverse = false;
+        break;
+      case 'Name (Z-A)':
+        this.order = 'name';
+        this.reverse = true;
+        break;
+      case 'Highest Rating':
+        this.order = 'ratingValue';
+        this.reverse = true;
+        break;
+      case 'Lowest Rating':
+        this.order = 'ratingValue';
+        this.reverse = false;
+        break;
+    }
+  }
+
   updateDate() {
-    console.log('activated');
     var checkIn = (<HTMLInputElement>document.getElementById('checkindate'));
     var checkOut = (<HTMLInputElement>document.getElementById('checkoutdate'));
-    
+
     checkOut.setAttribute("min", checkIn.value);
   }
 
@@ -140,18 +168,6 @@ export class SearchresultComponent implements OnInit {
     this.router.navigateByUrl('/home');
     window.location.reload();
   }
-/*
-  setCheckIn() {
-    this.newCheckIn = (<HTMLInputElement>document.getElementById("checkIn")).value;
-    if ((<HTMLInputElement>document.getElementById("checkoutdate")).value === null) {
-      (<HTMLInputElement>document.getElementById("checkoutdate")).setAttribute("min", this.newCheckIn);
-    }
-    else {
-      (<HTMLInputElement>document.getElementById("checkoutdate")).value = this.newCheckIn;
-    }
-
-  }*/
-
 }
 
 

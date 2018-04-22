@@ -222,7 +222,6 @@ export class UserProfileService {
         const user = {};
         this.picIndex = index;
         this.hasPicture = true;
-        console.log(index);
         user['/users/' + this.uid + '/pictureIndex'] = this.picIndex;
         ref.update(user);
 
@@ -242,7 +241,6 @@ export class UserProfileService {
                     var snap = Object.keys(snapshot.val());
                     key = snap[i];
                     if(snapshot.child(key).val() == hotelID) {
-                        console.log('REMOVE');
                         await ref.child(key).remove();
                         window.location.reload();
                     }

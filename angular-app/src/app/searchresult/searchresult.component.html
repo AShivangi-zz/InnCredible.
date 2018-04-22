@@ -23,7 +23,7 @@
       <td> <label for="checkoutdate">Date Of Check Out</label> </td>
     <td><input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" id="cityname" required [(ngModel)]="cityname" name="cityname"/></td>
 
-    <td><input type="date" style="text-align: center" id="checkindate" [(ngModel)]="checkindate" name="checkindate" (change)="updateDate()"></td>
+    <td><input type="date" style="text-align: center" id="checkindate" [(ngModel)]="checkindate" name="checkindate" [min]="dtToday" (change)="updateDate()"></td>
     <td><input type="date" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate" min=""></td>
 
     <p><button type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Book Now!<i class="icon-arrow-right"></i></button></p>
@@ -31,19 +31,14 @@
   </form>
 
 
-
   <!-- SORT -->
   <div class="col-sm-4">
-          <select class="form-control form-control-lg" style="width:50%; margin-left: 30%">
-            <option value="">Relevancy </option>
-            <option value="High price">High Price</option>
-            <option value="Low Price">Low Price</option>
-            <option value="A-Z">A-Z</option>
-            <option value="Z-A">Z-A</option>
-            <option value="High Ratings">High Ratings</option>
-            <option value="Low Ratings">Low Ratings</option>
-          </select>
-
+    <label class = "col-sm-4 control-label" for="sortTyp">Sort By:</label>
+    <select id="sortTyp" class="form-control" [(ngModel)]="sortTyp" (change)="sortTypChange()">
+      <option *ngFor="let type of sortOptions" [ngValue]="type">
+        {{ type }}
+      </option>
+    </select>
   </div><br>
 
 
@@ -109,9 +104,9 @@
   <span *ngIf="isEmpty" style="font-size:25px; visibility: collapse;">No hotels found. Try removing some filters.</span>
   <span id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</span>
 
-  
+
   <ul *ngIf="!isEmpty || !hotelsObs.isEmpty()">
-    <div *ngFor="let hotel of hotelsObs | async">
+    <div *ngFor="let hotel of hotelsObs | async | orderBy: order : reverse">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">
