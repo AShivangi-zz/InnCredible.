@@ -27,7 +27,7 @@ export class HotelInfoComponent implements OnInit {
 
   private id: string;
   public sub: any;
-  public hotel: Hotel;
+  // public hotel: Hotel;
 
   public miami: boolean;
   public sf: boolean;
@@ -47,7 +47,7 @@ export class HotelInfoComponent implements OnInit {
       this.returnedcheckoutdate = params['id3'];
     });
 
-    this.hotel = new Hotel();
+    // this.hotel = new Hotel();
     this.hotelInfo = new HotelInfo();
     const id_ref = firebase.database().ref('/hotel_id');
     id_ref.once('value').then((snapshot) => {
@@ -56,9 +56,9 @@ export class HotelInfoComponent implements OnInit {
         const number = i.toString();
         if (snapshot.child(number).val() == this.hotelID) {
           this.getData(number);
-          this.hotelInfo.retrieveAmenities(number);
+          // this.hotelInfo.retrieveAmenities(number);
           const images_ref = firebase.database().ref('/hotels/' + number + '/images/');
-          
+
           images_ref.once('value')
             .then((snapshot_img) => {
               const countImage = snapshot_img.numChildren();
@@ -74,7 +74,7 @@ export class HotelInfoComponent implements OnInit {
         }
       }
     });
-    
+
 
   }
 
@@ -116,9 +116,9 @@ export class HotelInfoComponent implements OnInit {
 
   public async getData(number) {
     var promise = await this.hotelInfo.getHotelData(number);
-    this.hotel = this.hotelInfo.getHotel();
-    this.getLocation(this.hotel.location);
-    this.getcity(this.hotel.location);
+    // this.hotel = this.hotelInfo.getHotel();
+    this.getLocation(this.hotelInfo.getHotel().location);
+    this.getcity(this.hotelInfo.getHotel().location);
   }
 
   public setImagesURL(image) {
@@ -130,19 +130,19 @@ export class HotelInfoComponent implements OnInit {
   }
 
   async getcity(address: string){
-    if(this.hotel.city=="Miami"){
+    if(this.hotelInfo.getHotel().city=="Miami"){
       this.miami=true;
     }
-    if(this.hotel.city=="San Francisco"){
+    if(this.hotelInfo.getHotel().city=="San Francisco"){
       this.sf=true;
     }
-    if(this.hotel.city=="New York"){
+    if(this.hotelInfo.getHotel().city=="New York"){
       this.ny=true;
     }
-    if(this.hotel.city=="Boston"){
+    if(this.hotelInfo.getHotel().city=="Boston"){
       this.boston=true;
     }
-    if(this.hotel.city=="Los Angeles"){
+    if(this.hotelInfo.getHotel().city=="Los Angeles"){
       this.la=true;
     }
 
