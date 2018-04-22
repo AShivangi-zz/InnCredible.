@@ -34,8 +34,8 @@ export class SearchresultComponent implements OnInit {
   checkindate: string;
   checkoutdate: string;
 
-
-
+  dtToday = (new Date).toISOString().split('T')[0];
+  
   options = {
     types: ['(cities)'],
     componentRestrictions: { country: 'usa' }
@@ -59,21 +59,16 @@ export class SearchresultComponent implements OnInit {
     public spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-
-    //this.profileService.getUserInfo();
-    var dtToday = new Date();
-    document.getElementById('checkindate').setAttribute("min", dtToday.toISOString().split('T')[0]);
-
     this.sub = this.route.params.subscribe(params => {
       this.returnedname = params['id'];
       this.returnedcheckindate = params['id2'];
       this.returnedcheckoutdate = params['id3'];
     });
+
     this.getData();
   }
 
   updateDate() {
-    console.log('activated');
     var checkIn = (<HTMLInputElement>document.getElementById('checkindate'));
     var checkOut = (<HTMLInputElement>document.getElementById('checkoutdate'));
     
@@ -140,18 +135,6 @@ export class SearchresultComponent implements OnInit {
     this.router.navigateByUrl('/home');
     window.location.reload();
   }
-/*
-  setCheckIn() {
-    this.newCheckIn = (<HTMLInputElement>document.getElementById("checkIn")).value;
-    if ((<HTMLInputElement>document.getElementById("checkoutdate")).value === null) {
-      (<HTMLInputElement>document.getElementById("checkoutdate")).setAttribute("min", this.newCheckIn);
-    }
-    else {
-      (<HTMLInputElement>document.getElementById("checkoutdate")).value = this.newCheckIn;
-    }
-
-  }*/
-
 }
 
 

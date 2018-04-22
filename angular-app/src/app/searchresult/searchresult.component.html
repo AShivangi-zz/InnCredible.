@@ -23,7 +23,7 @@
       <td> <label for="checkoutdate">Date Of Check Out</label> </td>
     <td><input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" id="cityname" required [(ngModel)]="cityname" name="cityname"/></td>
 
-    <td><input type="date" style="text-align: center" id="checkindate" [(ngModel)]="checkindate" name="checkindate" (change)="updateDate()"></td>
+    <td><input type="date" style="text-align: center" id="checkindate" [(ngModel)]="checkindate" name="checkindate" [min]="dtToday" (change)="updateDate()"></td>
     <td><input type="date" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate" min=""></td>
 
     <p><button type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Book Now!<i class="icon-arrow-right"></i></button></p>

@@ -43,6 +43,9 @@ export class ReviewComponent implements OnInit {
   }
 
   roomCharge(): number {
+    if(this.reservation === null || this.reservation.nights === null) {
+      return -1;
+    }
     return (parseFloat(this.hotelData.price) * this.reservation.nights * this.reservation.rooms);
   }
 
@@ -57,7 +60,6 @@ export class ReviewComponent implements OnInit {
   onClick() {
     this.reservation.totalCost = this.orderTotal();
     this.reservationService.changeReservation(this.reservation);
-    console.log(this.userProfileService.isRedeem);
     if (this.userProfileService.isRedeem) {
       this.userProfileService.deductReward();
     }
