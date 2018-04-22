@@ -35,7 +35,7 @@ export class SearchresultComponent implements OnInit {
   checkoutdate: string;
 
   dtToday = (new Date).toISOString().split('T')[0];
-  
+
   options = {
     types: ['(cities)'],
     componentRestrictions: { country: 'usa' }
@@ -68,10 +68,43 @@ export class SearchresultComponent implements OnInit {
     this.getData();
   }
 
+  /* ====== sortTypChange() =======
+    I need a way to convert between the display values in the drop down and the actual named variables
+    in Hotel.ts as well as set the direction of sort.
+   */
+  sortTypChange() {
+    switch (this.sortTyp) {
+      case 'Highest Price':
+        this.order = 'price';
+        this.reverse = true;
+        break;
+      case 'Lowest Price':
+        this.order = 'price';
+        this.reverse = false;
+        break;
+      case 'Name (A-Z)':
+        this.order = 'name';
+        this.reverse = false;
+        break;
+      case 'Name (Z-A)':
+        this.order = 'name';
+        this.reverse = true;
+        break;
+      case 'Highest Rating':
+        this.order = 'ratingValue';
+        this.reverse = true;
+        break;
+      case 'Lowest Rating':
+        this.order = 'ratingValue';
+        this.reverse = false;
+        break;
+    }
+  }
+
   updateDate() {
     var checkIn = (<HTMLInputElement>document.getElementById('checkindate'));
     var checkOut = (<HTMLInputElement>document.getElementById('checkoutdate'));
-    
+
     checkOut.setAttribute("min", checkIn.value);
   }
 
