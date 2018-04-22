@@ -65,30 +65,25 @@
                             <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
                     <a href="#prices" class="btn btn-default active" data-toggle="tab" (click)="onRatingsFilter(1);" style="padding:5px !important; height:35px !important">
                   <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-
+                </div>
                   </div>
                   </div><br>
-            <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
-          <form action="">
-              <input type="checkbox" name="Car Parking" value="Car Parking"> &nbsp;Car Parking<br>
-              <input type="checkbox" name="Non Smoking" value="Non Smoking">&nbsp;Non Smoking<br>
-              <input type="checkbox" name="Disabled Facilities" value="Disabled Facilities">&nbsp;Disabled Facilities<br>
-              <input type="checkbox" name="Shops" value="Shops">&nbsp;Shops<br>
-              <input type="checkbox" name="Fitness Center" value="Fitness Center">&nbsp;Fitness Center<br>
-              <input type="checkbox" name="Pet allowed" value="Pet allowed">&nbsp;Pet allowed<br>
-              <input type="checkbox" name="Outdoor Swimmingpool" value="Outdoor Swimmingpool">&nbsp;Outdoor Swimmingpool<br>
-              <input type="checkbox" name="Sauna" value="Sauna">&nbsp;Sauna<br>
-              <input type="checkbox" name="Lifts" value="Lifts">&nbsp;Lifts<br>
-              <input type="checkbox" name="Restuarant" value="Restuarant">&nbsp;Restuarant<br>
-              <input type="checkbox" name="Television" value="Television">&nbsp;Television<br>
-              <input type="checkbox" name="Radio" value="Radio">&nbsp;Radio<br>
-              <input type="checkbox" name="Hairdryer" value="Hairdryer">&nbsp;Hairdryer<br>
-              <input type="checkbox" name="High Speed Modem" value="High Speed Modem">&nbsp;High Speed Modem<br>
-            </form>
-          </div>
-        </div>
-        <br>
-        <button type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
+                  <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
+                    <form #applyAmenities="ngForm" (ngSubmit)="onApply(applyAmenities)">
+                      <div *ngFor="let amenity of amenities">
+                          <label>
+                              <input type="checkbox"
+                                    name="amenities"
+                                    value="{{amenities.name}}"
+                                    [(ngModel)] = "amenity.checked"
+                                    (change)="onCheckboxChange(amenity,$event)"> {{amenity.checked}}
+                              {{amenity.name}}
+                          </label>
+                      </div>
+                      <button name="Apply" id="Apply" type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
+                  </form>
+                </div>
+        
       </div>
     </div>
 

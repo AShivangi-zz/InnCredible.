@@ -26,7 +26,7 @@ export class SearchresultComponent implements OnInit {
   hotels: Hotel[] = [];
   hotelsObs: Observable<Hotel[]>;
   isEmpty = false;
-
+  amenities: any;
   faves: string[] = [];
 
   cityname: string;
@@ -46,6 +46,8 @@ export class SearchresultComponent implements OnInit {
   order = 'price';
   reverse = false;
 
+  
+
   loggedIn: boolean;
 
   public sub: any;
@@ -56,7 +58,26 @@ export class SearchresultComponent implements OnInit {
     public searchService: SearchService,
     private filterService: FilterService,
     private profileService: UserProfileService,
-    public spinner: NgxSpinnerService) { }
+    public spinner: NgxSpinnerService) { 
+
+      this.amenities = [
+        {name:'Car Parking', checked:false},
+        {name:'Non Smoking', checked:false},
+        {name:'Disabled Facilities', checked:false},
+        {name:'Shops', checked:false},
+        {name:'Fitness Center', checked:false},
+        {name:'Pet allowed', checked:false},
+        {name:'Outdoor Swimmingpool', checked:false},
+        {name:'Sauna', checked:false},
+        {name:'Lifts', checked:false},
+        {name:'Restaurant', checked:false},
+        {name:'Television', checked:false},
+        {name:'Radio', checked:false},
+        {name:'Hairdryer', checked:false},
+        {name:'High Speed Modem', checked:false}
+      ]
+      
+    }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -66,6 +87,8 @@ export class SearchresultComponent implements OnInit {
     });
 
     this.getData();
+
+   
   }
 
   /* ====== sortTypChange() =======
@@ -119,6 +142,11 @@ export class SearchresultComponent implements OnInit {
         window.location.reload();
       }
     }
+  }
+
+  onApply(applyAmenities) {
+
+
   }
 
   handleAddressChange(event) {
