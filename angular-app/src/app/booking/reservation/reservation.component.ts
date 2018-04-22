@@ -66,7 +66,7 @@ export class ReservationComponent implements OnInit {
     var dtValid: boolean;
     if (parseInt(checkIn[0]) <= parseInt(checkOut[0]) &&
       parseInt(checkIn[1]) <= parseInt(checkOut[1]) &&
-      parseInt(checkIn[2]) <= parseInt(checkOut[2])) {
+      parseInt(checkIn[2]) < parseInt(checkOut[2])) {
       console.log('valid');
       dtValid = true;
     }
