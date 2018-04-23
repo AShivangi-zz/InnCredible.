@@ -76,14 +76,14 @@
                                     name="amenities"
                                     value="{{amenities.name}}"
                                     [(ngModel)] = "amenity.checked"
-                                    (change)="onCheckboxChange(amenity,$event)"> {{amenity.checked}}
+                                    (change)="onCheckboxChange(amenity)"> {{amenity.checked}}
                               {{amenity.name}}
                           </label>
                       </div>
                       <button name="Apply" id="Apply" type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
                   </form>
                 </div>
-        
+
       </div>
     </div>
 

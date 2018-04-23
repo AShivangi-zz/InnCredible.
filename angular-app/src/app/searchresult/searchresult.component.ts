@@ -46,7 +46,7 @@ export class SearchresultComponent implements OnInit {
   order = 'price';
   reverse = false;
 
-  
+
 
   loggedIn: boolean;
 
@@ -58,7 +58,7 @@ export class SearchresultComponent implements OnInit {
     public searchService: SearchService,
     private filterService: FilterService,
     private profileService: UserProfileService,
-    public spinner: NgxSpinnerService) { 
+    public spinner: NgxSpinnerService) {
 
       this.amenities = [
         {name:'Car Parking', checked:false},
@@ -76,7 +76,7 @@ export class SearchresultComponent implements OnInit {
         {name:'Hairdryer', checked:false},
         {name:'High Speed Modem', checked:false}
       ]
-      
+
     }
 
   ngOnInit() {
@@ -88,7 +88,7 @@ export class SearchresultComponent implements OnInit {
 
     this.getData();
 
-   
+
   }
 
   /* ====== sortTypChange() =======
@@ -195,6 +195,13 @@ export class SearchresultComponent implements OnInit {
   goBack(): void {
     this.router.navigateByUrl('/home');
     window.location.reload();
+  }
+
+  async onCheckboxChange(amenity: any) {
+    if (this.isEmpty) {
+      await this.onRatingsFilter(1);
+    }
+    await this.filterService.filterByAmenity(amenity);
   }
 }
 
