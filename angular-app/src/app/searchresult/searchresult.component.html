@@ -1,26 +1,44 @@
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      xmlns="http://www.w3.org/1999/html">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<br><br>
-  <div class="col-sm-8">
-    <h3 style="text-align:center; padding: 2%">
-    <i class="fa fa-chevron-circle-left"id="back" (click)="goBack()" title ="Go Back"></i>
+<br>
+<br>
+<div class="col-sm-8">
+  <h3 style="text-align:center; padding: 2%">
+    <i class="fa fa-chevron-circle-left" id="back" (click)="goBack()" title="Go Back"></i>
     Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity:</h3>
   <br><br></div>
 
+
+
+  <form #searchformdata="ngForm" (ngSubmit)="onSubmit(searchformdata)">
+
+  <br/>
+    <br/>
+
+    <table align="left">
+      <td> Search for Hotels </td>
+      <td> <label for="checkindate">Date Of Check In</label> </td>
+      <td> <label for="checkoutdate">Date Of Check Out</label> </td>
+    <td><input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" id="cityname" required [(ngModel)]="cityname" name="cityname"/></td>
+
+    <td><input type="date" style="text-align: center" id="checkindate" [(ngModel)]="checkindate" name="checkindate" [min]="dtToday" (change)="updateDate()"></td>
+    <td><input type="date" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate" min=""></td>
+
+    <p><button type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Book Now!<i class="icon-arrow-right"></i></button></p>
+    </table>
+  </form>
+
+
   <!-- SORT -->
   <div class="col-sm-4">
-          <select class="form-control form-control-lg" style="width:50%; margin-left: 30%">
-            <option value="">Relevancy </option>
-            <option value="High price">High Price</option>
-            <option value="Low Price">Low Price</option>
-            <option value="A-Z">A-Z</option>
-            <option value="Z-A">Z-A</option>
-            <option value="High Ratings">High Ratings</option>
-            <option value="Low Ratings">Low Ratings</option>
-          </select>
-
+    <label class = "col-sm-4 control-label" for="sortTyp">Sort By:</label>
+    <select id="sortTyp" class="form-control" [(ngModel)]="sortTyp" (change)="sortTypChange()">
+      <option *ngFor="let type of sortOptions" [ngValue]="type">
+        {{ type }}
+      </option>
+    </select>
   </div><br>
 
 
@@ -44,76 +62,88 @@
                         <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(3);" style="padding:5px !important; height:35px !important">
                           <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
                           <a href="#features" class="btn btn-default" data-toggle="tab" (click)="onRatingsFilter(2);" style="padding:5px !important; height:35px !important">
-                            <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>              
+                            <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
                     <a href="#prices" class="btn btn-default active" data-toggle="tab" (click)="onRatingsFilter(1);" style="padding:5px !important; height:35px !important">
                   <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-                            
+                </div>
                   </div>
                   </div><br>
-            <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
-          <form action="">
-              <input type="checkbox" name="Car Parking" value="Car Parking"> &nbsp;Car Parking<br>
-              <input type="checkbox" name="Non Smoking" value="Non Smoking">&nbsp;Non Smoking<br>
-              <input type="checkbox" name="Disabled Facilities" value="Disabled Facilities">&nbsp;Disabled Facilities<br>
-              <input type="checkbox" name="Shops" value="Shops">&nbsp;Shops<br>
-              <input type="checkbox" name="Fitness Center" value="Fitness Center">&nbsp;Fitness Center<br>
-              <input type="checkbox" name="Pet allowed" value="Pet allowed">&nbsp;Pet allowed<br>
-              <input type="checkbox" name="Outdoor Swimmingpool" value="Outdoor Swimmingpool">&nbsp;Outdoor Swimmingpool<br>
-              <input type="checkbox" name="Sauna" value="Sauna">&nbsp;Sauna<br>
-              <input type="checkbox" name="Lifts" value="Lifts">&nbsp;Lifts<br>
-              <input type="checkbox" name="Restuarant" value="Restuarant">&nbsp;Restuarant<br>
-              <input type="checkbox" name="Television" value="Television">&nbsp;Television<br>
-              <input type="checkbox" name="Radio" value="Radio">&nbsp;Radio<br>
-              <input type="checkbox" name="Hairdryer" value="Hairdryer">&nbsp;Hairdryer<br>
-              <input type="checkbox" name="High Speed Modem" value="High Speed Modem">&nbsp;High Speed Modem<br>
-            </form>
-              </div></div><br>
-                  <button type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
-        </div>
+                  <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
+                    <form #applyAmenities="ngForm" (ngSubmit)="onApply(applyAmenities)">
+                      <div *ngFor="let amenity of amenities">
+                          <label>
+                              <input type="checkbox"
+                                    name="amenities"
+                                    value="{{amenities.name}}"
+                                    [(ngModel)] = "amenity.checked"
+                                    (change)="onCheckboxChange(amenity,$event)"> {{amenity.checked}}
+                              {{amenity.name}}
+                          </label>
+                      </div>
+                      <button name="Apply" id="Apply" type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
+                  </form>
+                </div>
+        
       </div>
+    </div>
 
-    </div></div>
+  </div>
+</div>
 
 <!--to here (FILTER)-->
 
-
+<ngx-spinner bdOpacity = 0.9 bdColor = "#333333" size = "medium" color = "#17c0d4" type = "ball-spin"></ngx-spinner>
 
 <div class="container" class="col-sm-9">
 
-  <p *ngIf="isEmpty" style="font-size:25px">No hotels found. Try removing some filters.</p>
-  <ul *ngIf="!isEmpty">
-    <div *ngFor="let hotel of hotelsObs | async">
+  <span *ngIf="isEmpty" style="font-size:25px; visibility: collapse;">No hotels found. Try removing some filters.</span>
+  <span id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</span>
+
+
+  <ul *ngIf="!isEmpty || !hotelsObs.isEmpty()">
+    <div *ngFor="let hotel of hotelsObs | async | orderBy: order : reverse">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">
-            <a [routerLink]="['/hotel-info', hotel?.hotelID]" class="thumbnail"><img [src]="hotel?.firstImage" alt="Insert img" /></a>
+            <a [routerLink]="['/hotel-info', hotel?.hotelID]" class="thumbnail">
+              <img [src]="hotel?.firstImage" alt="Insert img" />
+            </a>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-            
+
 
             <h3>
               <!--Favorite Button-->
-              <button *ngIf="!checkFavorite(hotel.hotelID);else red" class="button button5" (click)='profileService.addToFav(hotel?.hotelID);'>
-                <i class="fa fa-heart-o" ></i>
-              </button>
-              <ng-template #red>
-                <button class="button button5" (click)='profileService.removeFav(hotel?.hotelID);'>
-                  <i class="fa fa-heart" style="color:red !important"></i>
+                <button *ngIf="!checkFavorite(hotel.hotelID);else red" class="button button5" (click)='profileService.addToFav(hotel?.hotelID);'>
+                  <i class="fa fa-heart-o"></i>
                 </button>
-              </ng-template>
+                <ng-template #red>
+                  <button class="button button5" (click)='profileService.removeFav(hotel?.hotelID);'>
+                    <i class="fa fa-heart" style="color:red !important"></i>
+                  </button>
+                </ng-template>
               <a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a>
             </h3>
-            <h6><p>{{hotel?.location}}</p></h6>
+            <h6>
+              <p>{{hotel?.location}}</p>
+            </h6>
 
             <span> {{hotel?.rating}}</span>
             <br>
-            <span><img [src]= 'hotel?.ratingImg'></span><br>
-            {{hotel?.review_num}}
+            <span>
+              <img [src]='hotel?.ratingImg'>
+            </span>
+            <br> {{hotel?.review_num}}
           </div>
           <div class="col-xs-12 col-sm-12 col-md-2">
             <ul class="meta-search">
-              <div><br><h3 style="color:#4CB648; text-align:center">${{hotel?.price}}</h3><br>
-                <button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]"class="btn btn-primary  with-arrow">View Hotel<i class="icon-arrow-right"></i></button>
+              <div>
+                <br>
+                <h3 style="color:#4CB648; text-align:center">${{hotel?.price}}</h3>
+                <br>
+                <button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel
+                  <i class="icon-arrow-right"></i>
+                </button>
               </div>
             </ul>
           </div>
@@ -184,4 +214,3 @@
   </div>-->
 
 </div>
-

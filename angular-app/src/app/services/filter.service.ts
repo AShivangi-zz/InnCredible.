@@ -12,7 +12,6 @@ export class FilterService {
   
   filterByRating(hotel:Hotel[], rating: number){
     var filteredHotels: Hotel[] = [];
-   // console.log(hotel.length);
 
     for(var i = 0; i< hotel.length; i++){
 
@@ -20,7 +19,6 @@ export class FilterService {
       var colonIndex = rating_str.indexOf(":")+1;
       var slashIndex = rating_str.indexOf("/");
       var rat = Number(rating_str.slice(colonIndex, slashIndex));
-      //console.log(rat);
       if(rat === rating || rat > rating) {
         filteredHotels.push(hotel[i]);
         this._observableList.next(filteredHotels);

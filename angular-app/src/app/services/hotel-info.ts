@@ -9,8 +9,9 @@ import {AngularFireDatabase} from 'angularfire2/database';
 
 export class HotelInfo {
 
-  private amenities: string[] = [];
   private images: URL[] = [];
+  private _amenities: string[] = [];
+  private _temp_amenities: string[] = [];
   private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
   private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
   private _thisHotel = new BehaviorSubject<Hotel>(null);
@@ -25,7 +26,7 @@ export class HotelInfo {
   public getHotelData(index: string) {
     this.hotel = new Hotel();
     const ref = firebase.database().ref('/hotels/' + index);
-    
+
     const promise = ref.once('value')
       .then((snapshot) => {// ** My only change ** or use snapshot
         this.hotel.setIndex(index);
@@ -43,8 +44,12 @@ export class HotelInfo {
         this.hotel.setFirstImage(snapshot.child('/images/0').val());
         this.hotel.setCheckIn(snapshot.child('/availability/check-in').val());
         this.hotel.setCheckOut(snapshot.child('/availability/check-out').val());
+
       });
       
+      
+      this.hotel.setAmenities(this.retrieveAmenities(index));
+      console.log(this.hotel);
       this._thisHotel.next(this.hotel);
       return promise;
   }
@@ -53,8 +58,7 @@ export class HotelInfo {
     return this.hotel;
   }
 
-  public retrieveAmenities(id:string): void {
-    //console.log(id);
+  public retrieveAmenities(id: string): string[] {
     const amenities_ref =  firebase.database().ref('/hotels/' + id +"/amenities/");
 
     amenities_ref.child('room/').once('value')
@@ -63,6 +67,7 @@ export class HotelInfo {
         for(var i = 0; i < countRoom; i++) {
           var number = i.toString();
           this.setAmenities(snapshot.child(number).val());
+          this._temp_amenities.push(snapshot.child(number).val());
         }
       });
 
@@ -72,15 +77,18 @@ export class HotelInfo {
         for(var i = 0; i < countHotel; i++) {
           var number = i.toString();
           this.setAmenities(snapshot.child(number).val());
+          this._temp_amenities.push(snapshot.child(number).val());
         }
       });
+
+      return this._temp_amenities;
   }
 
   public setAmenities(HotelAmenity:string){
-    this.amenities.push(HotelAmenity);
-    this._amenitiesList.next(this.amenities);
+    this._amenities.push(HotelAmenity);
+    this._amenitiesList.next(this._amenities);
   }
-
+  
   public getAmenities(): Observable<string[]>{
     return this._amenitiesList.asObservable();
   }

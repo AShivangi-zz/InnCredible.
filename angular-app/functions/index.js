@@ -8,17 +8,34 @@ const pdfdocument = require('pdfkit');
 exports.sendmailNOW = functions.database.ref('/users/{userid}/itinerary/{itineraryid}').onWrite(event => {
   // console.log( fb.database().app.auth().listUsers());
 
-
-//var doc = new pdfdocument();
-//var email = event.data.val().emailid;
-
-//doc.text('This email was sent as soon as the user logged in');
-//doc.end();
-  console.log("HERE");
-  console.log(event.data.val());
-
+  var doc = new pdfdocument();
   var email = event.data.val().currentemail;
-  console.log(email);
+
+  doc.image('images/Logo.png', 100, 20,{
+    width: 300,
+    height:80});
+
+  message = "Name: " + event.data.val().hotelname + "\nAddress: " + event.data.val().address +
+    "\nGuest(s): " + event.data.val().numberofguests + "\nRooms: " + event.data.val().numberofrooms +
+    "\nCheck In Date: " + event.data.val().checkindate + "\nCheck out Date: " + event.data.val().checkoudate +
+    "\nTotal Before Tax: $" + event.data.val().totalbeforetax + "\nRewards: " + event.data.val().rewardsapplied +
+    " \nTax: $" + event.data.val().tax + "\nTotal: $" + event.data.val().ordertotal;
+
+
+
+
+  doc.fontSize(10);
+
+  //doc.Author("Inncredible");
+  //doc.font('Times-Roman');
+  doc.text(message, 100, 100, {
+
+    width: 310,
+    align: 'left'
+  });
+
+  doc.end();
+
 
   var server = emailjs.server.connect({
     user: 'webtestingapp415@gmail.com',
@@ -28,15 +45,16 @@ exports.sendmailNOW = functions.database.ref('/users/{userid}/itinerary/{itinera
   });
 // name, address, guests, rooms, checkindate, checkoutdate, tbt, rewards, tax, total, Email
   server.send({
-    text: "Name:" + event.data.val().hotelname + "Address:" + event.data.val().address +
-    "Guest:" + event.data.numberofguests + "Rooms:" + event.data.val().numberofrooms +
-    "Check In Date:" + event.data.val().checkindate + "Check out Date:" + event.data.val().checkoudate +
-    "Total Before Tax:" + event.data.val().totalbeforetax + "Rewards:" + event.data.val().rewardsapplied +
-    " Tax:" + event.data.val().tax + "Total:" + event.data.val().ordertotal,
+    text: "Thank you for booking with InnCredible. " +
+    "We hope you enjoy your trip, and we look forward to serving you again",
 
     from: 'myself@thisvideo.com',
     to: event.data.val().currentemail,//email,//'webtestingapp415@gmail.com',
-    subject: 'Wow, we can send an email this way',
+    subject: 'Hotel Booking Itinerary',
+
+    attachment: [
+      {data: 'somerandomdata', type:'application/pdf', stream: doc, name: 'Itinerary.pdf'}
+    ],
   }, (err, message) => {
     if (err)
       console.log(err)

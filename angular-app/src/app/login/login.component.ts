@@ -36,7 +36,6 @@ ngOnInit() : void {
     if (auth) {
       this.location.back();
       if(document.referrer === 'http://localhost:4200/home' || document.referrer === 'https://www.inn-credible.com/home') {
-        console.log(document.referrer);
         window.location.reload();
       }
     }
@@ -82,7 +81,6 @@ googlSignIn(){
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
-
         console.log(errorCode);
       }
 

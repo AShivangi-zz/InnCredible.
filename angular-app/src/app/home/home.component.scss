@@ -53,3 +53,7 @@ input {
 element.style{
   height:550px;
 }
+
+#checkoutdate:invalid{
+  color: red;
+}

@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
   checkindate: string;
   checkoutdate: string;
 
+  dtToday = (new Date).toISOString().split('T')[0];
+
   done: boolean = false;
 
   options = {
@@ -43,13 +45,19 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   handleAddressChange(event) {
     var location = event.formatted_address;
     var segments = location.split(',');
     this.citynameAuto = segments[0];
+  }
+
+  updateDate() {
+    var checkIn = (<HTMLInputElement>document.getElementById('checkindate'));
+    var checkOut = (<HTMLInputElement>document.getElementById('checkoutdate'));
+    
+    checkOut.setAttribute("min", checkIn.value);
   }
 
 }

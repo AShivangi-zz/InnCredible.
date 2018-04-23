@@ -22,7 +22,7 @@
         <!--<img *ngIf="userProfileService.hasPicture" id="upic" class="user-pic" alt="User Picture" src="{{getAvatars()[userProfileService.picIndex]}}" style="background: grey">-->
     </div>
     <div class="card-info">
-      <span class="card-title">{{userProfileService.getFullName()}}</span>
+      <span *ngIf="userProfileService.getFullName() !== 'undefined undefined'" class="card-title">{{userProfileService.getFullName()}}</span>
 
     </div>
   </div>

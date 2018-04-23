@@ -17,7 +17,6 @@ export class HotelInfoComponent implements OnInit {
 
   @ViewChild('gmap') gmapElement: any;
   //map: google.maps.Map;
-
   public imagesURL: URL[] = [];
   public imgDone: boolean = false;
 
@@ -37,7 +36,6 @@ export class HotelInfoComponent implements OnInit {
 
   constructor(public hotelInfo: HotelInfo, private route: ActivatedRoute) {
     // this.hotelInfo.setHotelId('0');
-
   }
 
   ngOnInit() {
@@ -56,7 +54,7 @@ export class HotelInfoComponent implements OnInit {
         const number = i.toString();
         if (snapshot.child(number).val() == this.hotelID) {
           this.getData(number);
-          this.hotelInfo.retrieveAmenities(number);
+         // this.hotelInfo.retrieveAmenities(number);
           const images_ref = firebase.database().ref('/hotels/' + number + '/images/');
           
           images_ref.once('value')
@@ -130,7 +128,6 @@ export class HotelInfoComponent implements OnInit {
   }
 
   async getcity(address: string){
-    console.log(this.hotelInfo.getHotel().city);
     if(this.hotel.city=="Miami"){
       this.miami=true;
     }
