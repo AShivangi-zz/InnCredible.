@@ -14,8 +14,10 @@
         <!--<div class='list-landmark'>Neptune Group</div>-->
         <div class='list-location'>{{res.hotelLoc}}</div>
         
-        <div *ngIf="res?.comments" class='list-comment'>Comment: {{res.comments}}</div>
+        
         <div class='list-price'>Total Price: {{res.price}}</div>
+        <div *ngIf="res?.comments" class='list-comment'>Comment: {{res.comments}}</div>
+        <div *ngIf="!res?.comments" class='list-comment'>Comment: No comments</div>
         <div class='list-bottom'>
           <div class='list-bottom-section'>
             <span>{{res.checkInDt}}</span>
