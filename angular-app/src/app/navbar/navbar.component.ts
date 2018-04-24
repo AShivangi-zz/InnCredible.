@@ -41,7 +41,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUserData();
   }
 
   logout() {
@@ -49,8 +48,5 @@ export class NavbarComponent implements OnInit {
     location.reload();
   }
 
-  async getUserData() {
-    await this.userProfileService.getUserInfo();
-  }
 
 }
