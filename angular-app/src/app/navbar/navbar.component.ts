@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
     this.afa.authState.subscribe(auth => {  
       if(auth) {
         //this.name = auth;
+        userProfileService.getUserInfo();
         this.authenticated = true;
       }
       else {
