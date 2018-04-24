@@ -33,7 +33,7 @@
         </div>
 
         <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal" (click)= 'setkey(res.$key)' ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</a>
-        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#editModal" (click)= 'setkey(res.$key)'><span class="glyphicon glyphicon-edit"></span> Edit</a>
 
 
       </div>
@@ -121,14 +121,13 @@
             <h4 class="modal-title">EditlBooking</h4>
           </div>
           <div class="modal-body">
-            <form id="loginform" class="form-horizontal" role="form">
-
-              <div class="form-group">
-                <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to edit the booking?</label>
-                <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
-                <button id="" name="btnCancel" class="btn btn-primary">No</button>
+              <div style="padding-left: 40px;">
+                <p style="padding-bottom: 5px; color: black">What would you like to tell your hotel?</p>
+                <textarea name="comments" class="form-control" id="textarea" cols="5" rows="4" placeholder="Enter a comment" style="width:70%; margin-bottom: 15px">{{res?.comments}}</textarea>
+                <button style ="margin-left: 115px;" name="btnCancel" class="btn btn-primary" (click)="setText(); userProfileService.editComment(key, txt_comment)"
+                  data-dismiss="modal">Send</button>&nbsp;&nbsp;&nbsp;
+                <button id="" name="btnCancel" class="btn btn-primary" data-dismiss="modal">Cancel</button>
               </div>
-            </form>
           </div>
         </div>
       </div>

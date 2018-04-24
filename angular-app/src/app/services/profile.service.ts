@@ -140,6 +140,15 @@ export class UserProfileService {
 
     }
 
+    async editComment(key, new_comment) {
+        console.log(key+' '+new_comment);
+        const ref = firebase.database().ref();
+        const comment = {};
+        comment['/users/' + this.uid + '/reservations/' + key + '/comments/']= new_comment;
+        await ref.update(comment);
+        window.location.reload();
+    }
+
     getBookingsObs(): Observable<Booking[]> {
         return this._observableList.asObservable();
     }
