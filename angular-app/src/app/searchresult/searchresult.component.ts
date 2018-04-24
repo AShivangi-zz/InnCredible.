@@ -131,7 +131,10 @@ export class SearchresultComponent implements OnInit {
 
     this.isEmpty = await this.filterService.filterByRating(this.hotels, rating);
     if (!this.isEmpty) {
+      console.log(' hotels filter');
       this.hotelsObs = this.filterService.getObservableList();
+    } else {
+      console.log('no hotels filter');
     }
   }
 
