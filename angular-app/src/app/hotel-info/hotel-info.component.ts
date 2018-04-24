@@ -130,7 +130,6 @@ export class HotelInfoComponent implements OnInit {
   }
 
   async getcity(address: string){
-    console.log(this.hotelInfo.getHotel().city);
     if(this.hotel.city=="Miami"){
       this.miami=true;
     }

@@ -17,8 +17,6 @@ export class SearchService {
     //Create Date array that contains all dates between In and Out (new)
     let chIn = new Date(checkin_new);
     let chOut = new Date(checkout_new);
-    // console.log("check in date: " + chIn);
-    // console.log("check out date: " + chOut);
 
     var x: string;
     var hotelList: Hotel[] = [];
@@ -30,8 +28,6 @@ export class SearchService {
       hotel = this.hotelInfo.getHotel();
       let date1 = new Date(  (hotel.checkIn) );
       let date2 = new Date( hotel.checkOut )
-      //console.log("check in date: " + date1);
-      //console.log("check out date: " + date2);
 
       //hotel.checkIn and hotel.checkout (Timestamp)
       //convert timestamp to date
@@ -40,7 +36,6 @@ export class SearchService {
       if (cityname.toUpperCase() == hotel.city.toUpperCase()) {
         hotelList.push(hotel);
         this.hotels.push(hotel);
-        //console.log(hotel);
         this._observableList.next(hotelList);
       }
     }
@@ -51,7 +46,6 @@ export class SearchService {
   }
    
   public getHotels() {
-    //console.log(this.hotels);
     return this.hotels;
   }
 }

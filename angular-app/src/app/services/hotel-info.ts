@@ -54,7 +54,6 @@ export class HotelInfo {
   }
 
   public retrieveAmenities(id:string): void {
-    //console.log(id);
     const amenities_ref =  firebase.database().ref('/hotels/' + id +"/amenities/");
 
     amenities_ref.child('room/').once('value')
