@@ -8,9 +8,9 @@
             <ul>
               <li><a href="/login" *ngIf="!authenticated">Login</a></li>
               <li><a href="/register" *ngIf="!authenticated">Register</a></li>
-              <li><a href="/profile" *ngIf="authenticated">Profile</a></li>
+              <li><a href="/profile" *ngIf="authenticated" title='Go to Profile'>Hi, {{userProfileService.firstname}}</a></li>
               <li ><a href="/home" (click)="logout()" *ngIf="authenticated">Logout</a></li>
-              <li *ngIf="authenticated">Hi, {{userProfileService.firstname}}</li>
+              
               <li class="cta"><a href="/contact">Contact us</a></li>
             </ul>
           </nav>
