@@ -19,7 +19,12 @@
 
             <!--<div class='list-landmark'>Neptune Group</div>-->
             <div class='list-location'>{{hotel?.location}}</div>
-            <div class='list-price'>${{hotel?.price}}</div>
+            <h3 style="padding-bottom: 15px">${{hotel?.price}}</h3>
+            <!--<span> {{hotel?.rating}}</span>-->
+
+
+<img style="width:140px; height:25px; background-color:white !important" [src]='hotel?.ratingImg'>
+<br><br>{{hotel?.review_num}}
             <!--<div class='list-bottom'>-->
             <!--<div class='list-bottom-section'>-->
             <!--<span>{{res.checkInDt}}</span>-->
@@ -34,10 +39,7 @@
             <!--<span>Rooms</span>-->
             <!--</div>-->
             <!--</div>-->
-            <button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel
-              <i class="icon-arrow-right"></i>
-            </button>
-          </div>
+            </div>
 
         </div>
       </div>
