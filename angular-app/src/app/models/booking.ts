@@ -10,4 +10,5 @@ export class Booking {
     checkOutDt: string;
     comments:   string;
     price:      number;
+    hotelID:    string;
 }

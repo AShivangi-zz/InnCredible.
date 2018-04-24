@@ -9,7 +9,7 @@
 
       <div class='list-details'>
         <!--`FIX: Needs the hotel ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-        <div class='list-name'><a [routerLink]="['/hotel-info', res.key, res.checkInDt, res.checkOutDt]">{{res.hotelName}}</a></div>
+        <div class='list-name'><a [routerLink]="['/hotel-info', res.hotelID, res.checkInDt, res.checkOutDt]">{{res.hotelName}}</a></div>
 
         <!--<div class='list-landmark'>Neptune Group</div>-->
         <div class='list-location'>{{res.hotelLoc}}</div>

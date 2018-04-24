@@ -92,6 +92,7 @@ export class UserProfileService {
                     booking.comments = snapshot.child(key + '/comments').val();
                     booking.guests = snapshot.child(key + '/guests').val();
                     booking.rooms = snapshot.child(key + '/rooms').val();
+                    booking.hotelID = snapshot.child(key +'/hotelID').val();
                     await this.getHotelInfo(snapshot.child(key + '/hotelID').val(), booking);
 
                     var dat: string = this.pipe.transform(new Date, 'yyyy-MM-dd')
