@@ -1,3 +1,90 @@
+
+//current booking card:https://bootsnipp.com/snippets/qrPQ9
+
+html {
+  background-color: #eee;
+  font-family: 'Lato';
+}
+.container {
+  width: 750px;
+  margin: 0 auto;
+  background-color: #fff;
+  overflow: auto;
+}
+.container .list-card {
+  padding: 15px;
+  overflow: auto;
+}
+.container .list-card img {
+  width: 240px;
+  height: 180px;
+  background-color: green;
+  border: 0;
+  display: inline-block;
+  float: left;
+  margin-right: 18px;
+}
+.list-label {
+  background-color: #1fc055;
+  display: inline-block;
+  position: absolute;
+  margin-left: -5px;
+  margin-top: 10px;
+  font-size: 12px;
+  padding: 4px;
+  color: #fff;
+}
+.list-details {
+  float: none;
+}
+.list-name {
+  font-size: 20px;
+  display: inline-block;
+}
+.list-landmark,
+.list-location {
+  font-size: 12px;
+  opacity: 0.5;
+  margin: 2px 0;
+}
+.list-rooms {
+  font-size: 12px;
+}
+.list-price {
+  font-size: 20px;
+  margin-top: 16px;
+}
+.list-bottom {
+  display: inline-block;
+  overflow: auto;
+  margin-top: 26px;
+}
+.list-bottom .list-bottom-section {
+  width: 120px;
+  box-sizing: border-box;
+  float: left;
+  font-size: 14px;
+  padding: 0 20px;
+  border-left: 1px solid #e5e5e5;
+}
+.list-bottom .list-bottom-section span:last-of-type {
+  opacity: 0.5;
+}
+.list-bottom .list-bottom-section:first-of-type {
+  padding-left: 0;
+  border-left: 0;
+}
+.list-bottom .list-bottom-section span {
+  display: block;
+}
+.list-callback,
+.list-shortlist {
+  float: right;
+}
+.list-shortlist {
+  margin-right: 15px;
+}
+
 /* USER PROFILE PAGE */
 .card {
     margin-top: 5px;
@@ -12,7 +99,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-  
+
   }
   .card.hovercard {
     position: relative;
@@ -82,7 +169,7 @@
   .btn-pref .btn {
     -webkit-border-radius:0 !important;
   }
-  
+
   .form-group {
     border-style: solid;
     border-width: 0px 0px 1px 0px;
@@ -90,12 +177,12 @@
     border-color: black;
     margin-bottom: 15px;
   }
-  
+
   label {
     padding: 5px 25px 10px 0px;
     width: 25%;
   }
-  
+
   .user-info {
     width: 30%;
     padding: 0px;
@@ -108,7 +195,7 @@
     overflow: hidden;
     outline:none;
   }
-  
+
   .alter-info {
     background-color: deepskyblue;
     border: none;
@@ -120,19 +207,19 @@
     text-align: center;
     color: white;
   }
-  
+
   .alter-info:hover  {
     color:deepskyblue;
     background-color: white;
     border: 1px solid deepskyblue;
   }
-  
+
   .profile-pic {
     margin-top: 25px;
     height: 25%;
     align-items: center;
   }
-  
+
   .alter-pic {
     background-color: Transparent;
     background-repeat:no-repeat;
@@ -146,7 +233,7 @@
     margin-right: auto;
     margin-bottom: 20px;
   }
-  
+
   .user-photo {
     height: 25%;
     width: 25%;
@@ -154,18 +241,18 @@
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   #user-pic {
     background-color: white;
   }
-  
+
   .profile-tab {
     width: 50%;
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .alter-pass-pic {
     background-color: Transparent;
     background-repeat:no-repeat;
@@ -176,47 +263,47 @@
     color: deepskyblue;
     margin-bottom: 15px;
   }
-  
+
   .alter-pass-pic:hover {
     color: gray;
   }
-  
+
   .pic-choice {
     padding: 5px;
     margin: 0px 5px 0px 5px;
   }
-  
+
   .pic-choice:hover{
     opacity: 75%;
     border: 1px solid deepskyblue;
   }
-  
+
   .avatars-list {
     width: 70%;
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .glyphicon-pencil:hover {
     color: deepskyblue;
   }
-  
-  
+
+
   //Modal
   .modal-custom-header{
     background-color: #337ab7;
     color: #fff;
     text-align: center;
   }
-  
+
   .input-group-addon {
     color: #fff;
     position: relative;
     background-color: #337ab7;
   }
-  
-  
+
+
   label{
     text-align: left !important;
     margin: 10px;
@@ -224,22 +311,22 @@
   .close:hover {
     color: #fff;
   }
-  
-  
-  
+
+
+
   // modal
   .modal-custom-header{
     background-color: #337ab7;
     color: #fff;
     text-align: center;
   }
-  
+
   .input-group-addon {
     color: #fff;
     position: relative;
     background-color: #337ab7;
   }
-  
+
   .form-control, .input-group-addon, .btn, .modal-content {
     border-radius: 2px;
   }
@@ -249,9 +336,9 @@
   .close:hover {
     color: #fff;
   }
-  
+
   //for bookings:
-  
+
   *{
     box-sizing: border-box;
     margin: 0
@@ -270,8 +357,8 @@
     margin-bottom: 20px;
     margin-left: 10px
   }
-  
-  
+
+
   /* start of conatiner*/
   .container12 {
     position: relative;
@@ -282,24 +369,24 @@
     float: left;
     margin-bottom: 20px
   }
-  
+
   .container12:first-of-type,
   .container12:nth-of-type(3) {
     margin-right: 29px;
   }
-  
+
   section {
     display: inline-block;
     vertical-align: middle;
   }
-  
+
   p {
     color: #a7a7a7
   }
   /* end of conatiner*/
-  
+
   /*start of left side*/
-  
+
   .container12 .left:before {
     content: "";
     background-color: #DADDE6;
@@ -310,7 +397,7 @@
     top:-15px;
     left: 131px
   }
-  
+
   .container12 .left:after {
     content: "";
     background-color: #DADDE6;
@@ -321,7 +408,7 @@
     bottom:-15px;
     left: 131px
   }
-  
+
   .container12 .left {
     border-right: 2px dashed #DADDE6;
     padding: 70px 30px;
@@ -329,7 +416,7 @@
     text-align: center;
     letter-spacing: -2px
   }
-  
+
   .container12 .left p:first-child {
     color: #37383a;
     font-size: 80px;
@@ -339,15 +426,15 @@
     font-size: 25px;
     padding: 0
   }
-  
+
   /*end of left side*/
-  
+
   /*start of right side*/
   .container12 .right {
     padding: 10px 5px 10px 45px  ;
     width: 72%;
   }
-  
+
   .container12.right h2 {
     font-size: 25px;
     margin-bottom: 20px;
@@ -355,23 +442,23 @@
   .container12:nth-of-type(4) .right h2 {
     text-decoration: line-through
   }
-  
+
   .container12 .right p:nth-of-type(2) {
     margin-bottom: 35px;
   }
-  
+
   .container12 .right p {
     letter-spacing: 0px;
     font-size: 14px;
     font-weight: 600;
     width: 70%
   }
-  
+
   .container12 .right p:first-child {
     margin: 0px;
     font-size: 17px
   }
-  
+
   .container12 .right .calendar:before {
     content: "\f073";
     font-family: FontAwesome;
@@ -380,7 +467,7 @@
     left:200px;
     font-size: 40px;
   }
-  
+
   .container12 .right .map-pin:before {
     content: "\f041";
     font-family: FontAwesome;
@@ -389,11 +476,11 @@
     left:210px;
     font-size: 35px;
   }
-  
+
   .calendar,.map-pin {
     margin-left: 55px;
   }
-  
+
   /*end of right side*/
   .container12 .right a {
     vertical-align: bottom;
@@ -407,15 +494,15 @@
     margin-bottom: -25px;
     letter-spacing: -0.5px
   }
-  
+
   .container12:nth-of-type(3) .right a {
     background-color: #f00;
   }
-  
+
   .container12:nth-of-type(4) .right a {
     background-color: #00f;
   }
-  
+
   //fonts for the flip - card - my bookings
   /* cyrillic-ext */
   @font-face {
@@ -473,21 +560,21 @@
     src: local('Roboto Mono'), local('RobotoMono-Regular'), url(https://fonts.gstatic.com/s/robotomono/v5/L0x5DF4xlVMF-BfR8bXMIjhLq38.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
-  
+
   //css for flip card- my bookings
   @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-  
+
   * {
     box-sizing: border-box;
     font-weight: normal;
   }
-  
-  
-  
+
+
+
   h1 {
     font-size: 2.2em;
   }
-  
+
   // base
   .flip {
     position: relative;
@@ -533,8 +620,8 @@
       }
     }
   }
-  
-  
+
+
   // custom
   .flip {
     position: relative;
@@ -560,11 +647,11 @@
       }
     }
   }
-  
+
   .text-shadow {
     text-shadow: 1px 1px rgba(0, 0, 0, 0.04), 2px 2px rgba(0, 0, 0, 0.04), 3px 3px rgba(0, 0, 0, 0.04), 4px 4px rgba(0, 0, 0, 0.04), 0.125rem 0.125rem rgba(0, 0, 0, 0.04), 6px 6px rgba(0, 0, 0, 0.04), 7px 7px rgba(0, 0, 0, 0.04), 8px 8px rgba(0, 0, 0, 0.04), 9px 9px rgba(0, 0, 0, 0.04), 0.3125rem 0.3125rem rgba(0, 0, 0, 0.04), 11px 11px rgba(0, 0, 0, 0.04), 12px 12px rgba(0, 0, 0, 0.04), 13px 13px rgba(0, 0, 0, 0.04), 14px 14px rgba(0, 0, 0, 0.04), 0.625rem 0.625rem rgba(0, 0, 0, 0.04), 16px 16px rgba(0, 0, 0, 0.04), 17px 17px rgba(0, 0, 0, 0.04), 18px 18px rgba(0, 0, 0, 0.04), 19px 19px rgba(0, 0, 0, 0.04), 1.25rem 1.25rem rgba(0, 0, 0, 0.04);
   }
-  
+
   .back-align{
     text-align: center;
   }

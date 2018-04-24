@@ -1,11 +1,18 @@
 <div class="col-md-8 box">
-    <div>
+  <div>
 
-      <!--REVIEW ORDER-->
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h4>Order Summary</h4>
+    <!--REVIEW ORDER-->
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <h4>Order Summary</h4>
+      </div>
+      <div class="panel-body">
+        <!--Hotel name field-->
+        <div class="col-md-12">
+          <strong>Hotel Name</strong>
+          <div class="pull-right"><span>{{this.hotelData.name}}</span></div>
         </div>
+
         <div class="panel-body">
           <!--Hotel name field-->
           <div class="col-md-12">
@@ -67,11 +74,12 @@
             <div class="pull-right"><span>$</span><span>{{taxCharge().toFixed(2)}}</span></div>
           </div>
 
-          <!-- horizontal line-->
-          <div class="col-md-12">
-            <hr>
-          </div>
-          <div class="col-md-12">
+        <!-- horizontal line-->
+        <div class="col-md-12">
+          <hr>
+        </div>
+        <div class="col-md-12">
+
 
             <!-- Order total -->
             <strong>Order Total</strong>
@@ -86,31 +94,37 @@
           </div>
 
           <!-- Check out button -->
-      <!--<form #testForm="ngForm" (ngSubmit)="onSubmit()">-->
+          <!--<form #testForm="ngForm" (ngSubmit)="onSubmit()">-->
           <div class="col-md-4">
-              <button id="checkoutid" class="btn btn-primary" *ngIf="!submit" (click)="submit = true; onClick()">
-                  <span class="round-tabs two active" style="color: white">Checkout</span>
-                </button>
-               <div class = 'next' *ngIf="submit" style="width: 100%">
-                  <a href="#checkout" data-toggle="tab" >
-                    <i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: deepskyblue"></i>
-                  </a>
-                </div>
+            <button id="checkoutid" class="btn btn-primary" *ngIf="!submit" (click)="submit = true; onClick()">
+              <span class="round-tabs two active" style="color: white">Checkout</span>
+            </button>
+            <div class = 'next' *ngIf="submit" style="width: 100%">
+              <div class = 'next' *ngIf="submit" style="width: 100%">
+                <a href="#checkout" data-toggle="tab" class="btn btn-success">Continue</a>
+                <!--<a href="#reviewOrder" data-toggle="tab" >-->
+                <!--<i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: skyblue"></i>-->
+                <!--</a>-->
               </div>
-        </div>
-      <!--</form>-->
-
-          <!-- Cancel button -->
-          <div class="col-md-4">
-                <button class="btn btn-danger">
-                    <a href="/profile" >
-                        <span style="color: white">Cancel</span>
-                    </a>
-                </button>
-                </div>
-
+              <!--<a href="#checkout" data-toggle="tab" >-->
+                <!--<i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: deepskyblue"></i>-->
+              <!--</a>-->
             </div>
+          </div>
+        </div>
+        <!--</form>-->
+
+        <!-- Cancel button -->
+        <div class="col-md-4">
+          <button class="btn btn-danger">
+            <a href="/profile" >
+              <span style="color: white">Cancel</span>
+            </a>
+          </button>
+        </div>
+
       </div>
-      <!--REVIEW ORDER END-->
     </div>
+    <!--REVIEW ORDER END-->
   </div>
+</div>
