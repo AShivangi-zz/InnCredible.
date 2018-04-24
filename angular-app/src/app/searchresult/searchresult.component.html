@@ -101,11 +101,11 @@
 
 <div class="container" class="col-sm-9">
 
-  <span *ngIf="isEmpty" style="font-size:25px; visibility: collapse;">No hotels found. Try removing some filters.</span>
+  <span *ngIf="isEmpty" style="font-size:25px;">No hotels found. Try removing some filters.</span>
   <span id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</span>
 
 
-  <ul *ngIf="!isEmpty || !hotelsObs.isEmpty()">
+  <ul *ngIf="!isEmpty">
     <div *ngFor="let hotel of hotelsObs | async | orderBy: order : reverse">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">

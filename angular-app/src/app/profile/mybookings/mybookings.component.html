@@ -5,16 +5,19 @@
     <div class='list-card'>
       <div class='list-label'>Current Bookings</div>
       <!--<img alt='' src='https://is1-1.housingcdn.com/4f2250e8/cec532fdfbfb4c0213bee9f5028c4486/v1/_logo.jpg'>-->
-      <img alt='' src='https://is1-1.housingcdn.com/4f2250e8/cec532fdfbfb4c0213bee9f5028c4486/v1/_logo.jpg'>
+      <img alt='' src="{{res.image}}">
 
       <div class='list-details'>
         <!--`FIX: Needs the hotel ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-        <div class='list-name'><a [routerLink]="['/hotel-info', res.key, res.checkInDt, res.checkOutDt]">{{res.hotelName}}</a></div>
+        <div class='list-name'><a [routerLink]="['/hotel-info', res.hotelID, res.checkInDt, res.checkOutDt]">{{res.hotelName}}</a></div>
 
         <!--<div class='list-landmark'>Neptune Group</div>-->
         <div class='list-location'>{{res.hotelLoc}}</div>
-        <div class='list-guests'>Guests: {{res.guests}}</div>
-        <div class='list-price'>Price Here</div>
+        
+        
+        <div class='list-price'>Total Price: {{res.price}}</div>
+        <div *ngIf="res?.comments" class='list-comment' style="padding-top: 10px">Comment: {{res.comments}}</div>
+        <div *ngIf="!res?.comments" class='list-comment' style="padding-top: 10px">Comment: No comments</div>
         <div class='list-bottom'>
           <div class='list-bottom-section'>
             <span>{{res.checkInDt}}</span>
@@ -29,11 +32,14 @@
             <span>Rooms</span>
 
           </div>
+          <div class='list-bottom-section'><span>{{res.guests}}</span>
+            <span>Guests</span></div>
 
         </div>
-
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal" (click)= 'setkey(res.$key)' ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</a>
-        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#editModal"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#editModal" (click)= 'setkey(res.$key)'><span class="glyphicon glyphicon-edit"></span> Edit</a>
 
 
       </div>
@@ -82,57 +88,70 @@
   <!--<br>-->
   <!--<br>-->
   <!--<br>-->
-
   <div class="container">
-    <!-- Trigger the modal with a button -->
-
-    <!-- Modal for Cancel -->
-    <div class="modal fade" id="cancelModal" role="dialog">
-      <div class="modal-dialog modal-md">
-        <div class="modal-content">
-          <div class="modal-header modal-custom-header">
-            <button type="button" class="close" data-dismiss="modal">×</button>
-            <h4 class="modal-title">CancelBooking</h4>
-            <form class="form-horizontal">
-              <fieldset>
-
-                <div class="modal-body">
-                  <form id="loginform" class="form-horizontal" role="form">
-                    <div class="form-group">
-                      <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to cancel the booking?</label>
-                      <button id="" name="btnCancel" class="btn btn-primary" (click)="userProfileService.removeReservation(key)" data-dismiss="modal">Yes</button>
-                      <button id="" name="btnCancel" class="btn btn-primary">No</button>
-                    </div>
-                  </form>
+      <!-- Trigger the modal with a button -->
+  
+      <!-- Modal for Cancel -->
+      <div class="modal fade" id="cancelModal" role="dialog">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header modal-custom-header">
+              <button type="button" class="close" data-dismiss="modal">×</button>
+              <h4 class="modal-title" style="color: #fff">Cancel Booking</h4></div>
+  
+  
+  
+                  <div class="modal-body">
+                    <form id="loginform" class="form-horizontal" role="form">
+                      <div class="col-md-3"></div>
+                      <div class="form-group"><div class="col-md-8">
+                        <label for="username" >Would you like to cancel the booking?</label></div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="" name="btnCancel" class="btn btn-primary" (click)="userProfileService.removeReservation(key)" data-dismiss="modal">Yes</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button id="" name="btnCancel" class="btn btn-primary" data-dismiss="modal">No</button></div>
+                          </div>
+  
+                    </form>
+                  </div>
+  
+            </div>
+          </div>
+        </div>
+  
+  
+      <!--Modal for Edit-->
+          <div class="modal fade" id="editModal" role="dialog">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                  <div class="modal-header modal-custom-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title" style="color: #fff">Edit Booking</h4></div>
+                        <div class="modal-body">
+                          <form id="loginform" class="form-horizontal" role="form">
+                            <div class="col-md-3"></div>
+                            <div class="form-group"><div class="col-md-8">
+                              <label for="username" > What would you like to tell your hotel?</label></div>
+                              <div class="col-md-3"></div>
+                              <div class="form-group"><div class="col-md-8">
+  
+                             <!-- this is for comment -->
+                             <textarea name="comments" class="form-control" id="textarea" cols="5" rows="4" placeholder="Message" style="width:70%">{{res.comments}}</textarea>
+  
+  
+                            </div></div>
+                              <div class="col-md-4"></div>
+                              <div class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <button id="" name="btnCancel" class="btn btn-primary" (click)="setText(); userProfileService.editComment(key, txt_comment)" data-dismiss="modal">Send</button>
+                                  &nbsp;
+                                  <button id="" name="btnCancel" class="btn btn-primary" data-dismiss="modal">Cancel</button></div>
+                                </div>
+  
+                          </form>
+                        </div>
+  
+                  </div>
                 </div>
-
-              </fieldset>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--Modal for Edit-->
-    <div class="modal fade" id="editModal" role="dialog">
-      <div class="modal-dialog modal-md">
-        <div class="modal-content">
-          <div class="modal-header modal-custom-header">
-            <button type="button" class="close" data-dismiss="modal">×</button>
-            <h4 class="modal-title">EditlBooking</h4>
-          </div>
-          <div class="modal-body">
-            <form id="loginform" class="form-horizontal" role="form">
-
-              <div class="form-group">
-                <label for="username" class="col-md-offset-1 col-md-3 control-label">Would you like to edit the booking?</label>
-                <button id="" name="btnCancel" class="btn btn-primary">Yes</button>
-                <button id="" name="btnCancel" class="btn btn-primary">No</button>
               </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br>
-</div>
+  
