@@ -131,6 +131,7 @@ export class UserProfileService {
         hotel = this.hotelInfo.getHotel();
         booking.hotelName = hotel.name;
         booking.hotelLoc = hotel.location;
+        booking.image = hotel.firstImage;
     }
 
     public async removeReservation(key) {

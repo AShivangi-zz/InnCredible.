@@ -1,5 +1,6 @@
 export class Booking {
 
+    image:      string;
     hotelName:  string;
     hotelLoc:   string;
     $key:       string;
@@ -8,4 +9,5 @@ export class Booking {
     checkInDt:  string;
     checkOutDt: string;
     comments:   string;
+    price:      number;
 }

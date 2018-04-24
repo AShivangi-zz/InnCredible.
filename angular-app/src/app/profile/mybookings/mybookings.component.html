@@ -5,7 +5,7 @@
     <div class='list-card'>
       <div class='list-label'>Current Bookings</div>
       <!--<img alt='' src='https://is1-1.housingcdn.com/4f2250e8/cec532fdfbfb4c0213bee9f5028c4486/v1/_logo.jpg'>-->
-      <img alt='' src='https://is1-1.housingcdn.com/4f2250e8/cec532fdfbfb4c0213bee9f5028c4486/v1/_logo.jpg'>
+      <img alt='' src="{{res.image}}">
 
       <div class='list-details'>
         <!--`FIX: Needs the hotel ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
@@ -14,7 +14,8 @@
         <!--<div class='list-landmark'>Neptune Group</div>-->
         <div class='list-location'>{{res.hotelLoc}}</div>
         <div class='list-guests'>Guests: {{res.guests}}</div>
-        <div class='list-price'>Price Here</div>
+        <div *ngIf="res?.comments" class='list-comment'>Comment: {{res.comments}}</div>
+        <div class='list-price'>Total Price: {{res.price}}</div>
         <div class='list-bottom'>
           <div class='list-bottom-section'>
             <span>{{res.checkInDt}}</span>
