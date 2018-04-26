@@ -17,18 +17,21 @@
   <br/>
     <br/>
 
-    <table align="left">
-      <td> Search for Hotels </td>
-      <td> <label for="checkindate">Date Of Check In</label> </td>
-      <td> <label for="checkoutdate">Date Of Check Out</label> </td>
-    <td><input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" id="cityname" required [(ngModel)]="cityname" name="cityname"/></td>
+    <div class="col-sm-8">
 
-    <td><input type="date" style="text-align: center" id="checkindate" [(ngModel)]="checkindate" name="checkindate" [min]="dtToday" (change)="updateDate()"></td>
-    <td><input type="date" id="checkoutdate" [(ngModel)]="checkoutdate" name="checkoutdate" min=""></td>
-
+      <h3 style="text-align:center; padding: 2%">
+          <!--
+      <td> {{returnedname}} </td>
+      <td> <label for="checkindate">{{returnedcheckindate}}</label> </td>
+      <td> <label for="checkoutdate">{{returnedcheckoutdate}}</label> </td> -->
+      Selected City:  <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" name="citynames" value={{returnedname}}><br>
+      Check in date:  <input type="date" name="checkindate" value={{returnedcheckindate}} [min]="dtToday" (change)="updateDate()"><br>
+      Check out date: <input type="date" name="checkoutdate" value={{returnedcheckoutdate}} name="checkoutdate" min=""><br>
     <p><button type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Book Now!<i class="icon-arrow-right"></i></button></p>
-    </table>
+  </h3>
+  </div>
   </form>
+
 
 
   <!-- SORT -->
