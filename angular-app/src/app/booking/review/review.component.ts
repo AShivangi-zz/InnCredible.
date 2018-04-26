@@ -27,13 +27,13 @@ export class ReviewComponent implements OnInit {
               , public userProfileService: UserProfileService,
               private service: SenditineraryinformationService) {
     this.subscription = this.hotel.activeHotel.subscribe(value => this.hotelData = value);
-    this.reservationService.activeReservation.subscribe(value => this.reservation = value);
+    this.reservationService.activeReservation
+    .subscribe(value => this.reservation = value);
     this.taxRate = 8.25;
     this.service = service;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   applyRewardAmnt(): number {
     if (!this.userProfileService.isRedeem) {
@@ -63,8 +63,6 @@ export class ReviewComponent implements OnInit {
     if (this.userProfileService.isRedeem) {
       this.userProfileService.deductReward();
     }
-
-    this.userProfileService.awardRewardPoints(this.roomCharge());
     this.userProfileService.awardRewardPoints(this.roomCharge());
     this.service.saveInformation(this.hotelData.name, this.hotelData.location, this.reservation.guests,
       this.reservation.rooms, this.reservation.checkInDt, this.reservation.checkOutDt,

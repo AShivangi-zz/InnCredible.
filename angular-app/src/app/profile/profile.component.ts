@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   }
 
   async getUserData() {
-    await this.userProfileService.getUserInfo();
+    //await this.userProfileService.getUserInfo();
 
     await this.userProfileService.pullReservations();
 

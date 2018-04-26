@@ -16,30 +16,14 @@ export class NavbarComponent implements OnInit {
   constructor(public afa: AngularFireAuth, private router: Router, public userProfileService: UserProfileService) {
     this.afa.authState.subscribe(auth => {  
       if(auth) {
-        //this.name = auth;
-        userProfileService.getUserInfo();
         this.authenticated = true;
       }
       else {
         this.authenticated = false;
       }
     });
-
   }
   
-
-  checkAuth(): void {
-    this.afa.authState.subscribe(auth => {  
-      if(auth) {
-        //this.name = auth;
-        this.authenticated = true;
-      }
-      else {
-        this.authenticated = false;
-      }
-    });
-  }
-
   ngOnInit() {
   }
 

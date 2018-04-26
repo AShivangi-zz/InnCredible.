@@ -1,41 +1,52 @@
 <form class="form-horizontal">
-    <fieldset>
-      <div class="tab-pane fade in" id="rewards">
-        <h3 style='text-align: center'>You have {{userProfileService.rewardpoints}} reward points, would you like to reduce your total price by ${{userProfileService.reduceTotalBy()}}?
+  <fieldset>
+    <div class="tab-pane fade in" id="rewards">
+      <h3 style='text-align: center; margin-left: 60px; margin-right: 90px;'>You have {{userProfileService.rewardpoints}} reward points, would you like to reduce your total price by ${{userProfileService.reduceTotalBy()}}?
 
-          <!--THIS LINE CAUSES AN ERROR!!!! I think it is because it's not calling userProfileService properly-->
-          <!--<span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points-->
-        </h3>
-      </div>
+        <!--THIS LINE CAUSES AN ERROR!!!! I think it is because it's not calling userProfileService properly-->
+        <!--<span style ="color: deepskyblue">{{userProfileService.getRewardPoints()}}</span> reward points-->
+      </h3>
+    </div>
 
-      <br> <br>
+    <br>
+    <br>
 
 
-    </fieldset>
-  </form>
+  </fieldset>
+</form>
 
 <!--work on this for REWARDS -->
-  <!-- Redeem button -->
-  <div class="form-group">
-      <label class="col-md-4 control-label" for="button1id"></label>
-      <div class="col-md-4">
-        <button id="commentButton" class="btn btn-primary" *ngIf="!submit" (click)="redeemPoints(false)">
+<!-- Redeem button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id"></label>
+  <div class="col-md-4" style='margin-left: 45px;' >
+    <!--<button id="commentButton" class="btn btn-primary" *ngIf="!submit" (click)="redeemPoints(false)">
           <span class="round-tabs two active" style="color: white">Skip</span>
         </button>
         <button id="commentButton" class="btn btn-primary" *ngIf="!submit" (click)="redeemPoints(true)">
           <span class="round-tabs two active" style="color: white">Redeem</span>
-        </button>
-       <div class = 'next' *ngIf="submit" style="width: 100%">
-         <a href="#reviewOrder" data-toggle="tab" class="btn btn-block btn-success">Continue</a>
-          <!--<a href="#reviewOrder" data-toggle="tab" >-->
-            <!--<i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: skyblue"></i>-->
-          <!--</a>-->
-        </div>
-      </div>
-   </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-
-
+        </button>-->
+    <div class='next' id="commentButton" style = 'width: fit-content; display: inline-block;'(click)="redeemPoints(false)">
+      <a href="#reviewOrder" data-toggle="tab" class="btn btn-primary">Skip</a>
+      <!--<a href="#reviewOrder" data-toggle="tab" >-->
+      <!--<i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: skyblue"></i>-->
+      <!--</a>-->
+    </div>
+    <div class='next' id="commentButton" style="float: left;margin-right: 10px" (click)="redeemPoints(true)">
+      <a href="#reviewOrder" data-toggle="tab" class="btn btn-primary">Redeem</a>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
