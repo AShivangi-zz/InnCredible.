@@ -58,7 +58,6 @@ export class ReviewComponent implements OnInit {
   }
 
   onClick() {
-    console.log('Continue');
     this.reservation.totalCost = this.orderTotal();
     this.reservationService.changeReservation(this.reservation);
     if (this.userProfileService.isRedeem) {
