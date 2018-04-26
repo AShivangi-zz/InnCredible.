@@ -30,10 +30,13 @@ export class ReservationService {
     });
   }
 
-  insertReservation(r: Reservation) {
+  async insertReservation(r: Reservation) {
     if (!this.userID) { alert('User is not logged in!'); return;  }
     this.reservations = this.db.list('users/'+this.userID+'/reservations');
-    this.reservations.push(r);
+    var newRef = await this.reservations.push(r)
+    .then((snap) => {
+      this.reservation.$key = snap.key;
+    });
     this.changeReservation(r);
   }
 

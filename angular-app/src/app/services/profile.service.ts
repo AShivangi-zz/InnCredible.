@@ -48,7 +48,7 @@ export class UserProfileService {
 
     constructor(public afAuth: AngularFireAuth, private hotelInfo: HotelInfo) {
         //afAuth used in profile component to upload picture
-        this.getUserInfo();
+        //this.getUserInfo();
         this.pipe = new DatePipe("en-US");
 
     }
@@ -136,7 +136,7 @@ export class UserProfileService {
     }
 
     public async removeReservation(key) {
-
+        console.log(key);
         await firebase.database().ref('/users/' + this.uid + '/reservations/').child(key).remove();
         window.location.reload();
 

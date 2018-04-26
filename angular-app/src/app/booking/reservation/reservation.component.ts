@@ -64,17 +64,19 @@ export class ReservationComponent implements OnInit {
     var checkOut = (this.resvForm.get('checkOutDt').value).split('-');
     var checkIn = (this.resvForm.get('checkInDt').value).split('-');
     var dtValid: boolean;
-    if (parseInt(checkIn[0]) <= parseInt(checkOut[0]) &&
-      parseInt(checkIn[1]) <= parseInt(checkOut[1]) &&
+    if (parseInt(checkIn[0]) == parseInt(checkOut[0]) &&
+      parseInt(checkIn[1]) == parseInt(checkOut[1]) &&
       parseInt(checkIn[2]) < parseInt(checkOut[2])) {
-      console.log('valid');
+      //console.log('valid');
       dtValid = true;
-    }
-    else {
-      console.log('not valid');
+    } else if(parseInt(checkIn[0]) == parseInt(checkOut[0]) &&
+    parseInt(checkIn[1]) < parseInt(checkOut[1])) {
+      //console.log('valid');
+      dtValid = true;
+    } else {
       dtValid = false;
     }
-    
+
     if (this.resvForm.get('tAndC').value && dtValid) {
       this.error = null;
       this.reservation.guests = this.resvForm.get('guests').value;

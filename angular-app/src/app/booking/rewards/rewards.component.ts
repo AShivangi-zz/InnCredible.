@@ -16,6 +16,7 @@ export class RewardsComponent implements OnInit {
 
 
   redeemPoints(redeem: boolean): void {
+    console.log('Redeem: '+redeem);
     this.userProfileService.isRedeem = redeem;
     this.submit = true;
   }

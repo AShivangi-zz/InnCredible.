@@ -54,6 +54,7 @@ export class CheckoutComponent implements OnInit {
 
   onClick() {
     // alert(this.reservation.totalCost);
+    console.log('CHECKOUT');
     console.log(this.result.getModel().numberofrooms);
     console.log('HERE');
     this.getToken();
