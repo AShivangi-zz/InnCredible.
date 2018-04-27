@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from '../services/profile.service';
 import * as firebase from 'firebase';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,8 @@ import * as firebase from 'firebase';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public userProfileService: UserProfileService) { }
+  constructor(public userProfileService: UserProfileService, 
+    public spinner: NgxSpinnerService) { }
 
   ngOnInit() {
    this.getUserData();
@@ -18,10 +20,11 @@ export class ProfileComponent implements OnInit {
 
   async getUserData() {
     //await this.userProfileService.getUserInfo();
-
+    this.spinner.show();
     await this.userProfileService.pullReservations();
 
     await this.userProfileService.pullFavHotels();
+    this.spinner.hide();
   }
 
   getBackgrounds(): string[] {

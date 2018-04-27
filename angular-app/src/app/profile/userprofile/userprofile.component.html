@@ -23,11 +23,11 @@
   <div class="col-sm-9">
     <label for="name">Email:</label>
     <span *ngIf="newEmail == false" style="border: none">{{userProfileService.email}}</span>
-    <input *ngIf="newEmail == true" type="Email" class="user-info" placeholder="Enter new email" onfocus="this.value=''" [(ngModel)]="Email"
+    <!--<input *ngIf="newEmail == true" type="Email" class="user-info" placeholder="Enter new email" onfocus="this.value=''" [(ngModel)]="Email"
       (keydown.enter)="userProfileService.changeEmail(Email); newEmail = false;">
     <span *ngIf="newEmail == false" id="edit" (click)="newEmail=true;" class="glyphicon glyphicon-pencil"></span>
     <button style="margin-right: 5px;" *ngIf="newEmail == true" id="save" class="alter-info" (click)="userProfileService.changeEmail(Email); newEmail = false;">Save</button>
-    <button *ngIf="newEmail == true" class="alter-info" (click)="newEmail = false;">Cancel</button>
+    <button *ngIf="newEmail == true" class="alter-info" (click)="newEmail = false;">Cancel</button>-->
     <br>
     <br>
     <br>
