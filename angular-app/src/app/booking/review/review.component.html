@@ -43,16 +43,16 @@
           <!--Check in Date field-->
           <div class="col-md-12">
             <strong>Check In Date</strong>
-            <div class="pull-right">
-              <span>{{reservation?.checkInDt}}</span>
+            <div class="pull-right" *ngIf='isDateCI()'>
+              <span>{{reservation?.checkInDt?.toLocaleDateString()}}</span>
             </div>
           </div>
 
           <!--Check Out date field-->
           <div class="col-md-12">
             <strong>Check Out Date</strong>
-            <div class="pull-right">
-              <span>{{reservation?.checkOutDt}}</span>
+            <div class="pull-right" *ngIf='isDateCO()'>
+              <span>{{reservation?.checkOutDt?.toLocaleDateString()}}</span>
             </div>
           </div>
 

@@ -9,11 +9,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<ngx-spinner bdOpacity = 0.9 bdColor = "#333333" size = "medium" color = "#17c0d4" type = "ball-spin"></ngx-spinner>
 <div class="col-lg-6 col-sm-6" style="width: 80%; margin: 3% 10%">
   <div class="card hovercard">
     <div class="card-background">
-      <img class="card-bkimg" alt="" src="https://i.pinimg.com/originals/77/55/dc/7755dcc9a749c80fba1c71c8cb05a269.gif">
+      <img *ngIf="!userProfileService?.hasPicture"class="card-bkimg" alt="" src="https://i.pinimg.com/originals/5b/8e/9e/5b8e9eb9d0863cb14d835e727fbb68d3.gif">
+      <img *ngIf="userProfileService?.hasPicture" id="upic" class="user-pic" alt="User Picture" src="{{getBackgrounds()[userProfileService.picIndex]}}" style="background: grey">
       <!-- http://lorempixel.com/850/280/people/9/ -->
     </div>
     <div class="useravatar">

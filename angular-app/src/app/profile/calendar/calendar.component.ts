@@ -27,7 +27,7 @@ export class CalendarComponent implements OnInit {
   events: CalendarEvent[] = [];
 
   viewDate: Date = new Date();
-  view = 'week';
+  view = 'month';
   isDragging = false;
   refresh: Subject<any> = new Subject();
   activeDayIsOpen = true;

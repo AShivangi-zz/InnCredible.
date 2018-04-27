@@ -38,6 +38,8 @@ ngOnInit() : void {
       if(document.referrer === 'http://localhost:4200/home' || document.referrer === 'https://www.inn-credible.com/home') {
         window.location.reload();
       }
+    } else {
+      document.getElementById('back').style.visibility = 'visible';
     }
   });
 }

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -16,13 +17,25 @@ export class RegisterComponent implements OnInit {
   signupForm: FormGroup;
   error: any;
 
-
   myRecaptcha = new FormControl(false);
 
-  constructor(public afa: AngularFireAuth, private auth: AuthService, private fb: FormBuilder, private router: Router) { }
+  constructor(public afa: AngularFireAuth, 
+    private auth: AuthService, 
+    private fb: FormBuilder, 
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit() {
-
+    this.auth.afAuth.authState.subscribe(auth => {
+      if (auth) {
+        this.location.back();
+        if(document.referrer === 'http://localhost:4200/home' || document.referrer === 'https://www.inn-credible.com/home') {
+          window.location.reload();
+        }
+      } else {
+        document.getElementById('back').style.visibility = 'visible';
+      }
+    });
 
     // First Step
     this.signupForm = this.fb.group({
@@ -55,11 +68,6 @@ export class RegisterComponent implements OnInit {
       ]
 
 
-    });
-    this.afa.authState.subscribe(auth => {
-      if (auth) {
-        this.router.navigateByUrl('/home');
-      }
     });
   }
 
