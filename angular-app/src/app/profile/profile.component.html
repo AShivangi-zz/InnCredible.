@@ -13,7 +13,8 @@
 <div class="col-lg-6 col-sm-6" style="width: 80%; margin: 3% 10%">
   <div class="card hovercard">
     <div class="card-background">
-      <img class="card-bkimg" alt="" src="https://media3.giphy.com/media/3o7qDNfxtNRtLVv8qs/giphy.gif">
+      <img *ngIf="!userProfileService?.hasPicture"class="card-bkimg" alt="" src="https://i.pinimg.com/originals/5b/8e/9e/5b8e9eb9d0863cb14d835e727fbb68d3.gif">
+      <img *ngIf="userProfileService?.hasPicture" id="upic" class="user-pic" alt="User Picture" src="{{getBackgrounds()[userProfileService.picIndex]}}" style="background: grey">
       <!-- http://lorempixel.com/850/280/people/9/ -->
     </div>
     <div class="useravatar">

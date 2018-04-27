@@ -1,9 +1,8 @@
-
-
-<div class="profile-tab " >
+<div class="profile-tab ">
   <div class="col-sm-3"></div>
   <!-- Profile: Name field -->
-  <div class="col-sm-9"><br>
+  <div class="col-sm-9">
+    <br>
     <label for="name">Name:</label>
     <span *ngIf="!newName" class='user-info' style="border: none">{{userProfileService.getFullName()}}</span>
     <span *ngIf="!newName" id="edit" (click)="newName = true;" class="glyphicon glyphicon-pencil"></span>
@@ -29,34 +28,36 @@
     <span *ngIf="newEmail == false" id="edit" (click)="newEmail=true;" class="glyphicon glyphicon-pencil"></span>
     <button style="margin-right: 5px;" *ngIf="newEmail == true" id="save" class="alter-info" (click)="userProfileService.changeEmail(Email); newEmail = false;">Save</button>
     <button *ngIf="newEmail == true" class="alter-info" (click)="newEmail = false;">Cancel</button>
-    <br><br><br>
+    <br>
+    <br>
+    <br>
   </div>
 
-<div style="text-align:center">
+  <div style="text-align:center">
 
-  <br>
-  <button id="change-pass" type="button" class="alter-info" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>
-  <br>
-  <br>
-  <!--Avatar-->
-  <!--<button type="button" class="alter-info" data-toggle="modal" data-target="#avatar">Change Avatar</button>-->
-  
-  <!--User Picture-->
-  <button id="change-pic" class="alter-info" *ngIf="!changePic && !loading" (click)="changePic = true;">Change Picture</button>
-  <!--<p style="margin-left: 40%;" class="alter-pic" *ngIf="changePic && loading ">Saving...</p>-->
+    <br>
+    <!--<button id="change-pass" type="button" class="alter-info" *ngIf="!newPassword" (click)="newPassword = true;">Change Password</button>-->
+    <br>
+    <br>
+    <!--Background-->
+    <button type="button" style="margin-bottom: 5px;" class="alter-info" data-toggle="modal" data-target="#avatar">Change Background</button><br><br>
 
-  <!---Visible button-->
-  <label id="pic-label" class="alter-info" *ngIf="changePic && !loading" for="upload-photo">
-    <i class="fa fa-upload" style="font-size:14px;"></i> Choose a file
-  </label>
-  <!--Invisible button, but carries functionality of upload-->
-  <input id="input-pic" *ngIf="changePic && !loading" type="file" (change)="uploadPic($event);" />
-  <br>
-  <br>
+    <!--User Picture-->
+    <button id="change-pic" class="alter-info" *ngIf="!changePic && !loading" (click)="changePic = true;">Change Picture</button>
+    <!--<p style="margin-left: 40%;" class="alter-pic" *ngIf="changePic && loading ">Saving...</p>-->
 
-  <!--Profile: Change Password-->
-  <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
-  <div *ngIf="newPassword" id="changePass" class="form-group" style="text-align:center">
+    <!---Visible button-->
+    <label id="pic-label" class="alter-info" *ngIf="changePic && !loading" for="upload-photo">
+      <i class="fa fa-upload" style="font-size:14px;"></i> Choose a file
+    </label>
+    <!--Invisible button, but carries functionality of upload-->
+    <input id="input-pic" *ngIf="changePic && !loading" type="file" (change)="uploadPic($event);" />
+    <br>
+    <br>
+
+    <!--Profile: Change Password-->
+    <!--<form  *ngIf="newPassword" id="changePass" [formGroup]="changePassForm" (ngSubmit) = 'userProfileService.changePassword(password, re-password); newPassword = false;'>-->
+    <!--<div *ngIf="newPassword" id="changePass" class="form-group" style="text-align:center">
     <label for="name">New Password:</label>
     <input type="Password" class="user-info" id="pass1" placeholder="Enter new password" value='' onfocus="this.value=''" [(ngModel)]="password"
       required (keydown.enter)="userProfileService.changePassword(password, repass); newPassword = false;">
@@ -67,31 +68,63 @@
     <br>
     <button class="alter-info" style="display: inline-block; margin-left: 30%; margin-right: 5px; margin-bottom: 10px;" (click)='userProfileService.changePassword(password, repass); newPassword = false;'>Save</button>
     <button class="alter-info" (click)="newPassword = false;">Cancel</button>
+  </div>-->
+    <!--</form>-->
   </div>
-  <!--</form>-->
-</div>
 
 
-<!-- Modal -->
-<div class="modal" id="avatar" role="dialog">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header modal-custom-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h4 class="modal-title" style="color: #fff">Choose an Avatar</h4>
-      </div>
-      <div class="modal-body ">
-        <div (click)="changePic = false"></div>
-        <img class="pic-choice" src='../assets/user_avatars/man_1.png' (click)="userProfileService.setPicIndex(0)" data-dismiss="modal">
-        <img class="pic-choice" src='../assets/user_avatars/man_2.png' (click)="userProfileService.setPicIndex(1)" data-dismiss="modal">
-        <img class="pic-choice" src='../assets/user_avatars/man_3.png' (click)="userProfileService.setPicIndex(2)" data-dismiss="modal">
-        <div class="col-sm-3"></div>
-        <br>
-        <img class="pic-choice" src='../assets/user_avatars/woman_1.png' (click)="userProfileService.setPicIndex(3)" data-dismiss="modal">
-        <img class="pic-choice" src='../assets/user_avatars/woman_2.png' (click)="userProfileService.setPicIndex(4)" data-dismiss="modal">
-        <img class="pic-choice" src='../assets/user_avatars/woman_3.png' (click)="userProfileService.setPicIndex(5)" data-dismiss="modal">
-        <div class="col-sm-3"></div>
-
+  <!-- Modal for Background -->
+  <div class="modal" id="avatar" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header modal-custom-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4 class="modal-title" style="color: #fff">Choose an Avatar</h4>
+        </div>
+        <div class="modal-body">
+          <div (click)="changePic = false"></div>
+          <div class="card hovercard">
+            <div class="card-background">
+              <img class="pic-choice" src='https://i.pinimg.com/originals/5b/8e/9e/5b8e9eb9d0863cb14d835e727fbb68d3.gif' (click)="userProfileService.setPicIndex(0)"
+                data-dismiss="modal">
+            </div>
+          </div>
+          <br>
+          <div class="card hovercard">
+            <div class="card-background">
+              <img class="pic-choice" src='https://fsmedia.imgix.net/b0/95/91/86/523c/46f5/ab7c/1d9fd313b640/blue-lights.gif' (click)="userProfileService.setPicIndex(1)"
+                data-dismiss="modal">
+            </div>
+          </div>
+          <br>
+          <div class="card hovercard">
+            <div class="card-background">
+              <img class="pic-choice" src='http://3.bp.blogspot.com/-BeqvYhce9yg/UrfUjJNUjuI/AAAAAAAANns/UFrGm36cZzw/s1600/Prague+at+Dusk%252C+Czech+Republic+-+1600x1200+-+ID+39476+-+PREMIUM_Historical+Buildings+Wallpaper_Pictures%2540wpshub.blogspot.com045-SNOW.gif'
+                (click)="userProfileService.setPicIndex(2)" data-dismiss="modal">
+            </div>
+          </div>
+          <br>
+          <div class="card hovercard">
+            <div class="card-background">
+              <img class="pic-choice" src='https://media3.giphy.com/media/3o7qDNfxtNRtLVv8qs/giphy.gif' (click)="userProfileService.setPicIndex(3)"
+                data-dismiss="modal">
+            </div>
+          </div>
+          <br>
+          <div class="card hovercard">
+            <div class="card-background">
+              <img class="pic-choice" src='https://lh3.googleusercontent.com/-kxR25y9hmbM/Wl9tbxbQw-I/AAAAAAAANoE/joqFK1zAc_oSuRU95V1VU1dRcIdcPY7hwCJoC/w700-h292/8%2BBit%2BImage%2B%25289%2529.gif'
+                (click)="userProfileService.setPicIndex(4)" data-dismiss="modal">
+            </div>
+          </div>
+          <br>
+          <div class="card hovercard">
+            <div class="card-background">
+              <img class="pic-choice" src='https://i.gifer.com/WuBj.gif' (click)="userProfileService.setPicIndex(5)" data-dismiss="modal">
+            </div>
+          </div>
+          <br>
+        </div>
       </div>
     </div>
   </div>
