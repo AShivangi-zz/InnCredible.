@@ -8,7 +8,6 @@ import {Routes, RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {AuthGuard} from './services/auth-guard.service';
 import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {ContactComponent} from './contact/contact.component';
@@ -17,12 +16,14 @@ import {PolicyComponent} from "./policy/policy.component";
 import {SearchresultComponent} from "./searchresult/searchresult.component";
 import {BookingComponent} from "./booking/booking.component";
 
+import {AuthGuard} from './services/auth-guard.service';
+import {LoginRegGuard} from './services/login-reg-guard.service';
 
 export const router: Routes = [
 
     {path: 'home', component: HomeComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterComponent},
+    {path: 'login', component: LoginComponent, canActivate:[LoginRegGuard]},
+    {path: 'register', component: RegisterComponent, canActivate:[LoginRegGuard]},
     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
     {path: 'contact', component: ContactComponent},
     {path: 'hotel-info/:id/:id2/:id3', component: HotelInfoComponent},

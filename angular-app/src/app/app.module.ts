@@ -55,7 +55,6 @@ import { HistoryComponent } from './profile/history/history.component';
 import {FooterComponent} from './footer/footer.component';
 
 // Services
-import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { UserProfileService } from './services/profile.service';
 import { HotelInfo } from './services/hotel-info';
@@ -65,6 +64,10 @@ import { SearchresultComponent } from './searchresult/searchresult.component';
 import { SearchService } from './services/search.service';
 import { FilterService } from './services/filter.service';
 import { SenditineraryinformationService } from "./services/senditineraryinformation.service";
+
+//Guards
+import { AuthGuard } from './services/auth-guard.service';
+import {LoginRegGuard} from './services/login-reg-guard.service';
 
 //Models
 import { Booking } from './models/booking'
@@ -120,6 +123,7 @@ import { Hotel } from './models/hotel';
   ],
   providers:
     [AuthGuard,
+      LoginRegGuard,
       AuthService,
       UserProfileService,
       ReservationService,

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import * as firebase from "firebase";
 
@@ -18,13 +17,14 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(public auth: AuthService, private router: Router, private location: Location) {}
+  constructor(public auth: AuthService, private router: Router) {}
 
   onSubmit(formData) {
     if (formData.valid) {
       this.auth.afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
         .then((success) => {
-          this.location.back();
+          //this.location.back();
+          console.log('Success!');
         }).catch( (err) => {
             this.error = err;
           });
@@ -33,13 +33,10 @@ export class LoginComponent implements OnInit {
 
 ngOnInit() : void {
   this.auth.afAuth.authState.subscribe(auth => {
-    if (auth) {
-      this.location.back();
-      if(document.referrer === 'http://localhost:4200/home' || document.referrer === 'https://www.inn-credible.com/home') {
-        window.location.reload();
-      }
-    } else {
+    if(!auth) {
       document.getElementById('back').style.visibility = 'visible';
+    } else {
+      window.location.reload();
     }
   });
 }

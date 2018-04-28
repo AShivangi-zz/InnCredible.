@@ -27,13 +27,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.auth.afAuth.authState.subscribe(auth => {
-      if (auth) {
-        this.location.back();
-        if(document.referrer === 'http://localhost:4200/home' || document.referrer === 'https://www.inn-credible.com/home') {
-          window.location.reload();
-        }
-      } else {
+      if (!auth) {
         document.getElementById('back').style.visibility = 'visible';
+      } else {
+        window.location.reload();
       }
     });
 
