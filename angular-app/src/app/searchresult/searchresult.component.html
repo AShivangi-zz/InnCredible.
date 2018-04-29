@@ -6,8 +6,7 @@
 <br>
 <div class="col-sm-8">
   <h3 style="text-align:center; padding: 2%">
-    <i class="fa fa-chevron-circle-left" id="back" (click)="goBack()" title="Go Back"></i>
-    Showing results for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}} availablity:</h3>
+    <div class="back"> <i class="fa fa-chevron-circle-left" id="back" (click)="goBack()" title="Go Back"></i></div></h3>
   <br><br></div>
 
 
@@ -18,17 +17,19 @@
     <br/>
 
     <div class="col-sm-8">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-2">Destination</div>
+          <div class="col-sm-2 col-sm-offset-1">Check In Date</div>
+          <div class="col-sm-2 col-sm-offset-1">Check Out Date</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2"><input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" name="citynames" value={{returnedname}} ></div>
+          <div class="col-sm-2 col-sm-offset-1"><input type="date" name="checkindate" value={{returnedcheckindate}} [min]="dtToday" (change)="updateDate()"></div>
+          <div class="col-sm-2 col-sm-offset-1"><input type="date" value={{returnedcheckoutdate}} name="checkoutdate" min=""></div>
+        </div>
 
-      <h3 style="text-align:center; padding: 2%">
-          <!--
-      <td> {{returnedname}} </td>
-      <td> <label for="checkindate">{{returnedcheckindate}}</label> </td>
-      <td> <label for="checkoutdate">{{returnedcheckoutdate}}</label> </td> -->
-      Selected City:  <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" name="citynames" value={{returnedname}}><br>
-      Check in date:  <input type="date" name="checkindate" value={{returnedcheckindate}} [min]="dtToday" (change)="updateDate()"><br>
-      Check out date: <input type="date" name="checkoutdate" value={{returnedcheckoutdate}} name="checkoutdate" min=""><br>
-    <p><button type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Book Now!<i class="icon-arrow-right"></i></button></p>
-  </h3>
+      </div>
   </div>
   </form>
 
