@@ -18,18 +18,15 @@
 
     <div>
         <div class="col-sm-2"> </div>
-          <div class="col-sm-3"><input class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" name="citynames" value={{returnedname}} ></div>
-          <div class="col-sm-3  "><input type="date" class="form-control" name="checkindate" value={{returnedcheckindate}} [min]="dtToday" (change)="updateDate()"></div>
-          <div class="col-sm-3  "><input class="form-control" type="date" value={{returnedcheckoutdate}} name="checkoutdate" min=""></div>
+          <div class="col-sm-3"><input class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" id="cityname" required [(ngModel)]="cityname" name="citynames" value={{returnedname}} ></div>
+          <div class="col-sm-3  "><input type="date" class="form-control" value={{returnedcheckindate}} id="checkindate" [(ngModel)]="checkindate" name="checkindate" [min]="dtToday" (change)="updateDate()"></div>
+          <div class="col-sm-3  "><input class="form-control" [(ngModel)]="checkoutdate" type="date" value={{returnedcheckoutdate}} name="checkoutdate" min=""></div>
           <div class="col-sm-3  "></div>
 
       </div>
-      <br><br>
- 
+      <button style="margin-left:22%; margin-top:2%" type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Check Availability<i class="icon-arrow-right"></i></button>
   </form>
 
-
-<br><br>
   <!-- SORT -->
     <label class = "col-sm-4 control-label" for="sortTyp">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Sort By</label><div class="col-sm-12"></div>
     <div style="padding-left:3%"><div class="col-sm-4" style="margin-bottom: 2%"><select  id="sortTyp" class="col-sm-2 form-control" style="width:50%" [(ngModel)]="sortTyp" (change)="sortTypChange()">
@@ -37,9 +34,6 @@
         {{ type }}
       </option>
     </select></div>
-    
-    <div class="col-sm-5 col-sm-offset-1"><button style="margin-left:8%" type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Check Availability<i class="icon-arrow-right"></i></button></div>
-    
   
   </div>
 
