@@ -170,6 +170,38 @@
   font-size: 14px;
   transition: .3s ease;
 }
+
+.card-background img {
+  margin-left: -100px;
+  margin-top: -130px;
+  min-width: 130%;
+}
+
+.card {
+  margin-top: 5px;
+  background-color: rgba(214, 224, 226, 0.2);
+  -webkit-border-top-left-radius:5px;
+  -moz-border-top-left-radius:5px;
+  border-top-left-radius:5px;
+  -webkit-border-top-right-radius:5px;
+  -moz-border-top-right-radius:5px;
+  border-top-right-radius:5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+}
+.card.hovercard {
+  position: relative;
+  padding-top: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 1);
+}
+.card.hovercard .card-background {
+  height: 130px;
+}
   
 
   

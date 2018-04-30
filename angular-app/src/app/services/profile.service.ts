@@ -274,7 +274,7 @@ export class UserProfileService {
                     await this.getFavHotelInfo(htlID);
                 }
 
-                this._observableFavList.next(this.favHotels);
+                this._observableFavList.next(this.favHotels.reverse());
             });
     }
 
