@@ -110,7 +110,7 @@
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">
-            <a [routerLink]="['/hotel-info', hotel?.hotelID]" class="thumbnail">
+            <a [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="thumbnail">
               <img [src]="hotel?.firstImage" alt="Insert img" />
             </a>
           </div>
@@ -127,7 +127,7 @@
                     <i class="fa fa-heart" style="color:red !important"></i>
                   </button>
                 </ng-template>
-              <a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a>
+              <a [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" title="">{{hotel?.name}}</a>
             </h3>
             <h6>
               <p>{{hotel?.location}}</p>
