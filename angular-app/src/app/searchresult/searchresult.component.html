@@ -10,17 +10,17 @@
         <label class="col-sm-3 control-label">Check In Date</label>
         <label class="col-sm-3 control-label">Check Out Date</label>
         <label class="col-sm-1 control-label"></label>
-        
-      
+
+
 </div>
   <form #searchformdata="ngForm" (ngSubmit)="onSubmit(searchformdata)">
 
 
     <div>
         <div class="col-sm-2"> </div>
-          <div class="col-sm-3"><input class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" id="cityname" required [(ngModel)]="cityname" name="citynames" value={{returnedname}} ></div>
-          <div class="col-sm-3  "><input type="date" class="form-control" value={{returnedcheckindate}} id="checkindate" [(ngModel)]="checkindate" name="checkindate" [min]="dtToday" (change)="updateDate()"></div>
-          <div class="col-sm-3  "><input class="form-control" [(ngModel)]="checkoutdate" type="date" value={{returnedcheckoutdate}} name="checkoutdate" min=""></div>
+          <div class="col-sm-3"><input class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" id="cityname" name="citynames" value={{returnedname}} ></div>
+          <div class="col-sm-3  "><input type="date" class="form-control" value={{returnedcheckindate}} id="checkindate" name="checkindate" [min]="dtToday" (change)="updateDate()"></div>
+          <div class="col-sm-3  "><input class="form-control" type="date" value={{returnedcheckoutdate}} name="checkoutdate" min=""></div>
           <div class="col-sm-3  "></div>
 
       </div>
@@ -34,7 +34,7 @@
         {{ type }}
       </option>
     </select></div>
-  
+
   </div>
 
 
