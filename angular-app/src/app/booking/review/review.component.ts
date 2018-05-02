@@ -27,13 +27,13 @@ export class ReviewComponent implements OnInit {
               , public userProfileService: UserProfileService,
               private service: SenditineraryinformationService) {
     this.subscription = this.hotel.activeHotel.subscribe(value => this.hotelData = value);
-    this.reservationService.activeReservation.subscribe(value => this.reservation = value);
+    this.reservationService.activeReservation
+    .subscribe(value => this.reservation = value);
     this.taxRate = 8.25;
     this.service = service;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   applyRewardAmnt(): number {
     if (!this.userProfileService.isRedeem) {
@@ -63,11 +63,45 @@ export class ReviewComponent implements OnInit {
     if (this.userProfileService.isRedeem) {
       this.userProfileService.deductReward();
     }
-
-    this.userProfileService.awardRewardPoints(this.roomCharge());
     this.userProfileService.awardRewardPoints(this.roomCharge());
     this.service.saveInformation(this.hotelData.name, this.hotelData.location, this.reservation.guests,
       this.reservation.rooms, this.reservation.checkInDt, this.reservation.checkOutDt,
       this.roomCharge(), this.applyRewardAmnt(),this.taxCharge(),this.reservation.totalCost, firebase.auth().currentUser.email);
+  }
+/*
+  getCheckIn() {
+    if(this.reservation == null) {
+      return null;
+    } else if(this.reservation.checkInDt == null || this.reservation.checkInDt == undefined || !(this.reservation.checkInDt instanceof Date)) {
+      //console.log('Instance 2 '+ (this.reservation.checkInDt instanceof Date));
+      return null;
+    }
+    else {
+      console.log('Instance '+ (this.reservation.checkInDt instanceof Date));
+      console.log(this.reservation.checkInDt);
+      console.log(this.reservation.checkInDt.toLocaleDateString());
+      return this.reservation.checkInDt.toLocaleDateString();
+      //this.reservation.checkInDt.toLocaleDateString();
+    }
+  }*/
+
+  isDateCI() {
+    if(this.reservation == null) {
+      return false;
+    } 
+    if(this.reservation.checkInDt == null || this.reservation.checkInDt == undefined) {
+      return false;
+    }
+    return (this.reservation.checkInDt instanceof Date);
+  }
+
+  isDateCO() {
+    if(this.reservation == null) {
+      return false;
+    } 
+    if(this.reservation.checkOutDt == null || this.reservation.checkOutDt == undefined) {
+      return false;
+    }
+    return (this.reservation.checkOutDt instanceof Date);
   }
 }

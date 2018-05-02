@@ -1,70 +1,94 @@
 <div class="col-md-8 box">
-    <div>
+  <div>
 
-      <!--REVIEW ORDER-->
-      <div class="panel panel-default">
-        <div class="panel-heading text-center">
-          <h4>Order Summary</h4>
-        </div>
+    <!--REVIEW ORDER-->
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <h4>Order Summary</h4>
+      </div>
+      <div class="panel-body">
         <div class="panel-body">
           <!--Hotel name field-->
           <div class="col-md-12">
             <strong>Hotel Name</strong>
-            <div class="pull-right"><span>{{hotelData?.name}}</span></div>
+            <div class="pull-right">
+              <span>{{hotelData?.name}}</span>
+            </div>
           </div>
 
           <!--Hotel address field-->
           <div class="col-md-12">
             <strong>Address</strong>
-            <div class="pull-right"><span>{{hotelData?.location}}</span></div>
+            <div class="pull-right">
+              <span>{{hotelData?.location}}</span>
+            </div>
           </div>
 
           <!--Number of guests field-->
           <div class="col-md-12">
             <strong>Number Of Guests</strong>
-            <div class="pull-right"><span>{{reservation?.guests}}</span></div>
+            <div class="pull-right">
+              <span>{{reservation?.guests}}</span>
+            </div>
           </div>
 
           <!--Number of beds field-->
           <div class="col-md-12">
             <strong>Number Of Rooms</strong>
-            <div class="pull-right"><span>{{reservation?.rooms}}</span></div>
+            <div class="pull-right">
+              <span>{{reservation?.rooms}}</span>
+            </div>
           </div>
 
           <!--Check in Date field-->
           <div class="col-md-12">
             <strong>Check In Date</strong>
-            <div class="pull-right"><span>{{reservation?.checkInDt}}</span></div>
+            <div class="pull-right" *ngIf='isDateCI()'>
+              <span>{{reservation?.checkInDt?.toLocaleDateString()}}</span>
+            </div>
           </div>
 
           <!--Check Out date field-->
           <div class="col-md-12">
             <strong>Check Out Date</strong>
-            <div class="pull-right"><span>{{reservation?.checkOutDt}}</span></div>
+            <div class="pull-right" *ngIf='isDateCO()'>
+              <span>{{reservation?.checkOutDt?.toLocaleDateString()}}</span>
+            </div>
           </div>
 
           <!--Check Out date field-->
           <div class="col-md-12">
             <strong>Nights reserved</strong>
-            <div class="pull-right"><span>{{reservation?.nights}}</span></div>
+            <div class="pull-right">
+              <span>{{reservation?.nights}}</span>
+            </div>
           </div>
 
           <!--Room price field-->
           <div class="col-md-12">
             <strong>Total before tax</strong>
-            <div class="pull-right"><span>$</span><span>{{roomCharge().toFixed(2)}}</span></div>
+            <div class="pull-right">
+              <span>$</span>
+              <span>{{roomCharge().toFixed(2)}}</span>
+            </div>
           </div>
 
           <!--Rewards field-->
           <div class="col-md-12">
-              <strong>Rewards Applied</strong>
-              <div class="pull-right"><span>-$</span><span>{{applyRewardAmnt().toFixed(2)}}</span></div>
+            <strong>Rewards Applied</strong>
+            <div class="pull-right">
+              <span>-$</span>
+              <span>{{applyRewardAmnt().toFixed(2)}}</span>
             </div>
+          </div>
 
           <!--Tax price field-->
           <div class="col-md-12">
             <strong>Tax (@ {{taxRate}}%)</strong>
-            <div class="pull-right"><span>$</span><span>{{taxCharge().toFixed(2)}}</span></div>
+            <div class="pull-right">
+              <span>$</span>
+              <span>{{taxCharge().toFixed(2)}}</span>
+            </div>
           </div>
 
           <!-- horizontal line-->
@@ -73,43 +97,48 @@
           </div>
           <div class="col-md-12">
 
+
             <!-- Order total -->
             <strong>Order Total</strong>
-            <div class="pull-right"><span>$</span><span>{{orderTotal().toFixed(2)}}</span></div>
+            <div class="pull-right">
+              <span>$</span>
+              <span>{{orderTotal().toFixed(2)}}</span>
+            </div>
             <hr>
           </div>
 
 
-        <!-- Back button -->
-        <div class="form-group ">
-          <div class="col-md-2">
-          </div>
-
-          <!-- Check out button -->
-      <!--<form #testForm="ngForm" (ngSubmit)="onSubmit()">-->
-          <div class="col-md-4">
-              <button id="checkoutid" class="btn btn-primary" *ngIf="!submit" (click)="submit = true; onClick()">
-                  <span class="round-tabs two active" style="color: white">Checkout</span>
-                </button>
-               <div class = 'next' *ngIf="submit" style="width: 100%">
-                  <a href="#checkout" data-toggle="tab" >
-                    <i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: deepskyblue"></i>
-                  </a>
-                </div>
-              </div>
-        </div>
-      <!--</form>-->
-
-          <!-- Cancel button -->
-          <div class="col-md-4">
-                <button class="btn btn-danger">
-                    <a href="/profile" >
-                        <span style="color: white">Cancel</span>
-                    </a>
-                </button>
-                </div>
-
+          <!-- Back button -->
+          <div class="form-group ">
+            <div class="col-md-2">
             </div>
+
+            <!-- Check out button -->
+            <!--<form #testForm="ngForm" (ngSubmit)="onSubmit()">-->
+            <div style='width: 50%; margin-left:25%'>
+              <!--<button id="checkoutid" class="btn btn-primary" *ngIf="!submit" (click)="submit = true; ">
+              <span class="round-tabs two active" style="color: white">Checkout</span>
+            </button>-->
+              <div class='next' style = 'width: fit-content; float: left; margin-right: 10px'id="checkoutid" (click)='onClick();'>
+                <a href="#checkout" data-toggle="tab" class="btn btn-primary">Checkout</a>
+                <!--<a href="#reviewOrder" data-toggle="tab" >-->
+                <!--<i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: skyblue"></i>-->
+                <!--</a>-->
+                <!--<a href="#checkout" data-toggle="tab" >-->
+                <!--<i class="fa fa-arrow-circle-o-right icon-4x" style="font-size:48px; color: deepskyblue"></i>-->
+                <!--</a>-->
+              </div>
+
+              <button class="btn btn-danger" (click)='userProfileService.removeReservation(reservation?.$key);'>
+                <a href="/profile">
+                  <span style="color: white">Cancel</span>
+                </a>
+              </button>
+            </div>
+          </div>
+          <!--</form>-->
+
+        </div>
       </div>
       <!--REVIEW ORDER END-->
     </div>

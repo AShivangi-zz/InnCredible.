@@ -175,6 +175,14 @@ console.log('After - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.f
     this.spinner.show();
     await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
     this.filterService.loadFilter(this.foundHotels);
+    // FROM MOST RECENT MERGE
+    // this.hotelsObs.subscribe(results => {
+    //   if (results.length === 0) {
+    //     (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
+    //   }
+    // });
+
+    // OLD
     // this.hotelsObs = this.searchService.getObservableList();
     // this.filterService.currentFilter.subscribe(results => {
     //   if (results.length === 0) {

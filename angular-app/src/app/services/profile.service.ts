@@ -48,7 +48,7 @@ export class UserProfileService {
 
     constructor(public afAuth: AngularFireAuth, private hotelInfo: HotelInfo) {
         //afAuth used in profile component to upload picture
-        this.getUserInfo();
+        //this.getUserInfo();
         this.pipe = new DatePipe("en-US");
 
     }
@@ -92,6 +92,7 @@ export class UserProfileService {
                     booking.comments = snapshot.child(key + '/comments').val();
                     booking.guests = snapshot.child(key + '/guests').val();
                     booking.rooms = snapshot.child(key + '/rooms').val();
+                    booking.hotelID = snapshot.child(key +'/hotelID').val();
                     await this.getHotelInfo(snapshot.child(key + '/hotelID').val(), booking);
 
                     var dat: string = this.pipe.transform(new Date, 'yyyy-MM-dd')
@@ -131,13 +132,23 @@ export class UserProfileService {
         hotel = this.hotelInfo.getHotel();
         booking.hotelName = hotel.name;
         booking.hotelLoc = hotel.location;
+        booking.image = hotel.firstImage;
     }
 
     public async removeReservation(key) {
-
+        console.log(key);
         await firebase.database().ref('/users/' + this.uid + '/reservations/').child(key).remove();
         window.location.reload();
 
+    }
+
+    async editComment(key, new_comment) {
+        console.log(key+' '+new_comment);
+        const ref = firebase.database().ref();
+        const comment = {};
+        comment['/users/' + this.uid + '/reservations/' + key + '/comments/']= new_comment;
+        await ref.update(comment);
+        window.location.reload();
     }
 
     getBookingsObs(): Observable<Booking[]> {
@@ -263,7 +274,7 @@ export class UserProfileService {
                     await this.getFavHotelInfo(htlID);
                 }
 
-                this._observableFavList.next(this.favHotels);
+                this._observableFavList.next(this.favHotels.reverse());
             });
     }
 

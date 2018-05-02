@@ -30,7 +30,7 @@ exports.sendmailNOW = functions.database.ref('/users/{userid}/itinerary/{itinera
   //doc.font('Times-Roman');
   doc.text(message, 100, 100, {
 
-    width: 310,
+    width: 510,
     align: 'left'
   });
 
