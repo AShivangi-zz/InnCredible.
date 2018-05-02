@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { ActivatedRoute } from '@angular/router';
 import { Hotel } from '../models/hotel';
 import { } from '@types/googlemaps';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-hotel-info',
@@ -25,7 +26,7 @@ export class HotelInfoComponent implements OnInit {
   returnedcheckoutdate: string;
 
   private id: string;
-  public sub: any;
+  public sub: Subscription;
   public hotel: Hotel;
 
   public miami: boolean;
@@ -44,43 +45,18 @@ export class HotelInfoComponent implements OnInit {
       this.returnedcheckindate = params['id2'];
       this.returnedcheckoutdate = params['id3'];
     });
-    // )
-    // this.hotel = new Hotel();
-    // const id_ref = firebase.database().ref('/hotel_id');
-    // id_ref.once('value').then((snapshot) => {
-    //   const count = snapshot.numChildren();
-    //   for (var i = 0; i < count; i++) {
-    //     const number = i.toString();
-    //     if (snapshot.child(number).val() == this.hotelID) {
-          this.getData(this.hotel.hotelIndex);
-    //       const images_ref = firebase.database().ref('/hotels/' + number + '/images/');
-    //
-    //       images_ref.once('value')
-    //         .then((snapshot_img) => {
-    //           const countImage = snapshot_img.numChildren();
-    //           for (var i = 0; i < countImage; i++) {
-    //             var number = i.toString();
-    //             this.setImagesURL(snapshot_img.child(number).val());
-    //             if (i == countImage - 1) {
-    //               this.setImgDone();
-    //             }
-    //           }
-    //         });
-    //       i = count;
-    //     }
-    //   }
-    // });
 
-
+    this.getData();
   }
 
   async getLocation(address: string) {
-    var geocoder = new google.maps.Geocoder();
-    var latitude: number;
-    var longitude: number;
-    var gElement = this.gmapElement;
-    var map: google.maps.Map;
-    geocoder.geocode({ 'address': address }, await function (results, status) {
+    const geocoder = new google.maps.Geocoder();
+    let latitude: number;
+    let longitude: number;
+    const gElement = this.gmapElement;
+    let map: google.maps.Map;
+
+    geocoder.geocode({'address': address}, await function (results, status) {
 
       if (status == google.maps.GeocoderStatus.OK) {
         latitude = results[0].geometry.location.lat();
@@ -102,19 +78,45 @@ export class HotelInfoComponent implements OnInit {
         marker = new google.maps.Marker(markerOptions);
       }
     });
-
-
   }
 
   setMarker(map, position, title) {
 
   }
 
-  public async getData(number) {
-    // await this.hotelInfo.getHotelData(number);
-    // this.hotel = this.hotelInfo.getHotel();
-    await this.getLocation(this.hotel.location);
-    await this.getcity(this.hotel.location);
+  public  getHotelByID() {
+    const id_ref = firebase.database().ref('/hotel_id');
+    id_ref.once('value').then((snapshot) => {
+      for (let h = 0; h < snapshot.numChildren(); h++) {
+        if (snapshot.child(h).val() === this.hotelID) {
+          this.hotelInfo.getHotelData(h.toString());
+          const images_ref = firebase.database().ref('/hotels/' + h + '/images/');
+
+          images_ref.once('value').then((snapshot_img) => {
+            const countImg = snapshot_img.numChildren();
+            for (let i = 0; i < countImg; i++) {
+              this.setImagesURL(snapshot_img.child(i).val());
+              if (i === countImg - 1) {
+                this.setImgDone();
+              }
+            }
+          });
+          break;
+        }
+      }
+    });
+  }
+
+  public async getData() {
+console.log(this.hotel);
+    if (this.hotel === null) {
+      await this.getHotelByID();
+      await this.getLocation(this.hotel.location);
+      await this.getcity(this.hotel.location);
+    } else {
+      await this.getLocation(this.hotel.location);
+      await this.getcity(this.hotel.location);
+    }
   }
 
   public setImagesURL(image) {

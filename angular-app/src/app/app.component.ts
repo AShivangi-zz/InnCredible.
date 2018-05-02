@@ -14,9 +14,9 @@ export class AppComponent {
   authenticated: boolean;
 
   constructor(public afa: AngularFireAuth, private router: Router, public userProfileService: UserProfileService) {
-    this.afa.authState.subscribe(auth => {  
-      if(auth) {
-        //this.name = auth;
+    this.afa.authState.subscribe(auth => {
+      if (auth) {
+        // this.name = auth;
         userProfileService.getUserInfo();
         this.authenticated = true;
       }

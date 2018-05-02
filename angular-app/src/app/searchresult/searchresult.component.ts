@@ -145,6 +145,7 @@ export class SearchresultComponent implements OnInit {
 
   checkFilter() {
     if (this.hotels === null || (this.hotels != null && this.hotels.length === 0)) {
+console.log('Failed filter Check, resetting foundHotels');
       this.filterService.loadFilter(this.foundHotels);
     }
   }
@@ -176,7 +177,7 @@ console.log('After - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.f
     await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
     this.filterService.loadFilter(this.foundHotels);
     // FROM MOST RECENT MERGE
-    // this.hotelsObs.subscribe(results => {
+    // this.filterService.currentFilter.subscribe(results => {
     //   if (results.length === 0) {
     //     (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
     //   }
