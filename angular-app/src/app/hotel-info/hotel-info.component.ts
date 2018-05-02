@@ -34,8 +34,8 @@ export class HotelInfoComponent implements OnInit {
   public boston:boolean;
   public la: boolean;
 
-  constructor(public hotelInfo: HotelInfo, private route: ActivatedRoute) {
-    // this.hotelInfo.setHotelId('0');
+  constructor(private hotelInfo: HotelInfo, private route: ActivatedRoute) {
+    this.hotelInfo.activeHotel.subscribe(value => this.hotel = value);
   }
 
   ngOnInit() {
@@ -44,35 +44,33 @@ export class HotelInfoComponent implements OnInit {
       this.returnedcheckindate = params['id2'];
       this.returnedcheckoutdate = params['id3'];
     });
+    // )
+    // this.hotel = new Hotel();
+    // const id_ref = firebase.database().ref('/hotel_id');
+    // id_ref.once('value').then((snapshot) => {
+    //   const count = snapshot.numChildren();
+    //   for (var i = 0; i < count; i++) {
+    //     const number = i.toString();
+    //     if (snapshot.child(number).val() == this.hotelID) {
+          this.getData(this.hotel.hotelIndex);
+    //       const images_ref = firebase.database().ref('/hotels/' + number + '/images/');
+    //
+    //       images_ref.once('value')
+    //         .then((snapshot_img) => {
+    //           const countImage = snapshot_img.numChildren();
+    //           for (var i = 0; i < countImage; i++) {
+    //             var number = i.toString();
+    //             this.setImagesURL(snapshot_img.child(number).val());
+    //             if (i == countImage - 1) {
+    //               this.setImgDone();
+    //             }
+    //           }
+    //         });
+    //       i = count;
+    //     }
+    //   }
+    // });
 
-    this.hotel = new Hotel();
-    this.hotelInfo = new HotelInfo();
-    const id_ref = firebase.database().ref('/hotel_id');
-    id_ref.once('value').then((snapshot) => {
-      const count = snapshot.numChildren();
-      for (var i = 0; i < count; i++) {
-        const number = i.toString();
-        if (snapshot.child(number).val() == this.hotelID) {
-          this.getData(number);
-         // this.hotelInfo.retrieveAmenities(number);
-          const images_ref = firebase.database().ref('/hotels/' + number + '/images/');
-          
-          images_ref.once('value')
-            .then((snapshot_img) => {
-              const countImage = snapshot_img.numChildren();
-              for (var i = 0; i < countImage; i++) {
-                var number = i.toString();
-                this.setImagesURL(snapshot_img.child(number).val());
-                if (i == countImage - 1) {
-                  this.setImgDone();
-                }
-              }
-            });
-          i = count;
-        }
-      }
-    });
-    
 
   }
 
@@ -113,10 +111,10 @@ export class HotelInfoComponent implements OnInit {
   }
 
   public async getData(number) {
-    var promise = await this.hotelInfo.getHotelData(number);
-    this.hotel = this.hotelInfo.getHotel();
-    this.getLocation(this.hotel.location);
-    this.getcity(this.hotel.location);
+    // await this.hotelInfo.getHotelData(number);
+    // this.hotel = this.hotelInfo.getHotel();
+    await this.getLocation(this.hotel.location);
+    await this.getcity(this.hotel.location);
   }
 
   public setImagesURL(image) {

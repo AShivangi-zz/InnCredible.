@@ -69,19 +69,19 @@
                   </div>
                   </div><br>
                   <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
-                    <form #applyAmenities="ngForm" (ngSubmit)="onApply(applyAmenities)">
+                    <!--<form #applyAmenities="ngForm" (ngSubmit)="onApply(applyAmenities)">-->
                       <div *ngFor="let amenity of amenities">
                           <label>
                               <input type="checkbox"
                                     name="amenities"
                                     value="{{amenities.name}}"
                                     [(ngModel)] = "amenity.checked"
-                                    (change)="onCheckboxChange(amenity)"> {{amenity.checked}}
+                                    (change)="onCheckboxChange(amenity)"> {{ amenity.checked }}
                               {{amenity.name}}
                           </label>
                       </div>
                       <button name="Apply" id="Apply" type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
-                  </form>
+                  <!--</form>-->
                 </div>
 
       </div>
@@ -96,12 +96,12 @@
 
 <div class="container" class="col-sm-9">
 
-  <span *ngIf="isEmpty" style="font-size:25px; visibility: collapse;">No hotels found. Try removing some filters.</span>
-  <span id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</span>
+  <!--<span id ='nohotels' style="font-size:25px; visibility: hidden;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</span>-->
+  <!--<div *ngIf="hotels === null || (hotels != null && hotels.length === 0)" style="font-size:25px; visibility: collapse;">No hotels found. Try removing some filters.</div>-->
 
-
-  <ul *ngIf="!isEmpty || !hotelsObs.isEmpty()">
-    <div *ngFor="let hotel of hotelsObs | async | orderBy: order : reverse">
+  <!--<ul *ngIf="hotels != null && hotels.length > 0">-->
+  <ul>
+    <div *ngFor="let hotel of hotels | orderBy: order : reverse">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">
@@ -122,7 +122,7 @@
                     <i class="fa fa-heart" style="color:red !important"></i>
                   </button>
                 </ng-template>
-              <a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.name}}</a>
+              <a [routerLink]="['/hotel-info', hotel?.hotelID]" title="">{{hotel?.index}}</a>
             </h3>
             <h6>
               <p>{{hotel?.location}}</p>
@@ -141,7 +141,7 @@
                 <br>
                 <h3 style="color:#4CB648; text-align:center">${{hotel?.price}}</h3>
                 <br>
-                <button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel
+                <button (click)="pickHotel(hotel)" [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel
                   <i class="icon-arrow-right"></i>
                 </button>
               </div>
@@ -153,7 +153,6 @@
       </section>
     </div>
   </ul>
-
 
 
 

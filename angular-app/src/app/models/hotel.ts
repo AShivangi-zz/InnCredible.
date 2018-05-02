@@ -1,20 +1,20 @@
 export class Hotel {
 
-  name:string;
-  city:string;
-  location:string;
-  price:string;
-  image:URL;
-  rating:string;
-  ratingValue:number;
+  name: string;
+  city: string;
+  location: string;
+  price: string;
+  image: URL;
+  rating: string;
+  ratingValue: number;
   ratingImg: URL;
-  review_num:string;
-  hotelID:string;
-  description:string;
-  roomText:string;
-  hotelText:string;
-  firstImage:string;
-  hotelIndex:string;
+  review_num: string;
+  hotelID: string;
+  description: string;
+  roomText: string;
+  hotelText: string;
+  firstImage: string;
+  hotelIndex: string;
   checkIn: string;
   checkOut: string;
   amenities: string[];
@@ -35,7 +35,7 @@ export class Hotel {
 
   setRating(input_rating) {
     this.rating = input_rating;
-    const temp = input_rating.replace('Trip Adviser vote: ', '');
+    const temp = input_rating.replace('TripAdvisor vote: ', '');
     const rated = temp.split('/');
     this.ratingValue = rated[0];
   }
