@@ -6,47 +6,39 @@ import {Observable} from "rxjs/Observable";
 import {HotelInfo} from "./hotel-info"
 @Injectable()
 export class SearchService {
-  constructor(private hotelInfo: HotelInfo) {}
-  hotels: Hotel[]=  [];
+  private foundHotels: Hotel[] =  [];
+  private _observableList = new BehaviorSubject<Hotel[]>(null);
+  public currentSearch = this._observableList.asObservable();
 
-  _observableList: BehaviorSubject<Hotel[]> = new BehaviorSubject([]);
-  
+  constructor(private hotelInfo: HotelInfo) {
+  }
+
   public async retriveData(cityname: string, checkin_new: string, checkout_new: string) {
 
-    //convert sting to Date for checkin and checkout
-    //Create Date array that contains all dates between In and Out (new)
-    let chIn = new Date(checkin_new);
-    let chOut = new Date(checkout_new);
+    // convert sting to Date for checkin and checkout
+    // Create Date array that contains all dates between In and Out (new)
+    // let chIn = new Date(checkin_new);
+    // let chOut = new Date(checkout_new);
 
-    var x: string;
-    var hotelList: Hotel[] = [];
+    let x: string;
     for (var i = 0; i < 71; i++) {
       x = i.toString();
-      
-      var promise = await this.hotelInfo.getHotelData(x);
-      var hotel: Hotel = new Hotel();
-      hotel = this.hotelInfo.getHotel();
-      let date1 = new Date(  (hotel.checkIn) );
-      let date2 = new Date( hotel.checkOut )
 
-      //hotel.checkIn and hotel.checkout (Timestamp)
-      //convert timestamp to date
-      //Create Date array that contains all dates between In and Out
-      //Find overlap?
-      if (cityname.toUpperCase() == hotel.city.toUpperCase()) {
-        hotelList.push(hotel);
-        this.hotels.push(hotel);
-        this._observableList.next(hotelList);
+      await this.hotelInfo.getHotelData(x);
+      const hotel = this.hotelInfo.getHotel();
+      // const date1 = new Date(  (hotel.checkIn) );
+      // const date2 = new Date( hotel.checkOut )
+
+      // hotel.checkIn and hotel.checkout (Timestamp)
+      // convert timestamp to date
+      // Create Date array that contains all dates between In and Out
+      // Find overlap?
+      if (cityname.toUpperCase() === hotel.city.toUpperCase()) {
+        this.foundHotels.push(hotel);
       }
     }
-  }
 
-  public getObservableList(): Observable<Hotel[]> {
-    return this._observableList.asObservable(); 
-  }
-   
-  public getHotels() {
-    return this.hotels;
+    this._observableList.next(this.foundHotels);
   }
 }
 

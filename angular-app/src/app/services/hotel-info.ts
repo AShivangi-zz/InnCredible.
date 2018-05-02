@@ -9,15 +9,15 @@ import {AngularFireDatabase} from 'angularfire2/database';
 
 export class HotelInfo {
 
-  private amenities: string[] = [];
   private images: URL[] = [];
-  private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
+  // private _amenities: string[] = [];
+  // private _temp_amenities: string[] = [];
+  // private _amenitiesList: BehaviorSubject<string[]> = new BehaviorSubject([]);
   private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
   private _thisHotel = new BehaviorSubject<Hotel>(null);
   public activeHotel = this._thisHotel.asObservable();
 
   hotel: Hotel;
-  private hotelSubject: BehaviorSubject<Hotel>;
 
   constructor() {
   }
@@ -25,7 +25,7 @@ export class HotelInfo {
   public getHotelData(index: string) {
     this.hotel = new Hotel();
     const ref = firebase.database().ref('/hotels/' + index);
-    
+
     const promise = ref.once('value')
       .then((snapshot) => {// ** My only change ** or use snapshot
         this.hotel.setIndex(index);
@@ -43,46 +43,62 @@ export class HotelInfo {
         this.hotel.setFirstImage(snapshot.child('/images/0').val());
         this.hotel.setCheckIn(snapshot.child('/availability/check-in').val());
         this.hotel.setCheckOut(snapshot.child('/availability/check-out').val());
+// alert('Hotelname: ' + this.hotel.name );
       });
-      
+
+      this.hotel.setAmenities(this.retrieveAmenities(index));
+console.log(this.hotel);
       this._thisHotel.next(this.hotel);
       return promise;
   }
 
-  public getHotel() {
+  public getHotel(): Hotel {
     return this.hotel;
   }
+  public setActiveHotel(hotel: Hotel) {
+    this.hotel = hotel;
+    this._thisHotel.next(this.hotel);
+  }
 
-  public retrieveAmenities(id:string): void {
-    const amenities_ref =  firebase.database().ref('/hotels/' + id +"/amenities/");
+  public retrieveAmenities(id: string): String[] {
+    const amenities_ref =  firebase.database().ref('/hotels/' + id + '/amenities/');
+    const amens: String[] = [];
 
     amenities_ref.child('room/').once('value')
       .then((snapshot) => {
         const countRoom = snapshot.numChildren();
-        for(var i = 0; i < countRoom; i++) {
-          var number = i.toString();
-          this.setAmenities(snapshot.child(number).val());
+
+        for (let i = 0; i < countRoom; i++) {
+          const number = i.toString();
+          amens.push(snapshot.child(number).val());
         }
       });
 
     amenities_ref.child('hotel/').once('value')
       .then((snapshot) => {
         const countHotel = snapshot.numChildren();
-        for(var i = 0; i < countHotel; i++) {
-          var number = i.toString();
-          this.setAmenities(snapshot.child(number).val());
+
+        for (let i = 0; i < countHotel; i++) {
+          const number = i.toString();
+
+          amens.push(snapshot.child(number).val());
         }
       });
+
+    return amens;
+    // this.setAmenities(snapshot.child(number).val());
+    // this._temp_amenities.push(snapshot.child(number).val());
+    //   return this._temp_amenities;
   }
 
-  public setAmenities(HotelAmenity:string){
-    this.amenities.push(HotelAmenity);
-    this._amenitiesList.next(this.amenities);
-  }
-
-  public getAmenities(): Observable<string[]>{
-    return this._amenitiesList.asObservable();
-  }
+  // public setAmenities(HotelAmenity:string){
+  //   this._amenities.push(HotelAmenity);
+  //   this._amenitiesList.next(this._amenities);
+  // }
+  //
+  // public getAmenities(): Observable<string[]>{
+  //   return this._amenitiesList.asObservable();
+  // }
 }
 
 

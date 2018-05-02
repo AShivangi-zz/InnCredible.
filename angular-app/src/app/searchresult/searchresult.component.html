@@ -61,30 +61,25 @@
                             <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
                     <a href="#prices" class="btn btn-default active" data-toggle="tab" (click)="onRatingsFilter(1);" style="padding:5px !important; height:35px !important">
                   <input type="radio"><i class="material-icons" style= "color:green">radio_button_checked</i></a><br><br>
-
+                </div>
                   </div>
                   </div><br>
-            <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
-          <form action="">
-              <input type="checkbox" name="Car Parking" value="Car Parking"> &nbsp;Car Parking<br>
-              <input type="checkbox" name="Non Smoking" value="Non Smoking">&nbsp;Non Smoking<br>
-              <input type="checkbox" name="Disabled Facilities" value="Disabled Facilities">&nbsp;Disabled Facilities<br>
-              <input type="checkbox" name="Shops" value="Shops">&nbsp;Shops<br>
-              <input type="checkbox" name="Fitness Center" value="Fitness Center">&nbsp;Fitness Center<br>
-              <input type="checkbox" name="Pet allowed" value="Pet allowed">&nbsp;Pet allowed<br>
-              <input type="checkbox" name="Outdoor Swimmingpool" value="Outdoor Swimmingpool">&nbsp;Outdoor Swimmingpool<br>
-              <input type="checkbox" name="Sauna" value="Sauna">&nbsp;Sauna<br>
-              <input type="checkbox" name="Lifts" value="Lifts">&nbsp;Lifts<br>
-              <input type="checkbox" name="Restuarant" value="Restuarant">&nbsp;Restuarant<br>
-              <input type="checkbox" name="Television" value="Television">&nbsp;Television<br>
-              <input type="checkbox" name="Radio" value="Radio">&nbsp;Radio<br>
-              <input type="checkbox" name="Hairdryer" value="Hairdryer">&nbsp;Hairdryer<br>
-              <input type="checkbox" name="High Speed Modem" value="High Speed Modem">&nbsp;High Speed Modem<br>
-            </form>
-          </div>
-        </div>
-        <br>
-        <button type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
+                  <div class="input-group"><h4 style="color:#2998f2"><b>Amenities</b></h4>
+                    <!--<form #applyAmenities="ngForm" (ngSubmit)="onApply(applyAmenities)">-->
+                      <div *ngFor="let amenity of amenities">
+                          <label>
+                              <input type="checkbox"
+                                    name="amenities"
+                                    value="{{amenities.name}}"
+                                    [(ngModel)] = "amenity.checked"
+                                    (change)="onCheckboxChange(amenity)"> {{ amenity.checked }}
+                              {{amenity.name}}
+                          </label>
+                      </div>
+                      <button name="Apply" id="Apply" type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
+                  <!--</form>-->
+                </div>
+
       </div>
     </div>
 
@@ -96,13 +91,16 @@
 <ngx-spinner bdOpacity = 0.9 bdColor = "#333333" size = "medium" color = "#17c0d4" type = "ball-spin"></ngx-spinner>
 
 <div class="container" class="col-sm-9">
-
-  <span *ngIf="isEmpty" style="font-size:25px;">No hotels found. Try removing some filters.</span>
-  <span id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</span>
-
-
-  <ul *ngIf="!isEmpty">
-    <div *ngFor="let hotel of hotelsObs | async | orderBy: order : reverse">
+  <span *ngIf="hotels.length === 0 && foundHotels.length === 0; else filter_check" style="font-size:25px;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}.</span>
+  <ng-template #filter_check>
+    <span *ngIf="hotels.length === 0" style="font-size:25px;">No hotels found. Try removing some filters.</span>
+  </ng-template>
+  <!--<span *ngIf="hotels.length === 0 && foundHotels.length === 0" style="font-size:25px;">No hotels found. Try removing some filters.</span>-->
+  <!--<span *ngIf="hotels.length === 0 && (hotels.leng)" style="font-size:25px;">No hotels found. Try removing some filters.</span>-->
+  <!--<span id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</span>-->
+  <!--<ul *ngIf="hotels != null && hotels.length > 0">-->
+  <ul>
+    <div *ngFor="let hotel of hotels | orderBy: order : reverse">
       <section class="col-xs-12 col-sm-6 col-md-12">
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">
@@ -142,7 +140,8 @@
                 <br>
                 <h3 style="color:#4CB648; text-align:center">${{hotel?.price}}</h3>
                 <br>
-                <button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel
+                <button (click)="pickHotel(hotel)" [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel
+                <!--<button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel-->
                   <i class="icon-arrow-right"></i>
                 </button>
               </div>
