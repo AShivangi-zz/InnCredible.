@@ -17,7 +17,7 @@ import {Subscription} from "rxjs/Subscription";
 export class HotelInfoComponent implements OnInit {
 
   @ViewChild('gmap') gmapElement: any;
-  //map: google.maps.Map;
+
   public imagesURL: URL[] = [];
   public imgDone: boolean = false;
 
@@ -36,6 +36,11 @@ export class HotelInfoComponent implements OnInit {
   public la: boolean;
 
   constructor(private hotelInfo: HotelInfo, private route: ActivatedRoute) {
+    this.route.params.subscribe(async (params) => {
+        await this.hotelInfo.initHotelByID(params['id']);
+        await this.getLocation(this.hotel.location);
+        this.getcity();
+    });
     this.hotelInfo.activeHotel.subscribe(value => this.hotel = value);
   }
 
@@ -45,8 +50,6 @@ export class HotelInfoComponent implements OnInit {
       this.returnedcheckindate = params['id2'];
       this.returnedcheckoutdate = params['id3'];
     });
-
-    this.getData();
   }
 
   async getLocation(address: string) {
@@ -58,18 +61,18 @@ export class HotelInfoComponent implements OnInit {
 
     geocoder.geocode({'address': address}, await function (results, status) {
 
-      if (status == google.maps.GeocoderStatus.OK) {
+      if (status === google.maps.GeocoderStatus.OK) {
         latitude = results[0].geometry.location.lat();
         longitude = results[0].geometry.location.lng();
 
-        var mapProp = {
+        const mapProp = {
           center: new google.maps.LatLng(latitude, longitude),
           zoom: 15,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(gElement.nativeElement, mapProp);
-        var marker;
-        var markerOptions = {
+        let marker;
+        const markerOptions = {
           position: new google.maps.LatLng(latitude, longitude),
           map: map,
           title: address,
@@ -84,41 +87,9 @@ export class HotelInfoComponent implements OnInit {
 
   }
 
-  public  getHotelByID() {
-    const id_ref = firebase.database().ref('/hotel_id');
-    id_ref.once('value').then((snapshot) => {
-      for (let h = 0; h < snapshot.numChildren(); h++) {
-        if (snapshot.child(h).val() === this.hotelID) {
-          this.hotelInfo.getHotelData(h.toString());
-          const images_ref = firebase.database().ref('/hotels/' + h + '/images/');
-
-          images_ref.once('value').then((snapshot_img) => {
-            const countImg = snapshot_img.numChildren();
-            for (let i = 0; i < countImg; i++) {
-              this.setImagesURL(snapshot_img.child(i).val());
-              if (i === countImg - 1) {
-                this.setImgDone();
-              }
-            }
-          });
-          break;
-        }
-      }
-    });
+  public setHotelID(id) {
+    this.hotelID = id;
   }
-
-  public async getData() {
-console.log(this.hotel);
-    if (this.hotel === null) {
-      await this.getHotelByID();
-      await this.getLocation(this.hotel.location);
-      await this.getcity(this.hotel.location);
-    } else {
-      await this.getLocation(this.hotel.location);
-      await this.getcity(this.hotel.location);
-    }
-  }
-
   public setImagesURL(image) {
     this.imagesURL.push(image);
   }
@@ -127,11 +98,11 @@ console.log(this.hotel);
     this.imgDone = true;
   }
 
-  async getcity(address: string){
-    if(this.hotel.city=="Miami"){
-      this.miami=true;
+  private getcity(){
+    if(this.hotel.city === 'Miami'){
+      this.miami = true;
     }
-    if(this.hotel.city=="San Francisco"){
+    if(this.hotel.city === 'San Francisco'){
       this.sf=true;
     }
     if(this.hotel.city=="New York"){

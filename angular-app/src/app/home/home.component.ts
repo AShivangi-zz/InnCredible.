@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-import {HotelInfo} from "../services/hotel-info";
+import {HotelInfo} from '../services/hotel-info';
 
 @Component({
   selector: 'app-home',
@@ -32,8 +32,8 @@ export class HomeComponent implements OnInit {
 
 
   constructor(public afa: AngularFireAuth
-    ,private router: Router
-    ,private hotelInfo: HotelInfo) { }
+    , private router: Router) {
+  }
 
   // This gets the information from the searchformdata in home.component.html
   onSubmit(searchformdata) {
@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
 
     checkOut.setAttribute("min", checkIn.value);
   }
+
 
 }
 

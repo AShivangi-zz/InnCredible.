@@ -4,7 +4,7 @@ export class Hotel {
   city: string;
   location: string;
   price: string;
-  image: URL;
+  images: URL[];
   rating: string;
   ratingValue: number;
   ratingImg: URL;
@@ -31,7 +31,7 @@ export class Hotel {
 
   setPrice(input_price) { this.price = input_price; }
 
-  setImage(input_image) { this.image = input_image; }
+  setImages(images) { this.images = images; }
 
   setRating(input_rating) {
     this.rating = input_rating;

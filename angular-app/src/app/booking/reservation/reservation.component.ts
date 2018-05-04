@@ -118,7 +118,7 @@ export class ReservationComponent implements OnInit {
     isFieldValid(field: string) {
       return !this.resvForm.get(field).valid && this.resvForm.get(field).touched;
     }
-  
+
     displayFieldCss(field: string) {
       return {
         'has-error': !this.isFieldValid(field),

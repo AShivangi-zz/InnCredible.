@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import {Hotel} from "../models/hotel";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
-import {HotelInfo} from "./hotel-info"
+import {Hotel} from '../models/hotel';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {HotelInfo} from './hotel-info';
+
 @Injectable()
 export class SearchService {
   private foundHotels: Hotel[] =  [];
@@ -13,19 +13,26 @@ export class SearchService {
   constructor(private hotelInfo: HotelInfo) {
   }
 
-  public async retriveData(cityname: string, checkin_new: string, checkout_new: string) {
-
+  public async retrieveData(cityname: string, checkin_new: string, checkout_new: string) {
     // convert sting to Date for checkin and checkout
     // Create Date array that contains all dates between In and Out (new)
     // let chIn = new Date(checkin_new);
     // let chOut = new Date(checkout_new);
 
-    let x: string;
-    for (var i = 0; i < 71; i++) {
-      x = i.toString();
-
-      await this.hotelInfo.getHotelData(x);
-      const hotel = this.hotelInfo.getHotel();
+    for (let i = 0, thisCity = ''; i < 71; i++) {
+      const ref = firebase.database().ref('/hotels');
+      const promise = ref.once('value')
+        .then( (snapshot) => {
+          thisCity = snapshot.child('/' + i + '/location/city').val();
+        });
+      await promise;
+      if (cityname.toUpperCase() === thisCity.toUpperCase()) {
+        await this.hotelInfo.initHotelByIdx(i.toString());
+        this.foundHotels.push(this.hotelInfo.getHotel());
+      }
+    }
+    this._observableList.next(this.foundHotels);
+      // const hotel = this.hotelInfo.getHotel();
       // const date1 = new Date(  (hotel.checkIn) );
       // const date2 = new Date( hotel.checkOut )
 
@@ -33,12 +40,6 @@ export class SearchService {
       // convert timestamp to date
       // Create Date array that contains all dates between In and Out
       // Find overlap?
-      if (cityname.toUpperCase() === hotel.city.toUpperCase()) {
-        this.foundHotels.push(hotel);
-      }
     }
-
-    this._observableList.next(this.foundHotels);
-  }
 }
 

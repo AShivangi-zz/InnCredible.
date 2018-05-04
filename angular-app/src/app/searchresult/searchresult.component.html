@@ -14,8 +14,6 @@
 
 </div>
   <form #searchformdata="ngForm" (ngSubmit)="onSubmit(searchformdata)">
-
-
     <div>
         <div class="col-sm-2"> </div>
           <div class="col-sm-3"><input class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" id="cityname" name="citynames" value={{returnedname}} ></div>
@@ -37,6 +35,7 @@
 
   </div>
 
+<ngx-spinner bdOpacity = 0.9 bdColor = "#333333" size = "medium" color = "#17c0d4" type = "ball-spin"></ngx-spinner>
 
   <!--FILTER from here -->
 
@@ -72,11 +71,10 @@
                                     name="amenities"
                                     value="{{amenities.name}}"
                                     [(ngModel)] = "amenity.checked"
-                                    (change)="onCheckboxChange(amenity)"> {{ amenity.checked }}
-                              {{amenity.name}}
+                                    (change)="onCheckboxChange(amenity)"> {{amenity.name}}
                           </label>
                       </div>
-                      <button name="Apply" id="Apply" type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>
+                      <!--<button name="Apply" id="Apply" type="button" class="btn btn-primary" style="margin: 0 0 5% 25%">Apply</button>-->
                   <!--</form>-->
                 </div>
 
@@ -88,17 +86,17 @@
 
 <!--to here (FILTER)-->
 
-<ngx-spinner bdOpacity = 0.9 bdColor = "#333333" size = "medium" color = "#17c0d4" type = "ball-spin"></ngx-spinner>
-
 <div class="container" class="col-sm-9">
-  <span *ngIf="hotels.length === 0 && foundHotels.length === 0; else filter_check" style="font-size:25px;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}.</span>
-  <ng-template #filter_check>
-    <span *ngIf="hotels.length === 0" style="font-size:25px;">No hotels found. Try removing some filters.</span>
-  </ng-template>
+  <!--<span *ngIf="hotels !== null && foundHotels.length === 0; else filter_check" style="font-size:25px;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}.</span>-->
+  <!--<ng-template #filter_check>-->
+    <!--<span *ngIf="hotels.length === 0" style="font-size:25px;">No hotels found. Try removing some filters.</span>-->
+  <!--</ng-template>-->
+
   <!--<span *ngIf="hotels.length === 0 && foundHotels.length === 0" style="font-size:25px;">No hotels found. Try removing some filters.</span>-->
   <!--<span *ngIf="hotels.length === 0 && (hotels.leng)" style="font-size:25px;">No hotels found. Try removing some filters.</span>-->
   <!--<span id ='nohotels' style="font-size:25px; visibility: collapse;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}</span>-->
   <!--<ul *ngIf="hotels != null && hotels.length > 0">-->
+
   <ul>
     <div *ngFor="let hotel of hotels | orderBy: order : reverse">
       <section class="col-xs-12 col-sm-6 col-md-12">

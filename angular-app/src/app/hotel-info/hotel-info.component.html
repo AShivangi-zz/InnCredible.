@@ -14,28 +14,28 @@
       <li data-target="#myCarousel" data-slide-to="3"></li>
       <li data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
-
+v
     <!-- Wrapper for slides*ngFor="let image of hotelInfo.getImages() | async; let i = index"-->
-    <div class="carousel-inner" *ngIf="imgDone==true">
+    <div class="carousel-inner" *ngIf="hotelInfo?.imgDone===true">
 
       <div class="item active">
-        <img src="{{imagesURL[0]}}" style="width:50%; margin-left:25%;">
+        <img src="{{hotel?.images[0]}}" style="width:50%; margin-left:25%;">
       </div>
 
       <div class="item">
-        <img attr.src="{{imagesURL[1]}}" style="width:50%;margin-left:25%;">
+        <img attr.src="{{hotel?.images[1]}}" style="width:50%;margin-left:25%;">
       </div>
 
       <div class="item">
-        <img attr.src="{{imagesURL[2]}}" style="width:50%;margin-left:25%;">
+        <img attr.src="{{hotel?.images[2]}}" style="width:50%;margin-left:25%;">
       </div>
 
       <div class="item">
-        <img attr.src="{{imagesURL[3]}}" style="width:50%;margin-left:25%;">
+        <img attr.src="{{hotel?.images[3]}}" style="width:50%;margin-left:25%;">
       </div>
 
       <div class="item">
-        <img attr.src="{{imagesURL[4]}}" style="width:50%;margin-left:25%;">
+        <img attr.src="{{hotel?.images[4]}}" style="width:50%;margin-left:25%;">
       </div>
 
     </div>
@@ -72,7 +72,7 @@
       {{hotel?.location}}
       <br>
       <br>
-      <button [routerLink]="['/booking', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary btn-outline with-arrow">Book Now!
+      <button [routerLink]="['/booking', this.hotelID, this.returnedcheckindate, this.returnedcheckoutdate]" class="btn btn-primary btn-outline with-arrow">Book Now!
         <i class="icon-arrow-right"></i>
       </button>
     </div>
@@ -147,7 +147,7 @@
   <br>
 </div>
 <div class="col-sm-7">
-  <button [routerLink]="['/booking', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary btn-outline with-arrow">Book Now!
+  <button [routerLink]="['/booking', this.hotelID, this.returnedcheckindate, this.returnedcheckoutdate]" class="btn btn-primary btn-outline with-arrow">Book Now!
     <i class="icon-arrow-right"></i>
   </button>
 </div>

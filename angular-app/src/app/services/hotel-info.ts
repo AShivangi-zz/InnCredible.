@@ -3,11 +3,13 @@ import * as firebase from 'firebase';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import {Hotel} from '../models/hotel';
-import {AngularFireDatabase} from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 
 export class HotelInfo {
+
+  private hotelIdx: string;
 
   private images: URL[] = [];
   // private _amenities: string[] = [];
@@ -16,13 +18,39 @@ export class HotelInfo {
   private _imagesList: BehaviorSubject<URL[]> = new BehaviorSubject([]);
   private _thisHotel = new BehaviorSubject<Hotel>(null);
   public activeHotel = this._thisHotel.asObservable();
+  public imgDone  = false;
 
   hotel: Hotel;
 
   constructor() {
   }
 
-  public getHotelData(index: string) {
+  public async initHotelByID(hotelID: string) {
+    await this.findHotelIdx(hotelID);
+    await this.initHotelByIdx(this.hotelIdx);
+    await this.retrieveImages(this.hotelIdx);
+  }
+
+  public async initHotelByIdx(idx: string) {
+    await this.getHotelData(idx);
+    await this.retrieveAmenities(idx);
+
+    this._thisHotel.next(this.hotel);
+  }
+
+  private async findHotelIdx(hotelID: string) {
+    const id_ref = firebase.database().ref('/hotel_id');
+    return id_ref.once('value')
+      .then((snapshot) => {
+        for (let h = 0; h < snapshot.numChildren(); h++) {
+          if (snapshot.child(h).val() === hotelID) {
+            this.hotelIdx = h.toString();
+          }
+        }
+      });
+  }
+
+  public async getHotelData(index: string) {
     this.hotel = new Hotel();
     const ref = firebase.database().ref('/hotels/' + index);
 
@@ -43,62 +71,68 @@ export class HotelInfo {
         this.hotel.setFirstImage(snapshot.child('/images/0').val());
         this.hotel.setCheckIn(snapshot.child('/availability/check-in').val());
         this.hotel.setCheckOut(snapshot.child('/availability/check-out').val());
-// alert('Hotelname: ' + this.hotel.name );
       });
 
-      this.hotel.setAmenities(this.retrieveAmenities(index));
-console.log(this.hotel);
-      this._thisHotel.next(this.hotel);
       return promise;
   }
 
   public getHotel(): Hotel {
     return this.hotel;
   }
-  public setActiveHotel(hotel: Hotel) {
-    this.hotel = hotel;
-    this._thisHotel.next(this.hotel);
+  // public setActiveHotel(hotel: Hotel) {
+  //   this.hotel = hotel;
+  //   this._thisHotel.next(this.hotel);
+  // }
+
+  public async retrieveImages(id: string) {
+    const images_ref = firebase.database().ref('/hotels/' + id + '/images/');
+    const images: URL[] = [];
+
+    const promise = images_ref.once('value').then((snapshot_img) => {
+      const countImg = snapshot_img.numChildren();
+      for (let i = 0; i < countImg; i++) {
+        images.push(snapshot_img.child(i).val());
+      }
+      this.imgDone = true;
+    });
+    await promise;
+    this.hotel.setImages(images);
   }
 
-  public retrieveAmenities(id: string): String[] {
+  public async retrieveAmenities(id: string) {
     const amenities_ref =  firebase.database().ref('/hotels/' + id + '/amenities/');
     const amens: String[] = [];
 
-    amenities_ref.child('room/').once('value')
+    let promise = amenities_ref.child('room/').once('value')
       .then((snapshot) => {
         const countRoom = snapshot.numChildren();
 
         for (let i = 0; i < countRoom; i++) {
           const number = i.toString();
-          amens.push(snapshot.child(number).val());
+          if (snapshot.child(number).val() !== null) {
+            amens.push(snapshot.child(number).val());
+          }
         }
       });
-
-    amenities_ref.child('hotel/').once('value')
+    await promise;
+    promise = amenities_ref.child('hotel/').once('value')
       .then((snapshot) => {
         const countHotel = snapshot.numChildren();
 
         for (let i = 0; i < countHotel; i++) {
           const number = i.toString();
-
-          amens.push(snapshot.child(number).val());
+          if (snapshot.child(number).val() !== null) {
+            amens.push(snapshot.child(number).val());
+          }
         }
       });
-
-    return amens;
+    await promise;
+    this.hotel.setAmenities(amens);
     // this.setAmenities(snapshot.child(number).val());
     // this._temp_amenities.push(snapshot.child(number).val());
     //   return this._temp_amenities;
   }
 
-  // public setAmenities(HotelAmenity:string){
-  //   this._amenities.push(HotelAmenity);
-  //   this._amenitiesList.next(this._amenities);
-  // }
-  //
-  // public getAmenities(): Observable<string[]>{
-  //   return this._amenitiesList.asObservable();
-  // }
 }
 
 

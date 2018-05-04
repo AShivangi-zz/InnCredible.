@@ -1,14 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SearchService } from "../services/search.service";
-import { Hotel } from "../models/hotel";
+import { SearchService } from '../services/search.service';
+import { Hotel } from '../models/hotel';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FilterService } from "../services/filter.service";
+import { FilterService } from '../services/filter.service';
 import { UserProfileService } from '../services/profile.service';
-import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { HotelInfo } from "../services/hotel-info";
+import { HotelInfo } from '../services/hotel-info';
 
 function boxFilter(amenity) {
   return amenity.checked;
@@ -55,15 +54,31 @@ export class SearchresultComponent implements OnInit {
   public sub: any;
 
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     public router: Router,
     public searchService: SearchService,
     private filterService: FilterService,
     private profileService: UserProfileService,
     public spinner: NgxSpinnerService,
     public hotelInfo: HotelInfo) {
-    this.filterService.currentFilter.subscribe(value => this.hotels = value);
-    this.searchService.currentSearch.subscribe( value => this.foundHotels = value);
+
+    this.route.params.subscribe(async (params) => {
+        this.returnedname = params['id]'];
+        this.returnedcheckindate = params['id2'];
+        this.returnedcheckoutdate = params['id3'];
+
+        this.spinner.show();
+        await this.searchService.retrieveData(params['id'], params['id2'], params['id3']);
+        this.filterService.loadFilter(this.foundHotels);
+        this.faves = [];
+        await this.profileService.pullFavHotels();
+        this.faves = this.profileService.getFavesList();
+        this.spinner.hide();
+      });
+
+      this.searchService.currentSearch.subscribe(value => this.foundHotels = value);
+      this.filterService.currentFilter.subscribe(value => this.hotels = value);
 
       this.amenities = [
         {name: 'Car Parking', checked: false},
@@ -85,22 +100,51 @@ export class SearchresultComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.returnedname = params['id'];
-      this.returnedcheckindate = params['id2'];
-      this.returnedcheckoutdate = params['id3'];
-    });
+    this.spinner.show();
+    // this.sub = this.route.params.subscribe(params => {
+    //   this.returnedname = params['id'];
+    //   this.returnedcheckindate = params['id2'];
+    //   this.returnedcheckoutdate = params['id3'];
+    // });
 
-    if (this.hotels === null) {
-      this.getData();
-      // (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
-    } else {
-      // (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'hidden';
-    }
+    // if (this.hotels === null) {
+    //   this.getData();
+    //   // (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
+    // } else {
+    //   // (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'hidden';
+    // }
   }
 
+
+  // async getData() {
+  //   this.spinner.show();
+  //   alert(this.parms[0]);
+  //   await this.searchService.retrieveData(this.parms[0], this.parms[1], this.parms[2]);
+  //   this.filterService.loadFilter(this.foundHotels);
+  //   // FROM MOST RECENT MERGE
+  //   // this.filterService.currentFilter.subscribe(results => {
+  //   //   if (results.length === 0) {
+  //   //     (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
+  //   //   }
+  //   // });
+  //
+  //   // OLD
+  //   // this.hotelsObs = this.searchService.getObservableList();
+  //   // this.filterService.currentFilter.subscribe(results => {
+  //   //   if (results.length === 0) {
+  //   //     (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
+  //   //   }
+  //   // });
+  //
+  //
+  //   this.faves = [];
+  //   await this.profileService.pullFavHotels();
+  //   this.faves = this.profileService.getFavesList();
+  //   this.spinner.hide();
+  // }
+
   pickHotel(hotel: Hotel) {
-    this.hotelInfo.setActiveHotel(hotel);
+    // this.hotelInfo.setActiveHotel(hotel);
 
     // for (let i = 0; i < this.hotels.length; i++) {
     //   if (this.hotels[i].hotelID === id) {
@@ -172,31 +216,6 @@ console.log('Before - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.
 console.log('After - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);
   }
 
-  async getData() {
-    this.spinner.show();
-    await this.searchService.retriveData(this.returnedname, this.returnedcheckindate, this.returnedcheckoutdate);
-    this.filterService.loadFilter(this.foundHotels);
-    // FROM MOST RECENT MERGE
-    // this.filterService.currentFilter.subscribe(results => {
-    //   if (results.length === 0) {
-    //     (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
-    //   }
-    // });
-
-    // OLD
-    // this.hotelsObs = this.searchService.getObservableList();
-    // this.filterService.currentFilter.subscribe(results => {
-    //   if (results.length === 0) {
-    //     (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
-    //   }
-    // });
-
-
-    this.faves = [];
-    await this.profileService.pullFavHotels();
-    this.faves = this.profileService.getFavesList();
-    this.spinner.hide();
-  }
 
   checkFavorite(hotelID) {
     var favList: Hotel[] = [];
