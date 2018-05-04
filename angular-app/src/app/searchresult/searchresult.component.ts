@@ -23,7 +23,7 @@ export class SearchresultComponent implements OnInit {
 
   @ViewChild('placesRef') placesRef: GooglePlaceDirective;
 
-  returnedname = '';
+  returnedname;
   returnedcheckindate = '';
   returnedcheckoutdate = '';
 
@@ -64,10 +64,10 @@ export class SearchresultComponent implements OnInit {
     public hotelInfo: HotelInfo) {
 
     this.route.params.subscribe(async (params) => {
-        this.returnedname = params['id]'];
+        this.returnedname = params['id'];
         this.returnedcheckindate = params['id2'];
         this.returnedcheckoutdate = params['id3'];
-
+        
         this.spinner.show();
         await this.searchService.retrieveData(params['id'], params['id2'], params['id3']);
         this.filterService.loadFilter(this.foundHotels);
@@ -100,7 +100,6 @@ export class SearchresultComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.spinner.show();
     // this.sub = this.route.params.subscribe(params => {
     //   this.returnedname = params['id'];
     //   this.returnedcheckindate = params['id2'];
@@ -163,19 +162,23 @@ export class SearchresultComponent implements OnInit {
     checkOut.setAttribute('min', checkIn.value);
   }
 
-  onSubmit(searchformdata) {
-    if (searchformdata.valid) {
+  onSubmit() {
+    const checkIn = (<HTMLInputElement>document.getElementById('checkindate')).value;
+    const checkOut = (<HTMLInputElement>document.getElementById('checkoutdate')).value;
+    const city = (<HTMLInputElement>document.getElementById('cityname')).value;
+   
+    if (checkIn !== null && checkOut !== null && city !== null) {
       if (this.citynameAuto != null) {
         this.router.navigate(['/searchresults',
             this.citynameAuto,
-            searchformdata.value.checkindate,
-            searchformdata.value.checkoutdate]);
+            checkIn,
+            checkOut]);
         window.location.reload();
       } else {
         this.router.navigate(['/searchresults',
-            searchformdata.value.cityname,
-            searchformdata.value.checkindate,
-            searchformdata.value.checkoutdate]);
+            city,
+            checkIn,
+            checkOut]);
         window.location.reload();
       }
     }
@@ -195,6 +198,7 @@ console.log('Failed filter Check, resetting foundHotels');
   }
 
   onRatingsFilter(rating: number) {
+    console.log((<HTMLInputElement>document.getElementById('cityname')).value);
     this.checkFilter();
 
 console.log('Before - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);

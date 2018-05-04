@@ -14,8 +14,8 @@ export class SenditineraryinformationService {
     this.model.checkoudate = checkoutdate.toDateString();
     this.model.totalbeforetax = tbt;
     this.model.rewardsapplied = rewards;
-    this.model.tax = tax;
-    this.model.ordertotal = total;
+    this.model.tax = tax.toFixed(2);
+    this.model.ordertotal = total.toFixed(2);
     this.model.currentemail = Email;
   }
 
