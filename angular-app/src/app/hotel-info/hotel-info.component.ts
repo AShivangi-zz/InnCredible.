@@ -21,7 +21,7 @@ export class HotelInfoComponent implements OnInit {
   public imagesURL: URL[] = [];
   public imgDone: boolean = false;
 
-  private hotelID: string;
+  hotelID: string;
   returnedcheckindate: string;
   returnedcheckoutdate: string;
 
@@ -35,7 +35,7 @@ export class HotelInfoComponent implements OnInit {
   public boston:boolean;
   public la: boolean;
 
-  constructor(private hotelInfo: HotelInfo, private route: ActivatedRoute) {
+  constructor(public hotelInfo: HotelInfo, private route: ActivatedRoute) {
     this.route.params.subscribe(async (params) => {
         await this.hotelInfo.initHotelByID(params['id']);
         await this.getLocation(this.hotel.location);
