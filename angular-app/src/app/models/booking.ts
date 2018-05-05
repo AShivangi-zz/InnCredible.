@@ -1,5 +1,4 @@
 export class Booking {
-
     image:      string;
     hotelName:  string;
     hotelLoc:   string;

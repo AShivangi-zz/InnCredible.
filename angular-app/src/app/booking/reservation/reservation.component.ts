@@ -34,27 +34,31 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.resvForm = this.createGuestForm();
     this.sub = this.route.params.subscribe(params => {
       this.hotelID = params['id'];
       this.returnedcheckindate = params['id2'];
       this.returnedcheckoutdate = params['id3'];
     });
 
-    const guests = this.resvForm.get('guests');
-    const rooms = this.resvForm.get('rooms');
-    guests.valueChanges.subscribe(val => {
-      rooms.setValue(Math.ceil(val / 2));
-    });
+    if (!this.submit) {
+      this.resvForm = this.createGuestForm();
+      const guest = this.resvForm.get('guests');
+      const rooms = this.resvForm.get('rooms');
+
+      guest.valueChanges.subscribe(val => {
+        rooms.setValue(Math.ceil(val / 2));
+      });
+    }
 
     this.reservationService.activeReservation.subscribe((value) => {
       this.reservation = value
       if (this.reservation === null) {
         this.reservation = new Reservation();
+      } else if(this.reservation.guests === null || this.reservation.guests === undefined){
+        this.reservation.guests = 1;
+        this.reservation.rooms = 1;
       }
       this.reservation.hotelID = this.hotelID;
-      this.reservation.guests = 1;
-      this.reservation.rooms = 1;
       this.reservation.checkInDt = new Date(this.returnedcheckindate);
       this.reservation.checkOutDt = new Date(this.returnedcheckoutdate);
     });
@@ -69,8 +73,8 @@ export class ReservationComponent implements OnInit {
       parseInt(checkIn[2]) < parseInt(checkOut[2])) {
       //console.log('valid');
       dtValid = true;
-    } else if(parseInt(checkIn[0]) == parseInt(checkOut[0]) &&
-    parseInt(checkIn[1]) < parseInt(checkOut[1])) {
+    } else if (parseInt(checkIn[0]) == parseInt(checkOut[0]) &&
+      parseInt(checkIn[1]) < parseInt(checkOut[1])) {
       //console.log('valid');
       dtValid = true;
     } else {
@@ -83,15 +87,15 @@ export class ReservationComponent implements OnInit {
       this.reservation.rooms = this.resvForm.get('rooms').value;
       this.reservation.checkInDt = this.resvForm.get('checkInDt').value;
       this.reservation.checkOutDt = this.resvForm.get('checkOutDt').value;
-      if(this.resvForm.get('comments').value){
+      if (this.resvForm.get('comments').value) {
         this.reservation.comments = this.resvForm.get('comments').value;
       }
       this.reservationService.insertReservation(this.reservation);
 
       this.submit = true;
-    } else if(!dtValid) {
-      this.error ="Please choose a check-out date that's after the check-in date.";
-    }else {
+    } else if (!dtValid) {
+      this.error = "Please choose a check-out date that's after the check-in date.";
+    } else {
       this.error = "Please agree to the Terms and Conditions";
     }
   }
@@ -118,7 +122,7 @@ export class ReservationComponent implements OnInit {
     isFieldValid(field: string) {
       return !this.resvForm.get(field).valid && this.resvForm.get(field).touched;
     }
-  
+
     displayFieldCss(field: string) {
       return {
         'has-error': !this.isFieldValid(field),

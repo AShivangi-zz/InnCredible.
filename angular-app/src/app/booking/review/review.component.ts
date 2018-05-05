@@ -43,7 +43,7 @@ export class ReviewComponent implements OnInit {
   }
 
   roomCharge(): number {
-    if(this.reservation === null || this.reservation.nights === null) {
+    if(this.reservation === null || this.reservation.nights === null || this.hotelData === null || this.hotelData.price === null) {
       return -1;
     }
     return (parseFloat(this.hotelData.price) * this.reservation.nights * this.reservation.rooms);

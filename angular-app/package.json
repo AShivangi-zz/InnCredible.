@@ -32,6 +32,7 @@
     "ngx-google-places-autocomplete": "^2.0.1",
     "ngx-order-pipe": "^2.0.1",
     "ngx-spinner": "^1.1.0",
+    "npm": "^6.0.0",
     "promise-polyfill": "^7.1.2",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
