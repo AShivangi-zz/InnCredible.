@@ -9,8 +9,9 @@ export class SearchService {
   private foundHotels: Hotel[] =  [];
   private _observableList = new BehaviorSubject<Hotel[]>(null);
   public currentSearch = this._observableList.asObservable();
-
+  private activeHotel: Hotel;
   constructor(private hotelInfo: HotelInfo) {
+    this.hotelInfo.activeHotel.subscribe( value => this.activeHotel = value);
   }
 
   public async retrieveData(cityname: string, checkin_new: string, checkout_new: string) {
@@ -28,7 +29,7 @@ export class SearchService {
       await promise;
       if (cityname.toUpperCase() === thisCity.toUpperCase()) {
         await this.hotelInfo.initHotelByIdx(i.toString());
-        this.foundHotels.push(this.hotelInfo.getHotel());
+        this.foundHotels.push(this.activeHotel);
       }
     }
     this._observableList.next(this.foundHotels);

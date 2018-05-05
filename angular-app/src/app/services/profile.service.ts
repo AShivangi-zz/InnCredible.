@@ -46,11 +46,13 @@ export class UserProfileService {
     picIndex: number;
     pipe : DatePipe;
 
+    activeHotel: Hotel;
+
     constructor(public afAuth: AngularFireAuth, private hotelInfo: HotelInfo) {
         //afAuth used in profile component to upload picture
         //this.getUserInfo();
-        this.pipe = new DatePipe("en-US");
-
+        this.pipe = new DatePipe('en-US');
+        this.hotelInfo.activeHotel.subscribe( value => this.activeHotel = value);
     }
 
     async getUserInfo() {
@@ -78,7 +80,7 @@ export class UserProfileService {
     }
 
     async pullReservations() {
-        await firebase.database().ref('/users/' + this.uid + '/reservations/').once('value').then( 
+        await firebase.database().ref('/users/' + this.uid + '/reservations/').once('value').then(
             async(snapshot) => {
                 const countRes = snapshot.numChildren();
                 for (var i = 0; i < countRes; i++) {
@@ -115,24 +117,28 @@ export class UserProfileService {
 
 
     async getHotelInfo(hotelID: string, booking: Booking) {
-        var hotel = new Hotel();
-        const id_ref = firebase.database().ref('/hotel_id');
-        var index;
-        await id_ref.once('value').then((snapshot) => {
-            const count = snapshot.numChildren();
-            for (var i = 0; i < count; i++) {
-                const number = i.toString();
-                if (snapshot.child(number).val() == hotelID) {
-                    index = number;
-                    break;
-                }
-            }
-        });
-        await this.hotelInfo.getHotelData(index);
-        hotel = this.hotelInfo.getHotel();
-        booking.hotelName = hotel.name;
-        booking.hotelLoc = hotel.location;
-        booking.image = hotel.firstImage;
+        await this.hotelInfo.initHotelByID(hotelID);
+        booking.hotelName = this.activeHotel.name;
+        booking.hotelLoc = this.activeHotel.location;
+        booking.image = this.activeHotel.firstImage;
+        // const id_ref = firebase.database().ref('/hotel_id');
+        // var index;
+        // await id_ref.once('value').then((snapshot) => {
+        //     const count = snapshot.numChildren();
+        //     for (var i = 0; i < count; i++) {
+        //         const number = i.toString();
+        //         if (snapshot.child(number).val() == hotelID) {
+        //             index = number;
+        //             break;
+        //         }
+        //     }
+        // });
+        // await this.hotelInfo.getHotelData(index);
+        // var hotel = new Hotel();
+        // hotel = this.hotelInfo.getHotel();
+        // booking.hotelName = hotel.name;
+        // booking.hotelLoc = hotel.location;
+        // booking.image = hotel.firstImage;
     }
 
     public async removeReservation(key) {
@@ -154,7 +160,7 @@ export class UserProfileService {
     getBookingsObs(): Observable<Booking[]> {
         return this._observableList.asObservable();
     }
-    
+
     getHistoryObs():Observable<Booking[]> {
         return this._observableList2.asObservable();
     }
@@ -279,22 +285,24 @@ export class UserProfileService {
     }
 
     async getFavHotelInfo(htlID) {
-        var hotel = new Hotel();
-        const id_ref = firebase.database().ref('/hotel_id');
-        var index;
-        await id_ref.once('value').then((snapshot) => {
-            const count = snapshot.numChildren();
-            for (var i = 0; i < count; i++) {
-                const number = i.toString();
-                if (snapshot.child(number).val() == htlID) {
-                    index = number;
-                    break;
-                }
-            }
-        });
-        await this.hotelInfo.getHotelData(index);
-        hotel = this.hotelInfo.getHotel();
-        this.favHotels.push(this.hotelInfo.getHotel())
+      await this.hotelInfo.initHotelByID(htlID);
+      this.favHotels.push(this.activeHotel);
+        // var hotel = new Hotel();
+        // const id_ref = firebase.database().ref('/hotel_id');
+        // var index;
+        // await id_ref.once('value').then((snapshot) => {
+        //     const count = snapshot.numChildren();
+        //     for (var i = 0; i < count; i++) {
+        //         const number = i.toString();
+        //         if (snapshot.child(number).val() == htlID) {
+        //             index = number;
+        //             break;
+        //         }
+        //     }
+        // });
+        // await this.hotelInfo.getHotelData(index);
+        // hotel = this.hotelInfo.getHotel();
+        // this.favHotels.push(this.hotelInfo.getHotel())
     }
 
     getFavesList() {

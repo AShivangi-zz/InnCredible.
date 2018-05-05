@@ -38,7 +38,7 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
       private http: Http,
       private reservationService: ReservationService,
       private route: ActivatedRoute,
-      private hotel: HotelInfo,
+      private hotelInfo: HotelInfo,
       private location: Location) {
     /*this.hotel.activeHotel.subscribe(value => this.hotelData = value);
     // this.resvSubscription =
@@ -47,10 +47,16 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
       this.location.back();
       this.reservationService.setHotelID(this.hotelData.hotelID);
     }*/
-    this.sub = this.route.params.subscribe(params => {
-      this.hotelID = params['id'];
-    });
-    this.getData(this.hotelID);
+      this.route.params.subscribe(async params => {
+        this.hotelID = params['id'];
+        await this.hotelInfo.initHotelByID(params['id']);
+      });
+      this.hotelInfo.activeHotel.subscribe( value => this.hotelData = value);
+
+      this.reservationService.setHotelID(this.hotelData.hotelID);
+      this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
+      this.dataLoaded = true;
+      // this.getData(this.hotelID);
   }
 
   ngOnInit() {
@@ -59,29 +65,29 @@ export class BookingComponent implements OnInit /*, OnDestroy */ {
     });
     this.getData(this.hotelID);*/
   }
-   
-  private async getData(id: string) {
-    this.hotelData = new Hotel();
-    const id_ref =  firebase.database().ref('/hotel_id');
-    var promise2;
-    const promise = id_ref.once('value').then((snapshot) => {
-    const count = snapshot.numChildren();
-      for(var i = 0; i < count; i++) {
-        const number = i.toString();
-          if(snapshot.child(number).val() == id) {
-          promise2 = this.hotel.getHotelData(number)
-          return;
-        }
-      }
-    });
-    let value = await promise;
-    let value2 = await promise2;
 
-    this.hotelData = this.hotel.getHotel();
-    this.reservationService.setHotelID(this.hotelData.hotelID);
-    this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
-    this.dataLoaded = true;
-  }
+  // private async getData(id: string) {
+  //   this.hotelData = new Hotel();
+  //   const id_ref =  firebase.database().ref('/hotel_id');
+  //   var promise2;
+  //   const promise = id_ref.once('value').then((snapshot) => {
+  //   const count = snapshot.numChildren();
+  //     for(var i = 0; i < count; i++) {
+  //       const number = i.toString();
+  //         if(snapshot.child(number).val() == id) {
+  //         promise2 = this.hotel.getHotelData(number)
+  //         return;
+  //       }
+  //     }
+  //   });
+  //   let value = await promise;
+  //   let value2 = await promise2;
+  //
+  //   this.hotelData = this.hotel.getHotel();
+  //   this.reservationService.setHotelID(this.hotelData.hotelID);
+  //   this.reservationService.activeReservation.subscribe(value => this.newResrv = value);
+  //   this.dataLoaded = true;
+  // }
 
   // ngOnDestroy() {
   //   this.resvSubscription.unsubscribe();

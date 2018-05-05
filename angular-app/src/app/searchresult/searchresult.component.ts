@@ -4,7 +4,6 @@ import { Hotel } from '../models/hotel';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FilterService } from '../services/filter.service';
 import { UserProfileService } from '../services/profile.service';
-import { Observable } from 'rxjs/Observable';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HotelInfo } from '../services/hotel-info';
@@ -29,8 +28,6 @@ export class SearchresultComponent implements OnInit {
 
   hotels: Hotel[] = [];
   foundHotels: Hotel[] = [];
-  hotelsObs: Observable<Hotel[]>;
-  isEmpty = false;
   amenities: any;
   faves: string[] = [];
 
@@ -51,8 +48,6 @@ export class SearchresultComponent implements OnInit {
   order = 'price';
   reverse = false;
 
-  public sub: any;
-
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
   constructor(
     private route: ActivatedRoute,
@@ -67,8 +62,7 @@ export class SearchresultComponent implements OnInit {
         this.returnedname = params['id'];
         this.returnedcheckindate = params['id2'];
         this.returnedcheckoutdate = params['id3'];
-        
-        this.spinner.show();
+
         await this.searchService.retrieveData(params['id'], params['id2'], params['id3']);
         this.filterService.loadFilter(this.foundHotels);
         this.faves = [];
@@ -100,59 +94,7 @@ export class SearchresultComponent implements OnInit {
     }
 
   ngOnInit() {
-    // this.sub = this.route.params.subscribe(params => {
-    //   this.returnedname = params['id'];
-    //   this.returnedcheckindate = params['id2'];
-    //   this.returnedcheckoutdate = params['id3'];
-    // });
-
-    // if (this.hotels === null) {
-    //   this.getData();
-    //   // (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
-    // } else {
-    //   // (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'hidden';
-    // }
-  }
-
-
-  // async getData() {
-  //   this.spinner.show();
-  //   alert(this.parms[0]);
-  //   await this.searchService.retrieveData(this.parms[0], this.parms[1], this.parms[2]);
-  //   this.filterService.loadFilter(this.foundHotels);
-  //   // FROM MOST RECENT MERGE
-  //   // this.filterService.currentFilter.subscribe(results => {
-  //   //   if (results.length === 0) {
-  //   //     (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
-  //   //   }
-  //   // });
-  //
-  //   // OLD
-  //   // this.hotelsObs = this.searchService.getObservableList();
-  //   // this.filterService.currentFilter.subscribe(results => {
-  //   //   if (results.length === 0) {
-  //   //     (<HTMLSpanElement>document.getElementById('nohotels')).style.visibility = 'visible';
-  //   //   }
-  //   // });
-  //
-  //
-  //   this.faves = [];
-  //   await this.profileService.pullFavHotels();
-  //   this.faves = this.profileService.getFavesList();
-  //   this.spinner.hide();
-  // }
-
-  pickHotel(hotel: Hotel) {
-    // this.hotelInfo.setActiveHotel(hotel);
-
-    // for (let i = 0; i < this.hotels.length; i++) {
-    //   if (this.hotels[i].hotelID === id) {
-    //     console.log(this.hotels[i].hotelID + ': ' + this.hotels[i].amenities.length);
-    //     for (let a = 0; a < this.hotels[i].amenities.length; a++) {
-    //       console.log('>' + this.hotels[i].amenities[a]);
-    //     }
-    //   }
-    // }
+    this.spinner.show();
   }
 
   updateDate() {
@@ -166,7 +108,7 @@ export class SearchresultComponent implements OnInit {
     const checkIn = (<HTMLInputElement>document.getElementById('checkindate')).value;
     const checkOut = (<HTMLInputElement>document.getElementById('checkoutdate')).value;
     const city = (<HTMLInputElement>document.getElementById('cityname')).value;
-   
+
     if (checkIn !== null && checkOut !== null && city !== null) {
       if (this.citynameAuto != null) {
         this.router.navigate(['/searchresults',
@@ -222,7 +164,6 @@ console.log('After - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.f
 
 
   checkFavorite(hotelID) {
-    var favList: Hotel[] = [];
     for (var i = 0; i < this.faves.length; i++) {
       if (this.faves[i] === hotelID) {
         return true;
