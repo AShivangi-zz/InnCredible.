@@ -15,7 +15,7 @@
         <div class='list-location'>{{res.hotelLoc}}</div>
         
         
-        <div class='list-price'>Total Price: {{res.price}}</div>
+        <!--<div class='list-price'>Total Price: {{res.price}}</div>-->
         <div *ngIf="res?.comments" class='list-comment' style="padding-top: 10px">Comment: {{res.comments}}</div>
         <div *ngIf="!res?.comments" class='list-comment' style="padding-top: 10px">Comment: No comments</div>
         <div class='list-bottom'>
@@ -36,6 +36,8 @@
             <span>Guests</span></div>
 
         </div>
+        <br>
+        <br>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal" (click)= 'setkey(res.$key)' ><span class="glyphicon glyphicon-remove-circle"></span> Cancel</a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
