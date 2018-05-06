@@ -27,8 +27,7 @@ export class ReviewComponent implements OnInit {
               , public userProfileService: UserProfileService,
               private service: SenditineraryinformationService) {
     this.subscription = this.hotel.activeHotel.subscribe(value => this.hotelData = value);
-    this.reservationService.activeReservation
-    .subscribe(value => this.reservation = value);
+    this.reservationService.activeReservation.subscribe(value => this.reservation = value);
     this.taxRate = 8.25;
     this.service = service;
   }
@@ -58,8 +57,10 @@ export class ReviewComponent implements OnInit {
   }
 
   onClick() {
-    this.reservation.totalCost = this.orderTotal();
-    this.reservationService.changeReservation(this.reservation);
+    const updateRes = this.reservation;
+    updateRes.totalCost = this.orderTotal()
+    // this.reservation.totalCost = this.orderTotal();
+    this.reservationService.changeReservation(updateRes);
     if (this.userProfileService.isRedeem) {
       this.userProfileService.deductReward();
     }
@@ -88,7 +89,7 @@ export class ReviewComponent implements OnInit {
   isDateCI() {
     if(this.reservation == null) {
       return false;
-    } 
+    }
     if(this.reservation.checkInDt == null || this.reservation.checkInDt == undefined) {
       return false;
     }
@@ -98,7 +99,7 @@ export class ReviewComponent implements OnInit {
   isDateCO() {
     if(this.reservation == null) {
       return false;
-    } 
+    }
     if(this.reservation.checkOutDt == null || this.reservation.checkOutDt == undefined) {
       return false;
     }

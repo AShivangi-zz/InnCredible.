@@ -31,14 +31,34 @@ export class ReservationComponent implements OnInit {
   constructor(private reservationService: ReservationService,
     private fb: FormBuilder,
     private route: ActivatedRoute) {
+      this.route.params.subscribe( params => {
+        this.hotelID = params['id'];
+        this.returnedcheckindate = params['id2'];
+        this.returnedcheckoutdate = params['id3'];
+
+        const newRes = new Reservation();
+        newRes.guests = 1;
+        newRes.rooms = 1;
+        newRes.hotelID = params['id'];
+        newRes.checkInDt = new Date(params['id2']);
+        newRes.checkOutDt = new Date(params['id3']);
+        this.reservationService.changeReservation(newRes);
+        // newRes = new Date(this.returnedcheckindate);
+        // this.reservation.checkOutDt = new Date(this.returnedcheckoutdate);
+      });
+    this.reservationService.activeReservation.subscribe( value => this.reservation = value);
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.hotelID = params['id'];
-      this.returnedcheckindate = params['id2'];
-      this.returnedcheckoutdate = params['id3'];
-    });
+    // this.sub = this.route.params.subscribe(params => {
+    //   this.hotelID = params['id'];
+    //   this.returnedcheckindate = params['id2'];
+    //   this.returnedcheckoutdate = params['id3'];
+    //
+    //   // this.reservationService.setHotelID(params['id']);
+    //   // const newRes Reservation;
+    //   // newRes.guests
+    // });
 
     if (!this.submit) {
       this.resvForm = this.createGuestForm();
@@ -50,18 +70,22 @@ export class ReservationComponent implements OnInit {
       });
     }
 
-    this.reservationService.activeReservation.subscribe((value) => {
-      this.reservation = value
-      if (this.reservation === null) {
-        this.reservation = new Reservation();
-      } else if(this.reservation.guests === null || this.reservation.guests === undefined){
-        this.reservation.guests = 1;
-        this.reservation.rooms = 1;
-      }
-      this.reservation.hotelID = this.hotelID;
-      this.reservation.checkInDt = new Date(this.returnedcheckindate);
-      this.reservation.checkOutDt = new Date(this.returnedcheckoutdate);
-    });
+    // if (this.reservation === null) {
+    //
+    // }
+
+    // this.reservationService.activeReservation.subscribe((value) => {
+    //   this.reservation = value
+    //   if (this.reservation === null) {
+    //     this.reservation = new Reservation();
+    //   } else if(this.reservation.guests === null || this.reservation.guests === undefined) {
+    //     this.reservation.guests = 1;
+    //     this.reservation.rooms = 1;
+    //   }
+    //   this.reservation.hotelID = this.hotelID;
+    //   this.reservation.checkInDt = new Date(this.returnedcheckindate);
+    //   this.reservation.checkOutDt = new Date(this.returnedcheckoutdate);
+    // });
   }
 
   onSubmit() {
