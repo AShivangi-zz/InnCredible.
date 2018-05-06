@@ -87,10 +87,10 @@
 <!--to here (FILTER)-->
 
 <div class="container" class="col-sm-9">
-  <!--<span *ngIf="hotels !== null && foundHotels.length === 0; else filter_check" style="font-size:25px;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}.</span>-->
-  <!--<ng-template #filter_check>-->
-    <!--<span *ngIf="hotels.length === 0" style="font-size:25px;">No hotels found. Try removing some filters.</span>-->
-  <!--</ng-template>-->
+  <span *ngIf="hotels !== null && foundHotels.length === 0; else filter_check" style="font-size:25px;">No hotels found for {{returnedname}} with {{returnedcheckindate}} to {{returnedcheckoutdate}}.</span>
+  <ng-template #filter_check>
+    <span *ngIf="hotels !== null && hotels.length === 0" style="font-size:25px;">No hotels found. Try removing some filters.</span>
+  </ng-template>
 
   <!--<span *ngIf="hotels.length === 0 && foundHotels.length === 0" style="font-size:25px;">No hotels found. Try removing some filters.</span>-->
   <!--<span *ngIf="hotels.length === 0 && (hotels.leng)" style="font-size:25px;">No hotels found. Try removing some filters.</span>-->
