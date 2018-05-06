@@ -69,40 +69,43 @@ export class ReviewComponent implements OnInit {
       this.reservation.rooms, this.reservation.checkInDt, this.reservation.checkOutDt,
       this.roomCharge(), this.applyRewardAmnt(),this.taxCharge(),this.reservation.totalCost, firebase.auth().currentUser.email);
   }
-/*
-  getCheckIn() {
-    if(this.reservation == null) {
-      return null;
-    } else if(this.reservation.checkInDt == null || this.reservation.checkInDt == undefined || !(this.reservation.checkInDt instanceof Date)) {
-      //console.log('Instance 2 '+ (this.reservation.checkInDt instanceof Date));
-      return null;
-    }
-    else {
-      console.log('Instance '+ (this.reservation.checkInDt instanceof Date));
-      console.log(this.reservation.checkInDt);
-      console.log(this.reservation.checkInDt.toLocaleDateString());
-      return this.reservation.checkInDt.toLocaleDateString();
-      //this.reservation.checkInDt.toLocaleDateString();
-    }
-  }*/
 
-  isDateCI() {
-    if(this.reservation == null) {
-      return false;
-    }
-    if(this.reservation.checkInDt == null || this.reservation.checkInDt == undefined) {
-      return false;
-    }
-    return (this.reservation.checkInDt instanceof Date);
-  }
+  // getCheckIn() {
+  //   if(this.reservation == null) {
+  //     return null;
+  //   } else if(this.reservation.checkInDt == null || this.reservation.checkInDt == undefined || !(this.reservation.checkInDt instanceof Date)) {
+  //     //console.log('Instance 2 '+ (this.reservation.checkInDt instanceof Date));
+  //     return null;
+  //   }
+  //   else {
+  //     console.log('Instance '+ (this.reservation.checkInDt instanceof Date));
+  //     console.log(this.reservation.checkInDt);
+  //     console.log(this.reservation.checkInDt.toLocaleDateString());
+  //     return this.reservation.checkInDt.toLocaleDateString();
+  //     //this.reservation.checkInDt.toLocaleDateString();
+  //   }
+  // }
+  //
+  // isDateCI() {
+  //   if(this.reservation == null) {
+  //     return false;
+  //   }
+  //   if(this.reservation.checkInDt == null || this.reservation.checkInDt == undefined) {
+  //     return false;
+  //   }
+  //   // alert('Check in: ' + this.reservation.checkInDt);
+  //   return (this.reservation.checkInDt instanceof Date);
+  // }
+  //
+  // isDateCO() {
+  //   if(this.reservation === null) {
+  //     return false;
+  //   }
+  //   if(this.reservation.checkOutDt === null || this.reservation.checkOutDt === undefined) {
+  //     return false;
+  //   }
+  //   // alert('CheckOut: ' + this.reservation.checkOutDt);
+  //   return (this.reservation.checkOutDt instanceof Date);
+  // }
 
-  isDateCO() {
-    if(this.reservation == null) {
-      return false;
-    }
-    if(this.reservation.checkOutDt == null || this.reservation.checkOutDt == undefined) {
-      return false;
-    }
-    return (this.reservation.checkOutDt instanceof Date);
-  }
 }

@@ -40,9 +40,11 @@ export class ReservationComponent implements OnInit {
         newRes.guests = 1;
         newRes.rooms = 1;
         newRes.hotelID = params['id'];
-        newRes.checkInDt = new Date(params['id2']);
-        newRes.checkOutDt = new Date(params['id3']);
+        newRes.checkInDt = params['id2'];
+        newRes.checkOutDt = params['id3'];
+        console.log(newRes);
         this.reservationService.changeReservation(newRes);
+        console.log(this.reservation);
         // newRes = new Date(this.returnedcheckindate);
         // this.reservation.checkOutDt = new Date(this.returnedcheckoutdate);
       });
