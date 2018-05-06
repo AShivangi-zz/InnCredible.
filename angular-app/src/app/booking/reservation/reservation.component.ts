@@ -52,16 +52,6 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.sub = this.route.params.subscribe(params => {
-    //   this.hotelID = params['id'];
-    //   this.returnedcheckindate = params['id2'];
-    //   this.returnedcheckoutdate = params['id3'];
-    //
-    //   // this.reservationService.setHotelID(params['id']);
-    //   // const newRes Reservation;
-    //   // newRes.guests
-    // });
-
     if (!this.submit) {
       this.resvForm = this.createGuestForm();
       const guest = this.resvForm.get('guests');
@@ -71,23 +61,6 @@ export class ReservationComponent implements OnInit {
         rooms.setValue(Math.ceil(val / 2));
       });
     }
-
-    // if (this.reservation === null) {
-    //
-    // }
-
-    // this.reservationService.activeReservation.subscribe((value) => {
-    //   this.reservation = value
-    //   if (this.reservation === null) {
-    //     this.reservation = new Reservation();
-    //   } else if(this.reservation.guests === null || this.reservation.guests === undefined) {
-    //     this.reservation.guests = 1;
-    //     this.reservation.rooms = 1;
-    //   }
-    //   this.reservation.hotelID = this.hotelID;
-    //   this.reservation.checkInDt = new Date(this.returnedcheckindate);
-    //   this.reservation.checkOutDt = new Date(this.returnedcheckoutdate);
-    // });
   }
 
   onSubmit() {
@@ -144,15 +117,4 @@ export class ReservationComponent implements OnInit {
 
     checkOut.setAttribute("min", checkIn.value);
   }
-  /*
-    isFieldValid(field: string) {
-      return !this.resvForm.get(field).valid && this.resvForm.get(field).touched;
-    }
-
-    displayFieldCss(field: string) {
-      return {
-        'has-error': !this.isFieldValid(field),
-        'has-feedback': !this.isFieldValid(field)
-      };
-    }*/
 }

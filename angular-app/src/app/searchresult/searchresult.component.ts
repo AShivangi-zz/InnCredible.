@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { Hotel } from '../models/hotel';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +7,7 @@ import { UserProfileService } from '../services/profile.service';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HotelInfo } from '../services/hotel-info';
+import { Subscription } from 'rxjs/Subscription';
 
 function boxFilter(amenity) {
   return amenity.checked;
@@ -18,7 +19,7 @@ function boxFilter(amenity) {
   styleUrls: ['./searchresult.component.scss'],
 })
 
-export class SearchresultComponent implements OnInit {
+export class SearchresultComponent implements OnInit, OnDestroy {
 
   @ViewChild('placesRef') placesRef: GooglePlaceDirective;
 
@@ -48,6 +49,8 @@ export class SearchresultComponent implements OnInit {
   order = 'price';
   reverse = false;
 
+  sub: Subscription;
+
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
   constructor(
     private route: ActivatedRoute,
@@ -58,7 +61,7 @@ export class SearchresultComponent implements OnInit {
     public spinner: NgxSpinnerService,
     public hotelInfo: HotelInfo) {
 
-    this.route.params.subscribe(async (params) => {
+    this.sub = this.route.params.subscribe(async (params) => {
         this.returnedname = params['id'];
         this.returnedcheckindate = params['id2'];
         this.returnedcheckoutdate = params['id3'];
@@ -71,8 +74,8 @@ export class SearchresultComponent implements OnInit {
         this.spinner.hide();
       });
 
-      this.searchService.currentSearch.subscribe(value => this.foundHotels = value);
-      this.filterService.currentFilter.subscribe(value => this.hotels = value);
+      this.sub.add(this.searchService.currentSearch.subscribe(value => this.foundHotels = value));
+      this.sub.add(this.filterService.currentFilter.subscribe(value => this.hotels = value));
 
       this.amenities = [
         {name: 'Car Parking', checked: false},
@@ -95,6 +98,10 @@ export class SearchresultComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   updateDate() {

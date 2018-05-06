@@ -5,8 +5,7 @@ import { UserProfileService } from '../../services/profile.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ReservationService } from '../shared/reservation.service';
 import { Reservation } from '../shared/reservation.model';
-import {SenditineraryinformationService} from "../../services/senditineraryinformation.service";
-import {ActivatedRoute} from '@angular/router';
+import {SenditineraryinformationService} from '../../services/senditineraryinformation.service';
 import * as firebase from 'firebase';
 
 @Component({
@@ -20,7 +19,7 @@ export class ReviewComponent implements OnInit {
   public reservation: Reservation;
   private subscription: Subscription;
 
-  submit:boolean =false;
+  submit = false;
 
   constructor(private hotel: HotelInfo
               , private reservationService: ReservationService
@@ -59,15 +58,16 @@ export class ReviewComponent implements OnInit {
   onClick() {
     const updateRes = this.reservation;
     updateRes.totalCost = this.orderTotal()
-    // this.reservation.totalCost = this.orderTotal();
+
     this.reservationService.changeReservation(updateRes);
     if (this.userProfileService.isRedeem) {
       this.userProfileService.deductReward();
     }
     this.userProfileService.awardRewardPoints(this.roomCharge());
+
     this.service.saveInformation(this.hotelData.name, this.hotelData.location, this.reservation.guests,
       this.reservation.rooms, this.reservation.checkInDt, this.reservation.checkOutDt,
-      this.roomCharge(), this.applyRewardAmnt(),this.taxCharge(),this.reservation.totalCost, firebase.auth().currentUser.email);
+      this.roomCharge(), this.applyRewardAmnt(), this.taxCharge(), this.reservation.totalCost, firebase.auth().currentUser.email);
   }
 
   // getCheckIn() {

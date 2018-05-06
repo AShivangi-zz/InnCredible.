@@ -53,9 +53,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onClick() {
-    // alert(this.reservation.totalCost);
-    //console.log(this.result.getModel());
-    //console.log('HERE');
     this.getToken();
     this.db.list('/users/' + firebase.auth().currentUser.uid + '/itinerary').push(this.result.getModel());
 
