@@ -80,11 +80,14 @@ export class ReservationComponent implements OnInit {
       resSetUp.rooms = this.resvForm.get('rooms').value;
       resSetUp.checkInDt = this.resvForm.get('checkInDt').value;
       resSetUp.checkOutDt = this.resvForm.get('checkOutDt').value;
-      if (this.resvForm.get('comments').value) {
+      if (this.resvForm.get('comments').value !== undefined) {
+        console.log('not null');
+        console.log(this.resvForm.get('comments').value);
         resSetUp.comments = this.resvForm.get('comments').value;
+      } else {
+        resSetUp.comments = null;
       }
       await this.reservationService.insertReservation(resSetUp);
-alert('check firebase');
       this.submit = true;
     } else if (!dtValid) {
       this.error = 'Please choose a check-out date that\'s after the check-in date.';
