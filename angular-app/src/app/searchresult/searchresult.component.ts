@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { Hotel } from '../models/hotel';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +7,7 @@ import { UserProfileService } from '../services/profile.service';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HotelInfo } from '../services/hotel-info';
+import { Subscription } from 'rxjs/Subscription';
 
 function boxFilter(amenity) {
   return amenity.checked;
@@ -18,7 +19,7 @@ function boxFilter(amenity) {
   styleUrls: ['./searchresult.component.scss'],
 })
 
-export class SearchresultComponent implements OnInit {
+export class SearchresultComponent implements OnInit, OnDestroy {
 
   @ViewChild('placesRef') placesRef: GooglePlaceDirective;
 
@@ -48,6 +49,8 @@ export class SearchresultComponent implements OnInit {
   order = 'price';
   reverse = false;
 
+  sub: Subscription;
+
   // Gets the shared service file SharedSearchResultsService which now contains the user entered input
   constructor(
     private route: ActivatedRoute,
@@ -58,43 +61,47 @@ export class SearchresultComponent implements OnInit {
     public spinner: NgxSpinnerService,
     public hotelInfo: HotelInfo) {
 
-    this.route.params.subscribe(async (params) => {
-        this.returnedname = params['id'];
-        this.returnedcheckindate = params['id2'];
-        this.returnedcheckoutdate = params['id3'];
+    this.sub = this.route.params.subscribe(async (params) => {
+      this.returnedname = params['id'];
+      this.returnedcheckindate = params['id2'];
+      this.returnedcheckoutdate = params['id3'];
 
-        await this.searchService.retrieveData(params['id'], params['id2'], params['id3']);
-        this.filterService.loadFilter(this.foundHotels);
-        this.faves = [];
-        await this.profileService.pullFavHotels();
-        this.faves = this.profileService.getFavesList();
-        this.spinner.hide();
-      });
+      await this.searchService.retrieveData(params['id'], params['id2'], params['id3']);
+      this.filterService.loadFilter(this.foundHotels);
+      this.faves = [];
+      await this.profileService.pullFavHotels();
+      this.faves = this.profileService.getFavesList();
+      this.spinner.hide();
+    });
 
-      this.searchService.currentSearch.subscribe(value => this.foundHotels = value);
-      this.filterService.currentFilter.subscribe(value => this.hotels = value);
+    this.sub.add(this.searchService.currentSearch.subscribe(value => this.foundHotels = value));
+    this.sub.add(this.filterService.currentFilter.subscribe(value => this.hotels = value));
 
-      this.amenities = [
-        {name: 'Car Parking', checked: false},
-        {name: 'Non Smoking', checked: false},
-        {name: 'Disabled Facilities', checked: false},
-        {name: 'Shops', checked: false},
-        {name: 'Fitness Center', checked: false},
-        {name: 'Pet allowed', checked: false},
-        {name: 'Outdoor Swimmingpool', checked: false},
-        {name: 'Sauna', checked: false},
-        {name: 'Lifts', checked: false},
-        {name: 'Restaurant', checked: false},
-        {name: 'Television', checked: false},
-        {name: 'Radio', checked: false},
-        {name: 'Hairdryer', checked: false},
-        {name: 'High Speed Modem', checked: false}
-      ];
+    this.amenities = [
+      { name: 'Car Parking', checked: false },
+      { name: 'Non Smoking', checked: false },
+      { name: 'Disabled Facilities', checked: false },
+      { name: 'Shops', checked: false },
+      { name: 'Fitness Center', checked: false },
+      { name: 'Pet allowed', checked: false },
+      { name: 'Outdoor Swimmingpool', checked: false },
+      { name: 'Sauna', checked: false },
+      { name: 'Lifts', checked: false },
+      { name: 'Restaurant', checked: false },
+      { name: 'Television', checked: false },
+      { name: 'Radio', checked: false },
+      { name: 'Hairdryer', checked: false },
+      { name: 'High Speed Modem', checked: false }
+    ];
 
-    }
+  }
 
   ngOnInit() {
     this.spinner.show();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   updateDate() {
@@ -112,15 +119,20 @@ export class SearchresultComponent implements OnInit {
     if (checkIn !== null && checkOut !== null && city !== null) {
       if (this.citynameAuto != null) {
         this.router.navigate(['/searchresults',
-            this.citynameAuto,
-            checkIn,
-            checkOut]);
+          this.citynameAuto,
+          checkIn,
+          checkOut]);
         window.location.reload();
       } else {
+        console.log('cityauto2 ', null);
+        if (city.includes(',')) {
+          const segments = city.split(',');
+          this.citynameAuto = segments[0];
+        }
         this.router.navigate(['/searchresults',
-            city,
-            checkIn,
-            checkOut]);
+          this.citynameAuto,
+          checkIn,
+          checkOut]);
         window.location.reload();
       }
     }
@@ -130,11 +142,12 @@ export class SearchresultComponent implements OnInit {
     const location = event.formatted_address;
     const segments = location.split(',');
     this.citynameAuto = segments[0];
+    console.log('cityauto ', this.citynameAuto);
   }
 
   checkFilter() {
     if (this.hotels === null || (this.hotels != null && this.hotels.length === 0)) {
-console.log('Failed filter Check, resetting foundHotels');
+      console.log('Failed filter Check, resetting foundHotels');
       this.filterService.loadFilter(this.foundHotels);
     }
   }
@@ -143,15 +156,15 @@ console.log('Failed filter Check, resetting foundHotels');
     console.log((<HTMLInputElement>document.getElementById('cityname')).value);
     this.checkFilter();
 
-console.log('Before - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);
+    console.log('Before - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);
     this.filterService.filterByRating(rating, this.foundHotels, this.amenities.filter(boxFilter));
 
-console.log('After - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);
+    console.log('After - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);
 
   }
 
   onCheckboxChange(amenity: any) {
-console.log('Before - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);
+    console.log('Before - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);
 
     this.checkFilter();
     if (amenity.checked) {
@@ -159,7 +172,7 @@ console.log('Before - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.
     } else {
       this.filterService.uncheckAmenity(amenity, this.amenities.filter(boxFilter), this.foundHotels);
     }
-console.log('After - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);
+    console.log('After - Filter: ' + this.hotels.length + ' | ' + 'Found: ' + this.foundHotels.length);
   }
 
 

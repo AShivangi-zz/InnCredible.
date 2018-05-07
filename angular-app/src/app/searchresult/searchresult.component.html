@@ -13,16 +13,16 @@
 
 
 </div>
-  <form #searchformdata="ngForm" (ngSubmit)="onSubmit()">
+  <form #searchformdata="ngForm" (keydown.enter)='onSubmit()'>
     <div>
         <div class="col-sm-2"> </div>
           <div class="col-sm-3"><input class="form-control" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" id="cityname" name="citynames" value={{returnedname}} ></div>
           <div class="col-sm-3  "><input type="date" class="form-control" value={{returnedcheckindate}} id="checkindate" name="checkindate" [min]="dtToday" (change)="updateDate()"></div>
-          <div class="col-sm-3  "><input class="form-control" id="checkoutdate" type="date" value={{returnedcheckoutdate}} name="checkoutdate" min=""></div>
+          <div class="col-sm-3  "><input class="form-control" id="checkoutdate" type="date" value={{returnedcheckoutdate}} name="checkoutdate" min="" ></div>
           <div class="col-sm-3  "></div>
 
       </div>
-      <button style="margin-left:22%; margin-top:2%" type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow">Check Availability<i class="icon-arrow-right"></i></button>
+      <button style="margin-left:22%; margin-top:2%" type="submit" [disabled]="!searchformdata.valid" class="btn btn-primary btn-outline with-arrow" (click)='onSubmit()'>Check Availability<i class="icon-arrow-right"></i></button>
   </form>
 
   <!-- SORT -->
@@ -138,7 +138,7 @@
                 <br>
                 <h3 style="color:#4CB648; text-align:center">${{hotel?.price}}</h3>
                 <br>
-                <button (click)="pickHotel(hotel)" [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel
+                <button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel
                 <!--<button [routerLink]="['/hotel-info', hotel?.hotelID, returnedcheckindate, returnedcheckoutdate]" class="btn btn-primary  with-arrow">View Hotel-->
                   <i class="icon-arrow-right"></i>
                 </button>

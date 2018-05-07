@@ -18,14 +18,10 @@ export class HotelInfoComponent implements OnInit {
 
   @ViewChild('gmap') gmapElement: any;
 
-  public imagesURL: URL[] = [];
-  public imgDone: boolean = false;
-
   hotelID: string;
   returnedcheckindate: string;
   returnedcheckoutdate: string;
 
-  private id: string;
   public sub: Subscription;
   public hotel: Hotel;
 
@@ -81,21 +77,6 @@ export class HotelInfoComponent implements OnInit {
         marker = new google.maps.Marker(markerOptions);
       }
     });
-  }
-
-  setMarker(map, position, title) {
-
-  }
-
-  public setHotelID(id) {
-    this.hotelID = id;
-  }
-  public setImagesURL(image) {
-    this.imagesURL.push(image);
-  }
-
-  public setImgDone() {
-    this.imgDone = true;
   }
 
   private getcity(){
