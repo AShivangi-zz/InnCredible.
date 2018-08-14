@@ -5,6 +5,16 @@ Cd into angular-app
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
 
+## Features
+
+1. Sign up/ Sign in
+2. Search for hotels in different cities
+3. Book a hotel
+4. Payment using Stripe
+5. Earn and use reward points
+6. Get confirmation emails
+7. Edit profile
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
